@@ -1,3 +1,12 @@
+class xor {
+    static encode(str) {
+        return encodeURIComponent(str.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
+    };
+    static decode(str) {
+        return decodeURIComponent(str.slice(0, -1)).split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join('');
+    };
+};
+
 let ctxm = document.getElementById("ctx");
 function hidectx() {
     if(!ctxm.classList.contains("hide") || ctxm.classList.contains("show")) {
@@ -566,7 +575,6 @@ function windows(link, icn, title, browser, os, fullscreen, appName) {
     dragger.addEventListener("mousedown", mousedown);
     newwin.addEventListener("mousedown", winfocus);
     window.addEventListener("message", () => {
-        console.log("ball");
         winfocus();
     });
     

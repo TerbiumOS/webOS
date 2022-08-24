@@ -2,15 +2,6 @@ window.navigator.serviceWorker.register('./sw.js', {
     scope: __uv$config.prefix
 });
 
-class xor {
-    static encode(str) {
-        return encodeURIComponent(str.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
-    };
-    static decode(str) {
-        return decodeURIComponent(str.slice(0, -1)).split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join('');
-    };
-};
-
 function isUrl(val = '') {
     if (/^http(s?):\/\//.test(val) || val.includes('.') && val.substr(0, 1) !== ' ') return true;
     return false;
