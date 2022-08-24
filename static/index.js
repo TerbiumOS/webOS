@@ -1,11 +1,11 @@
-window.navigator.serviceWorker.register('./sw.js', {
-    scope: __uv$config.prefix
-});
-
 function isUrl(val = '') {
     if (/^http(s?):\/\//.test(val) || val.includes('.') && val.substr(0, 1) !== ' ') return true;
     return false;
 };
+
+window.navigator.serviceWorker.register('./sw.js', {
+    scope: __uv$config.prefix
+});
 
 let dock = document.getElementById("dock");
 let style = document.getElementById("rels");
