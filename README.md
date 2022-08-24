@@ -1,5 +1,5 @@
 # TerbiumOS web
 This web os is packed full of feature ***AND MORE TO COME***
-![image](https://user-images.githubusercontent.com/49733954/186291661-471b8ccb-d73d-4075-aab1-b14c3e31313b.png)
-![image](https://user-images.githubusercontent.com/49733954/186292036-6045cd8d-91b2-49e6-80f8-2bf1cee9bfbb.png)
-![image](https://user-images.githubusercontent.com/49733954/186291931-9f547d32-9a2b-4518-a602-22f3544e04fc.png)
+![image](https://user-images.githubusercontent.com/49733954/186297001-347adeb6-2abd-42fd-9c46-5e51fff06c7e.png)
+![image](https://user-images.githubusercontent.com/49733954/186296936-4f55d2f0-d9f1-45ef-a89c-b2587d2daa75.png)
+![image](https://user-images.githubusercontent.com/49733954/186296967-4ee2d9fc-1e2a-4063-a85f-3d8c1c253046.png)
