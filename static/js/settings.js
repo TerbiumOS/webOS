@@ -1,3 +1,4 @@
+const win = window.parent.document.querySelectorAll(".win");
 const dark = document.getElementById("dark");
 const night = document.getElementById("night");
 const frac = document.getElementById("frac");
@@ -38,13 +39,20 @@ dark.addEventListener("click", () => {
     if(html !== "dark") {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
-        themeMAIN.setAttribute("data-theme", "dark");
+        for (let a = 0; a < win.length; a++) {
+            const element = win[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'dark');
+        }
     }
     if(html === "dark") {
         alert("Dark theme is already enabled");
         return
     }
 });
+
+// check which theme button was clicked then log that buttons id
+const themeBtns = document.querySelectorAll(".themeBtn");
+themeBtns.forEach()
 
 night.addEventListener("click", () => {
     let html = document.documentElement.getAttribute("data-theme");
@@ -65,6 +73,11 @@ frac.addEventListener("click", () => {
         document.documentElement.setAttribute('data-theme', 'fracital');
         localStorage.setItem('theme', 'fracital');
         themeMAIN.setAttribute("data-theme", "fracital");
+        for (let a = 0; a < win.length; a++) {
+            const element = win[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
     }
     if(html === "fracital") {
         alert("Fracital theme is already enabled");
@@ -141,7 +154,6 @@ const customShadow = document.getElementById("customShadow");
 const clearCustomShadow = document.getElementById("clearCustomShadow");
 const login = document.getElementById("login");
 
-const win = window.parent.document.querySelectorAll(".win");
 const btns = window.parent.document.querySelectorAll(".winc");
 
 // enable or disable login

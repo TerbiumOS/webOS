@@ -6,6 +6,21 @@ class xor {
         return decodeURIComponent(str.slice(0, -1)).split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join('');
     };
 };
+// document.addEventListener("keyup", function() {
+//     const input = !!document.querySelectorAll("#input");
+//     if(input == true) {
+//         for (let i = 0; i < input.length; i++) {
+//             const element = input[i];
+//             if(input.focus === false) {
+//                 console.log("balls");
+//             } else {
+//                 console.log("nuts");
+//             }
+//         }
+//     } else {
+//         console.log("No input detected");
+//     }
+// })
 
 let ctxm = document.getElementById("ctx");
 function hidectx() {
@@ -289,6 +304,7 @@ function windows(link, icn, title, browser, os, fullscreen, appName) {
                 }
             }
         }
+        // this deals with the search bar on the Terbium browser
         search.addEventListener("keydown", (e) => {
             let safeSearch = localStorage.getItem("ss");
             let framew = newwin.querySelector("#frame");
