@@ -1199,8 +1199,6 @@ li {
     z-index: 2;
     transition: background-color ease-in-out 200ms;
     transition: border-radius ease-in-out 150ms;
-    transition: width ease-in-out 150ms;
-    transition: height ease-in-out 150ms;
 }
 
 .winmini {
