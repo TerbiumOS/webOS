@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terbium</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+    <body>
+        <div class="loginDetails">
+            <p class="passState">Create A Password</p>
+            <div class="inputC">
+                <div class="input">
+                    <input type="password" oninput="strengthChecker()" onfocus="let inp = document.querySelector('.inputC'); inp.classList.add('focus');" onblur="document.querySelector('.inputC').classList.remove('focus')" name="pass" id="pass" class="pass passN">
+                    <a class="showHide" id="showHide" onclick="toggle();">
+                        <svg class="eye" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.82843 37.3553C0.266336 38.9174 0.266336 41.4501 1.82843 43.0122L15.2635 56.4472C28.9318 70.1156 51.0926 70.1156 64.7609 56.4472L78.196 43.0122C79.7581 41.4501 79.7581 38.9174 78.196 37.3553L64.7609 23.9203C51.0926 10.2519 28.9318 10.2519 15.2635 23.9203L1.82843 37.3553ZM40 54C47.732 54 54 47.732 54 40C54 32.268 47.732 26 40 26C32.268 26 26 32.268 26 40C26 47.732 32.268 54 40 54Z"/>
+                        </svg>
+                    </a>
+                    <svg class="spinner noSpin" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="6"></circle></svg>
+                </div>
+                <div class="bott" id="secureAmount"></div>
+            </div>
+            <div class="strengthMessage" id="strengthMessage">Strength</div>
+            <a class="skip">CONTINUE WITHOUT A PASSWORD</a>
+        </div>
+        <script src="login.js"></script>
+    </body>
+</html>

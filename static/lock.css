@@ -1,0 +1,59 @@
+@font-face {
+    font-family: pro;
+    src: url(./resources/Product.ttf);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: pro;
+    background-color: #222;
+    color: #25a34f;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 6px;
+}
+
+.info {
+    margin: 0;
+}
+
+.tempSpin {
+    display: grid;
+    place-content: center;
+    animation: spin 1s infinite;
+    border: 4px solid #25a34f;
+    height: 42px;
+    width: 42px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.eye {
+    height: 21px;
+    width: 21px;
+    border-radius: 50%;
+    background-color: #25a34f;
+}
+
+button.cancel {
+    background-color: #ff6868;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    font-family: pro;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(1turn);
+    }
+}

@@ -1,0 +1,24 @@
+<svg width="142px" height="142px" viewBox="0 0 142 142" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="93.9615573%" y1="21.505006%" x2="6.67374954%" y2="74.6310143%" id="linearGradient-1">
+            <stop stop-color="#7A58FF" offset="0%"/>
+            <stop stop-color="#7D3BFF" offset="100%"/>
+        </linearGradient>
+        <circle id="path-2" cx="50" cy="50" r="50"/>
+        <filter x="-33.0%" y="-28.0%" width="170.0%" height="170.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+            <feOffset dx="2" dy="7" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="9.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.196078431   0 0 0 0 0.196078431   0 0 0 0 0.360784314  0 0 0 0.25 0" type="matrix" in="shadowBlurOuter1"/>
+        </filter>
+    </defs>
+    <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dark" transform="translate(19.000000, 14.000000)">
+            <g id="Oval">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"/>
+                <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"/>
+            </g>
+            <path d="M72,49.9669858 L50.0329876,28 L28,50.0329858 L49.9669709,72 L72,49.9669858 Z M50.0151318,39.8978632 L60.1021116,49.9848697 L39.8978469,50.0151729 L50.0151318,39.8978632 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"/>
+        </g>
+    </g>
+</svg>

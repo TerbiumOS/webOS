@@ -1,0 +1,142 @@
+@font-face {
+    font-family: Metro;
+    src: url(../resources/metropolis-extra-bold.otf);
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(../resources/Ubuntu-Medium.ttf);
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(../resources/Roboto.ttf);
+}
+
+[data-theme="dark"] {
+    --body: #1c1c1c;
+    --color: white;
+    --userselect-background: #696969;
+    --userselect-color: #1d1d1d;
+
+    /* commands */
+    --commmands-background: #151515;
+    --commands-outline: #131313;
+    --commmands-boxshadow: #151515;
+
+    --command-background: #131313;
+    --command-outline: #292929;
+    --command-border: #131313;
+}
+
+[data-theme="light"] {
+    --body: #686868;
+    --color: white;
+    --userselect-background: #c4c4c4;
+    --userselect-color: #666;
+
+    /* commands */
+    --commmands-background: #4f4e4e;
+    --commands-outline: #6c6c6c;
+    --commmands-boxshadow: #4f4e4e;
+
+    --command-background: #3c3c3c;
+    --command-outline: #6c6c6c;
+    --command-border: #3c3c3c;
+}
+
+[data-theme="night"] {
+    --body: #181446;
+    --color: #ffe688;
+    --userselect-background: #32299b;
+    --userselect-color: #fff7a5;
+
+    /* commands */
+    --commmands-background: #08062b;
+    --commands-outline: #07052b;
+    --commmands-boxshadow: #08062b;
+
+    --command-background: #08062b;
+    --command-outline: #efe688;
+    --command-border: #08062b;
+}
+
+[data-theme="fracital"] {
+    --body: #222;
+    --color: #ff40f7;
+    --userselect-background: #575757;
+    --userselect-color: #ff40f7;
+    
+    /* commands */
+    --commmands-background: #151515;
+    --commands-outline: #282828;
+    --commmands-boxshadow: #151515;
+
+    --command-background: #262626;
+    --command-outline: #424242;
+    --command-border: #262626;
+}
+
+::selection {
+    background: var(--userselect-background);
+    color: var(--userselect-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scrollbar-color: var(--color) var(--body);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--body);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 6px;
+}
+
+body {
+    font-family: Roboto;
+    margin: 0;
+    background-color: var(--body);
+    color: var(--color);
+    display: grid;
+    min-height: 100vh;
+    justify-items: center;
+    align-content: center;
+}
+
+.commands {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--commmands-background);
+    outline: 1px solid var(--commands-outline);
+    box-shadow: 0px 0px 12px 6px var(--commmands-boxshadow);
+    border-radius: 6px;
+    margin-bottom: 2em;
+    padding: 7px 10px;
+    gap: 8px;
+}
+
+command {
+    height: 23px;
+}
+
+code {
+    background-color: var(--command-background);
+    outline: 1px solid var(--command-outline);
+    border: 1px solid var(--command-border);
+    padding: 3px 6px;
+    border-radius: 6px;
+}

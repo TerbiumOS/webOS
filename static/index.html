@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="shortcut icon" id="favi" href="/terbium.png" type="image/x-icon">
+        <title>Terbium</title>
+        <meta property="og:image" content="/terbium.png">
+        <meta name="description" content="Terbium is a sexy operating system built in the browser by SNOOT#7514 with &#128150;!" />
+        <meta name="theme-color" content="#4cb05e">
+        <meta name="keywords" content="terbium, Terbium, SNOOTMAN, Fracital, windows, windows web, windows but bad, webOS, web os">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#4cb05e">
+        <link href="index.css" id="rels" rel="stylesheet">
+        <script async src="https://arc.io/widget.min.js#nxu6Wm1G"></script>
+    </head>
+    <body tabindex="-1" oncontextmenu="return false;" data-notification="false">
+        <!-- <div class="loginDetails">
+            <div class="inputSectioned">
+                <div class="inputC">
+                    <div class="input">
+                        <input type="password" placeholder="Enter Password" onfocus="let inp = document.querySelector('.inputC'); inp.classList.add('focus');" onblur="document.querySelector('.inputC').classList.remove('focus')" name="pass" id="pass" class="pass">
+                        <svg class="spinner noSpin" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="6"></circle></svg>
+                    </div>
+                    <span></span>
+                </div>
+            </div>
+        </div> -->
+        <div class="shell" id="shell">
+            <svg xmlns="http://www.w3.org/2000/svg" class="appI" id="appsL" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="6" cy="16" r="3" />
+                <circle cx="16" cy="19" r="2" />
+                <circle cx="14.5" cy="7.5" r="4.5" />
+            </svg>
+            <div class="fulltime hidden" id="ft"><h4 id="ftd" class="nope"></h4><h4 class="nope" id="ftt">here is the time ig</h4></div>
+            <div class="time">
+                <h5 class="timeT" id="time">00:00 AM</h5>
+            </div>
+        </div>
+        <div id="apps" class="apps hidden">
+            <div class="main">
+                <div class="start-btn" id="set" title="Settings (Shift+S)" onclick="windows('./settings.html', './resources/terbium.svg', 'Terbium Settings', false, true, 'settings')">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="starticon" id="setc" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFEACB" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="6" cy="10" r="2" />
+                        <line x1="6" y1="4" x2="6" y2="8" />
+                        <line x1="6" y1="12" x2="6" y2="20" />
+                        <circle cx="12" cy="16" r="2" />
+                        <line x1="12" y1="4" x2="12" y2="14" />
+                        <line x1="12" y1="18" x2="12" y2="20" />
+                        <circle cx="18" cy="7" r="2" />
+                        <line x1="18" y1="4" x2="18" y2="5" />
+                        <line x1="18" y1="9" x2="18" y2="20" />
+                    </svg>
+                    Settings
+                </div>
+                <input class="appsear" id="appsear" title="Search for an existing app supported by Terbium" type="text" placeholder="Search an app">
+                <div class="brightness-shell">
+                    </div>
+                    <div class="sysc">
+                        <div class="sys">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="power" class="power sysicon" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M7 6a7.75 7.75 0 1 0 10 0" />
+                                <line x1="12" y1="4" x2="12" y2="12" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="./resources/default.png" id="background" class="background">
+            <div class="ctx hide" id="ctx">
+                <div class="menu">
+                    
+                </div>
+            </div>
+            <main id="main">
+                <div class="appsDesk" id="appsDesk">
+                    <div class="deskapp" title="Visual Studio Code">
+                        <img src="./resources/vsc.ico" id="vsc" onclick="windows('https://vscode.dev', './resources/vsc.ico', 'Visual Studio Code', false, false, 'code');" title="Visual Studio Code" class="appIcon">
+                    </div>
+                    <div class="deskapp" title="YouTube">
+                        <img src="./resources/yt.png" id="yt" onclick="windows('https://youtube.com', './resources/yt.png', 'YouTube', false, false, 'youtube');" title="YouTube" class="appIcon">
+                    </div>
+                    <div class="deskapp" title="tidal">
+                        <img src="./resources/td.ico" id="td" onclick="windows('https://tidal.com', './resources/td.ico', 'Tidal', false, false, 'tidal');" title="Tidal" class="appIcon">
+                    </div>
+                    <div class="deskapp" title="YouTube Music">
+                        <img src="./resources/ytm.png" id="ytm" onclick="windows('https://music.youtube.com', './resources/ytm.png', 'YouTube Music', false, false, 'youtube music');" title="YouTube Music" class="appIcon">
+                    </div>
+                    <div class="deskapp" title="Spotify">
+                        <img src="./resources/sp.png" id="sp" onclick="windows('https://spotify.com', './resources/sp.png', 'Spotify', false, false, 'spotify');" title="Spotify" class="appIcon">
+                    </div>
+                    <div class="deskapp" title="Apple Music">
+                        <img src="./resources/am.png" id="am" onclick="windows('https://music.apple.com', './resources/am.png', 'Apple Music', false, false, 'apple music');" title="Apple Music" class="appIcon">
+                    </div>
+                </div>
+            </main>
+            <div class="dock" oncontextmenu="return false;" id="dock">
+                <div class="dockbtn" id="terb" title="New window (Shift+N)">
+                    <svg onclick="windows('./newwin.html', './resources/terbium.svg', 'Terbium Browser', true, true, 'browser');" class="dockicon" viewBox="0 0 86 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40.683 12.653V0.242996H0.022V12.653H13.746V52H26.959V12.653H40.683ZM83.3122 16.084C83.6041 6.229 76.3772 0.316 66.5221 0.316H45.7901V52H66.8872C78.3482 52 83.9692 46.963 85.2831 38.641C85.9401 34.699 85.0642 28.056 77.9831 24.479C81.7062 22.581 83.2391 18.42 83.3122 16.084ZM58.9301 20.537V11.339H66.5221C73.0921 11.339 72.8731 20.537 66.5221 20.537H58.9301ZM58.9301 40.539V29.954H66.5221C74.2601 29.954 74.4061 40.539 66.5221 40.539H58.9301Z" fill="url(#paint0_linear_5_2)"/>
+                        <defs>
+                            <linearGradient id="paint0_linear_5_2" x1="83.5" y1="34.1023" x2="17.0779" y2="-24.6401" gradientUnits="userSpaceOnUse">
+                                <stop class="stopLIGHT"/>
+                                <stop class="stopDARK" offset="0.863175" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="dockbtn" id="settings" title="Settings">
+                    <svg onclick="windows('./settings.html', './resources/terbium.svg', 'Terbium Settings', true, true, 'settings');" xmlns="http://www.w3.org/2000/svg" class="dockicon nonGRAD" id="setc" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFEACB" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="6" cy="10" r="2" />
+                        <line x1="6" y1="4" x2="6" y2="8" />
+                        <line x1="6" y1="12" x2="6" y2="20" />
+                        <circle cx="12" cy="16" r="2" />
+                        <line x1="12" y1="4" x2="12" y2="14" />
+                        <line x1="12" y1="18" x2="12" y2="20" />
+                        <circle cx="18" cy="7" r="2" />
+                        <line x1="18" y1="4" x2="18" y2="5" />
+                        <line x1="18" y1="9" x2="18" y2="20" />
+                    </svg>
+                </div>
+                <div class="dockbtn" title="Terbium Color Picker" id="color">
+                    <svg id="color" onclick="windows('./color.html', './resources/terbium.svg', 'Terbium Color Picker', false, true, 'color');" class="dockicon" viewBox="0 0 80 80" fill="none">
+                        <path d="M13.3333 53.3333L52.3333 14.3333C52.9564 13.7226 53.7942 13.3805 54.6667 13.3805C55.5392 13.3805 56.3769 13.7226 57 14.3333L65.6667 23C66.2774 23.6231 66.6195 24.4608 66.6195 25.3333C66.6195 26.2058 66.2774 27.0436 65.6667 27.6667L26.6667 66.6667H13.3333V53.3333Z" stroke="url(#paint0_radial_2_13)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M36.6667 23.3333L56.6667 43.3333" stroke="url(#paint1_radial_2_13)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                        <defs>
+                            <radialGradient id="paint0_radial_2_13" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                gradientTransform="translate(39.9764 40.0236) rotate(90) scale(26.6431)">
+                                <stop offset="0.71875" class="stopDARKCOLOR" />
+                                <stop offset="1" class="stopLIGHTCOLOR" />
+                            </radialGradient>
+                            <radialGradient id="paint1_radial_2_13" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                gradientTransform="translate(46.6667 33.3333) rotate(90) scale(10)">
+                                <stop offset="0.71875" class="stopDARKCOLOR" />
+                                <stop offset="1" class="stopLIGHTCOLOR" />
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="dockbtn" id="help" title="Help window (Shift+H)">
+                    <svg id="help" onclick="windows('./help.html', './resources/help.svg', 'Terbium Help', false, true, 'help');" title="Terbium Help" class="dockicon" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.23295 6.54545V6.49432C2.23864 5.9517 2.29545 5.51989 2.40341 5.19886C2.51136 4.87784 2.66477 4.6179 2.86364 4.41903C3.0625 4.22017 3.30114 4.03693 3.57955 3.86932C3.74716 3.76705 3.89773 3.64631 4.03125 3.5071C4.16477 3.36506 4.26989 3.2017 4.34659 3.01705C4.42614 2.83239 4.46591 2.62784 4.46591 2.40341C4.46591 2.125 4.40057 1.88352 4.26989 1.67898C4.1392 1.47443 3.96449 1.31676 3.74574 1.20597C3.52699 1.09517 3.28409 1.03977 3.01705 1.03977C2.78409 1.03977 2.55966 1.08807 2.34375 1.18466C2.12784 1.28125 1.94744 1.43324 1.80256 1.64062C1.65767 1.84801 1.57386 2.11932 1.55114 2.45455H0.477273C0.5 1.97159 0.625 1.55824 0.852273 1.21449C1.08239 0.870739 1.38494 0.607954 1.75994 0.426136C2.13778 0.244318 2.55682 0.153409 3.01705 0.153409C3.51705 0.153409 3.9517 0.252841 4.32102 0.451704C4.69318 0.650568 4.98011 0.923295 5.18182 1.26989C5.38636 1.61648 5.48864 2.01136 5.48864 2.45455C5.48864 2.76705 5.44034 3.04972 5.34375 3.30256C5.25 3.5554 5.11364 3.78125 4.93466 3.98011C4.75852 4.17898 4.54545 4.35511 4.29545 4.50852C4.04545 4.66477 3.84517 4.82955 3.6946 5.00284C3.54403 5.1733 3.43466 5.37642 3.36648 5.61222C3.2983 5.84801 3.26136 6.14205 3.25568 6.49432V6.54545H2.23295ZM2.77841 9.06818C2.56818 9.06818 2.38778 8.9929 2.23722 8.84233C2.08665 8.69176 2.01136 8.51136 2.01136 8.30114C2.01136 8.09091 2.08665 7.91051 2.23722 7.75994C2.38778 7.60937 2.56818 7.53409 2.77841 7.53409C2.98864 7.53409 3.16903 7.60937 3.3196 7.75994C3.47017 7.91051 3.54545 8.09091 3.54545 8.30114C3.54545 8.44034 3.50994 8.56818 3.43892 8.68466C3.37074 8.80114 3.27841 8.89489 3.16193 8.96591C3.0483 9.03409 2.92045 9.06818 2.77841 9.06818Z" fill="url(#paint0_linear_62_2)"/>
+                        <defs>
+                            <linearGradient id="paint0_linear_62_2" x1="-7.4661e-08" y1="2.95025e-08" x2="3.8864" y2="9.83519" gradientUnits="userSpaceOnUse">
+                                <stop class="stopLIGHTHELP"/>
+                                <stop class="stopDARKHELP" offset="1"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="notification">
+            <div class="shape1"></div>
+            <div class="shape2"></div>
+            <img src="./terbium.png" class="notifAppIcon">
+            <div class="notification-content">
+                <div class="notification-title">
+                    <span class="notification-titleApp">System Notification</span>
+                </div>
+                <div class="notification-body">
+                    <span class="notification-body-text">New updates are <a class="notifLink">here!</a></span>
+                </div>
+            </div>
+        </div> -->
+        <p class="version">Version semi stable v1.41</p>
+        <script src="./js/docks.js"></script>
+        <script src="uv/uv.bundle.js"></script>
+        <script src="uv/uv.config.js"></script>
+        <script src="index.js"></script>
+        <script src="./js/theme.js"></script>
+        <script src="./js/shell.js"></script>
+        <script src="./js/notifications.js"></script>
+        <script src="./js/localforage.min.js"></script>
+        <noscript style="position: absolute;">ENABLE JAVASCRIPT!! Thanks!</noscript>
+    </body>
+</html>

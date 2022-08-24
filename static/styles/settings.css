@@ -1,0 +1,472 @@
+@font-face {
+    font-family: Roboto;
+    src: url(../resources/Roboto.ttf);
+}
+
+@font-face {
+    font-family: Metro;
+    src: url(../resources/metropolis-regular.otf);
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../resources/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: Consolas;
+    src: url(../resources/Consolas.ttf);
+}
+
+[data-theme="dark"] {
+    --body: #1c1c1c;
+    --color: #dbdbdb;
+
+    --userselect-background: #32299b;
+    --userselect-color: #fff7a5;
+
+    --title-border-color: white;
+    --white: white;
+    --button-background: #242424;
+    --button-boxShadow: none;
+    --button-boxShadow-hover: 0 0 8px 4px #41bc5d;
+    --button-color: #41bc5d;
+    --button-color-hover: #ffffff;
+    --button-background-hover: #41bc5d;
+    --button-border: #404040;
+    --button-outline: #242424;
+    --button-border-hover: #2b2b2b;
+    --button-outline-hover: #151515;
+    --switch-thumb: #41bc5d;
+    --switch-back: #313131;
+    --switch-back-shadow: #2b843f;
+    --dropdown-boxShadow-hover: #41bc5d;
+    --dropdown-button-background: #2b2a2a;
+    --dropdown-button-background-hover: #41bc5d;
+    --dropdown-button-color-hover: white;
+}
+
+[data-theme="night"] {
+    --body: #181446;
+    --color: #ffe688;
+
+    --userselect-background: #32299b;
+    --userselect-color: #fff7a5;
+
+    --title-border-color: #ffe688;
+    --white: #ffe688;
+    --button-background: #0e0a40;
+    --button-boxShadow: none;
+    --button-boxShadow-hover: 0 0 8px 4px #ffe688;
+    --button-color: #ffe688;
+    --button-color-hover: #181446;
+    --button-background-hover: #ffe688;
+    --button-border-hover: #0e0a40;
+    --button-outline-hover: #ffe688;
+    --switch-thumb: #ffe688;
+    --switch-back: #332c84;
+    --switch-back-shadow: #ffe6887d;
+    --dropdown-boxShadow-hover: #ffe688;
+    --dropdown-button-background: #0e0a40;
+    --dropdown-button-background-hover: #ffe688;
+    --dropdown-button-color-hover: #0e0a40;
+}
+
+[data-theme="fracital"] {
+    --body: #222;
+    --color: #ff40f7;
+
+    --userselect-background: #575757;
+    --userselect-color: #ff40f7;
+
+    --title-border-color: #ff40f7;
+    --white: #ff40f7;
+    --button-background: #3d3d3d;
+    --button-boxShadow: none;
+    --button-boxShadow-hover: 0 0 8px 4px #ff3ff5d4;
+    --button-color: #ff3ff5d4;
+    --button-color-hover: #ffffff;
+    --button-background-hover: #ff3ff5d4;
+    --button-border-hover: #252525;
+    --button-outline-hover: #ff40f7;
+    --switch-thumb: #ff40f7;
+    --switch-back: #424242d3;
+    --switch-back-shadow: #ff40f787;
+    --dropdown-boxShadow-hover: #ff3ff5d4;
+    --dropdown-button-background: #262626;
+    --dropdown-button-background-hover: #ff3ff5d4;
+    --dropdown-button-color-hover: white;
+}
+
+::selection {
+    background: var(--userselect-background);
+    color: var(--userselect-color);
+}
+
+* {
+    font-family: Roboto;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scrollbar-color: var(--color) var(--body);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--body);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 6px;
+}
+
+body {
+    margin: 0;
+    background: var(--body);
+    color: var(--color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    animation: fadeInAnimation ease-in-out 0.3s;
+    animation-iteration-count: 1;
+    height: 200vh;
+}
+
+.taskbar {
+    display: flex;
+    width: 100%;
+    height: min-content;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.title {
+    color: var(--color);
+    border-left: 3px solid var(--color);
+    padding-left: 10px;
+    margin-left: 7px;
+    font-family: Poppins;
+    font-size: 25px
+}
+
+.settings {
+    width: 100%;
+    height: min-content;
+    display: grid;
+    justify-content: center;
+}
+
+.cat {
+    height: min-content;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+}
+
+.cat .title {
+    border: none;
+    margin: 0;
+    font-size: 19px;
+    padding: 0;
+}
+
+.border-bottom {
+    width: 100%;
+    height: 4px;
+    background-color: var(--title-border-color);
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.btns {
+    display: flex;
+    flex-wrap: wrap;
+    width: 17em;
+    height: max-content;
+    margin-top: 9px;
+    justify-content: center;
+}
+
+.btn.frac {
+    background-color: #3d3d3d;
+    box-shadow: none;
+    color: #ff3ff5d4;
+    border-radius: 4px;
+    height: max-content;
+    width: max-content;
+    padding: 6px;
+    transition: ease 0.5s;
+}
+
+.btn.frac:hover {
+    background-color: #ff3ff5d4;
+    box-shadow: 0 0 8px 4px #ff3ff5d4;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btn.dark {
+    background-color: #242424;
+    color: #41bc5d;
+    border-radius: 4px;
+    height: max-content;
+    width: max-content;
+    padding: 6px;
+    transition: ease 0.5s;
+}
+
+.btn.dark:hover {
+    background-color: #41bc5d;
+    box-shadow: 0 0 8px 4px #41bc5d;
+    color: white;
+    cursor: pointer;
+}
+
+.btn.terminal {
+    background-color: #000;
+    color: #56b056;
+    border: 1px solid #393939;
+    outline: 1px solid #000;
+    border-radius: 4px;
+    height: max-content;
+    width: max-content;
+    font-family: Consolas;
+    padding: 6px;
+    transition: ease 0.5s;
+}
+
+.btn.terminal:hover {
+    background-color: #000;
+    color: #56b056;
+    border: 1px solid #000;
+    outline: 1px solid #56b056;
+}
+
+.btn.night {
+    background-color: #0e0a40;
+    box-shadow: none;
+    color: #ffe688;
+    border-radius: 4px;
+    height: max-content;
+    width: max-content;
+    font-family: Metro;
+    padding: 6px;
+    transition: ease 0.5s;
+}
+
+.btn.night:hover {
+    background-color: #ffe688;
+    box-shadow: 0 0 8px 4px #ffe688;
+    color: #0e0a40;
+}
+
+.btn {
+    background-color: var(--button-background);
+    box-shadow: var(--button-boxShadow);
+    color: var(--button-color);
+    border: none;
+    border-radius: 4px;
+    height: max-content;
+    width: max-content;
+    font-family: Metro;
+    padding: 6px;
+    transition: ease 0.5s;
+    margin-bottom: 7px;
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: var(--button-background-hover);
+    box-shadow: var(--button-boxShadow-hover);
+    color: var(--button-color-hover);
+    cursor: pointer;
+}
+
+.btn.input:hover {
+    background-color: var(--button-background-hover);
+    color: var(--button-color-hover);
+    cursor: text;
+}
+
+.btn.input {
+    border: none;
+    outline: none;
+    width: 8em;
+}
+
+.btn.input.color {
+    cursor: pointer;
+}
+
+.btn.input.color {
+    height: 34px;
+}
+
+.slides {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    position: relative;
+    background-color: var(--switch-back);
+    width: 34px;
+    height: 16px;
+    border-radius: 8px;
+}
+
+input[type="checkbox"]::before {
+    transition: 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    right: 18px;
+    height: 16px;
+    width: 16px;
+    transform: scale(1.2);
+    background-color: var(--switch-thumb);
+    border-radius: 14px;
+    box-shadow: 0 0 3px 1px var(--switch-back-shadow);
+}
+
+input:checked[type="checkbox"]::before {
+    right: 0;
+}
+
+/* make input[type="nunber"] arrows none */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.radio {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 4px;
+}
+
+.radioInput {
+    display: none;
+}
+
+.check {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--radio-border);
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.check::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+    background-color: var(--radio-check);
+    transition: 0.2s ease-in-out;
+    transform: scale(0);
+}
+
+.radioInput:checked + .check::after {
+    transform: scale(1);
+}
+
+.dropdown {
+    position: relative;
+    width: max-content;
+    height: max-content;
+    padding: 6px;
+    border-radius: 4px;
+    transition: ease-in-out 200ms;
+}
+
+.dropbtn {
+    background-color: var(--dropdown-boxShadow-hover);
+    box-shadow: 0 0 8px 2px var(--dropdown-boxShadow-hover);
+    color: var(--dropdown-button-color-hover);
+    border: none;
+    border-radius: 6px;
+    height: max-content;
+    width: 100%;
+    font-family: Metro;
+    padding: 6px;
+    transition: ease 0.5s;
+    font-size: 16px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    box-shadow: 0 0 10px 4px var(--dropdown-boxShadow-hover);
+}
+
+.dropMorph {
+    background-color: var(--button-background);
+    box-shadow: none;
+    color: var(--white);
+    border: none;
+    border-radius: 6px 6px 0px 0px;
+    height: max-content;
+    width: 100%;
+    font-family: Metro;
+    padding: 6px;
+    transition: ease 0.5s;
+    font-size: 16px;
+    margin: 0;
+}
+
+.dropMorph:hover {
+    box-shadow: none;
+}
+
+.ss__dropdown-content {
+    visibility: collapse;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+    border-radius: 0px 0px 6px 6px;
+    box-shadow: 0 0 16px 4px rgba(0,0,0,0.2);
+    transition: ease-in-out 200ms;
+    background-color: var(--dropdown-button-background);
+}
+
+.ss__dropdown-content a {
+    color: var(--color);
+    padding: 4px 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+
+.ss__dropdown-content a:hover {
+    box-shadow: 0 0 8px 2px var(--dropdown-boxShadow-hover);
+    background-color: var(--dropdown-button-background-hover);
+    color: var(--dropdown-button-color-hover);
+}
+
+.ss__dropdown-content.show {
+    visibility: visible;
+    opacity: 1;
+}

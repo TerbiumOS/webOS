@@ -1,0 +1,94 @@
+[data-theme="custom"] {
+    /* OS css */
+    /* body */
+    --body: #1C1C1C;
+    --body-color: #FF75F9;
+    --userselect-background: #575757;
+    --userselect-color: #ff40f7;
+
+    /* shell */
+    --shell-background: #313131;
+    --shell-outline-color: #ff40f7;
+    --shell-border-color: #313131;
+    --shell-color: #ff40f7;
+    --start-icon: #FF40F7BA;
+    --start-icon-hover: #FF40F7;
+    --start-apps-icon: #FF40F7;
+    --apps-background: #313131;
+    --apps-border: #313131;
+    --apps-outline: #FF40F7;
+    --apps-button-background: #3d3d3d;
+    --apps-button-color: #FF40F7;
+    --apps-button-boxshadow: #3d3d3d;
+    --apps-search-background: #222222;
+    --system-control-background: #414141;
+    --system-control-icon-color: #FF40F7A8;
+    --system-control-icon-color-hover: #FF40F7;
+
+    /* clock */
+    --fulltime-background: #575757;
+    --fulltime-color: #ff40f7;
+    --fulltime-clock-close-hover: #ff7171;
+    --clock-background: #575757;
+
+    /* dock */
+    --dock-outline: #ff40f7;
+    --dock-background: #313131;
+    --dock-border: #313131;
+    --dock-button-background: #3d3d3d;
+    --dock-button-boxshadow: #282828;
+
+    /* context menu */
+    --context-menu-background: #313131;
+    --context-menu-outline: #ff40f7;
+    --context-menu-border: #313131;
+    --context-menu-color: #ff40f7;
+    --context-menu-color-hover: #9d2298;
+
+    /* windows */
+    --window-background: #383838;
+    --window-color: #ff40f7;
+    --window-border: #383838;
+    --window-dragger: #383838;
+    --stopDARK: #FF40F7;
+    --stopLIGHT: #A5209F;
+
+    /* buttons */
+    --winic-color: white;
+    --winic-color-hover: #919191;
+    --close-icon-color: #fff;
+    --close-icon-color-hover: #95287f;
+    --window-control-button: #484848;
+    --window-control-button-hover: #262626;
+    --window-close-button: #ff79e4;
+
+    /* browser */
+    --searchbar-background: #282828;
+    --searchbar-border: #282828;
+    --searchbar-outline: #ff40f7;
+
+    /* Terbium Browser homepage css */
+    --body: #222;
+    --color: white;
+    --userselect-background: #575757;
+    --userselect-color: #ff40f7;
+
+    /* logo */
+    --stopDARK: #FF40F7;
+    --stopLIGHT: #A5209F;
+
+    /* search */
+    --search-color: #ff40f7;
+    --search-background: #1B1A1A;
+    --search-border: #0f0c32;
+    --search-outline: #ff40f7;
+    --search-background-hover: #151515;
+    --search-border-hover: #151515;
+    --search-outline-hover: #b727b1;
+
+    /* icons */
+    --search-icon-color: #ff40f7;
+    --check-color: #ff40f7;
+    --check-background-hover: #2E2D2E;
+    --check-color-hover: #ff40f7;
+}

@@ -1,0 +1,14 @@
+_TAPPExportData = `
+{
+  "appName": "Nebula",
+  "description": "Nebula built in the Terbium Frame work",
+  "author": "Nebula Services",
+  "framework_ver": "0.e2",
+  "version": "0.0.1",
+  "beta": true,
+  "scripterInfo": {
+    "main_script": "./Main.js",
+    "language": "javascript"
+    }
+}
+`

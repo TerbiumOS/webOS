@@ -1,0 +1,68 @@
+@font-face {
+    font-family: pro;
+    src: url(../resources/Product.ttf);
+}
+
+@font-face {
+    font-family: pop;
+    src: url(../resources/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: consolas;
+    src: url(../resources/Consolas.ttf);
+}
+
+[data-theme="dark"] {
+    --body: #111;
+    --color: #d2d2d2;
+    --button-color: #1fbd4e;
+}
+
+[data-theme="night"] {
+    --body: #181446;
+    --color: #ffe688;
+    --button-color: #ffe688;
+}
+
+[data-theme="fracital"] {
+    --body: #222;
+    --color: #ff40f7;
+    --button-color: #ff40f7;
+}
+
+html {
+    height: 100%;
+    scrollbar-color: var(--color) var(--body);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--body);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 6px;
+}
+
+body {
+    font-family: pro;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body);
+    color: var(--color);
+    display: grid;
+    justify-content: center;
+    align-content: baseline;
+}
+
+a {
+    text-decoration: underline;
+    color: var(--button-color);
+}

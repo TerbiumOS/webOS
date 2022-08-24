@@ -1,0 +1,248 @@
+@font-face {
+    font-family: Metro;
+    src: url(../resources/metropolis-extra-bold.otf);
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(../resources/Ubuntu-Medium.ttf);
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(../resources/Roboto.ttf);
+}
+
+[data-theme="dark"] {
+    --body: #1c1c1c;
+    --color: white;
+    --userselect-background: #696969;
+    --userselect-color: #1d1d1d;
+
+    /* logo */
+    --stopDARK: #47CA64;
+    --stopLIGHT: #2B813E;
+
+    /* search */
+    --search-color: #aaa;
+    --search-background: #171717;
+    --search-border: #313131;
+    --search-background-hover: #0c0c0c;
+    --search-border-hover: #171717;
+    --search-outline-hover: #0c0c0c;
+    --search-outline: #171717;
+    /* icons */
+    --search-icon-color: white;
+    --check-color: white;
+    --check-background-hover: #4cb05e;
+    --check-color-hover: #2b6836;
+}
+
+[data-theme="light"] {
+    --body: #686868;
+    --color: white;
+    --userselect-background: #696969;
+    --userselect-color: #1d1d1d;
+
+    /* logo */
+    --stopDARK: #2A803C;
+    --stopLIGHT: #145B24;
+
+    /* search */
+    --search-color: #aaa;
+    --search-background: #444;
+    --search-border: #808080;
+    --search-outline: #444;
+    --search-background-hover: #313131;
+    --search-border-hover: #444;
+    --search-outline-hover: #313131;
+    /* icons */
+    --search-icon-color: white;
+    --check-color: white;
+    --check-background-hover: #5fd073;
+    --check-color-hover: #3f8e4e;
+}
+
+[data-theme="night"] {
+    --body: #181446;
+    --color: white;
+    --userselect-background: #32299b;
+    --userselect-color: #b0a95d;
+
+    /* logo */
+    --stopDARK: #fff7a5;
+    --stopLIGHT: #777021;
+
+    /* search */
+    --search-color: #efe688;
+    --search-background: #0f0c32;
+    --search-border: #0f0c32;
+    --search-outline: #efe688;
+    --search-background-hover: #060516;
+    --search-border-hover: #000000;
+    --search-outline-hover: #051004;
+
+    /* icons */
+    --search-icon-color: #fff7a5;
+    --check-color: #fff7a5;
+    --check-background-hover: #1e195c;
+    --check-color-hover: #efe688;
+}
+
+[data-theme="fracital"] {
+    --body: #222;
+    --color: white;
+    --userselect-background: #575757;
+    --userselect-color: #ff40f7;
+
+    /* logo */
+    --stopDARK: #FF40F7;
+    --stopLIGHT: #A5209F;
+
+    /* search */
+    --search-color: #ff40f7;
+    --search-background: #1B1A1A;
+    --search-border: #0f0c32;
+    --search-outline: #ff40f7;
+    --search-background-hover: #151515;
+    --search-border-hover: #151515;
+    --search-outline-hover: #b727b1;
+
+    /* icons */
+    --search-icon-color: #ff40f7;
+    --check-color: #ff40f7;
+    --check-background-hover: #2E2D2E;
+    --check-color-hover: #ff40f7;
+}
+
+::selection {
+    background: var(--userselect-background);
+    color: var(--userselect-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scrollbar-color: var(--color) var(--body);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--body);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 6px;
+}
+
+.stopLIGHT {
+    stop-color: var(--stopLIGHT);
+}
+
+.stopDARK {
+    stop-color: var(--stopDARK);
+}
+
+body {
+    font-family: Roboto;
+    margin: 0;
+    background: var(--body);
+    color: var(--color);
+    display: grid;
+    min-height: 100vh;
+    justify-items: center;
+    align-content: center;
+}
+
+.welcome {
+    display: grid;
+    justify-items: center;
+    width: max-content;
+}
+
+.logo {
+    width: 4em;
+    height: 4em;
+}
+
+.search {
+    width: 25em;
+    height: 3em;
+    background-color: var(--search-background);
+    border: 1px solid var(--search-border);
+    outline: 1px solid var(--search-outline);
+    border-radius: 37px;
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    margin-bottom: 30px;
+    transition: ease 0.5s;
+}
+
+.search:hover {
+    background-color: var(--search-background-hover);
+    border: 1px solid var(--search-border-hover);
+    outline: 1px solid var(--search-outline-hover);
+}
+
+.searchi {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--search-color);
+}
+
+.searchic {
+    width: 32px;
+    height: 22px;
+    margin-right: 10px;
+    color: var(--search-icon-color);
+}
+
+a.chc {
+    width: 23px;
+    height: 23px;
+    margin-right: 8px;
+    padding: 6px;
+    transition: ease 0.2s;
+    border-radius: 30px;
+}
+
+.check {
+    width: 23px;
+    height: 23px;
+    color: var(--check-color);
+}
+
+.chc:hover {
+    background-color: var(--check-background-hover);
+    cursor: pointer;
+}
+
+.chc:hover svg {
+    color: var(--check-color-hover);
+}
+
+.rectUp {
+    border-radius: 10px;
+    background-color: var(--search-background-hover);
+    border: 1px solid var(--search-border-hover);
+    outline: 1px solid var(--search-outline-hover);
+}
+
+.rectDown {
+    background-color: var(--search-background);
+    border: 1px solid var(--search-border);
+    outline: 1px solid var(--search-outline);
+    border-radius: 37px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Studio Code</title>
+    <link rel="stylesheet" id="rels" href="../styles/prevs/apps.css">
+</head>
+
+<body>
+    <script>
+        const style = document.getElementById("rels")
+        switch (localStorage.getItem("theme")) {
+            case "classic":
+                style.href = "../styles/prevs/apps.css"
+                break;
+            case "terminal":
+                style.href = "../themes/term/termapps.css";
+                break;
+            case "night":
+                style.href = "../themes/night/nightapps.css";
+                break;
+        }
+        setTimeout(function () {
+            const vsc = document.createElement("img");
+            vsc.src = "../resources/vsc.ico";
+            document.body.appendChild(vsc);
+        }, 200);
+    </script>
+    <!-- <script>
+        const stylel = document.getElementById("relsn");
+        const favi = document.getElementById("favi");
+        const logo = document.getElementById("logo");
+        setInterval(function () {
+            switch (localStorage.getItem("theme")) {
+                case "classic":
+                    stylel.href = "./styles/newin.css";
+                    favi.href = "../resources/terbium.png";
+                    logo.src = "../resources/terbium.png";
+                    break;
+                case "terminal":
+                    stylel.href = "../themes/term/termnew.css";
+                    favi.href = "../resources/terbiumterm.png";
+                    logo.src = "../resources/terbiumterm.png";
+                    break;
+                case "night":
+                    stylel.href = "../themes/night/nightnew.css";
+                    favi.href = "../resources/terbiumnight.png"
+                    logo.src = "../resources/terbiumnight.png";
+                    break;
+            }
+        }, 100)
+    </script> -->
+</body>
+
+</html>

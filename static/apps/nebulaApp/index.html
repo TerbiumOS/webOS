@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Dongle&family=Roboto:wght@100&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100&display=swap');
+         :root {
+            --background-primary: #191724;
+            --navbar-color: #26233a;
+            --navbar-height: 60px;
+            --navbar-text-color: #4de0fa;
+            --navbar-link-color: #e0def4;
+            --navbar-font: "Roboto";
+            --input-text-color: #e0def4;
+            --input-placeholder-color: white;
+            --input-background-color: #1f1d2e;
+            --input-border-color: #eb6f92;
+            --input-border-size: 1.3px;
+            --navbar-logo-filter: none;
+        }
+        
+         ::-webkit-input-placeholder {
+            text-align: center;
+            font-family: 'Roboto';
+        }
+        
+         :-moz-placeholder {
+            text-align: center;
+        }
+        
+        #navbar {
+            height: var(--navbar-height);
+            text-align: center;
+            align-items: center;
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--navbar-color);
+        }
+        
+        a {
+            color: var(--navbar-link-color);
+            text-decoration: none !important;
+            font-family: 'Roboto';
+        }
+        
+        a:hover {
+            color: grey;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+        
+        .down {
+            background-color: rgb(90, 24, 154);
+            left: inherit !important;
+            font-family: 'Helvetica';
+            background-color: var(--navbar-color);
+            /* box-shadow: 2px 2px rgb(0 0 0 / 20%); */
+            color: white;
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            list-style-type: none;
+            position: fixed;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            list-style-type: none;
+        }
+        
+        #navbar ul:not(.down) {
+            font-family: 'Helvetica';
+            /* box-shadow: 2px 2px rgb(0 0 0 / 20%); */
+            color: white;
+            margin-left: auto;
+            list-style-type: none;
+            float: right !important;
+            margin-right: 5%;
+        }
+        
+        #navbar ul li {
+            float: left;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            padding-right: 1em;
+            padding-left: 1em;
+            padding: 1rem;
+        }
+        
+         ::placeholder,
+        input[type='text'] {
+            color: var(--input-placeholder-color);
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Roboto';
+        }
+        
+        #navbar ul p,
+        ul a {
+            font-weight: bold;
+        }
+        
+        */
+        /*
+  #navbar ul li p, ul li a {
+	  font-weight: normal;
+  }
+  */
+        
+        #navbar ul li ul {
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            visibility: hidden;
+            opacity: 0;
+            margin-top: 1rem;
+            left: 0;
+            display: none;
+        }
+        
+        #navbar ul li:hover ul,
+        ul li ul:hover {
+            visibility: visible;
+            opacity: 1;
+            display: block;
+        }
+        
+        #navbar ul li p {
+            color: white;
+            font-family: 'Calibri';
+            z-index: 3 !important;
+        }
+        
+        #navbar ul li ul li {
+            clear: both;
+            width: 100%;
+        }
+        
+        #content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 98%;
+            color: white;
+            flex-direction: column;
+            font-family: 'Roboto';
+        }
+        
+        #content h1 {
+            padding-bottom: 0.5em;
+            font-weight: 100;
+            text-align: center;
+        }
+        
+        #content img {
+            padding-left: .5em;
+            filter: brightness(0) invert(1);
+        }
+        
+        #content input {
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Calibri';
+            border-style: solid !important;
+            border: var(--input-border-size) solid var(--input-border-color);
+            border-width: 1px;
+            border-radius: 15px;
+            background-color: var(--input-background-color);
+            color: var(--input-text-color);
+            width: 300px;
+            height: 50px;
+            box-shadow: none !important;
+            outline: none;
+            text-align: center;
+            font-family: 'Roboto';
+            animation-name: inputwide;
+            animation-duration: 2s;
+        }
+        
+        #content input:focus {
+            outline: none;
+            box-shadow: none !important;
+        }
+        
+        @keyframes inputwide {
+            0% {
+                width: 0px;
+                transition-duration: 0.5s;
+            }
+            100% {
+                width: 300px;
+                transition-duration: 0.5s;
+            }
+        }
+        
+        .loader {
+            width: 283px;
+            text-align: center;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            transition: .1s;
+        }
+        
+        svg path,
+        svg rect {
+            fill: #eb6f92;
+        }
+        
+        .connector {
+            color: white;
+            margin-left: 10px;
+            font-size: 15px;
+        }
+        
+        @keyframes popout {
+            0% {
+                height: -20px;
+            }
+            100% {
+                height: 0px;
+            }
+        }
+        
+        .nebHeader {
+            margin-left: .5%;
+            font-family: var(--navbar-font);
+            color: var(--navbar-text-color);
+        }
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        
+        body {
+            background-color: var(--background-primary);
+            color: var(--text-color-primary);
+            animation: fadeInAnimation ease 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        input:focus::placeholder {
+            color: transparent;
+        }
+        
+        #navbar #thumbImg {
+            transition: width 2s, height 2s, transform 2s;
+            filter: var(--navbar-logo-filter);
+        }
+        
+        #navbar #thumbImg:hover {
+            transform: rotate(360deg);
+        }
+        
+        .stamp {
+            text-align: right;
+            position: fixed;
+            bottom: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: lighter;
+            color: whitesmoke;
+            opacity: 38%;
+            user-select: none;
+            font-size: 13px;
+            padding-left: 5px;
+            padding-bottom: 1px;
+        }
+        
+        .github {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            padding-right: 10px;
+        }
+        
+        .tos {
+            position: fixed;
+            right: 67px;
+            bottom: 0;
+            padding-right: 15px;
+        }
+        
+        .privacy {
+            position: fixed;
+            right: 114px;
+            bottom: 0;
+            padding-right: 15px;
+        }
+    </style>
+    <script type="text/javascript" src="./app.tapp"></script>
+    <script src="../../js/terbiumframe.js" async defer></script>
+    <script>
+    </script>
+</head>
+
+<body>
+    <!-- Scripts -->
+    <script src="../../uv/uv.bundle.js"></script>
+    <script src="../../uv/uv.config.js"></script>
+    <div id="navbar">
+        <img src='images/logo.png' id="thumbImg" style='height: 90%; margin-left: 5%; border-radius: 5px; '>
+        <h1 class="nebHeader">nebula.</h1>
+
+        <ul>
+
+            <li>
+                <a class="a-navbutton" onclick="href = '/go/' + __uv$config.encodeUrl('https://hamburgerham.tk/games/')">Games</a>
+            </li>
+            <li>
+                <a class="a-navbutton" href="options">Settings</a>
+            </li>
+
+            <li>
+                <a class="a-navbutton" href="https://discord.gg/bZQxg6SkVp">Need Support?</a>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <form class="url" action="" method="POST" id="unblocker-form">
+            <input class="omnibox" type="text" id="url" name="url" autocomplete="off" placeholder="Explore the web freely">
+        </form>
+
+        <!-- 8 -->
+        <div id="lpoader" class="loader loader--style8" title="7">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+      <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+        <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+        <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+        <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+      </rect>
+      <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+        <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+        <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+        <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+      </rect>
+      <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+        <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+        <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+        <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+      </rect>
+    </svg>
+            <p id="connecterText" class="connector"> connecting to service </p>
+        </div>
+
+    </div>
+
+
+    <!-- Stamp -->
+    <div>
+        <p class="stamp"> Nebula Copyright (&copy;) Nebula Services 2022 </p>
+        <a class="github" href="https://github.com/NebulaServices/Nebula">GitHub</a>
+        <a class="tos" href="privacy/">Privacy</a>
+
+    </div>
+    <!-- Panelbear -->
+    <script async src="https://cdn.panelbear.com/analytics.js?site=AZa75ZyiRRZ"></script>
+    <script>
+        window.panelbear = window.panelbear || function() {
+            (window.panelbear.q = window.panelbear.q || []).push(arguments);
+        };
+        panelbear('config', {
+            site: 'AZa75ZyiRRZ'
+        });
+    </script>
+
+
+
+</body>
+
+</html>
