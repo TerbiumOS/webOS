@@ -37,5 +37,5 @@ services:
 Alternatively, you can just grab the Docker Compose Script:
 
 ```bash
-curl -L https://raw.githubusercontent.com/MotorTruck1221/TerbiumOS-Docker/main/docker-compose.yml > docker-compose.yml
+curl -L https://hastebin.motortruck1221.tech/raw/igirozuyov > docker-compose.yml
 ```
