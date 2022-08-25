@@ -39,6 +39,7 @@ dark.addEventListener("click", () => {
     if(html !== "dark") {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
+        themeMAIN.setAttribute('data-theme', 'dark');
         for (let a = 0; a < win.length; a++) {
             const element = win[a];
             element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'dark');
@@ -52,14 +53,18 @@ dark.addEventListener("click", () => {
 
 // check which theme button was clicked then log that buttons id
 const themeBtns = document.querySelectorAll(".themeBtn");
-themeBtns.forEach()
 
 night.addEventListener("click", () => {
     let html = document.documentElement.getAttribute("data-theme");
     if(html !== "night") {
         document.documentElement.setAttribute('data-theme', 'night');
         localStorage.setItem('theme', 'night');
-        themeMAIN.setAttribute("data-theme", "night");
+        themeMAIN.setAttribute('data-theme', 'night');
+        for (let a = 0; a < win.length; a++) {
+            const element = win[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'night');
+        }
+
     }
     if(html === "night") {
         alert("Night theme is already enabled");
@@ -72,10 +77,10 @@ frac.addEventListener("click", () => {
     if(html !== "fracital") {
         document.documentElement.setAttribute('data-theme', 'fracital');
         localStorage.setItem('theme', 'fracital');
-        themeMAIN.setAttribute("data-theme", "fracital");
+        themeMAIN.setAttribute('data-theme', 'fracital');
         for (let a = 0; a < win.length; a++) {
             const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'dark');
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'fracital');
         }
 
     }
