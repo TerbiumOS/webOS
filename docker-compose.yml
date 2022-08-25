@@ -1,0 +1,7 @@
+version: "2"
+services:
+  terbium:
+    image: "motortruck1221/terbium"
+    ports:
+    #IMPORTANT: DO NOT CHANGE THE 6969 PART ONLY CHANGE THE 90 PART
+      - 90:6969
