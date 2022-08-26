@@ -37,5 +37,5 @@ services:
 Alternatively, you can just grab the Docker Compose Script:
 
 ```bash
-curl -L https://hastebin.motortruck1221.tech/raw/igirozuyov > docker-compose.yml
+curl -L https://hastebin.com/raw/eyemocoluk > docker-compose.yml
 ```
