@@ -77,58 +77,6 @@ if(!localStorage.getItem("background")) {
     document.querySelector(".logoWall").classList.add("hidden");
 }
 
-switch (localStorage.getItem("musicApp")) {
-    case "ytm":
-        if(ytmc.classList.contains("dockbtnH")) {
-            ytmc.classList.remove("dockbtnH");
-            if(!spc.classList.contains("dockbtnH")) {
-                spc.classList.add("dockbtnH");
-            } else if(!amc.classList.contains("dockbtnH")) {
-                amc.classList.add("dockbtnH");
-            } else if(!tdc.classList.contains("dockbtnH")) {
-                tdc.classList.add("dockbtnH");
-            }
-        }
-        break
-    case "am":
-        if(amc.classList.contains("dockbtnH")) {
-            amc.classList.remove("dockbtnH");
-            if(!spc.classList.contains("dockbtnH")) {
-                spc.classList.add("dockbtnH");
-            } else if(!ytmc.classList.contains("dockbtnH")) {
-                ytmc.classList.add("dockbtnH")   
-            } else if(!tdc.classList.contains("dockbtnH")) {
-                tdc.classList.add("dockbtnH");
-            }
-        }
-        break
-    case "sp":
-        if(spc.classList.contains("dockbtnH")) {
-            spc.classList.remove("dockbtnH");
-            if(!ytmc.classList.contains("dockbtnH")) {
-                ytmc.classList.add("dockbtnH");
-            } else if(!amc.classList.contains("dockbtnH")) {
-                amc.classList.add("dockbtnH")   
-            } else if(!tdc.classList.contains("dockbtnH")) {
-                tdc.classList.add("dockbtnH");
-            }
-        }
-        break
-    case "td":
-        if(tdc.classList.contains("dockbtnH")) {
-            tdc.classList.remove("dockbtnH");
-            if(!spc.classList.contains("dockbtnH")) {
-                spc.classList.add("dockbtnH");
-            } else if(!ytmc.classList.contains("dockbtnH")) {
-                ytmc.classList.add("dockbtnH")   
-            } else if(!amc.classList.contains("dockbtnH")) {
-                amc.classList.add("dockbtnH");
-            }
-        }
-        break
-    default: "ytm";
-}
-
 switch (localStorage.getItem("backF")) {
     case "contain":
         background.style.objectFit = "contain";
