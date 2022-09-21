@@ -1,0 +1,29 @@
+[data-theme="dark"] {
+    --cursorText: url("/resources/cursors/textD.png"), text;
+    --cursorNormal: url("/resources/cursors/normalD.png"), default;
+    --cursorHand: url("/resources/cursors/handD.png"), pointer;
+}
+
+[data-theme="night"] {
+    --cursorText: url("/resources/cursors/textN.png"), text;
+    --cursorNormal: url("/resources/cursors/normalN.png"), default;
+    --cursorHand: url("/resources/cursors/handN.png"), pointer;
+}
+
+[data-theme="fracital"] {
+    --cursorText: url("/resources/cursors/textF.png"), text;
+    --cursorNormal: url("/resources/cursors/normalF.png"), default;
+    --cursorHand: url("/resources/cursors/handF.png"), pointer;
+}
+
+html {
+    cursor: var(--cursorNormal);
+}
+
+input {
+    cursor: var(--cursorText);
+}
+
+.ce {
+    cursor: var(--cursorText) !important;
+}

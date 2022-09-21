@@ -2,6 +2,7 @@ const win = window.parent.document.querySelectorAll(".win");
 const dark = document.getElementById("dark");
 const night = document.getElementById("night");
 const frac = document.getElementById("frac");
+const logoWall = window.parent.document.querySelector(".logoWall");
 
 let seti = window.parent.document.querySelector("#setg");
 let stylec = window.parent.document.getElementById("rels");
@@ -91,19 +92,25 @@ frac.addEventListener("click", () => {
 });
 
 defaultb.addEventListener("click", () => {
-    background.src = "./resources/default.png";
     localStorage.setItem("background", "default");
+    background.src = "";
+    background.classList.add("bHidden");
+    logoWall.classList.remove("hidden");
 });
 
 dd.addEventListener("keydown", (e) => {
     if(e.keyCode == "13"){
         if(dd.value == "default") {
-            background.src = "./resources/default.png";
+            background.src = "";
+            background.classList.add("bHidden");
+            logoWall.classList.remove("hidden");
             localStorage.setItem("background", "default");
         } else if(dd.value == "" || !dd.value.includes("https://")) {
             return
         } else {
+            logoWall.classList.add("hidden");
             background.src = dd.value;
+            background.classList.remove("bHidden");
             localStorage.setItem("background", dd.value)
         }
     }
@@ -116,12 +123,16 @@ if(localStorage.getItem("background")) {
 }
 
 function contain() {
-    background.style.objectFit = "contain"
+    background.style.objectFit = "contain";
+    background.classList.add("contain");
+    background.classList.remove("stretch");
     localStorage.setItem("backF", "contain");
 }
 
 function stretch() {
     background.style.objectFit = "cover";
+    background.classList.remove("contain");
+    background.classList.add("stretch");
     localStorage.setItem("backF", "cover");
 }
 
@@ -148,18 +159,162 @@ if(localStorage.getItem("powd")) {
 
 
 // window customization section
-
+const resetAll = document.getElementById("resetAll");
 const radius = document.getElementById("radius");
 const shadow = document.getElementById("shadow");
 const btnr = document.getElementById("btnr");
+const btnrPos = document.querySelectorAll("#btnrPos");
 const roundness = document.getElementById("roundness");
 const clearRoundness = document.getElementById("clearRoundness");
 const fullscreen = document.getElementById("fullscreen");
 const customShadow = document.getElementById("customShadow");
 const clearCustomShadow = document.getElementById("clearCustomShadow");
 const login = document.getElementById("login");
+const dockPos = document.querySelectorAll(".dockPos");
 
 const btns = window.parent.document.querySelectorAll(".winc");
+const controls = window.parent.document.querySelectorAll(".controls");
+const favicon = window.parent.document.querySelectorAll(".icon");
+
+resetAll.addEventListener("click", () => {
+    const prompt = "Are you sure you want to reset all settings?";
+    if(confirm(prompt)) {
+        localStorage.clear();
+        location.reload();
+    } else {
+        return
+    }
+})
+
+if(localStorage.getItem("winBtnPos") === null) {
+    localStorage.setItem("winBtnPos", "right");
+}
+
+// change window buttons position
+switch(localStorage.getItem("winBtnPos")) {
+    case null:
+        btnrPos[0].checked = true;
+        btnrPos[1].checked = false;
+        break;
+    case "left":
+        btnrPos[0].checked = false;
+        btnrPos[1].checked = true;
+        break;
+    case "right":
+        btnrPos[0].checked = true;
+        btnrPos[1].checked = false;
+        break;
+    default:
+        break;
+}
+
+for (let i = 0; i < btnrPos.length; i++) {
+    const element = btnrPos[i];
+    element.addEventListener("click", () => {
+        switch(element.getAttribute("data-btnpos").toLowerCase()) {
+            case "left":
+                for (let i = 0; i < win.length; i++) {
+                    const element = win[i];
+                    element.querySelector(".icon").classList.add("iconR");
+                    element.querySelector(".icon").classList.remove("iconL");
+                    element.querySelector(".controls").classList.add("controlsL");
+                    element.querySelector(".controls").classList.remove("controlsR");
+                }
+                btnrPos[0].checked = false;
+                btnrPos[1].checked = true;
+                localStorage.setItem("winBtnPos", "left");
+                break;
+            case "right":
+                for (let i = 0; i < win.length; i++) {
+                    const element = win[i];
+                    element.querySelector(".icon").classList.add("iconL");
+                    element.querySelector(".icon").classList.remove("iconR");
+                    element.querySelector(".controls").classList.add("controlsR");
+                    element.querySelector(".controls").classList.remove("controlsL");
+                }
+                btnrPos[0].checked = true;
+                btnrPos[1].checked = false;
+                localStorage.setItem("winBtnPos", "right");
+                break;
+            default:
+                break;
+        }
+    })
+}
+
+if(localStorage.getItem("dockPos") === null) {
+    localStorage.setItem("dockPos", "bottom");
+}
+
+switch(localStorage.getItem("dockPos").toLowerCase()) {
+    case "left":
+        dockPos[0].checked = false;
+        dockPos[1].checked = true;
+        dockPos[2].checked = false;
+        break;
+    case "right":
+        dockPos[0].checked = false;
+        dockPos[1].checked = false;
+        dockPos[2].checked = true;
+        break;
+    case "bottom":
+        dockPos[0].checked = true;
+        dockPos[1].checked = false;
+        dockPos[2].checked = false;
+        break;
+    default:
+        dockPos[0].checked = true;
+        dockPos[1].checked = false;
+        dockPos[2].checked = false;
+        break;
+}
+
+// change dock position
+for (let i = 0; i < dockPos.length; i++) {
+    const element = dockPos[i];
+    element.addEventListener("click", () => {
+        switch(element.getAttribute("data-pos").toLowerCase()) {
+            case "left":
+                document.getElementById("dp_left").checked = true;
+                document.getElementById("dp_right").checked = false;
+                document.getElementById("dp_bottom").checked = false;
+                break;
+            case "right":
+                document.getElementById("dp_left").checked = false;
+                document.getElementById("dp_right").checked = true;
+                document.getElementById("dp_bottom").checked = false;
+                break;
+            case "bottom":
+                document.getElementById("dp_left").checked = false;
+                document.getElementById("dp_right").checked = false;
+                document.getElementById("dp_bottom").checked = true;
+                break;
+        }
+        localStorage.setItem("dockPos", element.getAttribute("data-pos"));
+        if(element.getAttribute("data-pos").toLowerCase() == "left") {
+            window.parent.document.getElementById("dock").classList.add(`dLeft`);
+            window.parent.document.getElementById("dock").classList.remove(`dRight`);
+            window.parent.document.getElementById("dock").classList.remove(`dBottom`);
+            window.parent.document.getElementById("appsClose").classList.add(`left`);
+            window.parent.document.getElementById("appsClose").classList.remove(`right`);
+            window.parent.document.getElementById("appsClose").classList.remove(`bottom`);
+        } else if(element.getAttribute("data-pos").toLowerCase() == "right") {
+            window.parent.document.getElementById("dock").classList.add(`dRight`);
+            window.parent.document.getElementById("dock").classList.remove(`dLeft`);
+            window.parent.document.getElementById("dock").classList.remove(`dBottom`);
+            window.parent.document.getElementById("appsClose").classList.add(`right`);
+            window.parent.document.getElementById("appsClose").classList.remove(`left`);
+            window.parent.document.getElementById("appsClose").classList.remove(`bottom`);
+        } else if(element.getAttribute("data-pos").toLowerCase() == "bottom") {
+            window.parent.document.getElementById("dock").classList.add(`dBottom`);
+            window.parent.document.getElementById("dock").classList.remove(`dRight`);
+            window.parent.document.getElementById("dock").classList.remove(`dLeft`);
+            window.parent.document.getElementById("appsClose").classList.add(`bottom`);
+            window.parent.document.getElementById("appsClose").classList.remove(`right`);
+            window.parent.document.getElementById("appsClose").classList.remove(`left`);
+        }
+    });
+}
 
 // enable or disable login
 if(localStorage.getItem("pass") === "none") {
@@ -168,22 +323,56 @@ if(localStorage.getItem("pass") === "none") {
     login.checked = true;
 }
 
+function addLogoutButton() {
+    const logoutHolder = document.createElement("div");
+    logoutHolder.classList.add("sys");
+    logoutHolder.classList.add("logout");
+    logoutHolder.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="sysicon" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+            <path d="M7 12h14l-3 -3m0 6l3 -3" />
+        </svg>
+    `;
+    window.parent.document.querySelector(".sysc").appendChild(logoutHolder);
+}
+
+const newPass = document.getElementById("newPass");
+newPass.addEventListener("click", () => {
+    let setNew = prompt("Enter new password");
+    if(setNew === null) {
+        return
+    } else if(setNew === "") {
+        localStorage.setItem("pass", "none");
+        window.parent.document.querySelector(".logout").remove();
+        login.checked = false;
+    } else {
+        localStorage.setItem("pass", xor.encode(setNew));
+        alert("next time your password is: " + setNew);
+        addLogoutButton();
+        login.checked = true;
+    }
+})
+
 login.addEventListener("click", () => {
     switch(login.checked) {
         case true:
-            let setNew = prompt("Enter new password");
+            let setNew = prompt("Enter password");
             if(setNew === null) {
-                login.checked = false;
                 return
             } else if(setNew === "") {
+                localStorage.setItem("pass", "none");
+                window.parent.document.querySelector(".logout").remove();
                 login.checked = false;
-                return
             } else {
                 localStorage.setItem("pass", xor.encode(setNew));
                 alert("next time your password is: " + setNew);
+                addLogoutButton();
             }
+            break;
         case false:
             localStorage.setItem("pass", "none");
+            window.parent.document.querySelector(".logout").remove();
             break;
         default:
             break;
@@ -219,27 +408,22 @@ fullscreen.addEventListener('click', () => {
     }
 });
 
+if(localStorage.getItem("radius") === "custom") {
+    roundness.value = localStorage.getItem("roundness");
+}
+
 //adding the roundness to the windows on the number change
 
-if(localStorage.getItem("roundness") === null) {
-} else {
-    roundness.value = localStorage.getItem("roundness");
-    for (let i = 0; i < win.length; i++) {
-        const element = win[i];
-        element.classList.remove("radius");
-        element.classList.add("custom");
-        element.style.borderRadius = `${roundness.value}px`
-    }
-}
 if (localStorage.getItem("roundnessAmount") === null) {
     localStorage.setItem("roundnessCustomState", "yes");
 }
 let roundnessCustomState = localStorage.getItem("roundnessCustomState");
 roundness.addEventListener("change", e => {
     localStorage.setItem("roundnessCustomState", "yes");
-    console.log(roundness.value);
     for (let i = 0; i < win.length; i++) {
         const element = win[i];
+        radius.checked = true;
+        localStorage.setItem("radius", "custom");
         element.classList.remove("radius");
         element.classList.add("custom");
         element.style.borderRadius = `${roundness.value}px`;
@@ -250,8 +434,10 @@ roundness.addEventListener("change", e => {
 clearRoundness.addEventListener("click", e => {
     roundnessState = false;
     roundnessAmount = 12;
+    localStorage.setItem("roundness", "12");
     for (let i = 0; i < win.length; i++) {
         const element = win[i];
+        localStorage.setItem("radius", "yes");
         element.classList.remove("custom");
         element.classList.add("radius");
         switch(localStorage.getItem("radius")) {
@@ -306,10 +492,6 @@ btnr.addEventListener("click", () => {
     }
 });
 
-if(localStorage.getItem("winshadow") === null) {
-    localStorage.setItem("winshadow", "#000000")
-}
-
 if(localStorage.getItem("winshadow") != null) {
     let = rgb = localStorage.getItem("winshadow");
     // turn the rgb into a hex code
@@ -347,7 +529,7 @@ clearCustomShadow.addEventListener("click", () => {
         const element = win[i];
         element.style.boxShadow = `0 0 13px 3px rgba(0, 0, 0, 0.32)`;
     }
-    localStorage.setItem("winshadow", "#000000")
+    localStorage.setItem("winshadow", "default");
 });
 
 // adding shadow to windows on switch change
@@ -415,20 +597,10 @@ radius.addEventListener("click", () => {
             for (let i = 0; i < win.length; i++) {
                 const element = win[i];
                 element.classList.add("radius");
-                element.classList.remove("noRad");
                 if(element.classList.contains("custom")) {
                     element.classList.remove("custom");
-                }
-            }
-            if(localStorage.getItem("roundness") != null) {
-                for (let i = 0; i < win.length; i++) {
-                    const element = win[i];
-                    element.classList.add("noRad");
-                    element.classList.remove("radius");
-                    if(localStorage.getItem("roundnessCustomState") === "yes") {
-                        element.style.borderRadius = localStorage.getItem("roundness");
-                        element.classList.add("custom");
-                    }
+                } else if(element.classList.contains("noRad")) {
+                    element.classList.remove("noRad");
                 }
             }
             break;
@@ -456,27 +628,28 @@ radius.addEventListener("click", () => {
 
 
 // browser customization
-const dropText = document.querySelector(".dropText");
+const dropTextSS = document.querySelector(".SS");
 switch(localStorage.getItem("ss")) {
     case "ss_0":
-        dropText.innerHTML = "None";
+        dropTextSS.innerHTML = "None";
         break;
     case "ss_1":
-        dropText.innerHTML = "Moderate";
+        dropTextSS.innerHTML = "Moderate";
         break;
     case "ss_2":
-        dropText.innerHTML = "Strict";
+        dropTextSS.innerHTML = "Strict";
         break;
     default:
         localStorage.setItem("ss", "ss_0");
-        dropText.innerHTML = "None"
+        dropTextSS.innerHTML = "None"
         break;
 }
+
 const dropBtns = document.querySelectorAll(".dropbtn");
 for (let i = 0; i < dropBtns.length; i++) {
     const element = dropBtns[i];
     let parent = element.parentElement;
-    let dropContent = parent.querySelector(".drop-content");
+    let dropContent = parent.querySelector(".dropdown-content");
     element.addEventListener("click", () => {
         if(!dropContent.classList.contains("show")) {
             dropContent.classList.add("show");
@@ -499,7 +672,7 @@ for (let i = 0; i < dropBtns.length; i++) {
             element.classList.remove("dropMorph");
             element.classList.add("dropBtn");
             element.querySelector(".dropText").innerHTML = dropOptions[ie].getAttribute("data-option_name");
-            localStorage.setItem("ss", dropOptions[ie].getAttribute("data-option"))
+            localStorage.setItem(dropOptions[i].getAttribute("data-former"), `${dropOptions[ie].getAttribute("data-option")}`);
         });
         
     }

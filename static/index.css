@@ -21,7 +21,6 @@
     100% {
         color: white;
         border-radius: 6px;
-        outline: 1px solid #202020;
         background-color: #151515;
     }
 }
@@ -29,7 +28,6 @@
 @keyframes rectDown {
     0% {
         border-radius: 6px;
-        outline: 1px solid #202020;
         background-color: #151515;
     }
 
@@ -108,23 +106,28 @@
 
 [data-theme="dark"] {
     /* body */
+    --wallpaper: url("resources/wallpapers/darkWall.png");
     --body: #111;
-    --body-color: white;
+    --body-color: #ffffff;
     --userselect-background: #ffffff0a;
     --userselect-color: #1d1d1d;
     --version: #444;
+
+    --cursorText: url("/resources/cursors/textD.png"), text;
+    --cursorNormal: url("/resources/cursors/normalD.png"), default;
+    --cursorHand: url("/resources/cursors/handD.png"), pointer;
 
     /* shell */
     --shell-background: #1e1e1e;
     --shell-outline-color: #272727;
     --shell-border-color: #1e1e1e;
     --shell-color: #cecece;
+    --button-app-close-color: #ffaaaa;
+    --button-app-close-hover-background: #da4343;
     --start-icon: #c9c9c9;
     --start-icon-hover: #5be873;
     --start-apps-icon: #42bb57;
     --apps-background: #1e1e1e;
-    --apps-border: #1e1e1e;
-    --apps-outline: #2d2d2d;
     --apps-button-background: #2d2d2d;
     --apps-button-color: white;
     --apps-button-boxshadow: #2d2d2d;
@@ -132,53 +135,45 @@
     --system-control-background: #262626;
     --system-control-icon-color: grey;
     --system-control-icon-color-hover: #42bb57;
-
+    
     /* clock */
     --fulltime-background: #333333;
     --fulltime-color: #cecece;
     --fulltime-clock-close-hover: #ff7171;
     --clock-background: #2d2d2d;
-
+    
     /* desktop */
     --desktopapp-background: #8c8c8c5e;
-    --desktopapp-outline: #ffffff29;
-    --desktopapp-border: #ffffff17;
-    --prompt-background: #1e1e1e;
-    --prompt-border: #333;
-    --promptTitle-background: #333;
-    --promptInput-background: #404040;
-    --promptInput-color: white;
-    --formButton-background: #404040;
-    --formButtonCancel-background: #fc5d5d;
+    --inputAppSearch-background: #373737;
+    --inputApsSearchNoneFocus-color: #9d9d9d;
+    --inputAppSearch-color: #ffffff;
 
     /* dock */
-    --dock-border: #272727;
-    --dock-background: #171717;
-    --dock-outline: #171717;
+    --dock-background: #1e1e1e;
     --dock-button-background: #2d2d2d;
+    --dock-alert-background: #47ca6360;
     --dock-button-boxshadow: #242424;
     --dock-icon-color: #47CA64;
 
     /* context menu */
     --context-menu-background: #1e1e1e;
-    --context-menu-outline: #282828;
-    --context-menu-border: #404040;
     --context-menu-color: #bdbdbd;
     --context-menu-color-hover: white;
 
     /* windows */
     --window-background: #282928;
     --window-color: #bdbdbd;
-    --window-border: #282928;
     --window-dragger: #282928;
-    --stopDARK: #47CA64;
-    --stopLIGHT: #2B813E;
-    --stopDARKCOLOR: #3eb76e;
-    --stopLIGHTCOLOR: #53d587;
-    --stopDARKHELP: #073e1c;
-    --stopLIGHTHELP: #34ac64;
 
     /* buttons */
+    --button-background: #393939;
+    --button-background-hover: #41bc5d;
+    --button-boxShadow: none;
+    --button-boxShadow-hover: 0 0 8px 4px #41bc5d;
+    --button-color: #41bc5d;
+    --button-span-color: #282928;
+    --button-span-color-hover: #2f9447;
+    --button-color-hover: #ffffff;
     --winic-color: white;
     --winic-color-hover: #919191;
     --close-icon-color: white;
@@ -188,31 +183,48 @@
     --window-close-button: #ff7979;
 
     /* browser */
-    --searchbar-background: #171717;
-    --searchbar-border: #313131;
-    --searchbar-outline: #171717;
+    --bIcon-stroke-color: #41bc5d;
+    --bIcon-stroke-color-disabled: #bdbdbd;
+    --searchbar-background: #282928;
+    --searchbar-focus-background: #1e1e1e;
     --http-color: #666;
+    --new-tab-color: #848484;
+    --new-tab-color-hover: #7bf493;
+    --tab-container-background: #282928;
+    --tab-close-hover: #6fbd7f;
+    --tab-close-active-hover: #85ff9e59;
+    --tab-active-close-hover: #464646;
+    --tab-active-close-active-hover: #424242;
+    --tab-active-background: #1c1c1c;
+    --tab-active-hover-color: #47CA64;
+    --tab-inactive-background: #0000;
+    --tab-hover-background: #85ff9e59;
 }
 
 [data-theme="night"] {
     /* body */
+    --wallpaper: url("resources/wallpapers/nightWall.png");
     --body: #0e0a40;
     --body-color: #fff7a5;
     --userselect-background: #ffffff0a;
     --userselect-color: #fff7a5;
     --version: #251d8c;
 
+    --cursorText: url("/resources/cursors/textN.png"), text;
+    --cursorNormal: url("/resources/cursors/normalN.png"), default;
+    --cursorHand: url("/resources/cursors/handN.png"), pointer;
+
     /* shell */
     --shell-background: #161062;
     --shell-outline-color: #efe688;
     --shell-border-color: #161062;
     --shell-color: #fff7a5;
+    --button-app-close-color: #ffaaaa;
+    --button-app-close-hover-background: #da4343;
     --start-icon: #b3a840;
     --start-icon-hover: #fff7a5;
     --start-apps-icon: #fff7a5;
     --apps-background: #161062;
-    --apps-border: #161062;
-    --apps-outline: #efe688;
     --apps-button-background: #251e80;
     --apps-button-color: #fff7a5;
     --apps-button-boxshadow: #251e80;
@@ -220,46 +232,45 @@
     --system-control-background: #141042;
     --system-control-icon-color: #978e2e;
     --system-control-icon-color-hover: #fff7a5;
-
+    
     /* clock */
     --fulltime-background: #2a2286;
     --fulltime-color: #efe688;
     --fulltime-clock-close-hover: #ff7171;
     --clock-background: #2a2286;
-
+    
     /* desktop */
-    --desktopapp-background: #181446;
-    --desktopapp-outline: #efe68891;
-    --desktopapp-border: #181446;
-
+    --desktopapp-background: #0e0b35;
+    --inputAppSearch-background: #302a73;
+    --inputApsSearchNoneFocus-color: #716ae1;
+    --inputAppSearch-color: #fff7a5;
+    
     /* dock */
-    --dock-border: #efe688;
     --dock-background: #161062;
-    --dock-outline: #161062;
     --dock-button-background: #22198d;
+    --dock-alert-background: #fff7a560;
     --dock-button-boxshadow: #110d44;
     --dock-icon-color: #fff7a5;
 
     /* context menu */
     --context-menu-background: #161062;
-    --context-menu-outline: #efe688;
-    --context-menu-border: #0e0946;
     --context-menu-color: #efe688;
     --context-menu-color-hover: #a29b59;
 
     /* windows */
     --window-background: #26206a;
     --window-color: #efe688;
-    --window-border: #26206a;
     --window-dragger: #26206a;
-    --stopDARK: #fff7a5;
-    --stopLIGHT: #777021;
-    --stopDARKCOLOR: #c8bd4f;
-    --stopLIGHTCOLOR: #e6dc7f;
-    --stopDARKHELP: #68621f;
-    --stopLIGHTHELP: #e6dc7f;
 
     /* buttons */
+    --button-background: #342d93;
+    --button-background-hover: #ffe688;
+    --button-boxShadow: none;
+    --button-boxShadow-hover: 0 0 8px 4px #ffe688;
+    --button-color: #ffe688;
+    --button-span-color: #26206a;
+    --button-span-color-hover: #c9b363;
+    --button-color-hover: #342d93;
     --winic-color: white;
     --winic-color-hover: white;
     --close-icon-color: white;
@@ -269,32 +280,48 @@
     --window-close-button: #d5ce86;
 
     /* browser */
-    --searchbar-background: #130f4a;
-    --searchbar-border: #130f4a;
-    --searchbar-outline: #efe688;
+    --bIcon-stroke-color: #fff7a5;
+    --bIcon-stroke-color-disabled: #bdbdbd;
+    --searchbar-background: #26206a;
+    --searchbar-focus-background: #1a1648;
     --http-color: #666;
+    --new-tab-color: #4139ae;
+    --new-tab-color-hover: #fbf3a5;
+    --tab-container-background: 26206a;
+    --tab-close-hover: #efe6886b;
+    --tab-close-active-hover: #fff6a6a8;
+    --tab-active-close-hover: #efe6886b;
+    --tab-active-close-active-hover: #fff6a6a8;
+    --tab-active-background: #181446;
+    --tab-active-hover-color: #ffefb7;
+    --tab-inactive-background: #0000;
+    --tab-hover-background: #efe6886b;
 }
 
 [data-theme="fracital"] {
     /* body */
+    --wallpaper: url("resources/wallpapers/fracitalWall.png");
     --body: #1C1C1C;
     --body-color: #FF75F9;
     --userselect-background: #ffffff0a;
     --userselect-color: #ff40f7;
     --version: #4f4f4f;
-    --notif-background: transparent;
+
+    --cursorText: url("/resources/cursors/textF.png"), text;
+    --cursorNormal: url("/resources/cursors/normalF.png"), default;
+    --cursorHand: url("/resources/cursors/handF.png"), pointer;
 
     /* shell */
     --shell-background: #313131;
     --shell-outline-color: #ff40f7;
     --shell-border-color: #313131;
     --shell-color: #ff40f7;
+    --button-app-close-color: #ffaaaa;
+    --button-app-close-hover-background: #da4343;
     --start-icon: #FF40F7BA;
     --start-icon-hover: #FF40F7;
     --start-apps-icon: #FF40F7;
     --apps-background: #313131;
-    --apps-border: #313131;
-    --apps-outline: #FF40F7;
     --apps-button-background: #3d3d3d;
     --apps-button-color: #FF40F7;
     --apps-button-boxshadow: #3d3d3d;
@@ -302,46 +329,45 @@
     --system-control-background: #414141;
     --system-control-icon-color: #FF40F7A8;
     --system-control-icon-color-hover: #FF40F7;
-
+    
     /* clock */
     --fulltime-background: #575757;
     --fulltime-color: #ff40f7;
     --fulltime-clock-close-hover: #ff7171;
     --clock-background: #575757;
-
+    
     /* desktop */
     --desktopapp-background: #8c8c8c5e;
-    --desktopapp-outline: #ff40f785;
-    --desktopapp-border: #ffffff17;
+    --inputAppSearch-background: #202020;
+    --inputApsSearchNoneFocus-color: #757575;
+    --inputAppSearch-color: #FF40F7;
 
     /* dock */
-    --dock-border: #ff40f7;
     --dock-background: #313131;
-    --dock-outline: #313131;
     --dock-button-background: #3d3d3d;
+    --dock-alert-background: #FF40F760;
     --dock-button-boxshadow: #282828;
     --dock-icon-color: #FF40F7;
 
     /* context menu */
     --context-menu-background: #313131;
-    --context-menu-outline: #ff40f7;
-    --context-menu-border: #313131;
     --context-menu-color: #ff40f7;
     --context-menu-color-hover: #9d2298;
 
     /* windows */
     --window-background: #383838;
     --window-color: #ff40f7;
-    --window-border: #383838;
     --window-dragger: #383838;
-    --stopDARK: #FF40F7;
-    --stopLIGHT: #A5209F;
-    --stopDARKCOLOR: #BD3BB8;
-    --stopLIGHTCOLOR: #FF40F7;
-    --stopDARKHELP: #5B1159;
-    --stopLIGHTHELP: #FF40F7;
 
     /* buttons */
+    --button-background: #484848;
+    --button-background-hover: #ff3ff5d4;
+    --button-boxShadow: none;
+    --button-boxShadow-hover: 0 0 8px 4px #ff3ff5d4;
+    --button-color: #ff3ff5d4;
+    --button-span-color: #383838;
+    --button-span-color-hover: #b127aad4;
+    --button-color-hover: #ffffff;
     --winic-color: white;
     --winic-color-hover: #b5b5b5;
     --close-icon-color: #fff;
@@ -351,10 +377,34 @@
     --window-close-button: #ff79e4;
 
     /* browser */
-    --searchbar-background: #282828;
-    --searchbar-border: #282828;
-    --searchbar-outline: #ff40f7;
+    --bIcon-stroke-color: #ff40f7;
+    --bIcon-stroke-color-disabled: #bdbdbd;
+    --searchbar-background: #383838;
+    --searchbar-focus-background: #242424;
     --http-color: #666;
+    --new-tab-color: #737373;
+    --new-tab-color-hover: #ff73f9;
+    --tab-container-background: #383838;
+    --tab-close-hover: #ff79e4b3;
+    --tab-close-active-hover: #ffc2f3b3;
+    --tab-active-close-hover: #464646;
+    --tab-active-close-active-hover: #424242;
+    --tab-active-background: #222222;
+    --tab-active-hover-color: #FF75F9;
+    --tab-inactive-background: #0000;
+    --tab-hover-background: #ff79e4b3;
+}
+
+@keyframes blink {
+    0% {
+        background-color: var(--dock-alert-background);
+    }
+    50% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: var(--dock-alert-background);
+    }
 }
 
 ::selection {
@@ -369,6 +419,22 @@
 
 html {
     background: black;
+    scrollbar-color: var(--color) var(--body);
+    scrollbar-width: thin;
+    cursor: var(--cursorNormal) !important;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--body);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 6px;
 }
 
 .showHide {
@@ -378,7 +444,7 @@ html {
 .eye {
     width: 27px;
     height: 27px;
-    cursor: pointer;
+    cursor: var(--cursorHand);
 }
 
 .eye path {
@@ -402,9 +468,8 @@ html {
     backdrop-filter: blur(9px);
 }
 
-.skip {
-    color: gray;
-    cursor: pointer;
+.misc {
+    cursor: var(--cursorHand);
     font-size: 14px;
 }
 
@@ -412,7 +477,7 @@ html {
     display: grid;
     width: 275px;
     border-radius: 6px;
-    box-shadow: 0 4px 7px 3px #0000004a;
+    box-shadow: 0 4px 7px 3px #00000008;
     position: relative;
     justify-items: center;
     align-items: center;
@@ -467,8 +532,6 @@ mark.strong {
 mark.secure {
     color: #87f78b;
 }
-
-
 
 .err {
     animation: wrong 200ms ease-in-out;
@@ -601,20 +664,63 @@ input.pass:focus {
 }
 
 main {
-    width: 100%;
-    height: calc(100vh - 90px);
-    display: flex;
-    margin-top: 1px;
-    z-index: 1;
+    transition: 300ms ease-in-out;
+}
+
+#appsClose {
+    position: absolute;
+    cursor: var(--cursorHand);
+}
+
+#appsClose.bottom {
+    bottom: 17px;
+}
+
+#appsClose.left {
+    left: 17px;
+}
+
+#appsClose.right {
+    right: 17px;
+}
+
+main.closedA {
+    position: absolute;
+    display: grid;
+    z-index: 0;
+    opacity: 0;
+    visibility: collapse;
+    inset: 0;
+    background-color: transparent;
+    justify-content: center;
+    align-content: center;
+}
+
+main.open {
+    position: absolute;
+    display: grid;
+    z-index: 3;
+    opacity: 1;
+    visibility: visible;
+    inset: 0;
+    background-color: var(--apps-background);
+    justify-items: center;
+    align-content: center;
 }
 
 .appsDesk {
+    transition: 300ms ease-in-out;
     display: flex;
     flex-wrap: wrap;
     padding: 3px;
     gap: 3px;
     height: max-content;
     justify-content: center;
+    margin-top: 32px;
+}
+
+.appsDesk.openA {
+    margin-top: 0;
 }
 
 .deskapp {
@@ -626,16 +732,22 @@ main {
     padding: 4px 6px;
     border-radius: 4px;
     background-color: transparent;
-    border: 1px solid transparent;
-    outline: 1px solid transparent;
+    border: none;
     transition: ease-in-out 200ms;
 }
 
+.deskapp.appShow {
+    visibility: visible;
+}
+
+.deskapp.appHide {
+    visibility: collapse;
+}
+
 .deskapp:hover {
-    cursor: pointer;
+    cursor: var(--cursorHand);
     background-color: var(--desktopapp-background);
-    border: 1px solid var(--desktopapp-border);
-    outline: 1px solid var(--desktopapp-outline);
+    border: none;
 }
 
 .appIcon {
@@ -669,7 +781,7 @@ main {
     text-decoration: underline;
     font-weight: bold;
     font-style: italic;
-    cursor: pointer;
+    cursor: var(--cursorHand);
 }
 
 .notification-content {
@@ -704,7 +816,7 @@ main {
 }
 
 .notification-close {
-    cursor: pointer;
+    cursor: var(--cursorHand);
     height: 24px;
     width: 24px;
 }
@@ -734,7 +846,7 @@ body {
     margin: 0;
     background: var(--body);
     display: grid;
-    min-height: 100vh;
+    min-height: 100%;
     animation: fadeInAnimation ease-in-out 0.3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -744,6 +856,7 @@ body {
     background-size: cover;
     color: var(--body-color);
     transition: ease-in-out 200ms;
+    height: 100vh;
 }
 
 .bright {
@@ -762,6 +875,14 @@ li {
     position: fixed;
 }
 
+.bHidden {
+    visibility: collapse;
+}
+
+.logoWall {
+    z-index: 1;
+}
+
 .hidden {
     display: none !important;
 }
@@ -777,7 +898,7 @@ li {
     border-radius: 9px;
     z-index: 99;
     overflow: hidden;
-    border: 1px solid var(--prompt-border);
+    border: none;
 }
 
 .promptTitle {
@@ -828,31 +949,78 @@ li {
 
 .formButton:hover {
     background-color: var(--formButton-background);
-    cursor: pointer;
+    cursor: var(--cursorHand);
 }
 
 .cancel:hover {
     background-color: var(--formButtonCancel-background);
 }
 
+.noSelect {
+    user-select: none;
+}
+
 .shell {
     display: flex;
-    width: calc(100% - 3px);
-    height: 1.7em;
+    width: 100%;
+    height: 36px;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     color: var(--shell-color);
     background-color: var(--shell-background);
     border-bottom-left-radius: 13px;
     border-bottom-right-radius: 13px;
     border-bottom: 1px solid var(--shell-border-color);
-    outline: 1px solid var(--shell-outline-color);
     font-size: 21px;
     font-family: prod;
-    z-index: 2;
-    margin-top: -1px;
-    margin-left: -1px;
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 3px 7px -2px #00000075;
 }
+
+.shell.noShadow {
+    box-shadow: none;
+}
+
+.showDesk {
+    background-color: #ffffff1c;
+    width: 18px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    border-bottom-right-radius: 13px;
+    z-index: 1;
+    transition: ease-in-out 300ms;
+}
+
+.noBorderRadius {
+    border-radius: 0;
+}
+
+.appShell {
+    position: absolute;
+    left: 42px;
+    height: 100%;
+    display: grid;
+    align-content: center;
+}
+
+.appShell .name {
+    display: grid;
+    /* cursor: var(--cursorHand); */
+    transition: 200ms ease-in-out;
+    height: 36px;
+    padding: 0 8px;
+    align-items: center;
+    border-radius: 6px;
+}
+
+/* .name:hover {
+    background-color: var(--clock-background);
+} */
 
 .appI {
     width: 25px;
@@ -879,16 +1047,54 @@ li {
     left: 0.4em;
     top: 2.6em;
     background: var(--apps-background);
-    outline: 1px solid var(--apps-outline);
-    border: 1px solid var(--apps-border);
+    border: none;
     padding: 9px;
     font-family: prod;
     font-size: 17px;
     z-index: 99999999;
 }
 
+.appOptions {
+    border-radius: 4px;
+    position: absolute;
+    background-color: var(--apps-background);
+    top: 44px;
+    left: 8px;
+    display: grid;
+    min-width: 162px;
+    gap: 3px;
+    padding: 6px;
+    z-index: 99999999;
+}
+
+.appOptions.h {
+    visibility: collapse;
+}
+
+.appOptions button {
+    cursor: var(--cursorHand);
+    transition: 150ms ease-in-out;
+    text-align: left;
+    font-family: prod;
+    font-size: 17px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: none;
+    color: var(--button-color);
+    background-color: transparent;
+}
+
+.appOptions button.closeApp:hover {
+    color: var(--button-app-close-color);
+    background-color: var(--button-app-close-hover-background);
+}
+
+.appOptions button:hover {
+    background-color: var(--button-background);
+}
+
 .appI:hover {
-    cursor: pointer;
+    cursor: var(--cursorHand);
     stroke: var(--start-icon-hover);
     fill: var(--start-icon-hover);
 }
@@ -902,6 +1108,36 @@ li {
     display: grid;
     height: min-content;
     width: min-content;
+}
+
+.inputAppSearch {
+    position: absolute;
+    top: 54px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--inputAppSearch-background);
+    border: none;
+    border-radius: 8px;
+    height: 40px;
+}
+
+main > .inputAppSearch {
+    width: 20% !important;
+}
+
+.inputAppSearch input {
+    transition: 200ms ease-in-out;
+    color: var(--inputApsSearchNoneFocus-color);
+    border: none;
+    background-color: transparent;
+    padding: 0 10px;
+    font-size: 16px;
+    height: 100%;
+}
+
+.inputAppSearch input:focus-visible {
+    outline: none;
+    color: var(--inputApsSearch-color);
 }
 
 .start {
@@ -936,7 +1172,7 @@ li {
 }
 
 .start-btn:hover {
-    cursor: pointer;
+    cursor: var(--cursorHand);
     background-color: var(--apps-button-background);
     padding: 2px 3px;
 }
@@ -955,36 +1191,28 @@ li {
 }
 
 .sysc {
-    display: block;
-    margin-bottom: -4px;
-    margin-top: 6px;
+  display: flex;
+  gap: 7px;
 }
 
 .sys {
     float: right;
-    display: block;
+    display: grid;
     border-radius: 5px;
     background: var(--system-control-background);
-    padding: 0 5px;
+    padding: 5px;
 }
 
 .sysicon {
     width: 23px;
-    height: 31px;
+    height: 23px;
     stroke: var(--system-control-icon-color);
     transition: ease 0.2s;
-    margin-right: 4px;
 }
 
 .sysicon:hover {
     stroke: var(--system-control-icon-color-hover);
-    cursor: pointer;
-}
-
-.power {
-    margin-top: 1px;
-    float: right;
-    margin-right: 0;
+    cursor: var(--cursorHand);
 }
 
 .lock {
@@ -1006,6 +1234,7 @@ li {
 .appsear {
     background-color: var(--apps-search-background);
     border: none;
+    outline: none;
     color: var(--body-color);
     padding: 4px 0 4px 11px;
     border-radius: 4px;
@@ -1016,8 +1245,8 @@ li {
 }
 
 .appsear:focus-visible {
-    border: none;
     outline: none;
+    border: none;
 }
 
 .time {
@@ -1047,7 +1276,7 @@ li {
 
 .x-clock:hover {
     color: var(--fulltime-clock-close-hover);
-    cursor: pointer;
+    cursor: var(--cursorHand);
 }
 
 .timeT {
@@ -1062,9 +1291,8 @@ li {
 
 .timeT:hover {
     background-color: var(--clock-background);
-    color: var(--clock-color);
     border-radius: 4px;
-    cursor: pointer;
+    cursor: var(--cursorHand);
 }
 
 .fulltime {
@@ -1086,8 +1314,7 @@ li {
     justify-content: center;
     align-items: center;
     background: var(--context-menu-background);
-    outline: 1px solid var(--context-menu-outline);
-    border: 1px solid var(--context-menu-border);
+    border: none;
     color: var(--context-menu-color);
     border-radius: 7px;
     width: 7em;
@@ -1111,7 +1338,7 @@ li {
 }
 
 .ctxbt:hover {
-    cursor: pointer;
+    cursor: var(--cursorHand);
     color: var(--context-menu-color-hover);
 }
 
@@ -1122,20 +1349,70 @@ li {
 .dock {
     display: flex;
     background-color: var(--dock-background);
-    border: 1px solid var(--dock-border);
-    outline: 1px solid var(--dock-outline);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    box-shadow: 0 0 7px -2px #00000075;
+    border: none;
     width: max-content;
-    padding: 7px 13px 3px 13px;
     z-index: 2;
-    transition: ease 0.5s;
     gap: 4px;
     border-bottom: none;
+    max-width: 438px;
+    overflow-x: auto;
+    position: fixed;
+}
+
+.activeSpan {
+    width: 0px;
+    height: 3px;
+    transition: 200ms ease-in-out;
+}
+
+.active .activeSpan {
+    height: 3px;
+    width: 9px;
+    background-color: var(--dock-icon-color);
+    border-radius: 3px;
+}
+
+.dockbtn.active {
+    background-color: var(--dock-button-background);
+}
+
+.dockH {
+    visibility: collapse;
+}
+
+.dBottom {
+    padding: 7px 7px 7px 7px;
+    border-radius: 8px;
+    bottom: 4px;
+}
+
+.dLeft {
+    display: grid;
+    padding: 7px 7px 7px 7px;
+    border-radius: 8px;
+    left: 4px;
+}
+
+.dRight {
+    display: grid;
+    padding: 7px 7px 7px 7px;
+    border-radius: 8px;
+    right: 4px;
+}
+
+.dock.overflow {
+    transform: translateY(-11px);
 }
 
 .dockN {
-    transform: translateY(49px);
+    transform: translateY(35px);
+    position: absolute;
+    bottom: -49px;
+}
+
+.dockS {
+    transform: translateY(0);
 }
 
 .hide {
@@ -1150,15 +1427,20 @@ li {
     width: 32px;
     height: 32px;
     display: grid;
-    justify-content: center;
+    justify-items: center;
     align-content: center;
     padding: 2px;
     border-radius: 5px;
     transition: ease 0.2s;
+    min-width: 32px;
+}
+
+.dockbtn.alert {
+    animation: blink 1s infinite ease-in-out;
 }
 
 .dockbtn:hover {
-    cursor: pointer;
+    cursor: var(--cursorHand);
     background-color: var(--dock-button-background);
     box-shadow: 0px 0px 12px 1px var(--dock-button-boxshadow);
 }
@@ -1169,8 +1451,28 @@ li {
     border-radius: 5px;
 }
 
-.dockicon.nonGRAD {
+.dockicon.stroke {
     stroke: var(--dock-icon-color);
+}
+
+.dockicon.fill {
+    fill: var(--dock-icon-color);
+}
+
+.stroke {
+    stroke: var(--dock-icon-color);
+}
+
+.fill {
+    fill: var(--dock-icon-color);
+}
+
+.iconFill1 {
+    fill: var(--iconFill2);
+}
+
+.iconFill2 {
+    fill: var(--iconFill1);
 }
 
 .dockbtnH {
@@ -1190,7 +1492,6 @@ li {
 .win {
     height: 568px;
     width: 688px;
-    border: 1px solid var(--window-border);
     background-color: var(--window-background);
     min-width: 499px;
     min-height: 499px;
@@ -1201,13 +1502,34 @@ li {
     transition: border-radius ease-in-out 150ms;
 }
 
+.win.browser {
+    min-width: 757px;
+}
+
+.browser iframe {
+    border-radius: 0;
+    height: calc(100% - 93px);
+}
+
 .winmini {
     position: absolute;
     left: 500000px !important;
 }
 
+.winNotFocus {
+    z-index: 1;
+    opacity: 0.89;
+    filter: blur(2px);
+}
+
+.winFocus {
+    z-index: 2;
+    opacity: 1;
+    filter: blur(0px);
+}
+
 .radius {
-    border-radius: 12px 12px 12px 12px;
+    border-radius: 12px 12px 12px 12px !important;
 }
 
 .noRad {
@@ -1223,10 +1545,10 @@ li {
 }
 
 .maxiY {
-    top: 38px !important;
+    top: 37px !important;
     left: 0 !important;
-    height: calc(100% - 40px) !important;
-    width: calc(100% - 3px) !important;
+    height: calc(100% - 37px) !important;
+    width: calc(100% - 1px) !important;
     resize: none;
 }
 
@@ -1258,8 +1580,15 @@ li {
     margin: 0;
     float: right;
     position: absolute;
-    right: 8px;
     gap: 4px;
+}
+
+.controlsL {
+    left: 8px;
+}
+
+.controlsR {
+    right: 8px;
 }
 
 .winc {
@@ -1270,6 +1599,7 @@ li {
     justify-content: center;
     transition: ease-in-out 200ms;
     background-color: var(--window-control-button);
+    cursor: var(--cursorHand);
 }
 
 .btnround {
@@ -1280,7 +1610,6 @@ li {
 
 .winc:hover {
     background-color: var(--window-control-button-hover);
-    cursor: pointer;
 }
 
 .winic {
@@ -1320,7 +1649,6 @@ li {
 
 .close:hover {
     background-color: var(--window-close-button);
-    cursor: pointer;
 }
 
 .icon {
@@ -1334,7 +1662,14 @@ li {
     -webkit-user-select: none;
     -ms-user-select: none;
     position: absolute;
+}
+
+.iconL {
     left: 12px;
+}
+
+.iconR {
+    right: 12px;
 }
 
 .stopDARKHELP {
@@ -1370,13 +1705,53 @@ li {
     -webkit-user-select: none;
     -ms-user-select: none;
     margin: -1px 17px 0 16px;
+    transition: ease-in-out 200ms;
 }
 
 .title {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     user-select: none;
+    gap: 6px;
+}
+
+button.m {
+    display: grid;
+    justify-items: center;
+    font-family: pop;
+    cursor: var(--cursorHand);
+    background-color: var(--button-background);
+    box-shadow: var(--button-boxShadow);
+    color: var(--button-color);
+    padding: 6px 8px;
+    padding-top: 2px;
+    border-radius: 4px;
+    border: none;
+    transition: ease-in-out 200ms;
+}
+
+button.m span {
+    position: relative;
+    top: -2px;
+    width: 60%;
+    height: 4px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: var(--button-span-color);
+    transition: ease-in-out 200ms;
+}
+
+button.m:hover {
+    background-color: var(--button-background-hover);
+    box-shadow: var(--button-boxShadow-hover);
+    color: var(--button-color-hover);
+}
+
+button.m:hover span {
+    background-color: var(--button-span-color-hover);
+    width: 80%;
 }
 
 .urlwrap {
@@ -1389,20 +1764,16 @@ li {
     height: calc(100% - 48px);
     position: relative;
     top: 0;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
 }
 
 .rectUp {
     color: white;
     border-radius: 6px;
-    outline: 1px solid #202020;
     background-color: #151515;
 }
 
 .rectDown {
     color: #c1c1c1;
-    outline: 1px solid #282828;
     background-color: #1c1c1c;
     border-radius: 37px;
 }
@@ -1570,11 +1941,422 @@ iframe {
 
 /* browser window */
 
+.bIcon {
+    cursor: var(--cursorHand);
+    width: 24px;
+    height: 24px;
+    stroke: var(--bIcon-stroke-color);
+}
+
+.bIcon.dis {
+    stroke: var(--bIcon-stroke-color-disabled);
+}
+
+.loadingStateUrl {
+    position: absolute;
+    background-color: var(--window-background);
+    padding: 5px 6px 5px 6px;
+    border-top-right-radius: 6px;
+    bottom: 0;
+}
+
+.ref path {
+    stroke: var(--bIcon-stroke-color);
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    background: var(--tab-container-background);
+    align-items: center;
+}
+
+.bBtnIcon {
+    width: 100%;
+    height: 100%;
+    cursor: var(--cursorHand);
+    stroke: var(--new-tab-color);
+    transition: 150ms ease-in-out;
+}
+
+.bBtnIcon:hover {
+    stroke: var(--new-tab-color-hover);
+}
+
+.bBtn {
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: none;
+    padding-left: 7px;
+}
+
+.chrome-tabs {
+  box-sizing: border-box;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 12px;
+  height: 46px;
+  padding: 12px 3px 4px 3px;
+  overflow: hidden;
+  width: calc(100% - 50px);
+}
+
+.chrome-tabs * {
+  box-sizing: inherit;
+  font: inherit;
+}
+
+.chrome-tabs .chrome-tabs-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.chrome-tabs .chrome-tab {
+  position: absolute;
+  left: 0;
+  height: 36px;
+  width: 240px;
+  border: 0;
+  margin: 0;
+  z-index: 1;
+  pointer-events: none;
+  margin-top: -2px;
+}
+
+.chrome-tabs .chrome-tab,
+.chrome-tabs .chrome-tab * {
+  user-select: none;
+  cursor: default;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-dividers {
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  left: var(--tab-content-margin);
+  right: var(--tab-content-margin);
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-dividers,
+.chrome-tabs .chrome-tab .chrome-tab-dividers::before,
+.chrome-tabs .chrome-tab .chrome-tab-dividers::after {
+  pointer-events: none;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-dividers::before,
+.chrome-tabs .chrome-tab .chrome-tab-dividers::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #3c3c3c;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-dividers::before {
+  left: 0;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-dividers::after {
+  right: 0;
+}
+
+.chrome-tabs .chrome-tab:first-child .chrome-tab-dividers::before,
+.chrome-tabs .chrome-tab:last-child .chrome-tab-dividers::after {
+  opacity: 0;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-background > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-background > svg .chrome-tab-geometry {
+  fill: #f4f5f6;
+}
+
+.chrome-tabs .chrome-tab[active] {
+  z-index: 5;
+}
+
+.chrome-tabs
+  .chrome-tab[active]
+  .chrome-tab-background
+  > svg
+  .chrome-tab-geometry {
+  fill: #fff;
+}
+
+.chrome-tabs .chrome-tab:not([active]) .chrome-tab-background {
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .chrome-tabs .chrome-tab:not([active]):hover {
+    z-index: 2;
+  }
+
+  .chrome-tabs .chrome-tab:not([active]):hover .chrome-tab-background {
+    opacity: 1;
+  }
+}
+
+.chrome-tabs .chrome-tab.chrome-tab-was-just-added {
+  top: 10px;
+  animation: chrome-tab-was-just-added 120ms forwards ease-in-out;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-content {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: var(--tab-content-margin);
+  right: var(--tab-content-margin);
+  padding: 9px 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+  pointer-events: all;
+  background: transparent;
+  margin-right: 6px;
+  background: var(--tab-inactive-background);
+  transition: background 150ms ease-in-out;
+}
+
+.chrome-tabs .chrome-tab[is-mini] .chrome-tab-content {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-favicon {
+  position: relative;
+  flex-shrink: 0;
+  flex-grow: 0;
+  height: 16px;
+  width: 16px;
+  background-size: 16px;
+  margin-left: 4px;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 50% 50%;
+}
+
+.chrome-tabs .chrome-tab[is-small] .chrome-tab-favicon {
+  margin-left: 0;
+}
+
+.chrome-tabs .chrome-tab[is-mini]:not([active]) .chrome-tab-favicon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chrome-tabs .chrome-tab[is-mini][active] .chrome-tab-favicon {
+  display: none;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-title {
+  flex: 1;
+  vertical-align: top;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 4px;
+  color: #d6d6d6;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #d6d6d6 0%,
+    #000 calc(100% - 24px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
+
+.chrome-tabs .chrome-tab[is-small] .chrome-tab-title {
+  margin-left: 0;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-favicon + .chrome-tab-title,
+.chrome-tabs .chrome-tab[is-small] .chrome-tab-favicon + .chrome-tab-title {
+  margin-left: 8px;
+}
+
+.chrome-tabs .chrome-tab[is-smaller] .chrome-tab-favicon + .chrome-tab-title,
+.chrome-tabs .chrome-tab[is-mini] .chrome-tab-title {
+  display: none;
+}
+
+.chrome-tabs .chrome-tab[active] .chrome-tab-title {
+  color: #fff;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-drag-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.chrome-tabs .chrome-tab .chrome-tab-close {
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path stroke='rgb(255, 254, 254)' stroke-linecap='square' stroke-width='1.5' d='M0 0 L8 8 M8 0 L0 8'></path></svg>");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 8px 8px;
+  margin-top: 1px;
+}
+
+@media (hover: hover) {
+  .chrome-tabs .chrome-tab:not([active]) .chrome-tab-close:hover {
+    background: var(--tab-close-hover);
+  }
+
+  .chrome-tabs .chrome-tab .chrome-tab-close:hover {
+    background: var(--tab-active-close-hover);
+  }
+
+  .chrome-tabs .chrome-tab:not([active]) .chrome-tab-close:hover:active {
+    background: var(--tab-close-active-hover);
+  }
+
+  .chrome-tabs .chrome-tab .chrome-tab-close:hover:active {
+    background: var(--tab-active-close-active-hover);
+  }
+}
+
+@media not all and (hover: hover) {
+  .chrome-tabs .chrome-tab .chrome-tab-close:active {
+    background: #dadce0;
+  }
+}
+
+@media (hover: hover) {
+  .chrome-tabs
+    .chrome-tab:not([active])
+    .chrome-tab-close:not(:hover):not(:active) {
+    opacity: 0.8;
+  }
+}
+
+.chrome-tabs .chrome-tab[is-smaller] .chrome-tab-close {
+  margin-left: auto;
+}
+
+.chrome-tabs .chrome-tab[is-mini]:not([active]) .chrome-tab-close {
+  display: none;
+}
+
+.chrome-tabs .chrome-tab[is-mini][active] .chrome-tab-close {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@-moz-keyframes chrome-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+@-webkit-keyframes chrome-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+@-o-keyframes chrome-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes chrome-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+.chrome-tabs.chrome-tabs-is-sorting .chrome-tab:not(.chrome-tab-is-dragging),
+.chrome-tabs:not(.chrome-tabs-is-sorting)
+  .chrome-tab.chrome-tab-was-just-dragged {
+  transition: transform 120ms ease-in-out;
+}
+
+.chrome-tabs-optional-shadow-below-bottom-bar {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1' viewBox='0 0 1 1'><rect x='0' y='0' width='1' height='1' fill='rgba(0, 0, 0, .17)'></rect></svg>");
+  background-size: 1px 1px;
+  background-repeat: repeat-x;
+  background-position: 0% 0%;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .chrome-tabs-optional-shadow-below-bottom-bar {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'><rect x='0' y='0' width='2' height='1' fill='rgba(0, 0, 0, .27)'></rect></svg>");
+  }
+}
+
+.chrome-tabs .chrome-tab[active] .chrome-tab-content {
+  background: var(--tab-active-background);
+}
+
+.chrome-tab-title {
+    transition: ease-in-out 200ms;
+}
+
+.chrome-tabs .chrome-tab[active]:hover .chrome-tab-content .chrome-tab-title {
+  color: var(--tab-active-hover-color);
+}
+
+.chrome-tab:hover .chrome-tab-content {
+  background: var(--tab-hover-background);
+}
+
+.chrome-tab:hover .chrome-tab-close {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path stroke='rgb(255, 254, 254)' stroke-linecap='square' stroke-width='1.5' d='M0 0 L8 8 M8 0 L0 8'></path></svg>");
+}
+
 .browserC {
     display: grid;
     align-items: center;
     width: 100%;
     height: 36px;
+    padding: 4px 0;
 }
 
 .tabControl {
@@ -1601,7 +2383,7 @@ iframe {
 .searchwrap {
     width: 100%;
     padding: 0;
-    height: 27px;
+    height: 100%;
     display: flex;
     justify-content: center;
 }
@@ -1613,24 +2395,43 @@ mark {
 }
 
 .searchbar {
-    width: 29em;
+    width: 18em;
     padding: 0;
+    padding-left: 8px;
     margin: 0;
     background: var(--searchbar-background);
-    border: 1px solid var(--searchbar-border);
-    outline: 1px solid var(--searchbar-outline);
+    border: none;
+    outline: none;
     color: currentColor;
-    border-radius: 17px;
-    text-align: center;
-    height: 100%;
+    height: 40px;
     align-items: center;
     display: flex;
-    padding-left: 10px;
     justify-content: center;
+    border-radius: 6px;
+    transition: ease-in-out 200ms;
+}
+
+.searchbar:hover {
+    background: var(--searchbar-focus-background);
 }
 
 .searchbar:focus-within {
-    justify-content: left;
+    padding-left: 8px;
+    width: 18em;
+    text-align: left;
+    background-color: var(--searchbar-focus-background);
+}
+
+.chrome-tabs .chrome-tab {
+    width: 258px
+}
+
+.chrome-tabs .chrome-tab:nth-child(1) {
+    transform: translate3d(0px, 0, 0)
+}
+
+.chrome-tabs .chrome-tab:nth-child(2) {
+    transform: translate3d(239px, 0, 0)
 }
 /* browser window end */
 /* windows end */

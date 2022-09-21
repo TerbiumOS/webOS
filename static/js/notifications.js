@@ -15,7 +15,6 @@ function terbiumNotification(icon, author, message, time) {
             </div>
         </div>
     `;
-    document.body.appendChild(notification);
     let height = notification.offsetHeight + "px";
     notification.style.transform = `translateY(${height})`;
     setTimeout(() => {
@@ -27,6 +26,7 @@ function terbiumNotification(icon, author, message, time) {
             setTimeout(() => {
                 notification.remove();
             }, 200)
-        }, time)
+        }, time);
     }, 1000);
+    document.body.appendChild(notification);
 }

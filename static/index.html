@@ -11,20 +11,11 @@
         <meta name="keywords" content="terbium, Terbium, SNOOTMAN, Fracital, windows, windows web, windows but bad, webOS, web os">
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#4cb05e">
         <link href="index.css" id="rels" rel="stylesheet">
-        <script async src="https://arc.io/widget.min.js#nxu6Wm1G"></script>
+        <script src="index.js" defer></script>
+        <!-- <link rel="stylesheet" href="./styles/cursors.css"> -->
+        <!-- <script async src="https://arc.io/widget.min.js#nxu6Wm1G"></script> -->
     </head>
-    <body tabindex="-1" oncontextmenu="return false;" data-notification="false">
-        <!-- <div class="loginDetails">
-            <div class="inputSectioned">
-                <div class="inputC">
-                    <div class="input">
-                        <input type="password" placeholder="Enter Password" onfocus="let inp = document.querySelector('.inputC'); inp.classList.add('focus');" onblur="document.querySelector('.inputC').classList.remove('focus')" name="pass" id="pass" class="pass">
-                        <svg class="spinner noSpin" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="6"></circle></svg>
-                    </div>
-                    <span></span>
-                </div>
-            </div>
-        </div> -->
+    <body tabindex="-1" oncontextmenu="return false;" class="noSelect" data-notification="false">
         <div class="shell" id="shell">
             <svg xmlns="http://www.w3.org/2000/svg" class="appI" id="appsL" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -32,149 +23,161 @@
                 <circle cx="16" cy="19" r="2" />
                 <circle cx="14.5" cy="7.5" r="4.5" />
             </svg>
-            <div class="fulltime hidden" id="ft"><h4 id="ftd" class="nope"></h4><h4 class="nope" id="ftt">here is the time ig</h4></div>
+            <div class="fulltime hidden" id="ft"><h4 id="ftd" class="nope"></h4><h4 class="nope" id="ftt"></h4></div>
             <div class="time">
-                <h5 class="timeT" id="time">00:00 AM</h5>
+                <h5 class="timeT" id="time"></h5>
             </div>
+            <div class="showDesk windowsShown" id="showDesk" title="Show Desktop"></div>
         </div>
-        <div id="apps" class="apps hidden">
-            <div class="main">
-                <div class="start-btn" id="set" title="Settings (Shift+S)" onclick="windows('./settings.html', './resources/terbium.svg', 'Terbium Settings', false, true, 'settings')">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="starticon" id="setc" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFEACB" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <circle cx="6" cy="10" r="2" />
-                        <line x1="6" y1="4" x2="6" y2="8" />
-                        <line x1="6" y1="12" x2="6" y2="20" />
-                        <circle cx="12" cy="16" r="2" />
-                        <line x1="12" y1="4" x2="12" y2="14" />
-                        <line x1="12" y1="18" x2="12" y2="20" />
-                        <circle cx="18" cy="7" r="2" />
-                        <line x1="18" y1="4" x2="18" y2="5" />
-                        <line x1="18" y1="9" x2="18" y2="20" />
-                    </svg>
-                    Settings
-                </div>
-                <input class="appsear" id="appsear" title="Search for an existing app supported by Terbium" type="text" placeholder="Search an app">
-                <div class="brightness-shell">
-                    </div>
-                    <div class="sysc">
-                        <div class="sys">
-                            <svg xmlns="http://www.w3.org/2000/svg" id="power" class="power sysicon" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M7 6a7.75 7.75 0 1 0 10 0" />
-                                <line x1="12" y1="4" x2="12" y2="12" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img src="./resources/default.png" id="background" class="background">
-            <div class="ctx hide" id="ctx">
-                <div class="menu">
-                    
-                </div>
-            </div>
-            <main id="main">
-                <div class="appsDesk" id="appsDesk">
-                    <div class="deskapp" title="Visual Studio Code">
-                        <img src="./resources/vsc.ico" id="vsc" onclick="windows('https://vscode.dev', './resources/vsc.ico', 'Visual Studio Code', false, false, 'code');" title="Visual Studio Code" class="appIcon">
-                    </div>
-                    <div class="deskapp" title="YouTube">
-                        <img src="./resources/yt.png" id="yt" onclick="windows('https://youtube.com', './resources/yt.png', 'YouTube', false, false, 'youtube');" title="YouTube" class="appIcon">
-                    </div>
-                    <div class="deskapp" title="tidal">
-                        <img src="./resources/td.ico" id="td" onclick="windows('https://tidal.com', './resources/td.ico', 'Tidal', false, false, 'tidal');" title="Tidal" class="appIcon">
-                    </div>
-                    <div class="deskapp" title="YouTube Music">
-                        <img src="./resources/ytm.png" id="ytm" onclick="windows('https://music.youtube.com', './resources/ytm.png', 'YouTube Music', false, false, 'youtube music');" title="YouTube Music" class="appIcon">
-                    </div>
-                    <div class="deskapp" title="Spotify">
-                        <img src="./resources/sp.png" id="sp" onclick="windows('https://spotify.com', './resources/sp.png', 'Spotify', false, false, 'spotify');" title="Spotify" class="appIcon">
-                    </div>
-                    <div class="deskapp" title="Apple Music">
-                        <img src="./resources/am.png" id="am" onclick="windows('https://music.apple.com', './resources/am.png', 'Apple Music', false, false, 'apple music');" title="Apple Music" class="appIcon">
-                    </div>
-                </div>
-            </main>
-            <div class="dock" oncontextmenu="return false;" id="dock">
-                <div class="dockbtn" id="terb" title="New window (Shift+N)">
-                    <svg onclick="windows('./newwin.html', './resources/terbium.svg', 'Terbium Browser', true, true, 'browser');" class="dockicon" viewBox="0 0 86 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M40.683 12.653V0.242996H0.022V12.653H13.746V52H26.959V12.653H40.683ZM83.3122 16.084C83.6041 6.229 76.3772 0.316 66.5221 0.316H45.7901V52H66.8872C78.3482 52 83.9692 46.963 85.2831 38.641C85.9401 34.699 85.0642 28.056 77.9831 24.479C81.7062 22.581 83.2391 18.42 83.3122 16.084ZM58.9301 20.537V11.339H66.5221C73.0921 11.339 72.8731 20.537 66.5221 20.537H58.9301ZM58.9301 40.539V29.954H66.5221C74.2601 29.954 74.4061 40.539 66.5221 40.539H58.9301Z" fill="url(#paint0_linear_5_2)"/>
-                        <defs>
-                            <linearGradient id="paint0_linear_5_2" x1="83.5" y1="34.1023" x2="17.0779" y2="-24.6401" gradientUnits="userSpaceOnUse">
-                                <stop class="stopLIGHT"/>
-                                <stop class="stopDARK" offset="0.863175" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <div class="dockbtn" id="settings" title="Settings">
-                    <svg onclick="windows('./settings.html', './resources/terbium.svg', 'Terbium Settings', false, true, 'settings');" xmlns="http://www.w3.org/2000/svg" class="dockicon nonGRAD" id="setc" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFEACB" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <circle cx="6" cy="10" r="2" />
-                        <line x1="6" y1="4" x2="6" y2="8" />
-                        <line x1="6" y1="12" x2="6" y2="20" />
-                        <circle cx="12" cy="16" r="2" />
-                        <line x1="12" y1="4" x2="12" y2="14" />
-                        <line x1="12" y1="18" x2="12" y2="20" />
-                        <circle cx="18" cy="7" r="2" />
-                        <line x1="18" y1="4" x2="18" y2="5" />
-                        <line x1="18" y1="9" x2="18" y2="20" />
-                    </svg>
-                </div>
-                <div class="dockbtn" title="Terbium Color Picker" id="color">
-                    <svg id="color" onclick="windows('./color.html', './resources/terbium.svg', 'Terbium Color Picker', false, true, 'color');" class="dockicon" viewBox="0 0 80 80" fill="none">
-                        <path d="M13.3333 53.3333L52.3333 14.3333C52.9564 13.7226 53.7942 13.3805 54.6667 13.3805C55.5392 13.3805 56.3769 13.7226 57 14.3333L65.6667 23C66.2774 23.6231 66.6195 24.4608 66.6195 25.3333C66.6195 26.2058 66.2774 27.0436 65.6667 27.6667L26.6667 66.6667H13.3333V53.3333Z" stroke="url(#paint0_radial_2_13)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M36.6667 23.3333L56.6667 43.3333" stroke="url(#paint1_radial_2_13)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-                        <defs>
-                            <radialGradient id="paint0_radial_2_13" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
-                                gradientTransform="translate(39.9764 40.0236) rotate(90) scale(26.6431)">
-                                <stop offset="0.71875" class="stopDARKCOLOR" />
-                                <stop offset="1" class="stopLIGHTCOLOR" />
-                            </radialGradient>
-                            <radialGradient id="paint1_radial_2_13" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
-                                gradientTransform="translate(46.6667 33.3333) rotate(90) scale(10)">
-                                <stop offset="0.71875" class="stopDARKCOLOR" />
-                                <stop offset="1" class="stopLIGHTCOLOR" />
-                            </radialGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <div class="dockbtn" id="help" title="Help window (Shift+H)">
-                    <svg id="help" onclick="windows('./help.html', './resources/help.svg', 'Terbium Help', false, true, 'help');" title="Terbium Help" class="dockicon" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.23295 6.54545V6.49432C2.23864 5.9517 2.29545 5.51989 2.40341 5.19886C2.51136 4.87784 2.66477 4.6179 2.86364 4.41903C3.0625 4.22017 3.30114 4.03693 3.57955 3.86932C3.74716 3.76705 3.89773 3.64631 4.03125 3.5071C4.16477 3.36506 4.26989 3.2017 4.34659 3.01705C4.42614 2.83239 4.46591 2.62784 4.46591 2.40341C4.46591 2.125 4.40057 1.88352 4.26989 1.67898C4.1392 1.47443 3.96449 1.31676 3.74574 1.20597C3.52699 1.09517 3.28409 1.03977 3.01705 1.03977C2.78409 1.03977 2.55966 1.08807 2.34375 1.18466C2.12784 1.28125 1.94744 1.43324 1.80256 1.64062C1.65767 1.84801 1.57386 2.11932 1.55114 2.45455H0.477273C0.5 1.97159 0.625 1.55824 0.852273 1.21449C1.08239 0.870739 1.38494 0.607954 1.75994 0.426136C2.13778 0.244318 2.55682 0.153409 3.01705 0.153409C3.51705 0.153409 3.9517 0.252841 4.32102 0.451704C4.69318 0.650568 4.98011 0.923295 5.18182 1.26989C5.38636 1.61648 5.48864 2.01136 5.48864 2.45455C5.48864 2.76705 5.44034 3.04972 5.34375 3.30256C5.25 3.5554 5.11364 3.78125 4.93466 3.98011C4.75852 4.17898 4.54545 4.35511 4.29545 4.50852C4.04545 4.66477 3.84517 4.82955 3.6946 5.00284C3.54403 5.1733 3.43466 5.37642 3.36648 5.61222C3.2983 5.84801 3.26136 6.14205 3.25568 6.49432V6.54545H2.23295ZM2.77841 9.06818C2.56818 9.06818 2.38778 8.9929 2.23722 8.84233C2.08665 8.69176 2.01136 8.51136 2.01136 8.30114C2.01136 8.09091 2.08665 7.91051 2.23722 7.75994C2.38778 7.60937 2.56818 7.53409 2.77841 7.53409C2.98864 7.53409 3.16903 7.60937 3.3196 7.75994C3.47017 7.91051 3.54545 8.09091 3.54545 8.30114C3.54545 8.44034 3.50994 8.56818 3.43892 8.68466C3.37074 8.80114 3.27841 8.89489 3.16193 8.96591C3.0483 9.03409 2.92045 9.06818 2.77841 9.06818Z" fill="url(#paint0_linear_62_2)"/>
-                        <defs>
-                            <linearGradient id="paint0_linear_62_2" x1="-7.4661e-08" y1="2.95025e-08" x2="3.8864" y2="9.83519" gradientUnits="userSpaceOnUse">
-                                <stop class="stopLIGHTHELP"/>
-                                <stop class="stopDARKHELP" offset="1"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="notification">
-            <div class="shape1"></div>
-            <div class="shape2"></div>
-            <img src="./terbium.png" class="notifAppIcon">
-            <div class="notification-content">
-                <div class="notification-title">
-                    <span class="notification-titleApp">System Notification</span>
-                </div>
-                <div class="notification-body">
-                    <span class="notification-body-text">New updates are <a class="notifLink">here!</a></span>
-                </div>
-            </div>
+        <!-- <div class="appOptions h">
+            <button data-event="newwin" id="newWin" class="appOptionsBtn newwin">New Window</button>
+            <button data-event="close" class="appOptionsBtn closeApp">Close</button>
         </div> -->
-        <p class="version">Version semi stable v1.41</p>
-        <script src="./js/docks.js"></script>
+        <div id="apps" class="apps hidden">
+            <div class="sysc">
+                <div class="sys">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="power" class="sysicon" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 6a7.75 7.75 0 1 0 10 0" />
+                        <line x1="12" y1="4" x2="12" y2="12" />
+                    </svg>
+                </div>
+                <div class="sys logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="sysicon" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                        <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+            <svg width="556" height="112" class="logoWall hidden" viewBox="0 0 556 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_i_357_3)">
+                    <path class="fill" d="M33 109.35C31.3431 109.35 30 108.007 30 106.35V24.15C30 22.4932 28.6569 21.15 27 21.15H3C1.34315 21.15 0 19.8069 0 18.15V4.95C0 3.29315 1.34315 1.95 3 1.95H77.25C78.9069 1.95 80.25 3.29315 80.25 4.95V18.15C80.25 19.8069 78.9069 21.15 77.25 21.15H53.25C51.5932 21.15 50.25 22.4932 50.25 24.15V106.35C50.25 108.007 48.9069 109.35 47.25 109.35H33Z"/>
+                    <path class="fill" d="M146.998 90.2421C148.541 91.0067 149.134 92.9179 148.177 94.35C144.989 99.1219 140.943 103.072 136.039 106.2C130.339 109.9 123.339 111.75 115.039 111.75C109.439 111.75 104.239 110.8 99.4395 108.9C94.7395 106.9 90.6395 104.15 87.1395 100.65C83.6395 97.15 80.8895 93.05 78.8895 88.35C76.9894 83.55 76.0395 78.3 76.0395 72.6C76.0395 67.3 76.9894 62.3 78.8895 57.6C80.7895 52.8 83.4395 48.65 86.8395 45.15C90.2395 41.55 94.2395 38.7 98.8395 36.6C103.539 34.5 108.689 33.45 114.289 33.45C120.189 33.45 125.439 34.45 130.039 36.45C134.639 38.35 138.489 41.05 141.589 44.55C144.689 47.95 147.039 52 148.639 56.7C150.239 61.4 151.039 66.5 151.039 72C151.039 72.7 151.039 73.3 151.039 73.8C150.939 74.4 150.889 74.95 150.889 75.45C150.71 76.3487 149.996 77.1 149.08 77.1H98.816C97.0016 77.1 95.5816 78.7072 96.0487 80.4604C96.4821 82.0871 97.0623 83.567 97.7895 84.9C99.0895 87 100.639 88.8 102.439 90.3C104.339 91.7 106.389 92.75 108.589 93.45C110.789 94.05 113.039 94.35 115.339 94.35C119.839 94.35 123.539 93.35 126.439 91.35C128.62 89.8238 130.457 88.0335 131.95 85.9792C132.896 84.6784 134.627 84.1135 136.068 84.8274L146.998 90.2421ZM129.83 63.15C130.995 63.15 131.912 62.1492 131.561 61.038C131.338 60.3278 131.03 59.5818 130.639 58.8C129.939 57.2 128.839 55.7 127.339 54.3C125.939 52.9 124.139 51.75 121.939 50.85C119.839 49.95 117.289 49.5 114.289 49.5C110.089 49.5 106.389 50.7 103.189 53.1C100.647 55.0069 98.7042 57.5134 97.3611 60.6197C96.8288 61.851 97.792 63.15 99.1335 63.15H129.83Z"/>
+                    <path class="fill" d="M163.589 38.85C163.589 37.1931 164.932 35.85 166.589 35.85H179.039C180.696 35.85 182.039 37.1931 182.039 38.85V45.3084C182.039 45.718 182.371 46.05 182.781 46.05C183.062 46.05 183.317 45.8907 183.449 45.6427C184.323 44.0004 185.453 42.4861 186.839 41.1C188.339 39.6 189.989 38.3 191.789 37.2C193.689 36.1 195.689 35.25 197.789 34.65C199.989 34.05 202.139 33.75 204.239 33.75C206.839 33.75 209.039 34 210.839 34.5C212.428 34.9182 213.807 35.4412 214.977 36.0692C215.374 36.2827 215.551 36.7504 215.423 37.1833L210.726 53.1531C210.551 53.7508 209.877 54.0425 209.298 53.8122C208.387 53.4497 207.401 53.1623 206.339 52.95C204.939 52.55 203.189 52.35 201.089 52.35C198.389 52.35 195.939 52.9 193.739 54C191.539 55 189.639 56.45 188.039 58.35C186.539 60.25 185.339 62.5 184.439 65.1C183.639 67.6 183.239 70.35 183.239 73.35V106.35C183.239 108.007 181.896 109.35 180.239 109.35H166.589C164.932 109.35 163.589 108.007 163.589 106.35V38.85Z"/>
+                    <path class="fill" d="M225.405 4.95001C225.405 3.29315 226.749 1.95 228.405 1.95H242.055C243.712 1.95 245.055 3.29315 245.055 4.95V34.2L243.945 43.9123C243.898 44.3321 244.226 44.7 244.648 44.7C244.9 44.7 245.132 44.5653 245.264 44.3503C247.069 41.4002 249.799 38.8668 253.455 36.75C257.255 34.55 261.955 33.45 267.555 33.45C272.255 33.45 276.705 34.45 280.905 36.45C285.205 38.35 288.955 41.05 292.155 44.55C295.455 47.95 298.055 52.05 299.955 56.85C301.855 61.65 302.805 66.9 302.805 72.6C302.805 78.3 301.855 83.55 299.955 88.35C298.055 93.15 295.455 97.3 292.155 100.8C288.955 104.2 285.205 106.9 280.905 108.9C276.705 110.8 272.255 111.75 267.555 111.75C261.955 111.75 257.255 110.65 253.455 108.45C249.81 106.34 247.085 103.815 245.28 100.876C245.138 100.645 244.888 100.5 244.617 100.5C244.196 100.5 243.855 100.841 243.855 101.262V106.35C243.855 108.007 242.512 109.35 240.855 109.35H228.405C226.749 109.35 225.405 108.007 225.405 106.35V4.95001ZM263.505 93.6C266.105 93.6 268.555 93.1 270.855 92.1C273.255 91.1 275.355 89.7 277.155 87.9C278.955 86.1 280.405 83.9 281.505 81.3C282.605 78.7 283.155 75.8 283.155 72.6C283.155 69.4 282.605 66.5 281.505 63.9C280.405 61.3 278.955 59.1 277.155 57.3C275.355 55.5 273.255 54.1 270.855 53.1C268.555 52.1 266.105 51.6 263.505 51.6C260.905 51.6 258.405 52.1 256.005 53.1C253.705 54 251.655 55.35 249.855 57.15C248.055 58.95 246.605 61.15 245.505 63.75C244.405 66.35 243.855 69.3 243.855 72.6C243.855 75.9 244.405 78.85 245.505 81.45C246.605 84.05 248.055 86.25 249.855 88.05C251.655 89.85 253.705 91.25 256.005 92.25C258.405 93.15 260.905 93.6 263.505 93.6Z"/>
+                    <path class="fill" d="M325.564 25.2C323.864 25.2 322.214 24.9 320.614 24.3C319.114 23.6 317.764 22.7 316.564 21.6C315.464 20.4 314.564 19.05 313.864 17.55C313.264 16.05 312.964 14.4 312.964 12.6C312.964 10.8 313.264 9.15 313.864 7.65C314.564 6.15 315.464 4.85 316.564 3.75C317.764 2.55 319.114 1.65 320.614 1.05C322.214 0.349998 323.864 0 325.564 0C329.064 0 332.064 1.25 334.564 3.75C337.064 6.15 338.314 9.1 338.314 12.6C338.314 16.1 337.064 19.1 334.564 21.6C332.064 24 329.064 25.2 325.564 25.2ZM318.814 109.35C317.158 109.35 315.814 108.007 315.814 106.35V38.85C315.814 37.1931 317.158 35.85 318.814 35.85H332.464C334.121 35.85 335.464 37.1931 335.464 38.85V106.35C335.464 108.007 334.121 109.35 332.464 109.35H318.814Z"/>
+                    <path class="fill" d="M404.283 100.521C404.283 100.095 403.938 99.75 403.512 99.75C403.245 99.75 402.998 99.8882 402.854 100.112C400.578 103.643 397.555 106.472 393.783 108.6C389.883 110.7 385.433 111.75 380.433 111.75C371.133 111.75 364.183 108.9 359.583 103.2C355.083 97.5 352.833 89.9 352.833 80.4V38.85C352.833 37.1931 354.176 35.85 355.833 35.85H369.483C371.14 35.85 372.483 37.1931 372.483 38.85V78C372.483 83.3 373.633 87.25 375.933 89.85C378.333 92.35 381.783 93.6 386.283 93.6C388.983 93.6 391.333 93.05 393.333 91.95C395.433 90.75 397.183 89.2 398.583 87.3C400.083 85.3 401.183 83 401.883 80.4C402.683 77.7 403.083 74.85 403.083 71.85V38.85C403.083 37.1931 404.426 35.85 406.083 35.85H419.733C421.39 35.85 422.733 37.1931 422.733 38.85V106.35C422.733 108.007 421.39 109.35 419.733 109.35H407.283C405.626 109.35 404.283 108.007 404.283 106.35V100.521Z"/>
+                    <path class="fill" d="M439.566 38.85C439.566 37.1931 440.909 35.85 442.566 35.85H455.016C456.672 35.85 458.016 37.1931 458.016 38.85V44.6747C458.016 45.1029 458.363 45.45 458.791 45.45C459.056 45.45 459.301 45.3146 459.447 45.094C461.722 41.6583 464.745 38.877 468.516 36.75C472.516 34.55 476.916 33.45 481.716 33.45C487.316 33.45 492.016 34.75 495.816 37.35C498.424 39.1343 500.513 41.2013 502.085 43.5508C502.987 44.8997 505.143 45.067 506.191 43.8283C508.209 41.4448 510.701 39.3354 513.666 37.5C517.866 34.8 522.966 33.45 528.966 33.45C533.466 33.45 537.366 34.2 540.666 35.7C543.966 37.1 546.666 39.1 548.766 41.7C550.966 44.3 552.616 47.45 553.716 51.15C554.816 54.75 555.366 58.7 555.366 63V106.35C555.366 108.007 554.023 109.35 552.366 109.35H538.716C537.059 109.35 535.716 108.007 535.716 106.35V66.6C535.716 56.6 531.616 51.6 523.416 51.6C520.816 51.6 518.516 52.2 516.516 53.4C514.516 54.5 512.816 56.05 511.416 58.05C510.116 59.95 509.066 62.25 508.266 64.95C507.566 67.65 507.216 70.55 507.216 73.65V106.35C507.216 108.007 505.872 109.35 504.216 109.35H490.566C488.909 109.35 487.566 108.007 487.566 106.35V66.6C487.566 56.6 483.266 51.6 474.666 51.6C472.166 51.6 469.966 52.2 468.066 53.4C466.166 54.5 464.566 56.05 463.266 58.05C461.966 59.95 460.966 62.25 460.266 64.95C459.566 67.65 459.216 70.55 459.216 73.65V106.35C459.216 108.007 457.872 109.35 456.216 109.35H442.566C440.909 109.35 439.566 108.007 439.566 106.35V38.85Z"/>
+                </g>
+                <defs>
+                    <filter id="filter0_i_357_3" x="0" y="-9" width="555.366" height="120.75" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="-9"/>
+                        <feGaussianBlur stdDeviation="5.5"/>
+                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                        <feBlend mode="normal" in2="shape" result="effect1_innerShadow_357_3"/>
+                    </filter>
+                </defs>
+            </svg>
+            <img id="background" class="background bHidden">
+            <div class="ctx hide" id="ctx">
+                <div class="menu"></div>
+            </div>
+            <main id="main" class="mainApps closedA">
+                <div class="inputAppSearch">
+                    <input type="text" id="appSearch" placeholder="Search Apps">
+                </div>
+                <div class="appsDesk" id="appsDesk">
+                    <div class="deskapp" data-appName="visual studio code" title="Visual Studio Code" onclick="windows('https://vscode.dev', './resources/vsc.ico', 'Visual Studio Code', false, false, false, 'code');">
+                        <img src="./resources/vsc.ico" id="vsc" title="Visual Studio Code" class="appIcon">
+                    </div>
+                    <div class="deskapp" data-appName="youtube" title="YouTube" onclick="windows('https://youtube.com', './resources/yt.png', 'YouTube', false, false, false, 'youtube');">
+                        <img src="./resources/yt.png" id="yt" title="YouTube" class="appIcon">
+                    </div>
+                    <div class="deskapp" data-appName="tidal" title="tidal" onclick="windows('https://tidal.com', './resources/td.ico', 'Tidal', false, false, false, 'tidal');">
+                        <img src="./resources/td.ico" id="td" title="Tidal" class="appIcon">
+                    </div>
+                    <div class="deskapp" data-appName="youtube music" title="YouTube Music" onclick="windows('https://music.youtube.com', './resources/ytm.png', 'YouTube Music', false, false, false, 'youtube music');">
+                        <img src="./resources/ytm.png" id="ytm" title="YouTube Music" class="appIcon">
+                    </div>
+                    <div class="deskapp" data-appName="spotify" title="Spotify" onclick="windows('https://spotify.com', './resources/sp.png', 'Spotify', false, false, false, 'spotify');">
+                        <img src="./resources/sp.png" id="sp" title="Spotify" class="appIcon">
+                    </div>
+                    <div class="deskapp" data-appName="apple music" title="Apple Music" onclick="windows('https://music.apple.com', './resources/am.png', 'Apple Music', false, false, false, 'apple music');">
+                        <img src="./resources/am.png" id="am" title="Apple Music" class="appIcon">
+                    </div>
+                    <div class="deskapp" data-appName="browser" title="Browser" onclick="windows('./newwin.html', './resources/terbium.svg', 'Terbium Browser', true, true, false, 'browser');" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="appIcon stroke" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M18.816 13.58c2.292 2.138 3.546 4 3.092 4.9c-.745 1.46 -5.783 -.259 -11.255 -3.838c-5.47 -3.579 -9.304 -7.664 -8.56 -9.123c.464 -.91 2.926 -.444 5.803 .805" />
+                            <circle cx="12" cy="12" r="7" />
+                        </svg>
+                    </div>
+                    <div class="deskapp" data-appName="settings" title="Settings" onclick="windows('./settings.html', './resources/terbium.svg', 'Terbium Settings', false, true, false, 'settings');">
+                        <svg width="80" height="80" class="appIcon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M37.5 70.5C36.6716 70.5 36 69.8284 36 69V65.1042C32.7614 64.5276 29.7344 63.3396 27.0425 61.6639L22.6212 66.1768C22.0425 66.7696 21.0928 66.7811 20.5 66.2024L16.2064 62.0113C15.6136 61.4327 15.6021 60.483 16.1808 59.8902L20.3521 55.6325C17.889 52.4624 16.1575 48.6955 15.4112 44.5854H11C10.1716 44.5854 9.5 43.9138 9.5 43.0854V37.0854C9.5 36.2569 10.1716 35.5854 11 35.5854H15.3808C15.962 32.255 17.1894 29.1467 18.929 26.3944L15.195 22.6069C14.6038 22.0266 14.5951 21.0769 15.1754 20.4857L19.3788 16.2041C19.9591 15.613 20.9088 15.6042 21.5 16.1846L25.0086 19.7433C28.1712 17.3211 31.9175 15.6227 36 14.8958V11C36 10.1716 36.6716 9.5 37.5 9.5H43.5C44.3284 9.5 45 10.1716 45 11V14.8958C48.9649 15.6018 52.6128 17.224 55.7167 19.5358L59 16.1846C59.5787 15.5917 60.5283 15.5803 61.1212 16.1589L65.4148 20.35C66.0076 20.9287 66.0191 21.8784 65.4404 22.4712L61.8833 26.1019C63.7224 28.9257 65.0173 32.1365 65.6193 35.5854H70C70.8284 35.5854 71.5 36.2569 71.5 37.0854V43.0854C71.5 43.9138 70.8284 44.5854 70 44.5854H65.5889C64.8312 48.7583 63.0579 52.5774 60.5345 55.7773L64.5 59.7996C65.0912 60.38 65.0999 61.3297 64.5196 61.9208L60.3162 66.2024C59.7359 66.7936 58.7862 66.8023 58.195 66.222L53.7982 61.7622C51.1464 63.3861 48.1748 64.5389 45 65.1042V69C45 69.8284 44.3284 70.5 43.5 70.5H37.5ZM41 56C49.8366 56 57 48.8366 57 40C57 31.1634 49.8366 24 41 24C32.1634 24 25 31.1634 25 40C25 48.8366 32.1634 56 41 56Z"/>
+                        </svg>
+                    </div>
+                    <div class="deskapp" data-appName="color picker" title="Color Picker" onclick="windows('./color.html', './resources/terbium.svg', 'Terbium Color Picker', false, true, false, 'color');">
+                        <svg id="color" class="appIcon" viewBox="0 0 80 80" fill="none">
+                            <path class="stroke" d="M13.3333 53.3333L52.3333 14.3333C52.9564 13.7226 53.7942 13.3805 54.6667 13.3805C55.5392 13.3805 56.3769 13.7226 57 14.3333L65.6667 23C66.2774 23.6231 66.6195 24.4608 66.6195 25.3333C66.6195 26.2058 66.2774 27.0436 65.6667 27.6667L26.6667 66.6667H13.3333V53.3333Z" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path class="stroke" d="M36.6667 23.3333L56.6667 43.3333" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="deskapp" data-appName="help" title="Help" onclick="windows('./help.html', './resources/help.svg', 'Terbium Help', false, true, false, 'help');">
+                        <svg id="help" title="Terbium Help" class="appIcon" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill" d="M2.23295 6.54545V6.49432C2.23864 5.9517 2.29545 5.51989 2.40341 5.19886C2.51136 4.87784 2.66477 4.6179 2.86364 4.41903C3.0625 4.22017 3.30114 4.03693 3.57955 3.86932C3.74716 3.76705 3.89773 3.64631 4.03125 3.5071C4.16477 3.36506 4.26989 3.2017 4.34659 3.01705C4.42614 2.83239 4.46591 2.62784 4.46591 2.40341C4.46591 2.125 4.40057 1.88352 4.26989 1.67898C4.1392 1.47443 3.96449 1.31676 3.74574 1.20597C3.52699 1.09517 3.28409 1.03977 3.01705 1.03977C2.78409 1.03977 2.55966 1.08807 2.34375 1.18466C2.12784 1.28125 1.94744 1.43324 1.80256 1.64062C1.65767 1.84801 1.57386 2.11932 1.55114 2.45455H0.477273C0.5 1.97159 0.625 1.55824 0.852273 1.21449C1.08239 0.870739 1.38494 0.607954 1.75994 0.426136C2.13778 0.244318 2.55682 0.153409 3.01705 0.153409C3.51705 0.153409 3.9517 0.252841 4.32102 0.451704C4.69318 0.650568 4.98011 0.923295 5.18182 1.26989C5.38636 1.61648 5.48864 2.01136 5.48864 2.45455C5.48864 2.76705 5.44034 3.04972 5.34375 3.30256C5.25 3.5554 5.11364 3.78125 4.93466 3.98011C4.75852 4.17898 4.54545 4.35511 4.29545 4.50852C4.04545 4.66477 3.84517 4.82955 3.6946 5.00284C3.54403 5.1733 3.43466 5.37642 3.36648 5.61222C3.2983 5.84801 3.26136 6.14205 3.25568 6.49432V6.54545H2.23295ZM2.77841 9.06818C2.56818 9.06818 2.38778 8.9929 2.23722 8.84233C2.08665 8.69176 2.01136 8.51136 2.01136 8.30114C2.01136 8.09091 2.08665 7.91051 2.23722 7.75994C2.38778 7.60937 2.56818 7.53409 2.77841 7.53409C2.98864 7.53409 3.16903 7.60937 3.3196 7.75994C3.47017 7.91051 3.54545 8.09091 3.54545 8.30114C3.54545 8.44034 3.50994 8.56818 3.43892 8.68466C3.37074 8.80114 3.27841 8.89489 3.16193 8.96591C3.0483 9.03409 2.92045 9.06818 2.77841 9.06818Z"/>
+                        </svg>
+                    </div>
+                    <div class="deskapp" data-appName="player" title="Terbium Player" onclick="windows('./player/player.html', './resources/player.svg', 'Terbium Player', false, true, false, 'player');">
+                        <svg class="appIcon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M74.1229 43.182C76.7895 41.6424 76.7895 37.7934 74.1229 36.2538L14 1.54187C11.3333 0.00226495 8 1.92677 8 5.00597V74.4299C8 77.5091 11.3333 79.4336 14 77.894L74.1229 43.182ZM32.2193 26.851V33.3136H25.0733V53.8039H18.1934V33.3136H11.0474V26.851H32.2193ZM45.6736 26.889C50.805 26.889 54.568 29.9682 54.416 35.1003C54.378 36.3168 53.5798 38.4837 51.6412 39.4721C55.3283 41.3349 55.7844 44.7943 55.4423 46.8471C54.7581 51.1809 51.8313 53.8039 45.8637 53.8039H34.8786V26.889H45.6736ZM41.7205 32.6293V37.4193H45.6736C48.9805 37.4193 49.0945 32.6293 45.6736 32.6293H41.7205ZM41.7205 42.3233V47.8355H45.6736C49.7787 47.8355 49.7027 42.3233 45.6736 42.3233H41.7205Z"/>
+                        </svg>
+                    </div>
+                    <div class="deskapp" data-appName="text" title="Terbium Text Editor" onclick="windows('./textEditor/editor.html', './resources/txt.svg', 'Terbium Text Editor', false, true, false, 'text');">
+                        <svg class="appIcon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill" d="M25.84 33.44H18.32V55H11.08V33.44H3.56V26.64H25.84V33.44ZM39.4784 36.36L44.4384 26.68H52.7584L44.8384 40.88L52.7584 55H44.4384L39.4784 45.36L34.6384 55H26.2784L34.2384 40.88L26.2784 26.68H34.6384L39.4784 36.36ZM75.4884 33.44H67.9684V55H60.7284V33.44H53.2084V26.64H75.4884V33.44Z"/>
+                        </svg>
+                    </div>
+                    <div class="deskapp" data-appName="terminal" title="Terbium Terminal" onclick="windows('./terminal/terminal.html', './resources/terminal.svg', 'Terbium Terminal', false, true, false, 'terminal');">
+                        <svg class="appIcon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M9 23C9 19.6863 11.6863 17 15 17H65.6111C68.9248 17 71.6111 19.6863 71.6111 23V57C71.6111 60.3137 68.9248 63 65.6111 63H15C11.6863 63 9 60.3137 9 57V23ZM38.3889 46.4945C38.3889 45.9422 38.8366 45.4945 39.3889 45.4945H56.5555C57.1078 45.4945 57.5555 45.9422 57.5555 46.4945V49.6056C57.5555 50.1579 57.1078 50.6056 56.5555 50.6056H39.3889C38.8366 50.6056 38.3889 50.1579 38.3889 49.6056V46.4945ZM21.2652 45.9362C20.8421 46.2912 20.787 46.9219 21.142 47.345L23.6893 50.3808C24.0443 50.8039 24.6751 50.8591 25.0981 50.5041L34.2339 42.8382L37.2697 40.2909C37.6928 39.9359 37.748 39.3051 37.393 38.8821L34.8456 35.8463L34.8452 35.8457L27.1798 26.7105C26.8248 26.2874 26.194 26.2322 25.771 26.5872L22.7352 29.1346C22.3121 29.4896 22.2569 30.1203 22.6119 30.5434L28.1976 37.2002L28.8344 38.2495C29.0609 38.6227 29.0192 39.0996 28.7314 39.4277L27.9221 40.3504L27.922 40.3505L21.2652 45.9362ZM29.635 38.9132L28.1976 37.2002L29.635 38.9131L29.635 38.9132Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <svg class="dockicon" style="border-radius: 0;" id="appsClose" viewBox="0 0 79 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 2C0 0.895431 0.895431 0 2 0H19.1111C20.2157 0 21.1111 0.895431 21.1111 2V18C21.1111 19.1046 20.2157 20 19.1111 20H2C0.895432 20 0 19.1046 0 18V2Z" class="fill"/>
+                    <path d="M0 31C0 29.8954 0.895431 29 2 29H19.1111C20.2157 29 21.1111 29.8954 21.1111 31V47C21.1111 48.1046 20.2157 49 19.1111 49H2C0.895432 49 0 48.1046 0 47V31Z" class="fill"/>
+                    <path d="M29 31C29 29.8954 29.8954 29 31 29H48.1111C49.2157 29 50.1111 29.8954 50.1111 31V47C50.1111 48.1046 49.2157 49 48.1111 49H31C29.8954 49 29 48.1046 29 47V31Z" class="fill"/>
+                    <path d="M57 31C57 29.8954 57.8954 29 59 29H76.1111C77.2157 29 78.1111 29.8954 78.1111 31V47C78.1111 48.1046 77.2157 49 76.1111 49H59C57.8954 49 57 48.1046 57 47V31Z" class="fill"/>
+                    <path d="M0 60C0 58.8954 0.895431 58 2 58H19.1111C20.2157 58 21.1111 58.8954 21.1111 60V76C21.1111 77.1046 20.2157 78 19.1111 78H2C0.895432 78 0 77.1046 0 76V60Z" class="fill"/>
+                    <path d="M29 60C29 58.8954 29.8954 58 31 58H48.1111C49.2157 58 50.1111 58.8954 50.1111 60V76C50.1111 77.1046 49.2157 78 48.1111 78H31C29.8954 78 29 77.1046 29 76V60Z" class="fill"/>
+                    <path d="M57 60C57 58.8954 57.8954 58 59 58H76.1111C77.2157 58 78.1111 58.8954 78.1111 60V76C78.1111 77.1046 77.2157 78 76.1111 78H59C57.8954 78 57 77.1046 57 76V60Z" class="fill"/>
+                    <path d="M29 2C29 0.895431 29.8954 0 31 0H48.1111C49.2157 0 50.1111 0.895431 50.1111 2V18C50.1111 19.1046 49.2157 20 48.1111 20H31C29.8954 20 29 19.1046 29 18V2Z" class="fill"/>
+                    <path d="M57 2C57 0.895431 57.8954 0 59 0H76.1111C77.2157 0 78.1111 0.895431 78.1111 2V18C78.1111 19.1046 77.2157 20 76.1111 20H59C57.8954 20 57 19.1046 57 18V2Z" class="fill"/>
+                </svg>
+            </main>
+            <div class="dockH" oncontextmenu="return false;" id="dock">
+                <div class="dockbtn" id="appsOpen">
+                    <svg class="dockicon" style="border-radius: 0;" id="appsOpen" viewBox="0 0 79 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 2C0 0.895431 0.895431 0 2 0H19.1111C20.2157 0 21.1111 0.895431 21.1111 2V18C21.1111 19.1046 20.2157 20 19.1111 20H2C0.895432 20 0 19.1046 0 18V2Z" class="fill"/>
+                        <path d="M0 31C0 29.8954 0.895431 29 2 29H19.1111C20.2157 29 21.1111 29.8954 21.1111 31V47C21.1111 48.1046 20.2157 49 19.1111 49H2C0.895432 49 0 48.1046 0 47V31Z" class="fill"/>
+                        <path d="M29 31C29 29.8954 29.8954 29 31 29H48.1111C49.2157 29 50.1111 29.8954 50.1111 31V47C50.1111 48.1046 49.2157 49 48.1111 49H31C29.8954 49 29 48.1046 29 47V31Z" class="fill"/>
+                        <path d="M57 31C57 29.8954 57.8954 29 59 29H76.1111C77.2157 29 78.1111 29.8954 78.1111 31V47C78.1111 48.1046 77.2157 49 76.1111 49H59C57.8954 49 57 48.1046 57 47V31Z" class="fill"/>
+                        <path d="M0 60C0 58.8954 0.895431 58 2 58H19.1111C20.2157 58 21.1111 58.8954 21.1111 60V76C21.1111 77.1046 20.2157 78 19.1111 78H2C0.895432 78 0 77.1046 0 76V60Z" class="fill"/>
+                        <path d="M29 60C29 58.8954 29.8954 58 31 58H48.1111C49.2157 58 50.1111 58.8954 50.1111 60V76C50.1111 77.1046 49.2157 78 48.1111 78H31C29.8954 78 29 77.1046 29 76V60Z" class="fill"/>
+                        <path d="M57 60C57 58.8954 57.8954 58 59 58H76.1111C77.2157 58 78.1111 58.8954 78.1111 60V76C78.1111 77.1046 77.2157 78 76.1111 78H59C57.8954 78 57 77.1046 57 76V60Z" class="fill"/>
+                        <path d="M29 2C29 0.895431 29.8954 0 31 0H48.1111C49.2157 0 50.1111 0.895431 50.1111 2V18C50.1111 19.1046 49.2157 20 48.1111 20H31C29.8954 20 29 19.1046 29 18V2Z" class="fill"/>
+                        <path d="M57 2C57 0.895431 57.8954 0 59 0H76.1111C77.2157 0 78.1111 0.895431 78.1111 2V18C78.1111 19.1046 77.2157 20 76.1111 20H59C57.8954 20 57 19.1046 57 18V2Z" class="fill"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <p class="version">Version semi stable v1.42</p>
+        <script src="./js/windows.js"></script>
         <script src="uv/uv.bundle.js"></script>
         <script src="uv/uv.config.js"></script>
-        <script src="index.js"></script>
         <script src="./js/theme.js"></script>
         <script src="./js/shell.js"></script>
         <script src="./js/notifications.js"></script>
         <script src="./js/localforage.min.js"></script>
+        <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
+        <script src="./js/chrome-tabs.js"></script>
         <noscript style="position: absolute;">ENABLE JAVASCRIPT!! Thanks!</noscript>
     </body>
 </html>

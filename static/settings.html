@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" id="rels" href="./styles/settings.css">
+    <link rel="stylesheet" href="./styles/cursors.css">
 </head>
     <body>
         <div class="taskbar">
             <h2 class="title">Settings</h2>
         </div>
         <div class="settings">
+            <button class="btn" id="resetAll">Reset All Settings</button>
             <div class="cat">
                 <div class="title">
                     <h3>Theme</h3>
@@ -39,6 +41,39 @@
                     <button class="btn" id="contain" onclick="contain();">Contain</button>
                 </div>
                 <div class="title">
+                    <h3>Window Customization</h3>
+                    <div class="border-bottom"></div>
+                </div>
+                <div class="btns slides">
+                    <label>Apps Always Open Maximized</label><input class="toggle border-radius" id="fullscreen" type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Round Windows</label><input class="toggle border-radius" checked id="radius" type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Windows Shadow</label><input class="toggle" id="shadow" type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Custom Window Rounding</label><input class="btn input" type="number" id="roundness" value="12" min="0" max="22" step="2"><button class="btn" id="clearRoundness">clear</button>
+                </div>
+                <div class="btns slides">
+                    <label>Custom shadow</label><input class="btn input color" type="color" id="customShadow" value="#00000052"><button class="btn" id="clearCustomShadow">clear</button>
+                </div>
+                <h3>Window Buttons Position</h3>
+                <div class="btns slides">
+                    <label>Right</label><input class="toggle" id="btnrPos" data-btnpos="Right" checked type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Left</label><input class="toggle" id="btnrPos" data-btnpos="Left" checked type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label >Round Window Buttons</label><input class="toggle" id="btnr" checked type="checkbox">
+                </div>
+                <br>
+            </div>
+            <div class="cat">
+                <h1>Other</h1>
+                <div class="title">
                     <h3>Shutdown</h3>
                     <div class="border-bottom"></div>
                 </div>
@@ -51,33 +86,9 @@
                     <div class="border-bottom"></div>
                 </div>
                 <div class="btns slides">
-                    <label for="btnr">Login on start up</label><input class="toggle" id="login" checked type="checkbox">
+                    <label>Login on start up</label><input class="toggle" id="login" checked type="checkbox">
+                    <button class="btn" id="newPass">New Password</button>
                 </div>
-                <div class="tit">
-                    <h3>Window Customization</h3>
-                    <div class="border-bottom"></div>
-                </div>
-                <h3>App behaviours</h3>
-                <div class="btns slides">
-                    <label for="fullscreen">Apps Always Open Maximized</label><input class="toggle border-radius" id="fullscreen" type="checkbox">
-                </div>
-                <h3>Windows</h3>
-                <div class="btns slides">
-                    <label for="radius">Round Windows</label><input class="toggle border-radius" checked id="radius" type="checkbox">
-                </div>
-                <div class="btns slides">
-                    <label for="shadow">Windows Shadow</label><input class="toggle" id="shadow" type="checkbox">
-                </div>
-                <div class="btns slides">
-                    <label for="btnr">Round Window Buttons</label><input class="toggle" id="btnr" checked type="checkbox">
-                </div>
-                <div class="btns slides">
-                    <label for="roundness">Custom Window Rounding</label><input class="btn input" type="number" id="roundness" value="12" min="0" max="22" step="2"><button class="btn" id="clearRoundness">clear</button>
-                </div>
-                <div class="btns slides">
-                    <label for="customShadow">Custom shadow</label><input class="btn input color" type="color" id="customShadow" value="#00000052"><button class="btn" id="clearCustomShadow">clear</button>
-                </div>
-                <br>
                 <div class="title">
                     <h3>Browser SearXNG Personalization</h3>
                     <div class="border-bottom"></div>
@@ -86,14 +97,24 @@
                 <div class="btns slides">
                     <div class="dropdown">
                         <button class="dropbtn engine__dropbtn" id="safeSearch">
-                            <p class="dropText">None</p>
+                            <p class="dropText SS">None</p>
                         </button>
-                        <div class="drop-content ss__dropdown-content">
-                            <a class="dropOptions" data-option="ss_0" data-option_name="None" id="safeSearch_0">None</a>
-                            <a class="dropOptions" data-option="ss_1" data-option_name="Moderate" id="safeSearch_1">Moderate</a>
-                            <a class="dropOptions" data-option="ss_2" data-option_name="Strict" id="safeSearch_2">Strict</a>
+                        <div class="dropdown-content ss__dropdown-content">
+                            <a class="dropOptions" data-option="ss_0" data-former="ss" data-option_name="None" id="safeSearch_0">None</a>
+                            <a class="dropOptions" data-option="ss_1" data-former="ss" data-option_name="Moderate" id="safeSearch_1">Moderate</a>
+                            <a class="dropOptions" data-option="ss_2" data-former="ss" data-option_name="Strict" id="safeSearch_2">Strict</a>
                         </div>
                     </div>
+                </div>
+                <h3>Dock Position</h3>
+                <div class="btns slides">
+                    <label>Bottom</label><input class="toggle dockPos" id="dp_bottom" data-pos="Bottom" checked type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Left</label><input class="toggle dockPos" id="dp_left" data-pos="Left" checked type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Right</label><input class="toggle dockPos" id="dp_right" data-pos="Right" checked type="checkbox">
                 </div>
             </div>
         </div><script src="./js/theme.js"></script>

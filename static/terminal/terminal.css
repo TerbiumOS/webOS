@@ -1,0 +1,249 @@
+@font-face {
+    font-family: pro;
+    src: url(../resources/Product.ttf);
+}
+
+@font-face {
+    font-family: rob;
+    src: url(../resources/Roboto.ttf);
+}
+
+[data-theme="dark"] {
+    --body: #1c1c1c;
+    --color: #dbdbdb;
+    --color-warning: #ff6d6d;
+    --scrollbar-background: #282928;
+    
+    --userselect-background: #ffffff15;
+    --userselect-color: #41bc5d;
+
+    --cursorText: url("/resources/cursors/textD.png") text;
+    --cursorNormal: url("/resources/cursors/normalD.png") default;
+    --cursorHand: url("/resources/cursors/handD.png") pointer;
+
+    --code: #383838;
+    --codeMark: #444444;
+    --term-color: #2e2e2e;
+    --commandHistoryBackground: #282928;
+    --buttonBackground: #1c1c1c;
+    --buttonBackgroundHover: #41bc5d;
+    --buttonBackgroundColorHover: #dbdbdb;
+    --buttonColorBoxShadow: #41bc5d;
+}
+
+[data-theme="night"] {
+    --body: #181446;
+    --color: #ffe688;
+    --color-warning: #ff6d6d;
+    --scrollbar-background: #282928;
+    
+    --userselect-background: #32299b;
+    --userselect-color: #fff7a5;
+    
+    --cursorText: url("/resources/cursors/textD.png") text;
+    --cursorNormal: url("/resources/cursors/normalD.png") default;
+    --cursorHand: url("/resources/cursors/handD.png") pointer;
+    
+    --code: #251f69;
+    --codeMark: #39318f;
+    --term-color: #1b1647;
+    --commandHistoryBackground: #26206a;
+    --buttonBackground: #1c1751;
+    --buttonBackgroundHover: #ffe688;
+    --buttonBackgroundColorHover: #1c1751;
+    --buttonColorBoxShadow: #ffe688;
+}
+
+[data-theme="fracital"] {
+    --body: #222222;
+    --color: #ff40f7;
+    --color-warning: #ff6d6d;
+    --scrollbar-background: #282928;
+    
+    --userselect-background: #ffffff15;
+    --userselect-color: #41bc5d;
+    
+    --cursorText: url("/resources/cursors/textD.png") text;
+    --cursorNormal: url("/resources/cursors/normalD.png") default;
+    --cursorHand: url("/resources/cursors/handD.png") pointer;
+    
+    --code: #333333;
+    --codeMark: #4b4b4b;
+    --codeColor: #8b8b8b;
+    --term-color: #4d4d4d;
+    --commandHistoryBackground: #383838;
+    --buttonBackground: #252525;
+    --buttonBackgroundHover: #ff40f7;
+    --buttonBackgroundColorHover: #ffffff;
+    --buttonColorBoxShadow: #ff40f7;
+}
+
+* {
+    cursor: var(--cursorText);
+}
+
+html {
+    font-size: 13px;
+    height: 100%;
+    font-family: monospace;
+}
+
+body {
+    margin: 0;
+    height: calc(100% - 4px);
+    background-color: var(--body);
+    color: var(--color);
+    padding: 4px 4px 0px 4px;
+}
+
+code {
+    background-color: var(--code);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.termin {
+    position: absolute;
+    z-index: 2;
+    border-radius: 8px;
+}
+
+code.command {
+    color: var(--codeColor);
+}
+
+mark.codeMark {
+    background-color: var(--codeMark);
+    color: var(--codeColor);
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.term .stroke {
+    stroke: var(--term-color);
+}
+
+.term .fill {
+    fill: var(--term-color);
+}
+
+.term {
+    filter: blur(0.8px);
+    height: 116px;
+    width: 440px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.linebreak {
+    margin-top: 18px;
+}
+
+p {
+    margin: 0;
+    margin-top: 4px;
+}
+
+.commandSection {
+    display: flex;
+    gap: 2px;
+}
+
+.warning {
+    color: var(--color-warning);
+    font-weight: bold;
+}
+
+.commandP {
+    min-width: 20px;
+    margin-top: 4.3px;
+    position: relative;
+    background: transparent;
+    border: none;
+    resize: none;
+    height: 13px;
+    margin-bottom: 0;
+    padding: 0;
+    color: currentColor;
+}
+
+.commandP:focus-visible {
+    outline: none;
+    border: none;
+}
+
+.cursor {
+    background-color: var(--color);
+    color: var(--color);
+    position: relative;
+    opacity: 0.5;
+}
+
+#getter {
+    margin: 5px;
+}
+
+.commandHistory {
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    justify-content: center;
+    display: grid;
+    align-content: center;
+    opacity: 1;
+    background-color: var(--commandHistoryBackground);
+    transition: 200ms ease-in-out;
+}
+
+.commandHistory.hidden {
+    visibility: collapse;
+    opacity: 0;
+}
+
+.commandChild {
+    cursor: var(--cursorHand) !important;
+    margin: 0;
+    padding: 4px 6px 6px 6px;
+    background-color: var(--previousCommandBackground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-shadow: 0 0 0 0 transparent;
+    transition: 200ms ease-in-out;
+}
+
+.command-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    gap: 4px;
+}
+
+.commandChild:hover {
+    background-color: var(--buttonBackgroundHover);
+    box-shadow: 0 0 8px 3px var(--buttonColorBoxShadow);
+    color: var(--buttonBackgroundColorHover);
+}
+
+button {
+    cursor: var(--cursorHand) !important;
+    margin: 0;
+    padding: 4px 6px 6px 6px;
+    background-color: var(--buttonBackground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: 200ms ease-in-out;
+    border: none;
+    color: currentColor;
+}
+
+button:hover {
+    background-color: var(--buttonBackgroundHover);
+    color: var(--buttonBackgroundColorHover);
+}

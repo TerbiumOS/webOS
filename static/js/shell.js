@@ -1,11 +1,20 @@
-// import windows from "./docks.js"
-let clockele = document.getElementById("time");
-let ft = document.getElementById("ft");
-let ftd = document.getElementById("ftd");
-let ftt = document.getElementById("ftt");
-let win = document.getElementById("drag");
-let appsL = document.getElementById("appsL");
+const clockele = document.getElementById("time");
+const ft = document.getElementById("ft");
+const ftd = document.getElementById("ftd");
+const ftt = document.getElementById("ftt");
+const win = document.getElementById("drag");
+const appsL = document.getElementById("appsL");
+const showDesk = document.getElementById("showDesk");
 
+showDesk.addEventListener("click", (e) => {
+    const windowsTC = document.querySelectorAll(".win");
+    for (let i = 0; i < windowsTC.length; i++) {
+        const element = windowsTC[i];
+        if(element.querySelector(".mini")) {
+            element.querySelector(".mini").click();
+        }
+    }
+});
 
 // clock
 setInterval(function () {
@@ -29,7 +38,7 @@ setInterval(function () {
     h = (h > 12) ? h - 12 : h;
     m = ("0" + m).slice(-2);
     clockele.innerHTML = h + ":" + m + " " + ap;
-}, 1000)
+}, 1000);
 
 setInterval(function() {
     var dt = new Date();
@@ -74,6 +83,10 @@ clockele.addEventListener("click", () => {
 // start menu
 appsL.addEventListener("click", () => {
     document.querySelector(".apps").classList.toggle("hidden");
+    // hide the apps menu when something else is clicked
+    document.getElementById("background").addEventListener("click", () => {
+        document.querySelector(".apps").classList.toggle("hidden");
+    });
 });
 
 // document.getElementById("yts").addEventListener("click", () => {
@@ -93,10 +106,6 @@ appsL.addEventListener("click", () => {
 //     }
 //     document.querySelector("#appsL").classList.remove("appsIF");
 // });
-
-document.querySelector(".start-btn").addEventListener("click", () => {
-    document.querySelector(".apps").classList.toggle("hidden");
-});
 
 // let brightTRACK = document.getElementById("brightTRACK");
 // let brightVal = document.getElementById("brightVal");

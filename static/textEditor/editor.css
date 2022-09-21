@@ -1,0 +1,81 @@
+@font-face {
+    font-family: rob;
+    src: url(../resources/Roboto.ttf);
+}
+
+[data-theme="dark"] {
+    --body: #1c1c1c;
+    --color: #dbdbdb;
+
+    --scrollbar-background: #282928;
+}
+
+[data-theme="night"] {
+    --body: #181446;
+    --color: #ffe688;
+    --scrollbar-background: #26206a;
+}
+
+[data-theme="fracital"] {
+    --body: #222;
+    --color: #ff40f7;
+    --scrollbar-background: #383838;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 6px;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    scrollbar-color: var(--color) var(--scrollbar-background);
+    scrollbar-width: thin;
+}
+
+body {
+    background-color: var(--body);
+    color: var(--color);
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.editArea {
+    position: absolute;
+    inset: 0;
+    font-family: rob;
+    padding: 4px;
+    resize: none;
+}
+
+.caret {
+    position: absolute;
+    background-color: var(--color);
+    width: 2px;
+    height: 20px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

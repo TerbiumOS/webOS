@@ -26,13 +26,13 @@ function ser() {
     window.parent.document.getElementById("searchbar").value = url;
     let safeSearch = localStorage.getItem("ss");
     if(safeSearch === null) {
-        if (!isUrl(url)) url = 'https://searx.priv.pw/search?q=' + url + "&safesearch=0";
+        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=0`;
     } else if(safeSearch === "ss_0") {
-        if (!isUrl(url)) url = 'https://searx.priv.pw/search?q=' + url + "&safesearch=0";
+        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=0`;
     } else if(safeSearch === "ss_1") {
-        if (!isUrl(url)) url = 'https://searx.priv.pw/search?q=' + url + "&safesearch=1";
+        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=1`;
     } else if(safeSearch === "ss_2") {
-        if (!isUrl(url)) url = 'https://searx.priv.pw/search?q=' + url + "&safesearch=2";
+        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=2`;
     }
     window.open("sw" + "/" + xor.encode(url), "_self");
 }
