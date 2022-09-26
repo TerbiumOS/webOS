@@ -106,7 +106,6 @@
 
 [data-theme="dark"] {
     /* body */
-    --wallpaper: url("resources/wallpapers/darkWall.png");
     --body: #111;
     --body-color: #ffffff;
     --userselect-background: #ffffff0a;
@@ -145,7 +144,9 @@
     /* desktop */
     --desktopapp-background: #8c8c8c5e;
     --inputAppSearch-background: #373737;
-    --inputApsSearchNoneFocus-color: #9d9d9d;
+    --inputAppSearchNoneFocus-color: #9d9d9d;
+    --inputAppSearch-focus-boxShadow: 0 0 54px -8px #75ff8c;
+    --inputAppSearch-focus-background: #373737a6;
     --inputAppSearch-color: #ffffff;
 
     /* dock */
@@ -197,13 +198,12 @@
     --tab-active-close-active-hover: #424242;
     --tab-active-background: #1c1c1c;
     --tab-active-hover-color: #47CA64;
-    --tab-inactive-background: #0000;
+    --tab-inactive-background: #2d2d2d;
     --tab-hover-background: #85ff9e59;
 }
 
 [data-theme="night"] {
     /* body */
-    --wallpaper: url("resources/wallpapers/nightWall.png");
     --body: #0e0a40;
     --body-color: #fff7a5;
     --userselect-background: #ffffff0a;
@@ -242,7 +242,9 @@
     /* desktop */
     --desktopapp-background: #0e0b35;
     --inputAppSearch-background: #302a73;
-    --inputApsSearchNoneFocus-color: #716ae1;
+    --inputAppSearchNoneFocus-color: #716ae1;
+    --inputAppSearch-focus-boxShadow: 0 0 54px -8px #fffac7;
+    --inputAppSearch-focus-background: #302a73;
     --inputAppSearch-color: #fff7a5;
     
     /* dock */
@@ -300,7 +302,6 @@
 
 [data-theme="fracital"] {
     /* body */
-    --wallpaper: url("resources/wallpapers/fracitalWall.png");
     --body: #1C1C1C;
     --body-color: #FF75F9;
     --userselect-background: #ffffff0a;
@@ -339,7 +340,9 @@
     /* desktop */
     --desktopapp-background: #8c8c8c5e;
     --inputAppSearch-background: #202020;
-    --inputApsSearchNoneFocus-color: #757575;
+    --inputAppSearchNoneFocus-color: #757575;
+    --inputAppSearch-focus-boxShadow: 0 0 54px -8px #ff3bf5;
+    --inputAppSearch-focus-background: #20202083;
     --inputAppSearch-color: #FF40F7;
 
     /* dock */
@@ -692,7 +695,7 @@ main.closedA {
     visibility: collapse;
     inset: 0;
     background-color: transparent;
-    justify-content: center;
+    justify-items: center;
     align-content: center;
 }
 
@@ -1111,11 +1114,7 @@ li {
 }
 
 .inputAppSearch {
-    position: absolute;
-    top: 54px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--inputAppSearch-background);
+    transform: translateY(calc(-355px));
     border: none;
     border-radius: 8px;
     height: 40px;
@@ -1126,18 +1125,23 @@ main > .inputAppSearch {
 }
 
 .inputAppSearch input {
+    width: calc(100% - 20px);
     transition: 200ms ease-in-out;
-    color: var(--inputApsSearchNoneFocus-color);
+    background-color: var(--inputAppSearch-background);
+    color: var(--inputAppSearchNoneFocus-color);
     border: none;
-    background-color: transparent;
     padding: 0 10px;
     font-size: 16px;
     height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 0px 2px transparent;
 }
 
 .inputAppSearch input:focus-visible {
+    box-shadow: var(--inputAppSearch-focus-boxShadow);
+    background-color: var(--inputAppSearch-focus-background);
     outline: none;
-    color: var(--inputApsSearch-color);
+    color: var(--inputAppSearch-color);
 }
 
 .start {
@@ -1508,7 +1512,7 @@ main > .inputAppSearch {
 
 .browser iframe {
     border-radius: 0;
-    height: calc(100% - 93px);
+    height: calc(100% - 84px);
 }
 
 .winmini {
@@ -1969,6 +1973,7 @@ iframe {
     flex-direction: row;
     background: var(--tab-container-background);
     align-items: center;
+    transition: 200ms ease-in-out;
 }
 
 .bBtnIcon {
@@ -1992,15 +1997,16 @@ iframe {
 }
 
 .chrome-tabs {
-  box-sizing: border-box;
-  position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 12px;
-  height: 46px;
-  padding: 12px 3px 4px 3px;
-  overflow: hidden;
-  width: calc(100% - 50px);
+    box-sizing: border-box;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+    height: max-content;
+    padding: 2px 0px 0px 0px;
+    overflow: hidden;
+      overflow-x: hidden;
+    width: calc(100% - 50px);
+    overflow-x: auto;
 }
 
 .chrome-tabs * {
@@ -2012,6 +2018,7 @@ iframe {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 34px;
 }
 
 .chrome-tabs .chrome-tab {
@@ -2333,6 +2340,7 @@ iframe {
 
 .chrome-tabs .chrome-tab[active] .chrome-tab-content {
   background: var(--tab-active-background);
+  box-shadow: none;
 }
 
 .chrome-tab-title {

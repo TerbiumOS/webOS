@@ -254,7 +254,7 @@ if(localStorage.getItem("pass") == null) {
 } else if(localStorage.getItem("pass") == "none") {
     let notifScr = document.createElement("script");
     notifScr.src = `./js/not.js`;
-    document.body.appendChild(notifScr);
+    // document.body.appendChild(notifScr);
 }
 submit = function(password, firstTime) {
     let spinner = document.querySelector(".spinner");
@@ -296,7 +296,7 @@ submit = function(password, firstTime) {
                     loginDetails.remove();
                     let notifScr = document.createElement("script");
                     notifScr.src = `./js/not.js`;
-                    document.body.appendChild(notifScr);
+                    // document.body.appendChild(notifScr);
                 }, 700)
             }, 1200);
         } else if(passd !== cpswd) {

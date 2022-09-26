@@ -199,7 +199,6 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     newdock.setAttribute("title", title);
     newdock.classList.add("dockbtn");
     const appItem = document.querySelectorAll(".appItem");
-    // blink the background of newdock for 5 seconds
     newdock.classList.add("alert");
     setTimeout(() => {
         newdock.classList.remove("alert");
@@ -415,6 +414,52 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 <span class="activeSpan"></span>
             `;
             break;
+        case "ruffle":
+            faviconHTML = `
+            <svg class="favicon" id="favicon" width="40.1" height="42.9" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" sodipodi:docname="ruffle.svg" version="1.1" viewBox="0 0 40.1 42.9" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
+            <metadata>
+             <rdf:RDF>
+              <cc:Work rdf:about="">
+               <dc:format>image/svg+xml</dc:format>
+               <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+               <dc:title/>
+              </cc:Work>
+             </rdf:RDF>
+            </metadata>
+            <sodipodi:namedview bordercolor="#666666" borderopacity="1" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" gridtolerance="10" guidetolerance="10" inkscape:current-layer="g1080" inkscape:cx="121.29662" inkscape:cy="44.453228" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="1014" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="36" inkscape:zoom="3.8780488" objecttolerance="10" pagecolor="#ffffff" showgrid="false"/>
+            <g transform="translate(-3.74 -21.2)" inkscape:groupmode="layer" inkscape:label="Image">
+             <g transform="matrix(.665 0 0 .64 -3.36 -.174)">
+              <g transform="matrix(.944 0 0 .962 2.59 3.76)">
+               <path class="fill" d="m13.7 80.3c1.53-10.9 2.79-20.3 2.81-21 .0942-3.01 4.01-5.25 9.29-5.32 4.57-.0589 4.95-.21 2.96-1.17-1.75-.843-2.18-1.71-1.81-3.68.263-1.42.763-4.74 1.11-7.39.528-4 1.17-5.13 3.81-6.75 2.8-1.71 5.11-1.94 19.3-1.94 21.4-.005 21.1-.211 19.4 13.6-1.93 15.7-1.01 14.4-10.2 14.4-7.1 0-7.91-.188-7.46-1.75.272-.962.798-4.14 1.17-7.05l.673-5.3-11.7.606-1.13 6.93c-1.22 7.49-3.55 10.6-7.97 10.6-1.86 0-2.46.668-2.91 3.25-.622 3.59-4.53 30.6-4.53 31.3 0 .245-3.52.445-7.81.445h-7.81z"/>
+               <path class="fill" d="m32.4 65.6-2.51-12.2 7 5.89 3.86.466-1.38 2.72-2.3 2.25-1.69.594z"/>
+              </g>
+             </g>
+            </g>
+           </svg>
+            `;
+            newdock.innerHTML = `
+            <svg class="dockicon" width="40.1" height="42.9" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" sodipodi:docname="ruffle.svg" version="1.1" viewBox="0 0 40.1 42.9" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
+            <metadata>
+             <rdf:RDF>
+              <cc:Work rdf:about="">
+               <dc:format>image/svg+xml</dc:format>
+               <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+               <dc:title/>
+              </cc:Work>
+             </rdf:RDF>
+            </metadata>
+            <sodipodi:namedview bordercolor="#666666" borderopacity="1" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" gridtolerance="10" guidetolerance="10" inkscape:current-layer="g1080" inkscape:cx="121.29662" inkscape:cy="44.453228" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="1014" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="36" inkscape:zoom="3.8780488" objecttolerance="10" pagecolor="#ffffff" showgrid="false"/>
+            <g transform="translate(-3.74 -21.2)" inkscape:groupmode="layer" inkscape:label="Image">
+             <g transform="matrix(.665 0 0 .64 -3.36 -.174)">
+              <g transform="matrix(.944 0 0 .962 2.59 3.76)">
+               <path class="fill" d="m13.7 80.3c1.53-10.9 2.79-20.3 2.81-21 .0942-3.01 4.01-5.25 9.29-5.32 4.57-.0589 4.95-.21 2.96-1.17-1.75-.843-2.18-1.71-1.81-3.68.263-1.42.763-4.74 1.11-7.39.528-4 1.17-5.13 3.81-6.75 2.8-1.71 5.11-1.94 19.3-1.94 21.4-.005 21.1-.211 19.4 13.6-1.93 15.7-1.01 14.4-10.2 14.4-7.1 0-7.91-.188-7.46-1.75.272-.962.798-4.14 1.17-7.05l.673-5.3-11.7.606-1.13 6.93c-1.22 7.49-3.55 10.6-7.97 10.6-1.86 0-2.46.668-2.91 3.25-.622 3.59-4.53 30.6-4.53 31.3 0 .245-3.52.445-7.81.445h-7.81z"/>
+               <path class="fill" d="m32.4 65.6-2.51-12.2 7 5.89 3.86.466-1.38 2.72-2.3 2.25-1.69.594z"/>
+              </g>
+             </g>
+            </g>
+           </svg>
+           <span class="activeSpan"></span>
+            `;
         default:
             break;
     }
@@ -443,20 +488,21 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         searchbar.id = "searchbar";
         searchbar.setAttribute("type", "url");
         let browserC = document.createElement("div");
+        let frameC = document.createElement("div");
         let browserCHTML = `
             <div class="top">
                 <div class="chrome-tabs" style="--tab-content-margin: 9px">
                     <div class="chrome-tabs-content">
-                        <div class="chrome-tab" active="">
+                        <div num="0" class="chrome-tab" onclick="Tab.switch(this.getAttribute('num'))" active="">
                             <div class="chrome-tab-content">
-                                <div class="chrome-tab-title">New Tab</div>
-                                <div class="chrome-tab-drag-handle"></div>
-                                <div class="chrome-tab-close"></div>
-                            </div>
+                            <div class="chrome-tab-title">New Tab</div>
+                            <div class="chrome-tab-drag-handle"></div>
+                            <div class="chrome-tab-close" onclick="event.stopPropagation();Tab.remove(this.parentElement.parentElement.getAttribute('num'))"></div>
                         </div>
                     </div>
                 </div>
-                <button data-add-tab style="margin-top: 7px;" class="bBtn">
+                </div>
+                <button data-add-tab style="margin-top: 7px;" class="bBtn" onclick="Tab.create()">
                     <svg class="bBtnIcon" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ebebeb" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <line x1="12" y1="5" x2="12" y2="19" />
@@ -493,12 +539,14 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         titleElement.appendChild(searchbar);
         browserC.innerHTML = browserCHTML;
         newwin.appendChild(browserC);
-        
+        frameC.style = "width:100%;Height:100%;"
+        frameC.id = "frameC";
         framew.setAttribute("src", link);
-        framew.setAttribute("id", "frame");
+        framew.setAttribute("id", 0);
         framew.setAttribute("class", "frame");
         framew.setAttribute("frameborder", "0");
-        newwin.appendChild(framew);
+        frameC.appendChild(framew);
+        newwin.appendChild(frameC);
         const backFrame = newwin.querySelector(".backFrame");
         const forwardFrame = newwin.querySelector(".forwardFrame");
         const refFrame = newwin.querySelector(".ref");
@@ -530,28 +578,6 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         }
         let search = newwin.querySelector(".searchbar");
         let text = searchbar.innerHTML;
-        function selectText(id){
-            var sel, range;
-            var el = search; //get element id
-            if (window.getSelection && document.createRange) {
-                sel = window.getSelection();
-                if(sel.toString() == ''){
-                    window.setTimeout(function(){
-                        range = document.createRange();
-                        range.selectNodeContents(el);
-                        sel.removeAllRanges();
-                        sel.addRange(range);
-                    },1);
-                }
-            }else if (document.selection) { //older ie
-                sel = document.selection.createRange();
-                if(sel.text == ''){ //no text selection
-                    range = document.body.createTextRange();
-                    range.moveToElementText(el);
-                    range.select();
-                }
-            }
-        }
         searchbar.addEventListener("keydown", (e) => {
             let safeSearch = localStorage.getItem("ss");
             let framew = newwin.querySelector("#frame");
@@ -647,40 +673,43 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         newwin.appendChild(framew);
     }
     framew.onload = () => {
-        framew.contentWindow.postMessage(windowID, "*");
-        const frameScript = document.createElement("script");
-        frameScript.innerHTML = `
-            let id;
-            
-            window.onmessage = (e) => {
-                id = e.data;
-            }
-            
-            window.onclick = function() {
-                const windows = window.parent.document.querySelectorAll(".win");
-                for (let i = 0; i < windows.length; i++) {
-                    windows[i].classList.add("winNotFocus");
-                    windows[i].classList.remove("winFocus");
+        framew.contentWindow.document.onfocus = (e) => {
+            appendFocusScript();
+        };
+        appendFocusScript();
+        function appendFocusScript() {
+            framew.contentWindow.postMessage(windowID, "*");
+            const frameScript = document.createElement("script");
+            frameScript.innerHTML = `                
+                window.onmessage = (e) => {
+                    id = e.data;
                 }
-
-                const appItem = window.parent.document.querySelectorAll(".appItem");
-                for (let i = 0; i < appItem.length; i++) {
-                    appItem[i].classList.remove("active");
+                
+                window.onclick = function() {
+                    const windows = window.parent.document.querySelectorAll(".win");
+                    for (let i = 0; i < windows.length; i++) {
+                        windows[i].classList.add("winNotFocus");
+                        windows[i].classList.remove("winFocus");
+                    }
+    
+                    const appItem = window.parent.document.querySelectorAll(".appItem");
+                    for (let i = 0; i < appItem.length; i++) {
+                        appItem[i].classList.remove("active");
+                    }
+                    window.parent.document.querySelector("[data-appid='" + id + "']").classList.add("active");
+                
+                    window.parent.document.getElementById(id).classList.add("winFocus");
+                    window.parent.document.getElementById(id).classList.remove("winNotFocus");
+                    const title = window.parent.document.getElementById(id).getAttribute("data-title");
+                    const focus = JSON.stringify({
+                        infoTitle: title,
+                        type: "focus"
+                    });
+                    window.parent.postMessage(focus, '*');
                 }
-                // grab by data-appId
-                window.parent.document.querySelector("[data-appid='" + id + "']").classList.add("active");
-            
-                window.parent.document.getElementById(id).classList.add("winFocus");
-                window.parent.document.getElementById(id).classList.remove("winNotFocus");
-                const title = window.parent.document.getElementById(id).getAttribute("data-title");
-                const focus = JSON.stringify({
-                    infoTitle: title,
-                    type: "focus"
-                });
-                window.parent.postMessage(focus, '*');
-            }
-        `;
-        framew.contentDocument.body.appendChild(frameScript);
+            `;
+            framew.contentDocument.body.appendChild(frameScript);
+        }
     }
     window.addEventListener("message", (e) => {
         const data = JSON.parse(e.data);
@@ -799,6 +828,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             newwin.querySelector('.maxi').click();
         }
     });
+
 
     dragger.addEventListener("mousedown", mousedown);
     function mousedown(e) {
@@ -951,6 +981,7 @@ window.addEventListener("keydown", (e) => {
         }
     }
     if(e.altKey && e.shiftKey) {
+        lastWindow = document.querySelector(".winFocus").id;
         var windowsAvailable = document.querySelectorAll(".win");
         var windowsAvailableArray = Array.from(windowsAvailable);
         var windowsAvailableArrayLength = windowsAvailableArray.length;
@@ -975,6 +1006,12 @@ window.addEventListener("keydown", (e) => {
 })
 
 switch(id) {
+    case "browser":
+        windows("../newwin.html", "../resources/terbium.svg", "Terbium Browser", true, true, false, 'browser');
+        break;
+    case "ruffle":
+        windows('../ruffle/ruffle.html', './resources/ruffle.svg', 'Ruffle', false, true, false, 'ruffle');
+        break;
     case "color":
         windows("../color.html", "../resources/terbium.svg", "Terbium Color Picker", false, true, false, "color");
         break;

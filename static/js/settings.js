@@ -41,9 +41,10 @@ dark.addEventListener("click", () => {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
         themeMAIN.setAttribute('data-theme', 'dark');
-        for (let a = 0; a < win.length; a++) {
-            const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'dark');
+        const wino = window.parent.document.querySelectorAll(".win");
+        for (let i = 0; i < wino.length; i++) {
+            const element = wino[i];
+            element.querySelector("iframe").contentWindow.document.querySelector("html").setAttribute("data-theme", "dark");
         }
     }
     if(html === "dark") {
@@ -59,13 +60,13 @@ night.addEventListener("click", () => {
     let html = document.documentElement.getAttribute("data-theme");
     if(html !== "night") {
         document.documentElement.setAttribute('data-theme', 'night');
-        localStorage.setItem('theme', 'night');
         themeMAIN.setAttribute('data-theme', 'night');
-        for (let a = 0; a < win.length; a++) {
-            const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'night');
+        localStorage.setItem('theme', 'night');
+        const wino = window.parent.document.querySelectorAll(".win");
+        for (let i = 0; i < wino.length; i++) {
+            const element = wino[i];
+            element.querySelector("iframe").contentWindow.document.querySelector("html").setAttribute("data-theme", "night");
         }
-
     }
     if(html === "night") {
         alert("Night theme is already enabled");
@@ -79,11 +80,11 @@ frac.addEventListener("click", () => {
         document.documentElement.setAttribute('data-theme', 'fracital');
         localStorage.setItem('theme', 'fracital');
         themeMAIN.setAttribute('data-theme', 'fracital');
-        for (let a = 0; a < win.length; a++) {
-            const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'fracital');
+        const wino = window.parent.document.querySelectorAll(".win");
+        for (let i = 0; i < wino.length; i++) {
+            const element = wino[i];
+            element.querySelector("iframe").contentWindow.document.querySelector("html").setAttribute("data-theme", "fracital");
         }
-
     }
     if(html === "fracital") {
         alert("Fracital theme is already enabled");
