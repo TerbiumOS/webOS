@@ -4,9 +4,9 @@ let tabNum = 1;
 class Tab {
     static create (url = './newwin.html') {
         let frameW = document.createElement("iframe"),
-         div = document.createElement('div'),
-         browserC = document.getElementsByClassName('chrome-tabs-content')[0],
-         frameC = document.getElementById('frameC');
+            div = document.createElement('div'),
+            browserC = document.getElementsByClassName('chrome-tabs-content')[0],
+            frameC = document.getElementById('frameC');
         div.setAttribute('num',tabNum);
         div.setAttribute('class','chrome-tab');
         
@@ -34,6 +34,10 @@ class Tab {
             tabs[i].style.transform = `translate3d(${239*i}px, 0, 0)`;
         }
         tabNum++;
+        // check for overflow in .chrome-tabs
+        if (document.getElementsByClassName('chrome-tabs-content')[0].offsetWidth > document.getElementsByClassName('chrome-tabs')[0].offsetWidth) {
+            document.getElementsByClassName('chrome-tabs')[0].style.height = "56px"
+        }
     }
     static remove(id) {
         document.getElementsByClassName('chrome-tabs-content')
@@ -43,10 +47,8 @@ class Tab {
         }
         document.querySelector(`.chrome-tab[num='${id}']`).remove();
         document.getElementById(id).remove();
-        // when the tab is removed, the tabs after it should move to the left
         let tabs = document.getElementsByClassName('chrome-tab');
         for (let i = 0; i < tabs.length; i++) {
-            console.log(i)
             tabs[i].style.transform = `translate3d(${239*i}px, 0, 0)`;
         }
     }

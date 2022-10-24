@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terbium Image Viewer</title>
+    <link rel="stylesheet" href="./image.css">
+</head>
+    <body>
+        <img class="img" style="width: 50%; visibility: collapse;" src="" data-src="none">
+        <svg class="backy shown" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M14 8C10.6863 8 8 10.6863 8 14V66C8 69.3137 10.6863 72 14 72H66C69.3137 72 72 69.3137 72 66V14C72 10.6863 69.3137 8 66 8H14ZM46.6545 32.6273C50.8318 32.6273 54.2182 29.2409 54.2182 25.0636C54.2182 20.8864 50.8318 17.5 46.6545 17.5C42.4773 17.5 39.0909 20.8864 39.0909 25.0636C39.0909 29.2409 42.4773 32.6273 46.6545 32.6273ZM22.6569 37.7475L10.6865 60.5663C8.55578 64.628 11.5017 69.5 16.0883 69.5H50.4364H64.7475C68.83 69.5 71.1918 64.8719 68.7963 61.5661L59.3509 48.5314C57.5301 46.2969 53.3213 46.2165 51.3097 48.2709C51.2511 48.3307 51.1933 48.3915 51.1355 48.4523L51.1351 48.4527C51.0037 48.5908 50.8723 48.7289 50.7311 48.8568L41.0293 57.6389L39.5636 55.7909L27.5209 37.5325C26.3398 35.7419 23.6753 35.8597 22.6569 37.7475Z"/>
+        </svg>
+        <div class="settingsWindow">
+            <div class="settingsContent">
+                <div class="settingsItem">
+                    <div class="settingsItemTitle">Image On Window</div>
+                    <input class="toggle" id="iow" checked type="checkbox">
+                    <button class="btn btnQ" id="iowHelp">?</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./image.js"></script>
+    <script src="../js/theme.js"></script>
+</html>

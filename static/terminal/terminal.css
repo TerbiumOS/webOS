@@ -147,6 +147,10 @@ p {
     margin-top: 4px;
 }
 
+.extraSpace {
+    margin-top: 10px;
+}
+
 .commandSection {
     display: flex;
     gap: 2px;
@@ -173,6 +177,10 @@ p {
 .commandP:focus-visible {
     outline: none;
     border: none;
+}
+
+.output.flex {
+    display: flex;
 }
 
 .cursor {

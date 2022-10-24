@@ -106,6 +106,7 @@
 
 [data-theme="dark"] {
     /* body */
+    --wallpaper: url("resources/wallpapers/darkWall.png");
     --body: #111;
     --body-color: #ffffff;
     --userselect-background: #ffffff0a;
@@ -155,6 +156,7 @@
     --dock-alert-background: #47ca6360;
     --dock-button-boxshadow: #242424;
     --dock-icon-color: #47CA64;
+    --dock-button-inactive-span: #424242;
 
     /* context menu */
     --context-menu-background: #1e1e1e;
@@ -198,12 +200,13 @@
     --tab-active-close-active-hover: #424242;
     --tab-active-background: #1c1c1c;
     --tab-active-hover-color: #47CA64;
-    --tab-inactive-background: #2d2d2d;
+    --tab-inactive-background: #0000;
     --tab-hover-background: #85ff9e59;
 }
 
 [data-theme="night"] {
     /* body */
+    --wallpaper: url("resources/wallpapers/nightWall.png");
     --body: #0e0a40;
     --body-color: #fff7a5;
     --userselect-background: #ffffff0a;
@@ -253,6 +256,7 @@
     --dock-alert-background: #fff7a560;
     --dock-button-boxshadow: #110d44;
     --dock-icon-color: #fff7a5;
+    --dock-button-inactive-span: #594dee;
 
     /* context menu */
     --context-menu-background: #161062;
@@ -302,6 +306,7 @@
 
 [data-theme="fracital"] {
     /* body */
+    --wallpaper: url("resources/wallpapers/fracitalWall.png");
     --body: #1C1C1C;
     --body-color: #FF75F9;
     --userselect-background: #ffffff0a;
@@ -332,10 +337,10 @@
     --system-control-icon-color-hover: #FF40F7;
     
     /* clock */
-    --fulltime-background: #575757;
+    --fulltime-background: #373737;
     --fulltime-color: #ff40f7;
     --fulltime-clock-close-hover: #ff7171;
-    --clock-background: #575757;
+    --clock-background: #444;
     
     /* desktop */
     --desktopapp-background: #8c8c8c5e;
@@ -351,6 +356,7 @@
     --dock-alert-background: #FF40F760;
     --dock-button-boxshadow: #282828;
     --dock-icon-color: #FF40F7;
+    --dock-button-inactive-span: #606060;
 
     /* context menu */
     --context-menu-background: #313131;
@@ -887,7 +893,8 @@ li {
 }
 
 .hidden {
-    display: none !important;
+    z-index: -1 !important;
+    opacity: 0 !important;
 }
 
 /* desk */
@@ -981,6 +988,9 @@ li {
     top: 0;
     left: 0;
     right: 0;
+}
+
+.shell.shadow {
     box-shadow: 0 3px 7px -2px #00000075;
 }
 
@@ -1013,17 +1023,17 @@ li {
 
 .appShell .name {
     display: grid;
-    /* cursor: var(--cursorHand); */
+    cursor: var(--cursorHand);
     transition: 200ms ease-in-out;
     height: 36px;
     padding: 0 8px;
     align-items: center;
-    border-radius: 6px;
+    border-radius: 4px;
 }
 
-/* .name:hover {
+.name:hover {
     background-color: var(--clock-background);
-} */
+}
 
 .appI {
     width: 25px;
@@ -1055,6 +1065,8 @@ li {
     font-family: prod;
     font-size: 17px;
     z-index: 99999999;
+    opacity: 1;
+    transition: ease-in-out 200ms;
 }
 
 .appOptions {
@@ -1068,10 +1080,13 @@ li {
     gap: 3px;
     padding: 6px;
     z-index: 99999999;
+    transition: 100ms ease-in-out;
+    box-shadow: 0 0 11px 2px rgba(0, 0, 0, 0.36);
 }
 
 .appOptions.h {
-    visibility: collapse;
+    opacity: 0;
+    z-index: -1;
 }
 
 .appOptions button {
@@ -1114,10 +1129,11 @@ li {
 }
 
 .inputAppSearch {
-    transform: translateY(calc(-355px));
+    position: absolute;
     border: none;
     border-radius: 8px;
     height: 40px;
+    top: 73px;
 }
 
 main > .inputAppSearch {
@@ -1307,6 +1323,8 @@ main > .inputAppSearch {
     padding: 9px 18px;
     border-radius: 6px;
     display: flex;
+    opacity: 1;
+    transition: 100ms ease-in-out;
 }
 
 #ftd {
@@ -1326,6 +1344,7 @@ main > .inputAppSearch {
     position: absolute;
     padding: 10px 2px;
     z-index: 99999;
+    box-shadow: 0 0 11px 2px rgb(0 0 0 / 36%);
 }
 
 .menu {
@@ -1362,23 +1381,41 @@ main > .inputAppSearch {
     max-width: 438px;
     overflow-x: auto;
     position: fixed;
+    transition: background-color 200ms ease-in-out;
 }
 
 .activeSpan {
-    width: 0px;
-    height: 3px;
     transition: 200ms ease-in-out;
+    background-color: var(--dock-button-inactive-span);
+    border-radius: 4px;
+    position: absolute;
+}
+
+.activeSpan.bottom {
+    bottom: 2px;
+    width: 6px;
+    height: 3px;
+}
+
+.activeSpan.left {
+    left: 2px;
+    width: 3px;
+    height: 6px;
+}
+
+.activeSpan.right {
+    right: 2px;
+    width: 3px;
+    height: 6px;
 }
 
 .active .activeSpan {
-    height: 3px;
-    width: 9px;
     background-color: var(--dock-icon-color);
     border-radius: 3px;
 }
 
 .dockbtn.active {
-    background-color: var(--dock-button-background);
+    background-color: var(--dock-button-background) !important;
 }
 
 .dockH {
@@ -1428,11 +1465,12 @@ main > .inputAppSearch {
 }
 
 .dockbtn {
+    position: relative;
     width: 32px;
     height: 32px;
     display: grid;
     justify-items: center;
-    align-content: center;
+    align-items: center;
     padding: 2px;
     border-radius: 5px;
     transition: ease 0.2s;
@@ -1446,7 +1484,6 @@ main > .inputAppSearch {
 .dockbtn:hover {
     cursor: var(--cursorHand);
     background-color: var(--dock-button-background);
-    box-shadow: 0px 0px 12px 1px var(--dock-button-boxshadow);
 }
 
 .dockicon {
@@ -1497,13 +1534,16 @@ main > .inputAppSearch {
     height: 568px;
     width: 688px;
     background-color: var(--window-background);
+    background-size: 100% 100% !important;
     min-width: 499px;
     min-height: 499px;
     position: absolute;
     overflow: hidden;
     z-index: 2;
+    transform: scale(1);
     transition: background-color ease-in-out 200ms;
     transition: border-radius ease-in-out 150ms;
+    transition: transform ease-in-out 250ms;
 }
 
 .win.browser {
@@ -1517,13 +1557,13 @@ main > .inputAppSearch {
 
 .winmini {
     position: absolute;
-    left: 500000px !important;
+    transform: scale(0);
 }
 
 .winNotFocus {
     z-index: 1;
-    opacity: 0.89;
-    filter: blur(2px);
+    opacity: 0.98;
+    filter: blur(1px);
 }
 
 .winFocus {
@@ -1973,7 +2013,6 @@ iframe {
     flex-direction: row;
     background: var(--tab-container-background);
     align-items: center;
-    transition: 200ms ease-in-out;
 }
 
 .bBtnIcon {
@@ -2004,7 +2043,7 @@ iframe {
     height: max-content;
     padding: 2px 0px 0px 0px;
     overflow: hidden;
-      overflow-x: hidden;
+    overflow-x: hidden;
     width: calc(100% - 50px);
     overflow-x: auto;
 }
@@ -2015,10 +2054,10 @@ iframe {
 }
 
 .chrome-tabs .chrome-tabs-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 34px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 34px;
 }
 
 .chrome-tabs .chrome-tab {
@@ -2340,7 +2379,6 @@ iframe {
 
 .chrome-tabs .chrome-tab[active] .chrome-tab-content {
   background: var(--tab-active-background);
-  box-shadow: none;
 }
 
 .chrome-tab-title {

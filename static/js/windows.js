@@ -30,24 +30,21 @@ function getQueryVariable(variable) {
 
 let id = getQueryVariable("app");
 let date = getQueryVariable("date");
+let text = getQueryVariable("text");
 
 var keys = {}
 
-if(localStorage.getItem("browser") === null) {
-    localStorage.setItem("browser", 0)
-}
-
-let browsersRunning = 0;
 let appsMini = 0;
 
 const appShell = document.createElement("div");
 appShell.classList.add("appShell");
 const appsShellName = document.createElement("p");
 appsShellName.classList.add("name");
+const appOptions = document.querySelector(".appOptions")
 
 let params;
 
-function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen = Boolean, appName) {
+function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen = Boolean, appName, textAppText) {
     document.querySelector(".shell").appendChild(appShell);
     appShell.appendChild(appsShellName);
     appsShellName.innerText = title;
@@ -67,6 +64,34 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         return windowID = result;
     }
     makeid(18);
+    newwin.setAttribute("data-link", link);
+    newwin.setAttribute("data-title", title);
+    newwin.setAttribute("data-os", os);
+    newwin.setAttribute("data-browser", browser);
+    newwin.setAttribute("data-fullscreen", fullscreen);
+    newwin.setAttribute("data-appName", appName);
+
+    appsShellName.onclick = (e) => {
+        appOptions.classList.toggle("h");
+        appOptions.querySelector(".closeApp").onclick = (e) => {
+            appsShellName.innerHTML = "";
+            appOptions.classList.toggle("h");
+            document.querySelector(".winFocus").querySelector(".close").click();
+        }
+        appOptions.querySelector(".newwin").onclick = (e) => {
+            appOptions.classList.toggle("h");
+            window.windows(link, icn, title, browser, os, fullscreen, appName, textAppText);
+        }
+        appOptions.querySelector(".minimizeApp").onclick = (e) => {
+            appOptions.classList.toggle("h");
+            document.querySelector(".winFocus").querySelector(".mini").click();
+        }
+        appOptions.querySelector(".maximizeApp").onclick = (e) => {
+            appOptions.classList.toggle("h");
+            document.querySelector(".winFocus").querySelector(".maxi").click();
+        }
+    }
+
     appsShellName.setAttribute("data-id", windowID);
     newwin.id = windowID;
     newwin.classList.add("win");
@@ -414,52 +439,94 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 <span class="activeSpan"></span>
             `;
             break;
-        case "ruffle":
-            faviconHTML = `
-            <svg class="favicon" id="favicon" width="40.1" height="42.9" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" sodipodi:docname="ruffle.svg" version="1.1" viewBox="0 0 40.1 42.9" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
-            <metadata>
-             <rdf:RDF>
-              <cc:Work rdf:about="">
-               <dc:format>image/svg+xml</dc:format>
-               <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-               <dc:title/>
-              </cc:Work>
-             </rdf:RDF>
-            </metadata>
-            <sodipodi:namedview bordercolor="#666666" borderopacity="1" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" gridtolerance="10" guidetolerance="10" inkscape:current-layer="g1080" inkscape:cx="121.29662" inkscape:cy="44.453228" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="1014" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="36" inkscape:zoom="3.8780488" objecttolerance="10" pagecolor="#ffffff" showgrid="false"/>
-            <g transform="translate(-3.74 -21.2)" inkscape:groupmode="layer" inkscape:label="Image">
-             <g transform="matrix(.665 0 0 .64 -3.36 -.174)">
-              <g transform="matrix(.944 0 0 .962 2.59 3.76)">
-               <path class="fill" d="m13.7 80.3c1.53-10.9 2.79-20.3 2.81-21 .0942-3.01 4.01-5.25 9.29-5.32 4.57-.0589 4.95-.21 2.96-1.17-1.75-.843-2.18-1.71-1.81-3.68.263-1.42.763-4.74 1.11-7.39.528-4 1.17-5.13 3.81-6.75 2.8-1.71 5.11-1.94 19.3-1.94 21.4-.005 21.1-.211 19.4 13.6-1.93 15.7-1.01 14.4-10.2 14.4-7.1 0-7.91-.188-7.46-1.75.272-.962.798-4.14 1.17-7.05l.673-5.3-11.7.606-1.13 6.93c-1.22 7.49-3.55 10.6-7.97 10.6-1.86 0-2.46.668-2.91 3.25-.622 3.59-4.53 30.6-4.53 31.3 0 .245-3.52.445-7.81.445h-7.81z"/>
-               <path class="fill" d="m32.4 65.6-2.51-12.2 7 5.89 3.86.466-1.38 2.72-2.3 2.25-1.69.594z"/>
-              </g>
-             </g>
-            </g>
-           </svg>
-            `;
-            newdock.innerHTML = `
-            <svg class="dockicon" width="40.1" height="42.9" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" sodipodi:docname="ruffle.svg" version="1.1" viewBox="0 0 40.1 42.9" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
-            <metadata>
-             <rdf:RDF>
-              <cc:Work rdf:about="">
-               <dc:format>image/svg+xml</dc:format>
-               <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-               <dc:title/>
-              </cc:Work>
-             </rdf:RDF>
-            </metadata>
-            <sodipodi:namedview bordercolor="#666666" borderopacity="1" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" gridtolerance="10" guidetolerance="10" inkscape:current-layer="g1080" inkscape:cx="121.29662" inkscape:cy="44.453228" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="1014" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="36" inkscape:zoom="3.8780488" objecttolerance="10" pagecolor="#ffffff" showgrid="false"/>
-            <g transform="translate(-3.74 -21.2)" inkscape:groupmode="layer" inkscape:label="Image">
-             <g transform="matrix(.665 0 0 .64 -3.36 -.174)">
-              <g transform="matrix(.944 0 0 .962 2.59 3.76)">
-               <path class="fill" d="m13.7 80.3c1.53-10.9 2.79-20.3 2.81-21 .0942-3.01 4.01-5.25 9.29-5.32 4.57-.0589 4.95-.21 2.96-1.17-1.75-.843-2.18-1.71-1.81-3.68.263-1.42.763-4.74 1.11-7.39.528-4 1.17-5.13 3.81-6.75 2.8-1.71 5.11-1.94 19.3-1.94 21.4-.005 21.1-.211 19.4 13.6-1.93 15.7-1.01 14.4-10.2 14.4-7.1 0-7.91-.188-7.46-1.75.272-.962.798-4.14 1.17-7.05l.673-5.3-11.7.606-1.13 6.93c-1.22 7.49-3.55 10.6-7.97 10.6-1.86 0-2.46.668-2.91 3.25-.622 3.59-4.53 30.6-4.53 31.3 0 .245-3.52.445-7.81.445h-7.81z"/>
-               <path class="fill" d="m32.4 65.6-2.51-12.2 7 5.89 3.86.466-1.38 2.72-2.3 2.25-1.69.594z"/>
-              </g>
-             </g>
-            </g>
-           </svg>
-           <span class="activeSpan"></span>
-            `;
+            case "image":
+                faviconHTML = `
+                    <svg class="favicon" id="favicon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M14 8C10.6863 8 8 10.6863 8 14V66C8 69.3137 10.6863 72 14 72H66C69.3137 72 72 69.3137 72 66V14C72 10.6863 69.3137 8 66 8H14ZM46.6545 32.6273C50.8318 32.6273 54.2182 29.2409 54.2182 25.0636C54.2182 20.8864 50.8318 17.5 46.6545 17.5C42.4773 17.5 39.0909 20.8864 39.0909 25.0636C39.0909 29.2409 42.4773 32.6273 46.6545 32.6273ZM22.6569 37.7475L10.6865 60.5663C8.55578 64.628 11.5017 69.5 16.0883 69.5H50.4364H64.7475C68.83 69.5 71.1918 64.8719 68.7963 61.5661L59.3509 48.5314C57.5301 46.2969 53.3213 46.2165 51.3097 48.2709C51.2511 48.3307 51.1933 48.3915 51.1355 48.4523L51.1351 48.4527C51.0037 48.5908 50.8723 48.7289 50.7311 48.8568L41.0293 57.6389L39.5636 55.7909L27.5209 37.5325C26.3398 35.7419 23.6753 35.8597 22.6569 37.7475Z"/>
+                    </svg>
+                `;
+                newdock.innerHTML = `
+                    <svg class="dockicon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M14 8C10.6863 8 8 10.6863 8 14V66C8 69.3137 10.6863 72 14 72H66C69.3137 72 72 69.3137 72 66V14C72 10.6863 69.3137 8 66 8H14ZM46.6545 32.6273C50.8318 32.6273 54.2182 29.2409 54.2182 25.0636C54.2182 20.8864 50.8318 17.5 46.6545 17.5C42.4773 17.5 39.0909 20.8864 39.0909 25.0636C39.0909 29.2409 42.4773 32.6273 46.6545 32.6273ZM22.6569 37.7475L10.6865 60.5663C8.55578 64.628 11.5017 69.5 16.0883 69.5H50.4364H64.7475C68.83 69.5 71.1918 64.8719 68.7963 61.5661L59.3509 48.5314C57.5301 46.2969 53.3213 46.2165 51.3097 48.2709C51.2511 48.3307 51.1933 48.3915 51.1355 48.4523L51.1351 48.4527C51.0037 48.5908 50.8723 48.7289 50.7311 48.8568L41.0293 57.6389L39.5636 55.7909L27.5209 37.5325C26.3398 35.7419 23.6753 35.8597 22.6569 37.7475Z"/>
+                    </svg>
+                    <span class="activeSpan"></span>
+                `;
+                break;
+            case "task":
+                faviconHTML = `
+                    <svg class="favicon" id="favicon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="fill" x="41.6892" y="18.5555" width="15.5556" height="12.4445" rx="1.5"/>
+                        <rect class="fill" x="49.4663" y="37.2223" width="15.5556" height="12.4445" rx="1.5"/>
+                        <rect class="fill" x="47.9109" y="60.5555" width="15.5556" height="12.4445" rx="1.5"/>
+                        <rect class="fill" x="14" y="3" width="18.6667" height="6.22223" rx="3"/>
+                        <path class="fill" d="M15.2448 9.22226H30.8003H27.1337C26.5814 9.22226 26.1337 9.66997 26.1337 10.2223V46.5556H23.43C21.7731 46.5556 20.43 45.2125 20.43 43.5556V10.2223C20.43 9.66997 19.9823 9.22226 19.43 9.22226H15.2448Z"/>
+                        <path class="fill" d="M26.1335 17V21.1852C26.1335 21.7375 26.5812 22.1852 27.1335 22.1852H40.6891C41.2413 22.1852 41.689 21.7375 41.689 21.1852V19.5926V29.963V28.3704C41.689 27.8181 41.2413 27.3704 40.689 27.3704H27.1335C26.5812 27.3704 26.1335 27.8181 26.1335 28.3704V32.5556V17Z"/>
+                        <path class="fill" d="M26.1335 34.1111V39.3333C26.1335 39.8856 26.5812 40.3333 27.1335 40.3333H48.4668C49.0191 40.3333 49.4668 39.8856 49.4668 39.3333V37.2222V49.6666V47.5555C49.4668 47.0033 49.0191 46.5555 48.4668 46.5555H26.1335V34.1111Z"/>
+                        <path class="fill" d="M29.2443 46.5556H40.1332H38.411C37.8587 46.5556 37.411 47.0033 37.411 47.5556V69.889H33.9666C32.862 69.889 31.9665 68.9935 31.9665 67.889V47.5556C31.9665 47.0033 31.5188 46.5556 30.9665 46.5556H29.2443Z"/>
+                        <path class="fill" d="M37.42 61.5V62.6667C37.42 63.219 37.8677 63.6667 38.42 63.6667H46.9111C47.4634 63.6667 47.9111 63.219 47.9111 62.6667V62.1111V71.4445V70.8889C47.9111 70.3366 47.4634 69.8889 46.9111 69.8889H37.0222L37.42 61.5Z"/>
+                    </svg>
+                `;
+                newdock.innerHTML = `
+                    <svg class="dockicon" viewBox="0 0 80 80" fill="none">
+                        <rect class="fill" x="41.6892" y="18.5555" width="15.5556" height="12.4445" rx="1.5"/>
+                        <rect class="fill" x="49.4663" y="37.2223" width="15.5556" height="12.4445" rx="1.5"/>
+                        <rect class="fill" x="47.9109" y="60.5555" width="15.5556" height="12.4445" rx="1.5"/>
+                        <rect class="fill" x="14" y="3" width="18.6667" height="6.22223" rx="3"/>
+                        <path class="fill" d="M15.2448 9.22226H30.8003H27.1337C26.5814 9.22226 26.1337 9.66997 26.1337 10.2223V46.5556H23.43C21.7731 46.5556 20.43 45.2125 20.43 43.5556V10.2223C20.43 9.66997 19.9823 9.22226 19.43 9.22226H15.2448Z"/>
+                        <path class="fill" d="M26.1335 17V21.1852C26.1335 21.7375 26.5812 22.1852 27.1335 22.1852H40.6891C41.2413 22.1852 41.689 21.7375 41.689 21.1852V19.5926V29.963V28.3704C41.689 27.8181 41.2413 27.3704 40.689 27.3704H27.1335C26.5812 27.3704 26.1335 27.8181 26.1335 28.3704V32.5556V17Z"/>
+                        <path class="fill" d="M26.1335 34.1111V39.3333C26.1335 39.8856 26.5812 40.3333 27.1335 40.3333H48.4668C49.0191 40.3333 49.4668 39.8856 49.4668 39.3333V37.2222V49.6666V47.5555C49.4668 47.0033 49.0191 46.5555 48.4668 46.5555H26.1335V34.1111Z"/>
+                        <path class="fill" d="M29.2443 46.5556H40.1332H38.411C37.8587 46.5556 37.411 47.0033 37.411 47.5556V69.889H33.9666C32.862 69.889 31.9665 68.9935 31.9665 67.889V47.5556C31.9665 47.0033 31.5188 46.5556 30.9665 46.5556H29.2443Z"/>
+                        <path class="fill" d="M37.42 61.5V62.6667C37.42 63.219 37.8677 63.6667 38.42 63.6667H46.9111C47.4634 63.6667 47.9111 63.219 47.9111 62.6667V62.1111V71.4445V70.8889C47.9111 70.3366 47.4634 69.8889 46.9111 69.8889H37.0222L37.42 61.5Z"/>
+                        <span class="activeSpan"></span>
+                    </svg>
+                `;
+            case "ruffle":
+                faviconHTML = `
+                    <svg class="favicon" id="favicon" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" sodipodi:docname="ruffle.svg" version="1.1" viewBox="0 0 40.1 42.9" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
+                        <metadata>
+                            <rdf:rdf>
+                                <cc:work rdf:about="">
+                                    <dc:format>image/svg+xml</dc:format>
+                                    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type>
+                                    <dc:title></dc:title>
+                                </cc:work>
+                            </rdf:rdf>
+                        </metadata>
+                        <sodipodi:namedview bordercolor="#666666" borderopacity="1" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" gridtolerance="10" guidetolerance="10" inkscape:current-layer="g1080" inkscape:cx="121.29662" inkscape:cy="44.453228" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="1014" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="36" inkscape:zoom="3.8780488" objecttolerance="10" pagecolor="#ffffff" showgrid="false"></sodipodi:namedview>
+                        <g transform="translate(-3.74 -21.2)" inkscape:groupmode="layer" inkscape:label="Image">
+                            <g transform="matrix(.665 0 0 .64 -3.36 -.174)">
+                                <g transform="matrix(.944 0 0 .962 2.59 3.76)">
+                                    <path class="fill" d="m13.7 80.3c1.53-10.9 2.79-20.3 2.81-21 .0942-3.01 4.01-5.25 9.29-5.32 4.57-.0589 4.95-.21 2.96-1.17-1.75-.843-2.18-1.71-1.81-3.68.263-1.42.763-4.74 1.11-7.39.528-4 1.17-5.13 3.81-6.75 2.8-1.71 5.11-1.94 19.3-1.94 21.4-.005 21.1-.211 19.4 13.6-1.93 15.7-1.01 14.4-10.2 14.4-7.1 0-7.91-.188-7.46-1.75.272-.962.798-4.14 1.17-7.05l.673-5.3-11.7.606-1.13 6.93c-1.22 7.49-3.55 10.6-7.97 10.6-1.86 0-2.46.668-2.91 3.25-.622 3.59-4.53 30.6-4.53 31.3 0 .245-3.52.445-7.81.445h-7.81z"></path>
+                                    <path class="fill" d="m32.4 65.6-2.51-12.2 7 5.89 3.86.466-1.38 2.72-2.3 2.25-1.69.594z"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                `;
+                newdock.innerHTML = `
+                    <svg class="dockicon" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" sodipodi:docname="ruffle.svg" version="1.1" viewBox="0 0 40.1 42.9" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
+                        <metadata>
+                            <rdf:rdf>
+                                <cc:work rdf:about="">
+                                    <dc:format>image/svg+xml</dc:format>
+                                    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type>
+                                    <dc:title></dc:title>
+                                </cc:work>
+                            </rdf:rdf>
+                        </metadata>
+                        <sodipodi:namedview bordercolor="#666666" borderopacity="1" fit-margin-bottom="0" fit-margin-left="0" fit-margin-right="0" fit-margin-top="0" gridtolerance="10" guidetolerance="10" inkscape:current-layer="g1080" inkscape:cx="121.29662" inkscape:cy="44.453228" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="1014" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="0" inkscape:window-y="36" inkscape:zoom="3.8780488" objecttolerance="10" pagecolor="#ffffff" showgrid="false"></sodipodi:namedview>
+                        <g transform="translate(-3.74 -21.2)" inkscape:groupmode="layer" inkscape:label="Image">
+                            <g transform="matrix(.665 0 0 .64 -3.36 -.174)">
+                                <g transform="matrix(.944 0 0 .962 2.59 3.76)">
+                                    <path class="fill" d="m13.7 80.3c1.53-10.9 2.79-20.3 2.81-21 .0942-3.01 4.01-5.25 9.29-5.32 4.57-.0589 4.95-.21 2.96-1.17-1.75-.843-2.18-1.71-1.81-3.68.263-1.42.763-4.74 1.11-7.39.528-4 1.17-5.13 3.81-6.75 2.8-1.71 5.11-1.94 19.3-1.94 21.4-.005 21.1-.211 19.4 13.6-1.93 15.7-1.01 14.4-10.2 14.4-7.1 0-7.91-.188-7.46-1.75.272-.962.798-4.14 1.17-7.05l.673-5.3-11.7.606-1.13 6.93c-1.22 7.49-3.55 10.6-7.97 10.6-1.86 0-2.46.668-2.91 3.25-.622 3.59-4.53 30.6-4.53 31.3 0 .245-3.52.445-7.81.445h-7.81z"></path>
+                                    <path class="fill" d="m32.4 65.6-2.51-12.2 7 5.89 3.86.466-1.38 2.72-2.3 2.25-1.69.594z"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    <span class="activeSpan"></span>
+                `;
+                break;
         default:
             break;
     }
@@ -476,11 +543,6 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         const loadingStateUrl = document.createElement("div");
         loadingStateUrl.classList.add("loadingStateUrl");
         loadingStateUrl.innerText = "Loading...";
-        // if(browsersRunning === 0) {
-        //     document.body.appendChild(chromeJS);
-        // }
-        browsersRunning++;
-        localStorage.setItem("browser", browsersRunning);
         const searchbar = document.createElement("input");
         searchbar.classList.add("searchbar");
         searchbar.spellcheck = false;
@@ -517,14 +579,14 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         winconts.appendChild(titleElement);
         winconts.appendChild(controls);
         titleElement.innerHTML = `
-            <svg class="bIcon backFrame" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+           <!-- <svg class="bIcon backFrame" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <polyline points="15 6 9 12 15 18" />
             </svg>
             <svg class="bIcon forwardFrame" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <polyline points="9 6 15 12 9 18" />
-            </svg>
+            </svg> -->
             <svg class="bIcon ref" viewBox="0 0 80 80" fill="none">
                 <g clip-path="url(#clip0_207_19)">
                     <path d="M66.5 43.3333C65.6571 49.7642 62.4993 55.6674 57.6177 59.9379C52.7362 64.2085 46.4656 66.5535 39.9798 66.5341C33.4939 66.5147 27.2375 64.1322 22.3816 59.8326C17.5257 55.5329 14.4032 49.6109 13.5988 43.1752C12.7943 36.7394 14.3629 30.231 18.011 24.8684C21.6592 19.5057 27.1366 15.6565 33.4182 14.0412C39.6997 12.4258 46.3546 13.1552 52.1371 16.0927C57.9196 19.0302 62.4333 23.9745 64.8333 30M66.5 13.3333V30H49.8333" stroke="#FF2825" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -547,28 +609,28 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         framew.setAttribute("frameborder", "0");
         frameC.appendChild(framew);
         newwin.appendChild(frameC);
-        const backFrame = newwin.querySelector(".backFrame");
-        const forwardFrame = newwin.querySelector(".forwardFrame");
+        // const backFrame = newwin.querySelector(".backFrame");
+        // const forwardFrame = newwin.querySelector(".forwardFrame");
         const refFrame = newwin.querySelector(".ref");
         
-        backFrame.onclick = () => {
-            if(framew.contentWindow.history.length > 2) {
-                newwin.appendChild(loadingStateUrl);
-                framew.contentWindow.history.back();
-                framew.onload = () => {
-                    newwin.removeChild(loadingStateUrl);
-                }
-            }
-        }
-        forwardFrame.onclick = () => {
-            if(framew.contentWindow.history.length >= 3) {
-                newwin.appendChild(loadingStateUrl);
-                framew.contentWindow.history.forward();
-                framew.onload = () => {
-                    newwin.removeChild(loadingStateUrl);
-                }
-            }
-        }
+        // backFrame.onclick = () => {
+        //     if(framew.contentWindow.history.length > 2) {
+        //         newwin.appendChild(loadingStateUrl);
+        //         framew.contentWindow.history.back();
+        //         framew.onload = () => {
+        //             newwin.removeChild(loadingStateUrl);
+        //         }
+        //     }
+        // }
+        // forwardFrame.onclick = () => {
+        //     if(framew.contentWindow.history.length >= 3) {
+        //         newwin.appendChild(loadingStateUrl);
+        //         framew.contentWindow.history.forward();
+        //         framew.onload = () => {
+        //             newwin.removeChild(loadingStateUrl);
+        //         }
+        //     }
+        // }
         refFrame.onclick = () => {
             newwin.appendChild(loadingStateUrl);
             framew.contentWindow.location.reload();
@@ -577,10 +639,8 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             }
         }
         let search = newwin.querySelector(".searchbar");
-        let text = searchbar.innerHTML;
         searchbar.addEventListener("keydown", (e) => {
             let safeSearch = localStorage.getItem("ss");
-            let framew = newwin.querySelector("#frame");
             function ser() {
                 newwin.appendChild(loadingStateUrl);
                 framew.onload = () => {
@@ -610,12 +670,35 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 ser()
             }
         });
+        // framew.addEventListener("load", () => {
+        //     let url = framew.src;
+        //     const urlFirstDecode = xor.decode(url.slice(3));
+        //     console.log(urlFirstDecode);
+        //     const urlSecondDecode = urlFirstDecode.slice(22);
+        //     console.log(urlSecondDecode);
+        // });
     } 
     if(appName === "player") {
         winconts.appendChild(favicon);
         winconts.appendChild(controls);
         newwin.appendChild(winconts);
-        titleElement.innerHTML = `<button class="openF m"><span></span>Open</button>`;
+        titleElement.innerHTML = `<button class="openF m"><span></span>Open</button><button class="settingsV m"><span></span>Settings</button>`;
+        framew.classList.add("player");
+        framew.setAttribute("src", link);
+        framew.setAttribute("id", "frame");
+        framew.setAttribute("class", "frame");
+        framew.setAttribute("frameborder", "0");
+        newwin.appendChild(framew);
+    }
+    if(appName === "image") {
+        winconts.appendChild(favicon);
+        winconts.appendChild(controls);
+        newwin.appendChild(winconts);
+        if(localStorage.getItem("photoCoverApp") === "false") {
+            titleElement.innerHTML = `<button class="openImage m"><span></span>Open</button><button class="settingsI m"><span></span>Settings</button><button class="zoomIn m zz"><span></span>+</button><button class="zoomOut m zz"><span></span>-</button>`;
+        } else {
+            titleElement.innerHTML = `<button class="openImage m"><span></span>Open</button><button class="settingsI m"><span></span>Settings</button>`;
+        }
         framew.setAttribute("src", link);
         framew.setAttribute("id", "frame");
         framew.setAttribute("class", "frame");
@@ -630,23 +713,17 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         framew.setAttribute("id", "frame");
         framew.setAttribute("class", "frame");
         framew.setAttribute("frameborder", "0");
-        framew.onload = () => {
-            framew.contentWindow.postMessage("*", id);
-        }
         newwin.appendChild(framew);
     }
     if(appName === "text") {
         winconts.appendChild(favicon);
         winconts.appendChild(controls);
         newwin.appendChild(winconts);
-        titleElement.innerHTML = `<button class="saveF m"><span></span>Save</button>`;
+        titleElement.innerHTML = `<button class="saveF m"><span></span>Save</button><button class="settingsT m"><span></span>Settings</button>`;
         framew.setAttribute("src", link);
         framew.setAttribute("id", "frame");
         framew.setAttribute("class", "frame");
         framew.setAttribute("frameborder", "0");
-        framew.onload = () => {
-            framew.contentWindow.postMessage("*", id);
-        }
         newwin.appendChild(framew);
     }
     if(browser === false && os === false) {
@@ -673,16 +750,36 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         newwin.appendChild(framew);
     }
     framew.onload = () => {
-        framew.contentWindow.document.onfocus = (e) => {
-            appendFocusScript();
-        };
+        if(localStorage.getItem("allowDockColorChange") === "true") {
+            const body = framew.contentDocument.querySelector("body");
+            const computed = framew.contentWindow.getComputedStyle(body).backgroundColor;
+            dock.style.backgroundColor = computed;
+            document.querySelectorAll(".dockbtn").forEach((item) => {
+                item.style.boxShadow = "0 0 5px 3px rgba(0, 0, 0, 0.36)";
+                item.style.backgroundColor = "var(--dock-background)";
+            });
+        }
         appendFocusScript();
         function appendFocusScript() {
-            framew.contentWindow.postMessage(windowID, "*");
+            if(textAppText) {
+                const message = JSON.stringify({
+                    text: textAppText,
+                    id: windowID,
+                });
+                framew.contentWindow.postMessage(message, "*");
+            } else {
+                const message = JSON.stringify({
+                    id: windowID,
+                });
+                framew.contentWindow.postMessage(message, "*");
+            }
             const frameScript = document.createElement("script");
-            frameScript.innerHTML = `                
+            frameScript.innerHTML = `
+                let id;
+                
                 window.onmessage = (e) => {
-                    id = e.data;
+                    const data = JSON.parse(e.data);
+                    id = data.id;
                 }
                 
                 window.onclick = function() {
@@ -705,6 +802,15 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                         infoTitle: title,
                         type: "focus"
                     });
+                    if(localStorage.getItem("allowDockColorChange") === "true") {
+                        const body = document.body;
+                        const computed = window.getComputedStyle(body).backgroundColor;
+                        window.parent.document.querySelector(".dock").style.backgroundColor = computed;
+                        window.parent.document.querySelectorAll(".dockbtn").forEach((item) => {
+                            item.style.boxShadow = "0 0 5px 3px rgba(0, 0, 0, 0.36)";
+                            item.style.backgroundColor = "var(--dock-background)";
+                        });
+                    }
                     window.parent.postMessage(focus, '*');
                 }
             `;
@@ -716,7 +822,37 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         if(data.type === "focus") {
             appsShellName.innerText = data.infoTitle;
         }
-    })
+        if(data.type === "video") {
+            const videoLink = data.videoLink;
+            const videoIframe = document.querySelector(".player");
+            const video = videoIframe.contentWindow.document.querySelector("#mc");
+            if(video) {
+                video.src = videoLink;
+            }
+        }
+    });
+    function windowFocused() {
+        if(localStorage.getItem("allowDockColorChange") === "true") {
+            const body = framew.contentDocument.querySelector("body");
+            const computed = framew.contentWindow.getComputedStyle(body).backgroundColor;
+            dock.style.backgroundColor = computed;
+            document.querySelectorAll(".dockbtn").forEach((item) => {
+                item.style.boxShadow = "0 0 5px 3px rgba(0, 0, 0, 0.36)";
+                item.style.backgroundColor = "var(--dock-background)";
+            });
+        }
+    }
+    function windowFocused() {
+        if(localStorage.getItem("allowDockColorChange") === "true") {
+            const body = framew.contentDocument.querySelector("body");
+            const computed = framew.contentWindow.getComputedStyle(body).backgroundColor;
+            dock.style.backgroundColor = computed;
+            document.querySelectorAll(".dockbtn").forEach((item) => {
+                item.style.boxShadow = "0 0 5px 3px rgba(0, 0, 0, 0.36)";
+                item.style.backgroundColor = "var(--dock-background)";
+            });
+        }
+    }
 
     let winc = newwin.querySelectorAll(".winc");
     if(localStorage.getItem('btnr') === "yes") {
@@ -767,20 +903,24 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         checkOverflow();
     }
     newwin.querySelector(".close").addEventListener("click", () => {
-        newwin.remove();
-        if(appName === "browser") {
-            browsersRunning--;
+        if(!appOptions.classList.contains("h")) {
+            appOptions.classList.toggle("h");
         }
+        newwin.remove();
         appsShellName.innerText = "";
         appsShellName.setAttribute("data-id", "");
-        appShell.remove();
-        if(browsersRunning === 1) {
-            chromeJS.remove();
-        }
-        localStorage.setItem("browser", browsersRunning);
         newdock.remove();
     });
     newwin.querySelector('.maxi').onclick = () => {
+        var winFocus = document.querySelectorAll(".winFocus");
+        for (let i = 0; i < winFocus.length; i++) {
+            const element = winFocus[i];
+            if(element.length > 0) {
+                document.querySelector(".shell").classList.remove("shadow");
+            } else {
+                document.querySelector(".shell").classList.add("shadow");
+            }
+        }
         var newwinHEIGHT = document.querySelector('.win').clientHeight;
         var newwinWIDTH = document.querySelector('.win').clientWidth;
         if(newwin.classList.contains('maxiN')) {
@@ -822,16 +962,16 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     }
 
     dragger.addEventListener("dblclick", (e) => {
-        if(e.target.classList.contains('winc') || e.target.classList.contains('winic') || e.target.classList.contains("searchbar") || e.target.classList.contains("openF") || e.target.classList.contains("bIcon")) {
+        if(e.target.classList.contains('winc') || e.target.classList.contains('winic') || e.target.classList.contains("searchbar") || e.target.classList.contains("m") || e.target.classList.contains("bIcon")) {
             e.target.click();
         } else {
             newwin.querySelector('.maxi').click();
         }
     });
 
-
     dragger.addEventListener("mousedown", mousedown);
     function mousedown(e) {
+        windowFocused();
         const appItem = document.querySelectorAll(".appItem");
         for (let i = 0; i < appItem.length; i++) {
             appItem[i].classList.remove("active");
@@ -848,7 +988,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             appsShellName.setAttribute("data-id", windowID);
         }
 
-        if(e.target.classList.contains('winc') || e.target.classList.contains('winic') || e.target.classList.contains('searchbar') || e.target.classList.contains('openF') || e.target.classList.contains('bIcon')) {
+        if(e.target.classList.contains('winc') || e.target.classList.contains('winic') || e.target.classList.contains('searchbar') || e.target.classList.contains('m') || e.target.classList.contains('bIcon')) {
             return
         } else {
             var startX = e.clientX;
@@ -912,7 +1052,130 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             window.removeEventListener("mouseup", mu);
         });
     }
+    let dockPosN = localStorage.getItem('dockPos').toLowerCase();
+    if(dockPosN === "bottom") {
+        const acs = document.querySelectorAll(".activeSpan");
+        for (let i = 0; i < acs.length; i++) {
+            const element = acs[i];
+            element.classList.add("bottom");
+            element.classList.remove("left");
+            element.classList.remove("right");
+        }
+    } else if(dockPosN === "left") {
+        const acs = document.querySelectorAll(".activeSpan");
+        for (let i = 0; i < acs.length; i++) {
+            const element = acs[i];
+            element.classList.add("left");
+            element.classList.remove("right");
+            element.classList.remove("bottom");
+        }
+    } else if(dockPosN === "right") {
+        const acs = document.querySelectorAll(".activeSpan");
+        for (let i = 0; i < acs.length; i++) {
+            const element = acs[i];
+            element.classList.add("right");
+            element.classList.remove("left");
+            element.classList.remove("bottom");
+        }
+    }
     document.body.appendChild(newwin);
+    window.addEventListener("mousedown", (e) => {
+        const ctxm = document.createElement("div");
+        ctxm.classList.add("ctx");
+        ctxm.id = "ctx";
+        const menu = document.createElement("div");
+        menu.classList.add("menu");
+        ctxm.appendChild(menu);
+        if(e.button == 2) {
+            let winID;
+            if(!e.target.classList.contains(".winconts") && e.target != document.body) {
+                winID = e.target.parentElement.parentElement.id;
+            } else {
+                winID = e.target.parenElement.id;
+            }
+            if(e.target.closest(".winconts") && !e.target.closest(".controls") && !e.target.closest(".searchbar") && !e.target.closest(".m") && !e.target.closest(".icon")) {
+                if(document.getElementById("ctx")) {
+                    document.getElementById("ctx").remove();
+                }
+                ctxm.style.top = e.pageY + "px";
+                ctxm.style.left = e.pageX + "px";
+                menu.innerHTML = `
+                    <a class="ctxbt" id="ctxCloseWin">Close</a>
+                    <a class="ctxbt" id="ctxMaxWin">Maximize</a>
+                    <a class="ctxbt" id="ctxMinWin">Minimize</a>
+                    <a class="ctxbt" id="ctxReload">Reload</a>
+                    `;
+                window.addEventListener("mousedown", (e) => {
+                    if (e.button == 0 && !e.target.closest(".ctx")) {
+                        ctxm.remove();
+                    }
+                });
+                document.body.appendChild(ctxm);
+                const ctxCloseWin = ctxm.querySelector("#ctxCloseWin");
+                ctxCloseWin.addEventListener("click", () => {
+                    newwin.querySelector(".close").click();
+                    ctxm.remove();
+                });
+                const ctxMaxWin = document.querySelector("#ctxMaxWin");
+                ctxMaxWin.addEventListener("click", () => {
+                    newwin.querySelector(".maxi").click();
+                    ctxm.remove();
+                });
+                const ctxMinWin = document.querySelector("#ctxMinWin");
+                ctxMinWin.addEventListener("click", () => {
+                    newwin.querySelector(".mini").click();
+                    ctxm.remove();
+                });
+                const ctxReload = document.querySelector("#ctxReload");
+                ctxReload.addEventListener("click", () => {
+                    const frame = newwin.querySelector("iframe");
+                    frame.src = frame.src;
+                    ctxm.remove();
+                });
+            }
+            // if(e.target.closest(".appItem")) {
+            //     if(document.getElementById("ctx")) {
+            //         document.getElementById("ctx").remove();
+            //     }
+            //     if(localStorage.getItem("dockPos") === "Left") {
+            //         ctxm.style.left = "58px";
+            //         ctxm.style.top = e.pageY + "px";
+            //     } else if(localStorage.getItem("dockPos") === "Right") {
+            //         ctxm.style.right = "58px";
+            //         ctxm.style.top = e.pageY + "px";
+            //     } else if(localStorage.getItem("dockPos") === "Bottom") {
+            //         ctxm.style.left = e.pageX + "px";
+            //         ctxm.style.bottom = "58px";
+            //     }
+            //     menu.innerHTML = `
+            //         <a class="ctxbt" id="ctxCloseWin">Close</a>
+            //         <a class="ctxbt" id="ctxMaxWin">Maximize</a>
+            //         <a class="ctxbt" id="ctxMinWin">Minimize</a>
+            //     `;
+            //     document.body.appendChild(ctxm);
+            //     const ctxCloseWin = ctxm.querySelector("#ctxCloseWin");
+            //     ctxCloseWin.addEventListener("click", () => {
+            //         newwin.querySelector(".close").click();
+            //         ctxm.remove();
+            //     });
+            //     const ctxMaxWin = document.querySelector("#ctxMaxWin");
+            //     ctxMaxWin.addEventListener("click", () => {
+            //         newwin.querySelector(".maxi").click();
+            //         ctxm.remove();
+            //     });
+            //     const ctxMinWin = document.querySelector("#ctxMinWin");
+            //     ctxMinWin.addEventListener("click", () => {
+            //         newdock.click();
+            //         ctxm.remove();
+            //     });
+            //     window.addEventListener("mousedown", (e) => {
+            //         if (e.button == 0 && !e.target.closest(".ctx")) {
+            //             ctxm.remove();
+            //         }
+            //     });
+            // }
+        }
+    })
 }
 
 function hideStart() {
@@ -923,11 +1186,13 @@ function hideStart() {
     }
 }
 
-// make a list of available apps
 var availableApps = ["browser", "code", "youtube", "apple music", "spotify", "tidal", "youtube music", "settings", "help", "color picker", "terminal", "video"];
 
-// check for key combos
 window.addEventListener("keydown", (e) => {
+    if(e.altKey && e.key === "w") {
+        const openApps = document.querySelector("#appsOpen");
+        openApps.click();
+    }
     if(e.ctrlKey && e.altKey && e.key == "q") {
         e.preventDefault();
         document.querySelector(".winFocus").querySelector(".frame").contentWindow.location.reload();
@@ -1002,15 +1267,13 @@ window.addEventListener("keydown", (e) => {
             element.classList.remove("active");
         }
         document.querySelector("[data-appId='" + nextWindow.id + "']").classList.add("active");
+        appsShellName.innerHTML = document.querySelector(".winFocus").getAttribute("data-title");
     }
 })
 
 switch(id) {
     case "browser":
         windows("../newwin.html", "../resources/terbium.svg", "Terbium Browser", true, true, false, 'browser');
-        break;
-    case "ruffle":
-        windows('../ruffle/ruffle.html', './resources/ruffle.svg', 'Ruffle', false, true, false, 'ruffle');
         break;
     case "color":
         windows("../color.html", "../resources/terbium.svg", "Terbium Color Picker", false, true, false, "color");
@@ -1041,13 +1304,26 @@ switch(id) {
         windows('https://vscode.dev', '../resources/vsc.ico', 'Visual Studio Code', false, false, false, "code");
         break;
     case "text":
-        windows('../textEditor/editor.html', '../resources/txt.svg', 'Terbium Text Editor', false, true, false, "text");
+        if(text) {
+            windows('../textEditor/editor.html', '../resources/txt.svg', 'Terbium Text Editor', false, true, false, "text", text);
+        } else {
+            windows('../textEditor/editor.html', '../resources/txt.svg', 'Terbium Text Editor', false, true, false, "text");
+        }
         break;
     case "terminal":
         windows("../terminal/terminal.html", "../resources/terminal.svg", "Terbium Terminal", false, true, false, "terminal");
         break;
     case "cmd":
         windows("../terminal/terminal.html", "../resources/terminal.svg", "Terbium Terminal", false, true, false, "terminal");
+        break;
+    case "task":
+        windows("../taskManager/task.html", "../resources/task.svg", "Terbium Task Manager", false, true, false, "task");
+        break;
+    case "image":
+        windows("../image/image.html", "../resources/image.svg", "Image Viewer", false, true, false, "image");
+        break;
+    case "ruffle":
+        windows("../ruffle/ruffle.html", "../resources/ruffle.svg", "Ruffle", false, true, false, "ruffle");
         break;
     default: 
         break;

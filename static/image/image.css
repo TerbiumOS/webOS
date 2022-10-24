@@ -1,0 +1,162 @@
+@font-face {
+    font-family: pro;
+    src: url(../resources/Product.ttf);
+}
+
+[data-theme="dark"] {
+    --taskbar-bg: #282928;
+    --body: #1c1c1c;
+    --color: #d4d4d4;
+    --button-background: #282928;
+    --button-color: #41bc5d;
+
+    --cursorText: url("../resources/cursors/textD.png"), text;
+    --cursorNormal: url("../resources/cursors/normalD.png"), default;
+    --cursorHand: url("../resources/cursors/handD.png"), pointer;
+
+    --switch-thumb: #41bc5d;
+    --switch-back: #313131;
+    --switch-back-shadow: #2b843f;
+}
+
+[data-theme="night"] {
+    --taskbar-bg: #26206A;
+    --body: #181446;
+    --color: #ffe688;
+    --button-background: #26206a;
+    --button-color: #ffe688;
+
+    --cursorText: url("../resources/cursors/textN.png"), text;
+    --cursorNormal: url("../resources/cursors/normalN.png"), default;
+    --cursorHand: url("../resources/cursors/handN.png"), pointer;
+
+    --switch-thumb: #ffe688;
+    --switch-back: #332c84;
+    --switch-back-shadow: #ffe6887d;
+}
+
+[data-theme="fracital"] {
+    --taskbar-bg: #383838;
+    --body: #222;
+    --color: #ff40f7;
+    --button-background: #383838;
+    --button-color: #ff40f7;
+
+    --cursorText: url("../resources/cursors/textF.png"), text;
+    --cursorNormal: url("../resources/cursors/normalF.png"), default;
+    --cursorHand: url("../resources/cursors/handF.png"), pointer;
+
+    --switch-thumb: #ff40f7;
+    --switch-back: #424242d3;
+    --switch-back-shadow: #ff40f787;
+}
+
+html {
+    font-family: pro;
+    height: 100%;
+}
+
+body {
+    cursor: var(--cursorNormal);
+    color: var(--color);
+    background-color: var(--body);
+    margin: 0;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+}
+
+img {
+    border-radius: 2px;
+    filter: drop-shadow(0 0 10px #000000ad);
+}
+
+.imageControls {
+    display: flex;
+    width: min-content;
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    border-bottom-right-radius: 12px;
+}
+
+.btn {
+    background-color: var(--button-background);
+    color: var(--button-color);
+    border: none;
+    cursor: var(--cursorHand);
+    transition: 200ms ease-in-out;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.shown {
+    visibility: visible;
+}
+
+.backy {
+    height: 68px;
+}
+
+.fill {
+    fill: var(--button-color);
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    position: relative;
+    background-color: var(--switch-back);
+    width: 34px;
+    height: 16px;
+    border-radius: 8px;
+    cursor: var(--cursorHand);
+}
+
+input[type="checkbox"]::before {
+    transition: 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    right: 18px;
+    height: 16px;
+    width: 16px;
+    transform: scale(1.2);
+    background-color: var(--switch-thumb);
+    border-radius: 14px;
+    box-shadow: 0 0 3px 1px var(--switch-back-shadow);
+}
+
+input:checked[type="checkbox"]::before {
+    right: 0;
+}
+
+.settingsWindow {
+    z-index: -1;
+    display: grid;
+    justify-content: center;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    position: absolute;
+    inset: 0;
+    background-color: var(--taskbar-bg);
+}
+
+.settingsContent {
+    height: min-content;
+    display: grid;
+    justify-content: left;
+    width: max-content;
+}
+
+.settingsItem {
+    align-items: center;
+    padding: 8px 12px;
+    background-color: var(--body);
+    border-radius: 6px;
+    display: flex;
+    gap: 4px;
+}
+
+.btnQ {
+    padding: 4px 12px;
+}

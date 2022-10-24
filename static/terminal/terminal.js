@@ -1,8 +1,8 @@
 const body = document.body;
 let termId;
 window.addEventListener('message', function (e) {
-    const data = e.data;
-    termId = data;
+    const data = JSON.parse(e.data);
+    termId = data.id;
 });
 class xor {
     static encode(str) {
@@ -16,7 +16,8 @@ const state = document.querySelector("html").getAttribute("data-state");
 const output = document.createElement("div");
 const commandBefore = document.createElement("div");
 commandBefore.classList.add("commandSection");
-const commands = ["help", "-h", "open", "echo", "logout", "shutdown", "version", "sp", "math"];
+// add back the -video command once done
+const commands = ["help", "-h", "open", "echo", "logout", "shutdown", "version", "sp", "math", "theme"];
 if(state === "new") {
     body.innerHTML = `
     <svg width="612" height="116" class="term" viewBox="0 0 612 116" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +46,7 @@ if(state === "new") {
     `;
     document.querySelector(".termin").innerHTML = `
         <div style="line-height: 1.6;">
-            Welcome to the Terbium Terminal type <code class="command">help</code> for available commands and keybindings or<br> <code class="command">-help <mark class="codeMark">command</mark></code> for a commands usage.
+            Welcome to the Terbium Terminal type <code class="command">help</code> for available commands and keybindings or<br> <code class="command">-h <mark class="codeMark">command</mark></code> for a commands usage.
         </div>
         <div class="linebreak"></div>
         <div class="warning">
@@ -80,11 +81,9 @@ command.addEventListener("keydown", (e) => {
     }
     if (e.key === "Enter") {
         const newCommand = command.innerText;
-        // insert the newCommand into the commandHistoryElement
         commandHistoryElement.querySelector(".command-container").innerHTML += `
             <div class="commandP commandChild">${newCommand}</div>
         `;
-        // when user presses the up arrow key log the previous command going backwards through the array and vice versa
         e.preventDefault();
         output.innerHTML = "";
         if(command.textContent.split(" ")[0] === "help") {
@@ -94,10 +93,12 @@ command.addEventListener("keydown", (e) => {
                 <p><code class="command">sp</code> --> Set a new password or leave it blank to remove it</p>
                 <p><code class="command">open</code> --> Opens your specified app that is available by url loading</p>
                 <p><code class="command">help</code> --> this command</p>
+                <p><code class="command">-h</code> --> Shows the usage of a command</p>
                 <p><code class="command">echo</code> --> echo your text</p>
                 <p><code class="command">logout</code> --> logout/restart of Terbium</p>
                 <p><code class="command">shutdown</code> --> shutdown Terbium</p>
                 <p><code class="command">math</code> --> Do some math</p>
+                <p><code class="command">theme</code> --> Change the theme</p>
                 <div class="linebreak"></div>
                 <h3>Keybindings</h3>
                 <p><code class="command">Ctrl + L</code> --> Clear the terminal</p>
@@ -105,21 +106,49 @@ command.addEventListener("keydown", (e) => {
                 <p><code class="command">Ctrl + H</code> --> Show previous commands</p>
             `;
         }
-        const availableCommands = ["sp", "open", "help", "-h", "echo", "logout", "shutdown", "math"];
+        const availableCommands = ["sp", "open", "help", "-h", "echo", "logout", "shutdown", "math", "theme"];
         if(!availableCommands.includes(command.textContent.split(" ")[0])) {
             output.innerHTML = `
                 <p>Command not found</p>
                 <div class="linebreak"></div>
             `;
         }
-        // to be done once the window manager can become modular
-
-        // if(command.textContent.includes("open")) {
-        //     const url = command.textContent.split(" ")[1];
-        //     if(url.includes("http") || url.includes("https")) {
-        //         windows(url, "../resources/browser.png", "Terbium Browser", true, true, false, "browser");
-        //     }
-        // }
+        if(command.textContent.split(" ")[0] === "theme") {
+            const availableThemes = ["dark", "night", "fracital"];
+            if(!availableThemes.includes(command.textContent.split(" ")[1])) {
+                output.innerHTML = `
+                    <p>Theme not found</p>
+                    <div class="linebreak"></div>
+                `;
+            }
+            if(command.textContent.split(" ")[1] === "" || !command.textContent.split(" ")[1]) {
+                output.innerHTML = `
+                    <p>Missing argument <code class="command">theme name</code></p>
+                    <div class="linebreak"></div>
+                `;
+            }
+            if(availableThemes.includes(command.textContent.split(" ")[1])) {
+                if(command.textContent.split(" ")[1] === document.querySelector("html").getAttribute("data-theme")) {
+                    output.innerHTML = `
+                        <p>Theme is already set to <code class="command">${command.textContent.split(" ")[1]}</code></p>
+                        <div class="linebreak"></div>
+                    `;
+                    return
+                }
+                document.querySelector("html").setAttribute("data-theme", command.textContent.split(" ")[1]);
+                localStorage.setItem("theme", command.textContent.split(" ")[1]);
+                window.parent.document.querySelector("html").setAttribute("data-theme", command.textContent.split(" ")[1]);
+                const win = window.parent.document.querySelectorAll(".win");
+                for(let i = 0; i < win.length; i++) {
+                    const element = win[i];
+                    element.querySelector("iframe").contentWindow.document.querySelector("html").setAttribute("data-theme", command.textContent.split(" ")[1]);
+                }
+                output.innerHTML = `
+                    <p>Theme changed to <code class="command">${command.textContent.split(" ")[1]}</code></p>
+                    <div class="linebreak"></div>
+                `;
+            }
+        }
         if(command.textContent.split(" ")[0] === "echo") {
             const text = command.textContent.split(" ").slice(1).join(" ");
             output.innerHTML = `
@@ -175,6 +204,13 @@ command.addEventListener("keydown", (e) => {
                             <p>This will return 4</p>
                         `;
                     }
+                    if(lastArg === "theme") {
+                        output.innerHTML = `
+                            <p>Change the theme</p>
+                            <p>Usage: <code class="command">theme <mark class="codeMark">theme name</mark></code></p>
+                            <p class="extraSpace">Available themes: <code class="command">dark</code>, <code class="command">night</code>, <code class="command">fracital</code></p>
+                        `;
+                    }
                 } else {
                     output.innerHTML = `
                         <p>Command <code class="command">${command.textContent.split(" ")[1]}</code> not found</p>
@@ -218,22 +254,50 @@ command.addEventListener("keydown", (e) => {
         if(command.textContent.split(" ")[0] === ("open")) {
             const text = command.textContent.split(" ").slice(1).join(" ");
             const url = window.location.href.split("/")[2].split(".")[0];
-            let apps = ["cmd", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text"];
+            let apps = ["cmd", "terminal", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text", "browser", "image"];
             if(apps.includes(text)) {
-                window.parent.window.location.href = `http://${url}?app=${text}`;
-            } else if(text.includes("browser")) {
-                output.innerHTML = `
-                    <div class="warning">
-                        The browser is in a state that it can be ran by url loading, this is being worked on check the changelog for more info and why <code>open</code> opens apps by url loading
-                    </div>
-                    <div class="linebreak"></div>
-                `;
-            } else if(text.endsWith(" ")) {
-                text = text.slice(0, -1);
-                if(apps.includes(text)) {
-                    window.parent.window.location.href = `http://${url}?app=${text}`;
+                switch(text) {
+                    case "cmd" || "terminal":
+                        window.parent.windows("../terminal/terminal.html", "../resources/terminal.svg", "Terbium Terminal", false, true, false, "terminal");
+                        break;
+                    case "video":
+                        window.parent.windows("../player/player.html", "../resources/video.svg", "Terbium Player", false, true, false, "player");
+                        break;
+                    case "canvas":
+                        window.parent.windows("canvas.html", "../resources/canvas.svg", "Terbium Canvas", false, true, false, "canvas");
+                        break;
+                    case "color":
+                        window.parent.windows("color.html", "../resources/color.svg", "Terbium Color", false, true, false, "color");
+                        break;
+                    case "help":
+                        window.parent.windows("help.html", "../resources/help.svg", "Terbium Help", false, true, false, "help");
+                        break;
+                    case "changelog":
+                        window.parent.windows("../changes/index.html", "../resources/changelog.svg", "Terbium Changelog", false, true, false, "changelog");
+                        break;
+                    case "settings":
+                        window.parent.windows("settings.html", "../resources/settings.svg", "Terbium Settings", false, true, false, "settings");
+                        break;
+                    case "yt" || "youtube":
+                        window.parent.windows("https://youtube.com", "../resources/yt.png", "YouTube", false, false, false, "youtube");
+                        break;
+                    case "code":
+                        window.parent.windows("https://vscode.dev", "../resources/vsc.ico", "Visual Studio Code", false, false, false, "code");
+                        break;
+                    case "text":
+                        window.parent.windows("../textEditor/editor.html", "../resources/text.svg", "Terbium Text Editor", false, true, false, "text");
+                        break;
+                    case "browser":
+                        window.parent.windows("newwin.html", "../resources/browser.svg", "Terbium Browser", true, true, false, "browser");
+                        break;
+                    case "image":
+                        window.parent.windows("../image/image.html", "../resources/image.svg", "Terbium Image Viewer", false, true, false, "image");
+                        break;
                 }
-            } else if(text == "") {
+            } else if(text.startsWith("http://") || text.startsWith("https://")) {
+                console.log(text);
+                window.parent.windows("newwin.html", "../resources/browser.svg", "Terbium Browser", true, true, false, "browser", text);
+            } else if(text == "" || !text.startsWith("http://") || !text.startsWith("https://")) {
                 output.innerHTML = `
                     <p>Missing argument <code>app</code></p>
                     <div class="linebreak"></div>
@@ -296,6 +360,77 @@ command.addEventListener("keydown", (e) => {
                 }
             }
         }
+        if(command.textContent.split(" ")[0] === ("-video")) {
+            const text = command.textContent.split(" ").slice(1).join(" "); 
+            if(text === "" || !text.includes("https://" || "http://")) {
+                output.innerHTML = `
+                    <p>Missing argument <code>video url</code></p>
+                    <div class="linebreak"></div>
+                `;
+            }
+            if(text.includes("https://" || "http://")) {
+                const url = text.split("://")[1];
+                if(url) {
+                    const dots = document.querySelector(".dots");
+                    if(!dots) {
+                        output.innerHTML = `
+                            <p>Testing connection<p class="dots">...</p></p>
+                            <div class="linebreak"></div>
+                        `;
+                    }
+                    const loadingINT = setInterval(() => {
+                        if(output.querySelector(".dots").textContent.length < 3) {
+                            output.querySelector(".dots").textContent += ".";
+                        } else {
+                            output.querySelector(".dots").textContent = "";
+                        }
+                    }, 500)
+                    setTimeout(() => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("GET", text, true);
+                        xhr.send();
+                        xhr.onreadystatechange = function() {
+                            if(xhr.readyState === 4) {
+                                console.log(xhr.status);
+                                if(xhr.status === 200) {
+                                    clearInterval(loadingINT);
+                                    output.innerHTML = `
+                                        <p>the video player is now playing <code>${text}</code></p>
+                                        <div class="linebreak"></div>
+                                    `;
+                                } else if(xhr.status === 404) {
+                                    clearInterval(loadingINT);
+                                    output.innerHTML = `
+                                        <p>Invalid video url</p>
+                                        <div class="linebreak"></div>
+                                    `;
+                                };
+                            };
+                        };
+                    });
+                if(text.startsWith("https://imgur.com/")) {
+                    console.log(text);
+                    const iframe = document.createElement("iframe");
+                    iframe.style.display = "none";
+                    iframe.src = "sw" + "/" + xor.encode(text);
+                    document.body.appendChild(iframe);
+                    const post = iframe.contentDocument.querySelector(".PostVideo-video-wrapper").querySelector("video").querySelector("source").src;
+                    if(post) {
+                        output.innerHTML = `
+                            <p>the video player is now playing <code>${post}</code></p>
+                            <div class="linebreak"></div>
+                        `;
+                    } else {
+                        console.log("no video");
+                    }
+                }
+                const message = JSON.stringify({
+                    videoLink: text,
+                });
+                window.parent.postMessage(message, '*');
+                }
+            }
+        }
         command.innerHTML = "";
     } else if (e.key === "Escape") {
         e.preventDefault();
@@ -323,7 +458,7 @@ command.addEventListener("keydown", (e) => {
             const text1 = command.textContent.split(" ")[0];
             const text2 = command.textContent.split(" ")[1];
             if(text1 === "open") {
-                let apps = ["cmd", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text"];
+                let apps = ["cmd", "terminal", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text", "browser", "image"];
                 for(let i = 0; i < apps.length; i++) {
                     if(apps[i].startsWith(text2)) {
                         command.innerHTML = `open ${apps[i]}`;
@@ -335,11 +470,28 @@ command.addEventListener("keydown", (e) => {
                         sel.addRange(range);
                     }
                 }
-            } else if(text1 === "-h") {
-                let comms = ["help", "open", "echo", "logout", "shutdown", "version", "sp", "math"];
+            } 
+            
+            if(text1 === "-h") {
+                let comms = ["help", "open", "echo", "logout", "shutdown", "version", "sp", "math", "theme"];
                 for(let i = 0; i < comms.length; i++) {
                     if(comms[i].startsWith(text2)) {
                         command.innerHTML = `-h ${comms[i]}`;
+                        const range = document.createRange();
+                        const sel = window.getSelection();
+                        range.setStart(command.childNodes[0], command.textContent.length);
+                        range.collapse(true);
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+                }
+            }
+
+            if(text1 === "theme") {
+                let themes = ["night", "dark", "fracital"];
+                for(let i = 0; i < themes.length; i++) {
+                    if(themes[i].startsWith(text2)) {
+                        command.innerHTML = `theme ${themes[i]}`;
                         const range = document.createRange();
                         const sel = window.getSelection();
                         range.setStart(command.childNodes[0], command.textContent.length);
@@ -368,6 +520,7 @@ command.addEventListener("keydown", (e) => {
         }
     }
     document.querySelector(".termin").appendChild(output);
+    output.classList.add("output");
 })
 
 window.addEventListener("load", function(e) {

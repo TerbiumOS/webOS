@@ -41,10 +41,9 @@ dark.addEventListener("click", () => {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
         themeMAIN.setAttribute('data-theme', 'dark');
-        const wino = window.parent.document.querySelectorAll(".win");
-        for (let i = 0; i < wino.length; i++) {
-            const element = wino[i];
-            element.querySelector("iframe").contentWindow.document.querySelector("html").setAttribute("data-theme", "dark");
+        for (let a = 0; a < win.length; a++) {
+            const element = win[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'dark');
         }
     }
     if(html === "dark") {
@@ -60,13 +59,13 @@ night.addEventListener("click", () => {
     let html = document.documentElement.getAttribute("data-theme");
     if(html !== "night") {
         document.documentElement.setAttribute('data-theme', 'night');
-        themeMAIN.setAttribute('data-theme', 'night');
         localStorage.setItem('theme', 'night');
-        const wino = window.parent.document.querySelectorAll(".win");
-        for (let i = 0; i < wino.length; i++) {
-            const element = wino[i];
-            element.querySelector("iframe").contentWindow.document.querySelector("html").setAttribute("data-theme", "night");
+        themeMAIN.setAttribute('data-theme', 'night');
+        for (let a = 0; a < win.length; a++) {
+            const element = win[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'night');
         }
+
     }
     if(html === "night") {
         alert("Night theme is already enabled");
@@ -80,11 +79,11 @@ frac.addEventListener("click", () => {
         document.documentElement.setAttribute('data-theme', 'fracital');
         localStorage.setItem('theme', 'fracital');
         themeMAIN.setAttribute('data-theme', 'fracital');
-        const wino = window.parent.document.querySelectorAll(".win");
-        for (let i = 0; i < wino.length; i++) {
-            const element = wino[i];
-            element.querySelector("iframe").contentWindow.document.querySelector("html").setAttribute("data-theme", "fracital");
+        for (let a = 0; a < win.length; a++) {
+            const element = win[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'fracital');
         }
+
     }
     if(html === "fracital") {
         alert("Fracital theme is already enabled");
@@ -185,13 +184,12 @@ resetAll.addEventListener("click", () => {
     } else {
         return
     }
-})
+});
 
 if(localStorage.getItem("winBtnPos") === null) {
     localStorage.setItem("winBtnPos", "right");
 }
 
-// change window buttons position
 switch(localStorage.getItem("winBtnPos")) {
     case null:
         btnrPos[0].checked = true;
@@ -270,7 +268,6 @@ switch(localStorage.getItem("dockPos").toLowerCase()) {
         break;
 }
 
-// change dock position
 for (let i = 0; i < dockPos.length; i++) {
     const element = dockPos[i];
     element.addEventListener("click", () => {
@@ -299,6 +296,13 @@ for (let i = 0; i < dockPos.length; i++) {
             window.parent.document.getElementById("appsClose").classList.add(`left`);
             window.parent.document.getElementById("appsClose").classList.remove(`right`);
             window.parent.document.getElementById("appsClose").classList.remove(`bottom`);
+            const acs = window.parent.document.querySelectorAll(".activeSpan");
+            for (let i = 0; i < acs.length; i++) {
+                const element = acs[i];
+                element.classList.add(`left`);
+                element.classList.remove(`right`);
+                element.classList.remove(`bottom`);
+            }
         } else if(element.getAttribute("data-pos").toLowerCase() == "right") {
             window.parent.document.getElementById("dock").classList.add(`dRight`);
             window.parent.document.getElementById("dock").classList.remove(`dLeft`);
@@ -306,6 +310,13 @@ for (let i = 0; i < dockPos.length; i++) {
             window.parent.document.getElementById("appsClose").classList.add(`right`);
             window.parent.document.getElementById("appsClose").classList.remove(`left`);
             window.parent.document.getElementById("appsClose").classList.remove(`bottom`);
+            const acs = window.parent.document.querySelectorAll(".activeSpan");
+            for (let i = 0; i < acs.length; i++) {
+                const element = acs[i];
+                element.classList.add(`right`);
+                element.classList.remove(`left`);
+                element.classList.remove(`bottom`);
+            }
         } else if(element.getAttribute("data-pos").toLowerCase() == "bottom") {
             window.parent.document.getElementById("dock").classList.add(`dBottom`);
             window.parent.document.getElementById("dock").classList.remove(`dRight`);
@@ -313,11 +324,17 @@ for (let i = 0; i < dockPos.length; i++) {
             window.parent.document.getElementById("appsClose").classList.add(`bottom`);
             window.parent.document.getElementById("appsClose").classList.remove(`right`);
             window.parent.document.getElementById("appsClose").classList.remove(`left`);
+            const acs = window.parent.document.querySelectorAll(".activeSpan");
+            for (let i = 0; i < acs.length; i++) {
+                const element = acs[i];
+                element.classList.add(`bottom`);
+                element.classList.remove(`right`);
+                element.classList.remove(`left`);
+            }
         }
     });
 }
 
-// enable or disable login
 if(localStorage.getItem("pass") === "none") {
     login.checked = false;
 } else if(localStorage.getItem("pass") != "none") {
@@ -379,8 +396,6 @@ login.addEventListener("click", () => {
             break;
     }
 })
-
-// enabling and disabling of always maximized apps
 
 switch(localStorage.getItem("fullscreen")) {
     case null:
@@ -653,10 +668,13 @@ for (let i = 0; i < dropBtns.length; i++) {
     let dropContent = parent.querySelector(".dropdown-content");
     element.addEventListener("click", () => {
         if(!dropContent.classList.contains("show")) {
+            let height = dropContent.children.length * 27;
+            dropContent.style.height = `${height}px`;
             dropContent.classList.add("show");
             element.classList.add("dropMorph");
             element.classList.remove("dropBtn");
         } else {
+            dropContent.style.height = "";
             element.classList.remove("dropMorph");
             element.classList.add("dropBtn");
             dropContent.classList.remove("show");
@@ -669,6 +687,7 @@ for (let i = 0; i < dropBtns.length; i++) {
                 dropContent.classList.add("show");
             } else if(dropContent.classList.contains("show")) {
                 dropContent.classList.remove("show");
+                dropContent.style.height = "";
             }
             element.classList.remove("dropMorph");
             element.classList.add("dropBtn");

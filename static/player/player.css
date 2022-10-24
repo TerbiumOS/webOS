@@ -4,6 +4,7 @@
 }
 
 [data-theme="dark"] {
+    --taskbar-bg: #282928;
     --background: #1c1c1c;
     --choice-background: #1c1c1c;
     --accent: #31bd4e;
@@ -18,9 +19,13 @@
     --seek-after: #2aad3a;
     --seek-thumb: #239130;
     --seek-thumb-boxShadow: 0px 0px 1px 1px #23913078, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --switch-thumb: #41bc5d;
+    --switch-back: #313131;
+    --switch-back-shadow: #2b843f;
 }
 
 [data-theme="fracital"] {
+    --taskbar-bg: #383838;
     --background: #222222;
     --accent: #FF40F7;
     --button-background: #383838;
@@ -34,9 +39,13 @@
     --seek-after: #FF40F7;
     --seek-thumb: #FF40F7;
     --seek-thumb-boxShadow: 0px 0px 1px 1px #FF40F778, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --switch-thumb: #ff40f7;
+    --switch-back: #424242d3;
+    --switch-back-shadow: #ff40f787;
 }
 
 [data-theme="night"] {
+    --taskbar-bg: #26206A;
     --background: #181446;
     --button-background: #26206a;
     --button-color: #fff7a5;
@@ -50,6 +59,9 @@
     --seek-after: #fff7a5;
     --seek-thumb: #fff7a5;
     --seek-thumb-boxShadow: 0px 0px 1px 1px #fff7a578, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --switch-thumb: #ffe688;
+    --switch-back: #332c84;
+    --switch-back-shadow: #ffe6887d;
 }
 
 .openF {
@@ -147,6 +159,7 @@ html {
 
 body {
     background-color: var(--background-win);
+    color: var(--accent);
     display: grid;
     height: 100%;
     margin: 0;
@@ -585,4 +598,57 @@ li p {
     margin-top: -8px;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    position: relative;
+    background-color: var(--switch-back);
+    width: 34px;
+    height: 16px;
+    border-radius: 8px;
+    cursor: var(--cursorHand);
+}
+
+input[type="checkbox"]::before {
+    transition: 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    right: 18px;
+    height: 16px;
+    width: 16px;
+    transform: scale(1.2);
+    background-color: var(--switch-thumb);
+    border-radius: 14px;
+    box-shadow: 0 0 3px 1px var(--switch-back-shadow);
+}
+
+input:checked[type="checkbox"]::before {
+    right: 0;
+}
+
+.settingsWindow {
+    display: grid;
+    justify-content: center;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    position: absolute;
+    inset: 0;
+    background-color: var(--taskbar-bg);
+    z-index: -1;
+}
+
+.settingsContent {
+    padding: 8px 12px;
+    height: min-content;
+    display: grid;
+    justify-content: left;
+    width: max-content;
+    background-color: var(--background);
+    border-radius: 6px;
+}
+
+.settingsItem {
+    display: flex;
+    gap: 4px;
 }

@@ -124,13 +124,10 @@ body {
     outline: 1px solid var(--commands-outline);
     box-shadow: 0px 0px 12px 6px var(--commmands-boxshadow);
     border-radius: 6px;
-    margin-bottom: 2em;
+    margin-bottom: 22px;
+    margin-top: 22px;
     padding: 7px 10px;
     gap: 8px;
-}
-
-command {
-    height: 23px;
 }
 
 code {

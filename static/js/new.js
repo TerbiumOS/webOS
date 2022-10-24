@@ -6,8 +6,6 @@ const style = document.getElementById("relsn");
 const favi = document.getElementById("favi");
 const logo = document.getElementById("logo");
 
-const parentDoc = window.parent.document.querySelector("html");
-
 class xor {
     static encode(str) {
         return encodeURIComponent(str.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));

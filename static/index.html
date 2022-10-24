@@ -12,10 +12,19 @@
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#4cb05e">
         <link href="index.css" id="rels" rel="stylesheet">
         <script src="index.js" defer></script>
-        <script async src="https://arc.io/widget.min.js#nxu6Wm1G"></script>
+        <script src="/js/tabs.js" defer></script>
+
+        <script async src="https://arc.io/widget.min.js#dyZq31aP"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.register('/sw.js', {
+                  scope: '/sw/',
+              });
+            };
+        </script>
     </head>
-    <body tabindex="-1" oncontextmenu="return false;" class="noSelect" data-notification="false">
-        <div class="shell" id="shell">
+    <body tabindex="-1" oncontextmenu="return false;" class="noSelect" id="no" data-notification="false">
+        <div class="shell shadow" id="shell">
             <svg xmlns="http://www.w3.org/2000/svg" class="appI" id="appsL" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <circle cx="6" cy="16" r="3" />
@@ -28,10 +37,12 @@
             </div>
             <div class="showDesk windowsShown" id="showDesk" title="Show Desktop"></div>
         </div>
-        <!-- <div class="appOptions h">
+        <div class="appOptions h">
             <button data-event="newwin" id="newWin" class="appOptionsBtn newwin">New Window</button>
+            <button data-event="minimize" id="minimize" class="appOptionsBtn minimizeApp">Minimize</button>
+            <button data-event="maximize" id="maximize" class="appOptionsBtn maximizeApp">Maximize</button>
             <button data-event="close" class="appOptionsBtn closeApp">Close</button>
-        </div> -->
+        </div>
         <div id="apps" class="apps hidden">
             <div class="sysc">
                 <div class="sys">
@@ -138,7 +149,7 @@
                             <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M9 23C9 19.6863 11.6863 17 15 17H65.6111C68.9248 17 71.6111 19.6863 71.6111 23V57C71.6111 60.3137 68.9248 63 65.6111 63H15C11.6863 63 9 60.3137 9 57V23ZM38.3889 46.4945C38.3889 45.9422 38.8366 45.4945 39.3889 45.4945H56.5555C57.1078 45.4945 57.5555 45.9422 57.5555 46.4945V49.6056C57.5555 50.1579 57.1078 50.6056 56.5555 50.6056H39.3889C38.8366 50.6056 38.3889 50.1579 38.3889 49.6056V46.4945ZM21.2652 45.9362C20.8421 46.2912 20.787 46.9219 21.142 47.345L23.6893 50.3808C24.0443 50.8039 24.6751 50.8591 25.0981 50.5041L34.2339 42.8382L37.2697 40.2909C37.6928 39.9359 37.748 39.3051 37.393 38.8821L34.8456 35.8463L34.8452 35.8457L27.1798 26.7105C26.8248 26.2874 26.194 26.2322 25.771 26.5872L22.7352 29.1346C22.3121 29.4896 22.2569 30.1203 22.6119 30.5434L28.1976 37.2002L28.8344 38.2495C29.0609 38.6227 29.0192 39.0996 28.7314 39.4277L27.9221 40.3504L27.922 40.3505L21.2652 45.9362ZM29.635 38.9132L28.1976 37.2002L29.635 38.9131L29.635 38.9132Z"/>
                         </svg>
                     </div>
-                    <div class="deskapp" data-appName="ruffle" title="ruffle" onclick="windows('./ruffle/ruffle.html', './resources/ruffle.svg', 'Ruffle', false, true, false, 'ruffle');">
+                    <div class="deskapp" data-appName="ruffle" title="Ruffle" onclick="windows('ruffle/ruffle.html', './resources/ruffle.svg', 'Ruffle', false, true, false, 'ruffle');">
                         <svg class="appIcon" width="40.1" height="42.9" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" sodipodi:docname="ruffle.svg"
                             version="1.1" viewBox="0 0 40.1 42.9" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#"
                             xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -167,6 +178,11 @@
                                     </g>
                                 </g>
                             </g>
+                        </svg>
+                    </div>
+                    <div class="deskapp" data-appName="image" title="Image Viewer" onclick="windows('image/image.html', './resources/image.svg', 'Image Viewer', false, true, false, 'image');">
+                        <svg class="appIcon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M14 8C10.6863 8 8 10.6863 8 14V66C8 69.3137 10.6863 72 14 72H66C69.3137 72 72 69.3137 72 66V14C72 10.6863 69.3137 8 66 8H14ZM46.6545 32.6273C50.8318 32.6273 54.2182 29.2409 54.2182 25.0636C54.2182 20.8864 50.8318 17.5 46.6545 17.5C42.4773 17.5 39.0909 20.8864 39.0909 25.0636C39.0909 29.2409 42.4773 32.6273 46.6545 32.6273ZM22.6569 37.7475L10.6865 60.5663C8.55578 64.628 11.5017 69.5 16.0883 69.5H50.4364H64.7475C68.83 69.5 71.1918 64.8719 68.7963 61.5661L59.3509 48.5314C57.5301 46.2969 53.3213 46.2165 51.3097 48.2709C51.2511 48.3307 51.1933 48.3915 51.1355 48.4523L51.1351 48.4527C51.0037 48.5908 50.8723 48.7289 50.7311 48.8568L41.0293 57.6389L39.5636 55.7909L27.5209 37.5325C26.3398 35.7419 23.6753 35.8597 22.6569 37.7475Z"/>
                         </svg>
                     </div>
                 </div>
@@ -207,7 +223,6 @@
         <script src="./js/notifications.js"></script>
         <script src="./js/localforage.min.js"></script>
         <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
-        <script src="./js/chrome-tabs.js"></script>
         <noscript style="position: absolute;">ENABLE JAVASCRIPT!! Thanks!</noscript>
     </body>
 </html>

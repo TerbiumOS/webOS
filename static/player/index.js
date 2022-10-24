@@ -1,7 +1,48 @@
+const settingsV = window.parent.document.querySelector(`.settingsV`);
+const settings = document.querySelector('.settingsWindow');
+settingsV.addEventListener('click', function () {
+    if (!settings.classList.contains('show')) {
+        settings.style.zIndex = 101;
+        setTimeout(() => {
+            settings.style.opacity = 1;
+            settings.classList.toggle('show');
+        }, 50)
+    } else if(settings.classList.contains('show')) {
+        settings.style.zIndex = -1;
+        setTimeout(() => {
+            settings.style.opacity = 0;
+            settings.classList.toggle('show');
+        }, 50)
+    }
+});
+
+const ap = document.querySelector('#ap');
+ap.addEventListener('click', function () {
+    switch(ap.checked) {
+        case true:
+            document.querySelector("video").autoplay = true;
+            localStorage.setItem('autoplay', 'true');
+            break;
+        case false:
+            document.querySelector("video").autoplay = false;
+            localStorage.setItem('autoplay', 'false');
+            break;
+        default:
+            break;
+    }
+});
+
+if(localStorage.getItem('autoplay') === "true") {
+    ap.checked = true;
+    document.querySelector("video").autoplay = true;
+} else if(localStorage.getItem('autoplay') === "false") {
+    ap.checked = false;
+    document.querySelector("video").autoplay = false;
+}
+
 const openFile = window.parent.document.querySelector(".openF");
 openFile.addEventListener("click", () => {
     const choice = document.createElement("div");
-    // check if the choice element has already been created
     if (document.querySelector(".choice")) {
         document.querySelector(".choice").remove();
     } else {
@@ -55,4 +96,4 @@ openFile.addEventListener("click", () => {
             choice.remove();
         });
     }
-})
+});

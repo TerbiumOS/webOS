@@ -30,9 +30,9 @@
     --userselect-background: #ffffff15;
     --userselect-color: #41bc5d;
 
-    --cursorText: url("/resources/cursors/textD.png") text;
-    --cursorNormal: url("/resources/cursors/normalD.png") default;
-    --cursorHand: url("/resources/cursors/handD.png") pointer;
+    --cursorText: url("../resources/cursors/textD.png") text;
+    --cursorNormal: url("../resources/cursors/normalD.png") default;
+    --cursorHand: url("../resources/cursors/handD.png") pointer;
 
     --cat-background: #111111;
     --title-border-color: white;
@@ -64,9 +64,9 @@
     --userselect-background: #32299b;
     --userselect-color: #fff7a5;
 
-    --cursorText: url("/resources/cursors/textN.png") text;
-    --cursorNormal: url("/resources/cursors/normalN.png") default;
-    --cursorHand: url("/resources/cursors/handN.png") pointer;
+    --cursorText: url("../resources/cursors/textN.png") text;
+    --cursorNormal: url("../resources/cursors/normalN.png") default;
+    --cursorHand: url("../resources/cursors/handN.png") pointer;
 
     --cat-background: #0e0a40;
     --title-border-color: #ffe688;
@@ -96,9 +96,9 @@
     --userselect-background: #ffffff1a;
     --userselect-color: #ffbefc;
 
-    --cursorText: url("/resources/cursors/textF.png") text;
-    --cursorNormal: url("/resources/cursors/normalF.png") default;
-    --cursorHand: url("/resources/cursors/handF.png") pointer;
+    --cursorText: url("../resources/cursors/textF.png") text;
+    --cursorNormal: url("../resources/cursors/normalF.png") default;
+    --cursorHand: url("../resources/cursors/handF.png") pointer;
 
     --cat-background: #1c1c1c;
     --title-border-color: #ff40f7;
@@ -235,7 +235,7 @@ body {
     width: max-content;
     padding: 6px;
     transition: ease 0.5s;
-    cursor: url("/resources/cursors/handF.png"), pointer !important;
+    cursor: url("../resources/cursors/handF.png"), pointer !important;
 }
 
 .btn.frac:hover {
@@ -253,7 +253,7 @@ body {
     width: max-content;
     padding: 6px;
     transition: ease 0.5s;
-    cursor: url("/resources/cursors/handD.png"), pointer !important;
+    cursor: url("../resources/cursors/handD.png"), pointer !important;
 }
 
 .btn.dark:hover {
@@ -273,7 +273,7 @@ body {
     font-family: Metro;
     padding: 6px;
     transition: ease 0.5s;
-    cursor: url("/resources/cursors/handN.png"), pointer !important;
+    cursor: url("../resources/cursors/handN.png"), pointer !important;
 }
 
 .btn.night:hover {
@@ -328,6 +328,7 @@ body {
     display: flex;
     gap: 4px;
     align-items: center;
+    position: relative;
 }
 
 .slides.flexy {
@@ -417,14 +418,14 @@ input[type=number] {
 .dropdown {
     position: relative;
     width: max-content;
-    height: max-content;
+    height: auto;
     padding: 6px;
     border-radius: 4px;
     transition: ease-in-out 200ms;
 }
 
 .dropbtn {
-    background-color: var(--dropdown-boxShadow-hover);
+    background-color: #ff3ff5;
     box-shadow: 0 0 8px 2px var(--dropdown-boxShadow-hover);
     color: var(--dropdown-button-color-hover);
     border: none;
@@ -472,6 +473,7 @@ input[type=number] {
     box-shadow: 0 0 16px 4px rgba(0,0,0,0.2);
     transition: ease-in-out 200ms;
     background-color: var(--dropdown-button-background);
+    height: 0;
 }
 
 .dropdown-content a {
@@ -491,4 +493,5 @@ input[type=number] {
 .dropdown-content.show {
     visibility: visible;
     opacity: 1;
+    height: 81px;
 }

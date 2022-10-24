@@ -8,8 +8,49 @@
     <link rel="stylesheet" href="editor.css">
     <link rel="stylesheet" href="../styles/cursors.css">
 </head>
-    <body>
-        <div class="editArea ce" id="editor" contenteditable="true"></div>
+    <body id="balls">
+        <div class="settingsWindow">
+            <div class="settingsContent">
+                <div class="settingsItem">
+                    <div class="settingsItemTitle">Font</div>
+                    <div class="dropdown">
+                        <button class="dropbtn engine__dropbtn">
+                            <p class="dropText TEXTF">Roboto</p>
+                        </button>
+                        <div class="dropdown-content fonts ss__dropdown-content">
+                            <a class="dropOptions" data-option="textF_0" data-former="textF" data-font="rob" data-option_name="Roboto">Roboto</a>
+                            <a class="dropOptions" data-option="textF_1" data-former="textF" data-font="pro" data-option_name="Product Sans">Product Sans</a>
+                            <a class="dropOptions" data-option="textF_2" data-former="textF" data-font="Arial" data-option_name="Arial">Arial</a>
+                            <a class="dropOptions" data-option="textF_3" data-former="textF" data-font="dance" data-option_name="Dancing Script">Dancing Script</a>
+                            <a class="dropOptions" data-option="textF_4" data-former="textF" data-font="times" data-option_name="Times New Roman">Times New Roman</a>
+                            <a class="dropOptions" data-option="textF_5" data-former="textF" data-font="caveat" data-option_name="Caveat">Caveat</a>
+                            <a class="dropOptions" data-option="textF_6" data-former="textF" data-font="fuzzy" data-option_name="Fuzzy Bubbles">Fuzzy Bubbles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="settingsItem">
+                    <div class="settingsItemTitle">Font Size</div>
+                    <div class="inputContainer">
+                        <input class="input number" value="16" type="number" max="400" min="8">
+                        <div class="crementContainer">
+                            <div class="increment crement">
+                                <svg class="crementIcon" viewBox="0 0 24 24" fill="none" stroke-linecap="butt" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <polyline points="6 15 12 9 18 15" />
+                                </svg>
+                            </div>
+                            <div class="decrement crement">
+                                <svg class="crementIcon" viewBox="0 0 24 24" fill="none" stroke-linecap="butt" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <textarea spellcheck="false" class="editArea ce" id="editor" contenteditable="true"></textarea>
         <script src="editor.js"></script>
         <script src="../js/theme.js"></script>
     </body>

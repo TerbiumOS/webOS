@@ -3,8 +3,6 @@ function isUrl(val = '') {
     return false;
 };
 
-let ctxm = document.getElementById("ctx");
-
 function share() {
     navigator.clipboard.writeText("https://terbium.ga");
 }
@@ -39,20 +37,34 @@ function hidectx() {
     }
 }
 
-window.oncontextmenu = function (e) {
-    ctxm.classList.remove("hide");
-    ctxm.classList.add("show");
-    ctxm.style.top = e.pageY + "px";
-    ctxm.style.left = e.pageX + "px";
-    ctxm.querySelector(".menu").innerHTML = `
-        <a class="ctxbt" id="share" onclick="share(); hidectx();">Share</a>
-        <a class="ctxbt" onclick="bd(); hidectx();">Background</a>
-        <a class="ctxbt" onclick='windows("../settings.html", "../resources/terbium.svg", "Terbium Settings", false, true, false, "settings"); hidectx();'>Settings</a>
-    `
-    e.preventDefault();
-    document.addEventListener("click", hidectx);
-    return false;
-}
+window.addEventListener("mousedown", (e) => {
+    if (e.button == 2) {
+        const ctxm = document.createElement("div");
+        ctxm.classList.add("ctx");
+        ctxm.id = "ctx";
+        const menu = document.createElement("div");
+        menu.classList.add("menu");
+        ctxm.appendChild(menu);
+        if(e.target == document.body) {
+            if(document.getElementById("ctx")) {
+                document.getElementById("ctx").remove();
+            }
+            ctxm.style.top = e.pageY + "px";
+            ctxm.style.left = e.pageX + "px";
+            menu.innerHTML = `
+                <a class="ctxbt" id="share" onclick="share(); document.getElementById("ctx").remove();">Share</a>
+                <a class="ctxbt" onclick="bd(); document.getElementById("ctx").remove();">Background</a>
+                <a class="ctxbt" onclick='windows("./settings.html", "../resources/terbium.svg", "Terbium Settings", false, true, false, "settings"); document.getElementById("ctx").remove();'>Settings</a>
+            `;
+            window.addEventListener("mousedown", (e) => {
+                if (e.button == 0 && !e.target.closest(".ctx")) {
+                    ctxm.remove();
+                }
+            });
+            document.body.appendChild(ctxm);
+        }
+    }
+})
 
 if(localStorage.getItem("winshadow") === null || localStorage.getItem("shadow") === null) {
     localStorage.setItem("winshadow", "default");
@@ -62,8 +74,6 @@ if(localStorage.getItem("winshadow") === null || localStorage.getItem("shadow") 
 if(localStorage.getItem("showDeskOnHover") === null) {
     localStorage.setItem("showDeskOnHover", "yes");
 }
-
-// localStorage.setItem("background", "default");
 
 if(!localStorage.getItem("background")) {
     document.getElementById("background").classList.add("bHidden");
@@ -75,6 +85,14 @@ if(!localStorage.getItem("background")) {
     document.getElementById("background").src=localStorage.getItem("background");
     document.getElementById("background").classList.remove("bHidden");
     document.querySelector(".logoWall").classList.add("hidden");
+}
+
+if(localStorage.getItem("autoplay") == (null || undefined)) {
+    localStorage.setItem("autoplay", "true");
+}
+
+if(localStorage.getItem("photoCoverApp") == null) {
+    localStorage.setItem("photoCoverApp", "false");
 }
 
 switch (localStorage.getItem("backF")) {
@@ -386,10 +404,42 @@ if(localStorage.getItem("dockPos") == null) {
     appsClose.classList.add("bottom");
     appsClose.classList.remove("left");
     appsClose.classList.remove("right");
+    const acs = window.parent.document.querySelector(".activeSpan");
+    for (let i = 0; i < acs.length; i++) {
+        const element = acs[i];
+        element.classList.add(`bottom`);
+    }
 }
 
 if(localStorage.getItem("powd") == null) {
     localStorage.setItem("powd", "https://www.google.com");
+}
+
+if(localStorage.getItem("dockPos").toLowerCase() == "left") {
+    const acs = document.querySelectorAll(".activeSpan");
+    console.log(acs);
+    for (let i = 0; i < acs.length; i++) {
+        const element = acs[i];
+        element.classList.add(`left`);
+        element.classList.remove(`bottom`);
+        element.classList.remove(`right`);
+    }
+} else if(localStorage.getItem("dockPos").toLowerCase() == "right") {
+    const acs = document.querySelectorAll(".activeSpan");
+    for (let i = 0; i < acs.length; i++) {
+        const element = acs[i];
+        element.classList.add(`right`);
+        element.classList.remove(`bottom`);
+        element.classList.remove(`left`);
+    }
+} else if(localStorage.getItem("dockPos").toLowerCase() == "bottom") {
+    const acs = document.querySelectorAll(".activeSpan");
+    for (let i = 0; i < acs.length; i++) {
+        const element = acs[i];
+        element.classList.add(`bottom`);
+        element.classList.remove(`left`);
+        element.classList.remove(`right`);
+    }
 }
 
 switch(localStorage.getItem("dockPos").toLowerCase()) {
