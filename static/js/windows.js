@@ -47,6 +47,9 @@ let params;
 function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen = Boolean, appName, textAppText) {
     document.querySelector(".shell").appendChild(appShell);
     appShell.appendChild(appsShellName);
+    if(appsShellName.classList.contains("noHoverApps")) {
+        appsShellName.classList.remove("noHoverApps")
+    }
     appsShellName.innerText = title;
     const appID = document.querySelector(".name").getAttribute("data-id");
     let chromeJS = document.createElement("script");
@@ -72,7 +75,11 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     newwin.setAttribute("data-appName", appName);
 
     appsShellName.onclick = (e) => {
-        appOptions.classList.toggle("h");
+        if(appsShellName.innerHTML == "") {
+            return
+        } else {
+            appOptions.classList.toggle("h");
+        }
         appOptions.querySelector(".closeApp").onclick = (e) => {
             appsShellName.innerHTML = "";
             appOptions.classList.toggle("h");
@@ -910,6 +917,9 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         appsShellName.innerText = "";
         appsShellName.setAttribute("data-id", "");
         newdock.remove();
+        if(document.querySelectorAll(".win").length === 0) {
+            appsShellName.classList.add("noHoverApps");
+        }
     });
     newwin.querySelector('.maxi').onclick = () => {
         var winFocus = document.querySelectorAll(".winFocus");
@@ -1090,9 +1100,10 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             let winID;
             if(!e.target.classList.contains(".winconts") && e.target != document.body) {
                 winID = e.target.parentElement.parentElement.id;
-            } else {
-                winID = e.target.parenElement.id;
+            } if(e.target.classList.contains("winconts")) {
+                winID = e.target.parentElement.id;
             }
+            winEl = document.getElementById(winID);
             if(e.target.closest(".winconts") && !e.target.closest(".controls") && !e.target.closest(".searchbar") && !e.target.closest(".m") && !e.target.closest(".icon")) {
                 if(document.getElementById("ctx")) {
                     document.getElementById("ctx").remove();
@@ -1100,11 +1111,12 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 ctxm.style.top = e.pageY + "px";
                 ctxm.style.left = e.pageX + "px";
                 menu.innerHTML = `
+                    <a class="ctxbt" id="ctxNewWindow">New Window</a>
                     <a class="ctxbt" id="ctxCloseWin">Close</a>
                     <a class="ctxbt" id="ctxMaxWin">Maximize</a>
                     <a class="ctxbt" id="ctxMinWin">Minimize</a>
                     <a class="ctxbt" id="ctxReload">Reload</a>
-                    `;
+                `;
                 window.addEventListener("mousedown", (e) => {
                     if (e.button == 0 && !e.target.closest(".ctx")) {
                         ctxm.remove();
@@ -1128,8 +1140,13 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 });
                 const ctxReload = document.querySelector("#ctxReload");
                 ctxReload.addEventListener("click", () => {
-                    const frame = newwin.querySelector("iframe");
+                    const frame = winEl.querySelector("iframe");
                     frame.src = frame.src;
+                    ctxm.remove();
+                });
+                const ctxNewWindow = document.querySelector("#ctxNewWindow");
+                ctxNewWindow.addEventListener("click", () => {
+                    window.windows(link, icn, title, browser, os, fullscreen, appName, textAppText);
                     ctxm.remove();
                 });
             }
