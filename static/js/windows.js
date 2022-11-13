@@ -1239,7 +1239,7 @@ window.addEventListener("keydown", (e) => {
     }
     if(e.key == "b" && e.altKey && e.ctrlKey) {
         e.preventDefault();
-        windows("../Hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs');
+        windows("../hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs');
     }
     if(e.key == "s" && e.ctrlKey && e.altKey) {
         e.preventDefault();
@@ -1310,7 +1310,7 @@ switch(id) {
         windows("../newwin.html", "../resources/terbium.svg", "Terbium Browser", true, true, false, 'browser');
         break;
     case "hypertabs":
-        windows("../Hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs')
+        windows("../hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs')
     case "color":
         windows("../color.html", "../resources/terbium.svg", "Terbium Color Picker", false, true, false, "color");
         break;

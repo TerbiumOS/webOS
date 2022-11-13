@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New GameTab</title>
+    <link rel='stylesheet' href='\css\css.css'>
+</head>
+<style>
+    body {
+
+        background-color: none;
+        background-attachment: none;
+        background-image: none;
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+        padding: 0;
+        margin: 0;
+    }
+
+    #myUL {
+        background-color: #222;
+        text-decoration: none;
+        margin: 0;
+        list-style: none;
+        list-style-type: none;
+        overflow: hidden;
+        text-align: center;
+        display: grid;
+        padding-top: 15px;
+        justify-content: center;
+        grid-template-columns: 0fr 0fr 0fr 0fr 0fr 0fr;
+    }
+
+    #myUL li {
+        border: 1px solid #9437ff;
+        height: 5vh;
+        margin: 6px;
+    }
+
+    .gimg {
+        float: left;
+        width: 100%;
+        height: 74%;
+        object-fit: fill;
+    }
+
+    a {
+        text-decoration: none;
+        display: block;
+        width: 200px;
+        font-size: 17px;
+        color: #FFF;
+        border-top: solid #333 1px;
+        border-bottom: solid #333 1px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    a:hover {
+        color: #cc0052;
+    }
+
+    .list {
+        background-color: #222;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    #myUL li a {
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+    }
+
+    #search {
+        background-color: #222;
+        width: 19vw;
+        text-decoration: none;
+        color: #FFF;
+        font-family: "Roboto";
+        border: none;
+        outline: none;
+        height: 2.4rem;
+        text-align: center;
+        overflow: scroll;
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+        border-bottom: 2px solid #cdcdcd;
+        background: #707070;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-top: 6px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .search {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #search:focus {
+        border: none;
+        background: #9d9d9d;
+        color: #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+    #search::placeholder {
+        color: #ffffff;
+        opacity: 1;
+        /* Firefox */
+    }
+</style>
+
+<body>
+    <div class="list">
+        <div class="search">
+            <input type="text" id="search" onkeyup="search()" placeholder="Search for Games..">
+        </div>
+        <ul id="myUL">
+            <li><a onClick="location.replace('/g/mc/index.html');">Minecraft ClassiCube</a></li>
+            <li><a onClick="location.replace('/g/sm/index.html');">Super Mario 64</a></li>
+            <li><a onClick="location.replace('/g/2048/index.html');">2048</a></li>
+            <li><a onClick="location.replace('/g/hextris/index.html');">Hextris</a></li>
+            <li><a onClick="location.replace('/g/cookies/index.html');">Cookie Clicker</a></li>
+            <li><a onClick="location.replace('/g/flappybird/index.html');">Flappy Bird</a></li>
+            <li><a onClick="location.replace('/g/nes/index.html');">NES Emulator</a></li>
+            <li><a onClick="location.replace('/g/gba/index.html');">GBA Emulator</a></li>
+            <li><a onClick="location.replace('/g/pacman/index.htm');">Pacman</a></li>
+            <li><a onClick="location.replace('/g/astray/index.html');">Astray</a></li>
+            <li><a onClick="location.replace('/g/towermaster/index.html');">Towermaster</a></li>
+            <li><a onClick="location.replace('/g/spaceinvaders/index.html');">Space Invaders</a></li>
+            <li><a onClick="location.replace('/g/snake/index.html');">Snake</a></li>
+            <li><a onClick="location.replace('/g/tetris/index.html');">Tetris</a></li>
+            <li><a onClick="location.replace('/g/geometrydash/index.html');">Geometry Dash</a></li>
+            <li><a onClick="location.replace('/g/radius-raid/index.html');">Radius Raid</a></li>
+        </ul>
+    </div>
+    <script>
+        // sorts items. i will attempt to minify this code later
+        window.addEventListener('load', function () {
+            var list, i, switching, b, shouldSwitch;
+            list = document.getElementById("myUL");
+            switching = true;
+            while (switching) {
+                switching = false;
+                b = list.getElementsByTagName("li");
+                for (i = 0; i < b.length - 1; i++) {
+                    shouldSwitch = false;
+                    if (b[i].innerText.toLowerCase() > b[i + 1].innerText.toLowerCase()) {
+                        shouldSwitch = true;
+                        break
+                    }
+                }
+                if (shouldSwitch) {
+                    b[i].parentNode.insertBefore(b[i + 1], b[i]);
+                    switching = true
+                }
+            };
+        });
+        // this makes the search box work
+        function search() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = ""
+                } else {
+                    li[i].style.display = "none"
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
