@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bare-server-node": "github:tomphttp/bare-server-node",
+    "@tomphttp/bare-server-node": "^1.2.2",
     "node-static": "^0.7.11",
     "npm": "^8.7.0",
     "path": "^0.12.7",
