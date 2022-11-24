@@ -1,7 +1,9 @@
 import createBareServer from "@tomphttp/bare-server-node";
 import http from "node:http";
+import nodeStatic from "node-static";
 
 const httpServer = http.createServer();
+const serve = new nodeStatic.Server('static/');
 
 const bareServer = createBareServer("/", {
   logErrors: false,

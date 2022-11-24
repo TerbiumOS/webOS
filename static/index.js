@@ -384,9 +384,14 @@ appsOpen.onclick = () => {
     shell.classList.add("noShadow");
     document.querySelector("#appSearch").value = "";
     for(let i = 0; i < apps.length; i++) {
-        apps[i].classList.remove("appShow")
-        apps[i].classList.remove("appHide")
+        apps[i].classList.remove("appShow");
+        apps[i].classList.remove("appHide");
     }
+    let pos = appsOpen.getBoundingClientRect();
+    let posTop = pos.top + 6;
+    let posLeft = pos.left + 6;
+    appsClose.style.top = posTop + "px";
+    appsClose.style.left = posLeft + "px";
 }
 
 appsClose.onclick = () => {
@@ -425,7 +430,6 @@ if(localStorage.getItem("powd") == null) {
 
 if(localStorage.getItem("dockPos").toLowerCase() == "left") {
     const acs = document.querySelectorAll(".activeSpan");
-    console.log(acs);
     for (let i = 0; i < acs.length; i++) {
         const element = acs[i];
         element.classList.add(`left`);

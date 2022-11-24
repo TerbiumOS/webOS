@@ -119,7 +119,6 @@
     /* shell */
     --shell-background: #1e1e1e;
     --shell-outline-color: #272727;
-    --shell-border-color: #1e1e1e;
     --shell-color: #cecece;
     --button-app-close-color: #ffaaaa;
     --button-app-close-hover-background: #da4343;
@@ -218,7 +217,6 @@
     /* shell */
     --shell-background: #161062;
     --shell-outline-color: #efe688;
-    --shell-border-color: #161062;
     --shell-color: #fff7a5;
     --button-app-close-color: #ffaaaa;
     --button-app-close-hover-background: #da4343;
@@ -317,7 +315,6 @@
     /* shell */
     --shell-background: #313131;
     --shell-outline-color: #ff40f7;
-    --shell-border-color: #313131;
     --shell-color: #ff40f7;
     --button-app-close-color: #ffaaaa;
     --button-app-close-hover-background: #da4343;
@@ -977,7 +974,6 @@ li {
     background-color: var(--shell-background);
     border-bottom-left-radius: 13px;
     border-bottom-right-radius: 13px;
-    border-bottom: 1px solid var(--shell-border-color);
     font-size: 21px;
     font-family: prod;
     z-index: 4;

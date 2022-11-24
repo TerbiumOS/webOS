@@ -71,7 +71,7 @@
     --cat-background: #0e0a40;
     --title-border-color: #ffe688;
     --white: #ffe688;
-    --button-background: #0e0a40;
+    --button-background: #3b3497;
     --button-boxShadow: none;
     --button-boxShadow-hover: 0 0 8px 4px #ffe688;
     --button-color: #ffe688;
@@ -83,7 +83,7 @@
     --switch-back: #332c84;
     --switch-back-shadow: #ffe6887d;
     --dropdown-boxShadow-hover: #ffe688;
-    --dropdown-button-background: #0e0a40;
+    --dropdown-button-background: #19126c;
     --dropdown-button-background-hover: #ffe688;
     --dropdown-button-color-hover: #0e0a40;
 }
@@ -264,7 +264,7 @@ body {
 }
 
 .btn.night {
-    background-color: #0e0a40;
+    background-color: #3b3497;
     box-shadow: none;
     color: #ffe688;
     border-radius: 4px;
@@ -425,7 +425,7 @@ input[type=number] {
 }
 
 .dropbtn {
-    background-color: #ff3ff5;
+    background-color: var(--dropdown-button-background-hover);
     box-shadow: 0 0 8px 2px var(--dropdown-boxShadow-hover);
     color: var(--dropdown-button-color-hover);
     border: none;

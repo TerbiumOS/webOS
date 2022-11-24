@@ -919,6 +919,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     localStorage.setItem(appName, a++);
     newwin.querySelector('.mini').onclick = () => {
         newwin.classList.add("winmini");
+        document.querySelector(`[data-appid="${windowID}"]`).classList.remove("active");
         if(maxState === true) {
             newwin.classList.remove("maxiY");
         }
@@ -1224,8 +1225,34 @@ var availableApps = ["browser", "hypertabs", "code", "youtube", "apple music", "
 
 window.addEventListener("keydown", (e) => {
     if(e.altKey && e.key === "w") {
-        const openApps = document.querySelector("#appsOpen");
-        openApps.click();
+        if(document.querySelector("#main").classList.contains("closedA")) {
+            document.querySelector(".appsDesk").classList.toggle("openA");
+            main.classList.toggle("open");
+            main.classList.toggle("closedA");
+            document.querySelector(".showDesk").classList.add("noBorderRadius");
+            shell.classList.add("noShadow");
+            document.querySelector("#appSearch").value = "";
+            for(let i = 0; i < apps.length; i++) {
+                apps[i].classList.remove("appShow");
+                apps[i].classList.remove("appHide");
+            }
+            let pos = appsOpen.getBoundingClientRect();
+            let posTop = pos.top + 6;
+            let posLeft = pos.left + 6;
+            appsClose.style.top = posTop + "px";
+            appsClose.style.left = posLeft + "px";
+        } else if(!document.querySelector("#main").classList.contains("closedA")) {
+            document.querySelector(".appsDesk").classList.toggle("openA");
+            main.classList.toggle("open");
+            main.classList.toggle("closedA");
+            document.querySelector(".showDesk").classList.remove("noBorderRadius");
+            shell.classList.remove("noShadow");
+            document.querySelector("#appSearch").value = "";
+            for(let i = 0; i < apps.length; i++) {
+                apps[i].classList.remove("appShow")
+                apps[i].classList.remove("appHide")
+            }
+        }
     }
     if(e.ctrlKey && e.altKey && e.key == "q") {
         e.preventDefault();
@@ -1295,6 +1322,9 @@ window.addEventListener("keydown", (e) => {
         currentWindow.classList.add("winNotFocus");
         nextWindow.classList.remove("winNotFocus");
         nextWindow.classList.add("winFocus");
+        if(nextWindow.classList.contains("winmini")) {
+            nextWindow.classList.remove("winmini");
+        }
         const appItem = document.querySelectorAll(".appItem");
         for (let i = 0; i < appItem.length; i++) {
             const element = appItem[i];
