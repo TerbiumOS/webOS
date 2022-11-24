@@ -319,6 +319,23 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 <span class="activeSpan"></span>
             `;
             break;
+        case "hypertabs":
+            faviconHTML = `
+                <svg class="favicon stroke" id="favicon" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M18.816 13.58c2.292 2.138 3.546 4 3.092 4.9c-.745 1.46 -5.783 -.259 -11.255 -3.838c-5.47 -3.579 -9.304 -7.664 -8.56 -9.123c.464 -.91 2.926 -.444 5.803 .805" />
+                    <circle cx="12" cy="12" r="7" />
+                </svg>
+            `;
+            newdock.innerHTML = `
+                <svg class="dockIcon stroke" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M18.816 13.58c2.292 2.138 3.546 4 3.092 4.9c-.745 1.46 -5.783 -.259 -11.255 -3.838c-5.47 -3.579 -9.304 -7.664 -8.56 -9.123c.464 -.91 2.926 -.444 5.803 .805" />
+                    <circle cx="12" cy="12" r="7" />
+                </svg>
+                <span class="activeSpan"></span>
+            `;
+            break;
         case "color":
             faviconHTML = `
                 <svg class="favicon" id="favicon" viewBox="0 0 80 80" fill="none">
@@ -1203,7 +1220,7 @@ function hideStart() {
     }
 }
 
-var availableApps = ["browser", "code", "youtube", "apple music", "spotify", "tidal", "youtube music", "settings", "help", "color picker", "terminal", "video"];
+var availableApps = ["browser", "hypertabs", "code", "youtube", "apple music", "spotify", "tidal", "youtube music", "settings", "help", "color picker", "terminal", "video"];
 
 window.addEventListener("keydown", (e) => {
     if(e.altKey && e.key === "w") {
@@ -1222,7 +1239,7 @@ window.addEventListener("keydown", (e) => {
     }
     if(e.key == "b" && e.altKey && e.ctrlKey) {
         e.preventDefault();
-        windows("../newwin.html", "../resources/terbium.svg", "Terbium Browser", true, true, false, 'browser');
+        windows("../hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs');
     }
     if(e.key == "s" && e.ctrlKey && e.altKey) {
         e.preventDefault();
@@ -1292,6 +1309,8 @@ switch(id) {
     case "browser":
         windows("../newwin.html", "../resources/terbium.svg", "Terbium Browser", true, true, false, 'browser');
         break;
+    case "hypertabs":
+        windows("../hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs')
     case "color":
         windows("../color.html", "../resources/terbium.svg", "Terbium Color Picker", false, true, false, "color");
         break;

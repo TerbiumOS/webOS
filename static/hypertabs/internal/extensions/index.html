@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extensions</title>
+  </head>
+
+  <body id="body">
+    <div>
+        <p>You will have to reload Hypertabs to see changes.</p>
+        <div id="manager"></div>
+    </div>
+    <script>
+        window.parent.ActiveExtensions.active.forEach(ext => {
+            if(ext === "core") return;
+            document.getElementById('manager').innerHTML += `<div>${ext}<button onclick="window.parent.toggleActiveExtension('${ext}')">toggle</button></div>`
+        })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+body {
+  font-family: Roboto, "Segoe UI", Tahoma, sans-serif;
+}
+.center {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+}
+
+.btn1 {
+  color: antiquewhite;
+  outline: none;
+  background-color: Transparent;
+  border: none;
+}
+.btn {
+  margin-left: 3px;
+  outline: none;
+  color: antiquewhite;
+  background-color: Transparent;
+  border: none;
+}
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.head-titl {
+  text-align: center;
+  color: #fff;
+}
+
+.ppl {
+  display: inline-grid;
+  justify-content: center;
+  width: 100%;
+  height: 452px;
+}
+
+.duce {
+  color: #fff;
+  display: grid;
+  width: min-content;
+}
+
+.covid {
+  color: #fff;
+  display: grid;
+  width: min-content;
+}
+
+.b3at {
+  color: #fff;
+  display: grid;
+  width: min-content;
+}
+
+.games-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background: #222;
+}
+.crm {
+  width: 112px;
+  height: 84px;
+  vertical-align: top;
+  display: grid;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+}
+.icn {
+  width: 48px;
+  height: 48px;
+}
+.bookmarks {
+  border-bottom: 1px solid black !important;
+  white-space: nowrap;
+}
+#ad {
+  margin-top: 14px;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  width: 32%;
+  border: 1px solid green;
+  padding: 10px;
+}
+
+#ht {
+  max-width: 15%;
+  height: auto;
+}
+fieldset {
+  border: 1px solid #000;
+}
+#input {
+  border: none;
+  border-radius: calc(0.5 * 44px);
+  font-size: 16px;
+  outline: none;
+  position: relative;
+}
+#inputb {
+  border: none;
+  border-radius: calc(0.5 * 44px);
+  font-size: 16px;
+  outline: none;
+  padding-inline-end: 40px;
+  padding-inline-start: 52px;
+  position: relative;
+  width: 80%;
+  height: 44px;
+}
+#inputimg {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  padding-left: 14px;
+  outline: none;
+}
+#txt {
+  padding-top: 50px;
+  font-size: 25px;
+  color: #ffffff;
+  font-weight: normal;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 40px;
+}
+#headtxt {
+  font-size: 80px;
+  color: bisque;
+}
+@media only screen and (max-width: 600px) {
+  #txt {
+    font-size: 14px;
+  }
+  .center {
+    width: 410px;
+  }
+  #inputb {
+    width: 69%;
+  }
+  .crm {
+    width: 93px;
+  }
+  #headtxt {
+    font-size: 70px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #txt {
+    font-size: 12px;
+    width: 97%;
+    word-wrap: normal;
+  }
+  .center {
+    width: 350px;
+  }
+  #inputb {
+    width: 57%;
+  }
+  .crm {
+    width: 85px;
+  }
+  #headtxt {
+    font-size: 60px;
+  }
+}
+@media only screen and (max-width: 330px) {
+  .center {
+    width: 300px;
+  }
+  #weather {
+    visibility: hidden;
+  }
+}
+#bmenu {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 175px;
+}
+#bul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  min-width: 180px;
+}
+#bookmarka {
+  display: inline-block;
+  height: 29.2px;
+  padding-left: 29.2px;
+  font-size: 14px;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  background-size: 20px 20px;
+  background-position: 4.1px 0;
+  background-repeat: no-repeat;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 169px;
+  white-space: nowrap;
+}
+
+.info {
+  margin: 0;
+  position: absolute;
+  top: 2.5em;
+  right: 2em;
+  /* text-align: right; */
+  width: auto;
+  text-align: center;
+  color: bisque;
+}
+#alerts {
+  text-decoration: underline;
+}

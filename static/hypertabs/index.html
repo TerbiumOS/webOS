@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang='en' class='dark-theme'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <link href='css/main.css' rel='stylesheet'>
+  <link href='css/chrome-tabs.css' rel='stylesheet'>
+  <link href='css/chrome-tabs-dark-theme.css' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+  <link rel="manifest" href="manifest.json" />
+  <script src="uv.bundle.js"></script>
+  <script src="uv.config.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+      navigator.serviceWorker.register('/uv.sw.js', {
+          scope: '/sw/',
+      });
+    };
+
+    // check custom functions
+    document.addEventListener('keydown', key => {
+      if (key.ctrlKey) {
+        if (document.getElementsByClassName("chrome-tab")[key.key - 1]) {
+          document.getElementsByClassName("chrome-tab")[key.key - 1].click()
+          chromeTabs.setCurrentTab(document.getElementsByClassName("chrome-tab")[key.key - 1])
+          setInfo(document.getElementsByClassName("chrome-tab")[key.key - 1].ifd + 1)
+        }
+      }
+    })
+    document.addEventListener('mousedown', pass => {
+      if (pass.target.parentElement.id != "optionsdrop") hideId("optionsdrop")
+      if (pass.target.parentElement.id != "ctx") hideId("ctx")
+
+      // there HAS to be a better way to do this.
+      if (!pass.target.classList.contains("extenico")) {
+        if (document.querySelector(".extension_menu")) if (!pass.target.parentElement.classList.contains("extension_menu") && !pass.target.parentElement.parentElement.classList.contains("extension_menu") && !pass.target.classList.contains("extension_menu")) document.querySelector(".extension_menu").style.display = "none"
+      }
+    })
+
+  </script>
+  <meta name="theme-color" content="#252729" />
+</head>
+
+<body id="alpha">
+  <div class='surface'>
+    <div class='mock-browser'>
+      <div id="ctx" class="dropdown-content" style="top:0px;left:0px;right:auto;z-index:99">
+        <a class="pointer" id="pin" onclick="toggleId('ctx');chromeTabs.pinTab(ctxTab)">Pin tab</a> 
+        <a class="pointer" style="margin-left: 0px;"onclick="toggleId('ctx');newTab('ht://newtab')">New tab</a>
+        <a class="pointer"
+          onclick="toggleId('ctx');newTab(document.getElementById(parseInt(ctxTab) + 1).contentWindow.location.href,false);">Duplicate</a>
+          <a class="pointer"
+          onclick="toggleId('ctx');AddBookmark(parseInt(ctxTab) + 1);">Bookmark</a>
+        <a class="pointer"
+          onclick="toggleId('ctx');chromeTabs.removeTab(document.querySelectorAll('[ifd=\'' + ctxTab + '\']')[0]);document.getElementById(parseInt(ctxTab) + 1).remove()">Close</a>
+        <a class="pointer"
+          onclick="toggleId('ctx');document.getElementById(parseInt(ctxTab)+1).contentWindow.location.reload()">Reload</a>
+      </div>
+      <div class='chrome-tabs chrome-tabs-dark-theme' id="tabsmain" style='--tab-content-margin: 9px'>
+        <div class='chrome-tabs-content' id='0'>
+        </div>
+        <div class='chrome-tabs-bottom-bar'></div>
+        <style>
+          .chrome-tabs .chrome-tab {
+            width: 258px;
+          }
+
+          .chrome-tabs .chrome-tab:nth-child(1) {
+            transform: translate3d(0px, 0, 0);
+          }
+
+          .chrome-tabs .chrome-tab:nth-child(2) {
+            transform: translate3d(239px, 0, 0);
+          }
+        </style>
+      </div>
+      <button style='margin-left:0px;' class='material-icons chrome-tab' data-add-tab id='createTab'
+        onclick='newTab("ht://newtab")'>add</button>
+      <div class='mock-browser-content'>
+        <button id='urlbutton'
+          onclick='document.getElementById(getActiveFrameId()).src = getBack(getActiveFrameId())'><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#757575"
+            preserveAspectRatio="xMidYMid meet">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+          </svg></button>
+        <button id='urlbutton'
+          onclick='document.getElementById(getActiveFrameId()).src = getForward(getActiveFrameId())'><svg
+            xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg)" width="24" height="24"
+            viewBox="0 0 24 24" fill="#757575" preserveAspectRatio="xMidYMid meet">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+          </svg></button>
+        <button id='urlbutton'
+          onclick='document.getElementById(getActiveFrameId()).contentWindow.location.reload();'><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#5F6368">
+            <path
+              d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+          </svg></button>
+        <input id='urlbar' list="searchsuggestions"/>
+        <datalist id="searchsuggestions"></datalist>
+        <div id="extensionlist"></div>
+        <button id='urlbutton' onclick='document.getElementById(getActiveFrameId()).requestFullscreen();'>
+          <svg version="1.1" width="24" height="24" viewBox="0.0 0.0 24.0 24.0" fill="none" stroke="none"
+            stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg">
+            <clipPath id="p.0">
+              <path d="m0 0l24.0 0l0 24.0l-24.0 0l0 -24.0z" clip-rule="nonzero" />
+            </clipPath>
+            <g clip-path="url(#p.0)">
+              <path fill="#000000" fill-opacity="0.0" d="m0 0l24.0 0l0 24.0l-24.0 0z" fill-rule="evenodd" />
+              <path fill="#5f6368" d="m6.5537887 4.0406823l0 6.6456695l-2.5196853 0l0 -6.6456695z"
+                fill-rule="evenodd" />
+              <path fill="#5f6368" d="m4.047244 4.0406823l6.645669 0l0 2.5196853l-6.645669 0z" fill-rule="evenodd" />
+              <path fill="#5f6368" d="m4.047244 17.43965l6.645669 0l0 2.5196857l-6.645669 0z" fill-rule="evenodd" />
+              <path fill="#5f6368" d="m4.047244 19.946194l0 -6.645669l2.5196853 0l0 6.645669z" fill-rule="evenodd" />
+              <path fill="#5f6368" d="m17.44621 4.0406823l0 6.6456695l2.5196857 0l0 -6.6456695z" fill-rule="evenodd" />
+              <path fill="#5f6368" d="m19.952755 4.0406823l-6.645668 0l0 2.5196853l6.645668 0z" fill-rule="evenodd" />
+              <path fill="#5f6368" d="m19.952755 17.43965l-6.645668 0l0 2.5196857l6.645668 0z" fill-rule="evenodd" />
+              <path fill="#5f6368" d="m19.952755 19.946194l0 -6.645669l-2.5196838 0l0 6.645669z" fill-rule="evenodd" />
+            </g>
+          </svg> <button id='options'
+            onclick='openMenu("optionsdrop", "themedrop", "extensiondrop", "uadrop", "customtheme");'>&#x22ee;</button>
+      </div>
+      <!-- todo, javascript based dropdown menu  -->
+      <div id='optionsdrop' class='dropdown-content'>
+         <a class="pointer" onclick='toggleId("optionsdrop");'>back</a>
+        <!-- <a class="pointer"
+          onclick='toggleId("optionsdrop");document.querySelector("body").requestFullscreen()'>Fullscreen window</a>
+        <a class="pointer"
+          onclick='toggleId("optionsdrop");skipAd()'>Skip YT AD</a> -->
+        <!-- <a class="pointer" onclick='toggleId("optionsdrop", "uadrop");'>Set user agent</a> Disabled until I finish adding support-->
+        <a class="pointer" onclick='toggleId("optionsdrop", "searchDrop")'>Set search engine</a>
+        <!-- <a class="pointer" onclick='inspect(); toggleId("optionsdrop");'>Open devtools</a> -->
+        <!-- <a class="pointer" onclick='toggleId("themedrop", "optionsdrop");'>Themes</a> Disabled until themes have been reworked -->
+        <!-- <a class="pointer" onclick='toggleId("extensiondrop", "optionsdrop");'>Extensions</a> not yet :(-->
+      </div>
+      <div id="uadrop" class=dropdown-content>
+        <a class="pointer tooldivd" onclick='toggleId("uadrop", "optionsdrop");'>back</a>
+        <div class="dividersua"></div>
+        <a>Set The Useragent (currently not working)</a>
+        <a class="pointer inp"><input class="aa" id="ua" type='text' /></a>
+        <a class="pointer" onclick='document.cookie=`cua=${localStorage.getItem("ua")}`; toggleId("uadrop");'>Apply</a>
+      </div>
+      <div id="searchDrop" class="dropdown-content">
+        <a class="pointer tooldivd" onclick='toggleId("searchDrop", "optionsdrop");'>back</a>
+        <div class="dividerext"></div>
+        <a class="pointer th">Type the url plus search scheme of your engine.<input class="aa" id='customSearch'
+            type='text' placeholder="https://google.com/search?q=" /></a>
+        <a class="pointer bt"
+          onclick='localStorage.setItem("htsearchEngine",document.getElementById("customSearch").value);toggleId("searchDrop");searchEngine=document.getElementById("customSearch").value'>Apply</a>
+        <a></a>
+      </div>
+      <div id="themedrop" class='dropdown-content'>
+        <a class="pointer tooldivd" onclick='toggleId("themedrop", "optionsdrop");'>back</a>
+        <div class="divider"></div>
+        <a class="pointer" onclick='applyTheme("Dark"); toggleId("themedrop");'>Dark Theme</a>
+        <a class="pointer" onclick='applyTheme("Light"); toggleId("themedrop");'>Light Theme</a>
+        <a class="pointer" onclick='toggleId("customtheme", "themedrop")'>Custom Theme</a>
+      </div>
+      <div id="customtheme" class='dropdown-content'>
+        <a class="pointer tooldivd" onclick='toggleId("customtheme", "themedrop")'>back</a>
+        <div class="dividerct"></div>
+        <a>These are color values in hex.<br>To apply theme click apply.<br>NOTE: This will refresh the page.</a>
+        <a class="pointer th">Background <input class="aa" id='tabbkg' type='text' /></a>
+        <a class="pointer th">Tab Hover <input class="aa" id='tabhover' type='text' /></a>
+        <a class="pointer th">Active Tab <input class="aa" id='tabact' type='text' /></a>
+        <a class="pointer th">Active Tab Title <input class="aa" id='tabacttit' type='text' /></a>
+        <a class="pointer th">Inactive Tab Title <input class="aa" id='tabinatit' type='text' /></a>
+        <a class="pointer th">Searchbar<input class="aa" id='searchbar' type='text' /></a>
+        <a class="pointer bt" onclick='applyTheme("Apply"); toggleId("customtheme");'>Apply</a>
+        <a class="pointer bt" onclick='applyTheme("Reset"); toggleId("customtheme");'>Reset</a>
+      </div>
+      <div id="extensiondrop" class='dropdown-content'>
+        <a class="pointer tooldivd" onclick='toggleId("extensiondrop", "optionsdrop")'>back</a>
+        <div class="dividerext"></div>
+        <a class="pointer" onclick="newTab('ht://extensions')">Manage extensions</a>
+        <a class="pointer" onclick="newTab('ht://extensionsmarketplace')">Get extensions</a>
+      </div>
+    </div>
+    <script src='js/xor.js'></script>
+    <script src='js/draggabilly.pkgd.min.js'></script>
+    <script src='js/chrome-tabs.js'></script>
+    <script src='internal/manager.js'></script>
+    <script src='js/js.js'></script>
+    <!-- <script src='js/extensions.js'></script> -->
+    <!-- <script src='js/x/sponsorblock.js'></script>  -->
+    <script src='js/x/DarkMode.js'></script>
+
+    <script>document.cookie = "oldsmobile=badcar"</script>
+  </div>
+</body>
+
+</html>
