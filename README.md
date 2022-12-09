@@ -9,3 +9,4 @@ This web os is packed full of feature ***AND MUCH MORE TO COME***
 2. Change nameservers to cloudflare's
 3. Add CNAME record of @ --> c.terbium.ga
 4. Change SSL/TLS to Full (not strict)
+5. Change SSL/TLS Edge Certificate to Always Use HTTPS
