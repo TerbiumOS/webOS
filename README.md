@@ -12,7 +12,7 @@ This web os is packed full of feature ***AND MUCH MORE TO COME***
   ###### b. Search for a domain. See below. (include .gq,.ga,.ml, etc.)
 ![image](https://user-images.githubusercontent.com/107008636/208793067-61ff29fa-2ea5-428e-b1d0-fd88086afba6.png)
   ###### c. Click "Checkout". See above.
-  ###### d. Select "12 months for FREE" on the right. Then click "Continue". (You will have to create an account at this point)
+  ###### d. Select "12 months @ FREE" on the right. Then click "Continue". (You will have to create an account at this point)
 ![image](https://user-images.githubusercontent.com/107008636/208793754-d384fc31-93f3-48ce-a94f-0116d7dee151.png)
   ###### e. Then, complete the order.
 
@@ -36,12 +36,12 @@ This web os is packed full of feature ***AND MUCH MORE TO COME***
   ###### h. Click "Add Record"
 ![image](https://user-images.githubusercontent.com/107008636/208797506-11ce43d9-e077-49f5-b4d7-ee8c51854ab1.png)
 
-  ###### i. Set "Type" to CNAME, type @ for the name, and then click save.
+  ###### i. Set "Type" to CNAME, type @ for the name, "c.terbium.ga" as the target and then click save.
   
   ###### j. Then click "Continue"
   
   ###### k. Copy your Nameservers
-![image](https://user-images.githubusercontent.com/107008636/208800477-b6dc3e8f-67d0-4e40-b77b-b650413e6361.png)
+![image](https://user-images.githubusercontent.com/107008636/208826599-e1ab0a7d-bd2f-413e-ac1a-c7c1bafb6371.png)
 
   ###### l. Go back to your freenom tab and select "Use custom nameservers"
   
@@ -51,7 +51,7 @@ This web os is packed full of feature ***AND MUCH MORE TO COME***
   ###### n. On Cloudflare click "Done, Check Nameservers" (This part can take a while)
   
   
-#### 4. Change SSL/TLS to Full (not strict)
+#### 4. Change SSL/TLS settings
 
   ###### a. On the left in Cloudflare navigate to SSL/TLS
   
@@ -59,4 +59,10 @@ This web os is packed full of feature ***AND MUCH MORE TO COME***
   ![image](https://user-images.githubusercontent.com/107008636/208798904-d8811034-56ec-4bc0-9ef2-b2bc6cb02f95.png)
   
   ###### c. In Edge Certificates, switch "Always Use HTTPS" on
+  
+  
+#### 5. Final Steps
 
+  ###### a. Wait for the email from Cloudflare that says your site is protected.
+  
+  ###### b. Make sure SSL/TLS is still the same (step 4)
