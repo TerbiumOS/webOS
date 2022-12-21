@@ -45,7 +45,7 @@ This web os is packed full of feature ***AND MUCH MORE TO COME***
 
   ###### l. Go back to your freenom tab and select "Use custom nameservers"
   
-  ###### m. Paste your nameservers, Then click "Change Nameservers"
+  ###### m. Paste your nameservers, Then click "Change Nameservers" EXAMPLE:
 ![image](https://user-images.githubusercontent.com/107008636/208798282-d8ebede1-8955-49b0-b6bf-93e9c155c861.png)
 
   ###### n. On Cloudflare click "Done, Check Nameservers" (This part can take a while)
