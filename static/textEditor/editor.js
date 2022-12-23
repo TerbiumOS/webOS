@@ -11,6 +11,9 @@ window.addEventListener('message', function (e) {
     const homeWindow = window.parent.document.getElementById(appId);
     const editArea = document.querySelector(".editArea");
     let textDecode = decodeURIComponent(data.text);
+    if(textDecode === "undefined") {
+        textDecode = "";
+    }
     editArea.innerHTML = textDecode;
 
     let save = homeWindow.querySelector('.saveF');
