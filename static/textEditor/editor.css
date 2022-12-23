@@ -312,7 +312,7 @@ input:checked[type="checkbox"]::before {
 }
 
 .dropbtn {
-    background-color: #ff3ff5;
+    background-color: var(--dropdown-boxShadow-hover);
     box-shadow: 0 0 8px 2px var(--dropdown-boxShadow-hover);
     color: var(--dropdown-button-color-hover);
     border: none;
