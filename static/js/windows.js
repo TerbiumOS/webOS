@@ -73,6 +73,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     newwin.setAttribute("data-browser", browser);
     newwin.setAttribute("data-fullscreen", fullscreen);
     newwin.setAttribute("data-appName", appName);
+    newwin.setAttribute("data-textAppText", textAppText);
 
     appsShellName.onclick = (e) => {
         if(appsShellName.innerHTML == "") {
@@ -224,13 +225,48 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         default:
             break;
     }
+
+    const appItem = document.querySelectorAll(".appItem");
+    let appCount = 1;
+    let win = document.querySelectorAll(".win");
+    for (let i = 0; i < win.length; i++) {
+        if (win[i].getAttribute("data-appName") === appName) {
+            appCount++;
+        }
+        console.log(appCount);
+    }
+    if(appCount > 1) {
+        let dockItem = document.querySelectorAll(".dockbtn");
+        for (let i = 0; i < dockItem.length; i++) {
+            if(dockItem[i].getAttribute("app") === appName) {
+                dockItem[i].classList.add("group");
+                dockItem[i].setAttribute("data-group", appCount);
+                dockItem[i].setAttribute("data-groupId", newwin.id);
+                break;
+            }
+            const appsGroupsContainer = document.createElement("div");
+            appsGroupsContainer.classList.add("appsGroupsContainer");
+            appsGroupsContainer.classList.add("hidden");
+            appsGroupsContainer.setAttribute("appGroup", "");
+            appsGroupsContainer.setAttribute("data-groupId", newwin.id);
+            appsGroupsContainer.setAttribute("data-group", appCount);
+            appsGroupsContainer.setAttribute("data-appName", appName);
+            document.body.appendChild(appsGroupsContainer);
+            // const newAppGroupItem = document.createElement("div");
+            // newAppGroupItem.classList.add("appGroupItem");
+
+            // appsGroupsContainer.innerHTML = `
+                
+            // `;
+        }
+    }
     let newdock = document.createElement("div");
     newdock.setAttribute("data-appId", newwin.id);
     newdock.classList.add("appItem");
     newdock.classList.add("active");
     newdock.setAttribute("title", title);
+    newdock.setAttribute("app", appName);
     newdock.classList.add("dockbtn");
-    const appItem = document.querySelectorAll(".appItem");
     newdock.classList.add("alert");
     setTimeout(() => {
         newdock.classList.remove("alert");
@@ -551,6 +587,80 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                     <span class="activeSpan"></span>
                 `;
                 break;
+            case "store":
+                faviconHTML = `
+                    <svg class="favicon" id="favicon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_i_1361_2)">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M14 21C11.7909 21 10 22.7909 10 25V66C10 68.2091 11.7909 70 14 70H66C68.2091 70 70 68.2091 70 66V25C70 22.7909 68.2091 21 66 21H14ZM39.4477 38.697C39.4477 39.2493 38.9999 39.697 38.4477 39.697H34.2212C33.6689 39.697 33.2212 40.1448 33.2212 40.697V56.76C33.2212 57.3123 32.7734 57.76 32.2212 57.76H28.2265C27.6742 57.76 27.2265 57.3123 27.2265 56.76V40.697C27.2265 40.1448 26.7788 39.697 26.2265 39.697H22C21.4477 39.697 21 39.2493 21 38.697V35C21 34.4477 21.4477 34 22 34H38.4477C38.9999 34 39.4477 34.4477 39.4477 35V38.697ZM51.1707 34.0335C55.6419 34.0335 58.9207 36.748 58.7883 41.2721C58.7609 42.1554 58.2843 43.6071 57.1731 44.5785C56.8666 44.8464 56.8717 45.3927 57.2056 45.6256C59.6519 47.3319 59.9524 49.9882 59.6824 51.6273C59.0863 55.4477 56.5361 57.76 51.3363 57.76H42.7647C42.2124 57.76 41.7647 57.3123 41.7647 56.76V35.0335C41.7647 34.4812 42.2124 34.0335 42.7647 34.0335H51.1707ZM47.7262 42.3163C47.7262 42.8686 48.174 43.3163 48.7262 43.3163H51.1707C54.0521 43.3163 54.1515 39.0938 51.1707 39.0938H48.7262C48.174 39.0938 47.7262 39.5415 47.7262 40.0938V42.3163ZM47.7262 51.4986C47.7262 52.0509 48.174 52.4986 48.7262 52.4986H51.1707C54.7476 52.4986 54.6814 47.6394 51.1707 47.6394H48.7262C48.174 47.6394 47.7262 48.0871 47.7262 48.6394V51.4986Z" />
+                        </g>
+                        <g filter="url(#filter1_i_1361_2)">
+                            <path class="fill2" d="M22 14C22 11.7909 23.7909 10 26 10H54.6154C56.4847 10 58 11.5153 58 13.3846V13.3846V21H52V17.3846C52 16.28 51.1046 15.3846 50 15.3846H30C28.8954 15.3846 28 16.28 28 17.3846V21H22V14Z" />
+                        </g>
+                        <defs>
+                            <filter id="filter0_i_1361_2" x="8" y="19" width="62" height="51" filterUnits="userSpaceOnUse"
+                                color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha" />
+                                <feOffset dx="-2" dy="-2" />
+                                <feGaussianBlur stdDeviation="2" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1361_2" />
+                            </filter>
+                            <filter id="filter1_i_1361_2" x="20" y="8" width="38" height="13" filterUnits="userSpaceOnUse"
+                                color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha" />
+                                <feOffset dx="-2" dy="-2" />
+                                <feGaussianBlur stdDeviation="1.5" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1361_2" />
+                            </filter>
+                        </defs>
+                    </svg>
+                `;
+                newdock.innerHTML = `
+                    <svg class="dockicon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_i_1361_2)">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M14 21C11.7909 21 10 22.7909 10 25V66C10 68.2091 11.7909 70 14 70H66C68.2091 70 70 68.2091 70 66V25C70 22.7909 68.2091 21 66 21H14ZM39.4477 38.697C39.4477 39.2493 38.9999 39.697 38.4477 39.697H34.2212C33.6689 39.697 33.2212 40.1448 33.2212 40.697V56.76C33.2212 57.3123 32.7734 57.76 32.2212 57.76H28.2265C27.6742 57.76 27.2265 57.3123 27.2265 56.76V40.697C27.2265 40.1448 26.7788 39.697 26.2265 39.697H22C21.4477 39.697 21 39.2493 21 38.697V35C21 34.4477 21.4477 34 22 34H38.4477C38.9999 34 39.4477 34.4477 39.4477 35V38.697ZM51.1707 34.0335C55.6419 34.0335 58.9207 36.748 58.7883 41.2721C58.7609 42.1554 58.2843 43.6071 57.1731 44.5785C56.8666 44.8464 56.8717 45.3927 57.2056 45.6256C59.6519 47.3319 59.9524 49.9882 59.6824 51.6273C59.0863 55.4477 56.5361 57.76 51.3363 57.76H42.7647C42.2124 57.76 41.7647 57.3123 41.7647 56.76V35.0335C41.7647 34.4812 42.2124 34.0335 42.7647 34.0335H51.1707ZM47.7262 42.3163C47.7262 42.8686 48.174 43.3163 48.7262 43.3163H51.1707C54.0521 43.3163 54.1515 39.0938 51.1707 39.0938H48.7262C48.174 39.0938 47.7262 39.5415 47.7262 40.0938V42.3163ZM47.7262 51.4986C47.7262 52.0509 48.174 52.4986 48.7262 52.4986H51.1707C54.7476 52.4986 54.6814 47.6394 51.1707 47.6394H48.7262C48.174 47.6394 47.7262 48.0871 47.7262 48.6394V51.4986Z" />
+                        </g>
+                        <g filter="url(#filter1_i_1361_2)">
+                            <path class="fill2" d="M22 14C22 11.7909 23.7909 10 26 10H54.6154C56.4847 10 58 11.5153 58 13.3846V13.3846V21H52V17.3846C52 16.28 51.1046 15.3846 50 15.3846H30C28.8954 15.3846 28 16.28 28 17.3846V21H22V14Z" />
+                        </g>
+                        <defs>
+                            <filter id="filter0_i_1361_2" x="8" y="19" width="62" height="51" filterUnits="userSpaceOnUse"
+                                color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha" />
+                                <feOffset dx="-2" dy="-2" />
+                                <feGaussianBlur stdDeviation="2" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1361_2" />
+                            </filter>
+                            <filter id="filter1_i_1361_2" x="20" y="8" width="38" height="13" filterUnits="userSpaceOnUse"
+                                color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha" />
+                                <feOffset dx="-2" dy="-2" />
+                                <feGaussianBlur stdDeviation="1.5" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1361_2" />
+                            </filter>
+                        </defs>
+                    </svg>
+                    <span class="activeSpan"></span>
+                `;
         default:
             break;
     }
@@ -916,6 +1026,68 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     let max;
     let dragger = newwin.querySelector("#drag");
     let a = 0;
+    
+    document.onkeydown = (e) => {
+        let focused = document.querySelector(".winFocus");
+        if(e.shiftKey && e.key === "ArrowLeft") {
+            lastWidth = focused.getClientRects()[0].width;
+            if(focused.classList.contains("maxiY")) {
+                focused.style.height = "calc(100% - 37px)";
+                focused.style.width = "calc(50%)";
+                focused.style.left = "0";
+                focused.style.top = "37px";
+                focused.classList.remove("maxiY");
+            } else {
+                focused.style.left = "0";
+                focused.style.top = "37px";
+                focused.style.width = "calc(50%)";
+                focused.style.height = "calc(100% - 37px)";
+                if(!focused.classList.contains("maxiN")) {
+                    focused.classList.add("maxiN");
+                }
+            }
+        } if(e.shiftKey && e.key === "ArrowRight") {
+            lastWidth = focused.getClientRects()[0].width;
+            if(focused.classList.contains("maxiY")) {
+                focused.style.height = "calc(100% - 37px)";
+                focused.style.width = "calc(50%)";
+                focused.style.right = "0";
+                focused.style.left = "0";
+                focused.style.top = "37px";
+                focused.classList.remove("maxiY");
+            } else {
+                focused.style.left = "";
+                focused.style.right = "0";
+                focused.style.top = "37px";
+                focused.style.width = "calc(50%)";
+                focused.style.height = "calc(100% - 37px)";
+                if(!focused.classList.contains("maxiN")) {
+                    focused.classList.add("maxiN");
+                }
+            }
+        } if(e.shiftKey && e.key === "ArrowUp") {
+            if(focused.classList.contains("maxiN")) {
+                focused.style.width = "calc(100%)";
+                focused.style.height = "calc(50%)";
+                focused.style.left = "0";
+                focused.style.top = "37px";
+                focused.classList.remove("maxiN");
+                focused.classList.add("maxiY");
+            } else {
+                focused.style.left = "0";
+                focused.style.top = "37px";
+                focused.style.width = "calc(100%)";
+                focused.style.height = "calc(50%)";
+                if(!focused.classList.contains("maxiY")) {
+                    focused.classList.add("maxiY");
+                } if(focused.classList.contains("maxiN")) {
+                    focused.classList.remove("maxiN");
+                }
+            }
+        } if(e.shiftKey && e.key === "ArrowDown") {
+            focused.querySelector(".mini").click();
+        }
+    }
     localStorage.setItem(appName, a++);
     newwin.querySelector('.mini').onclick = () => {
         newwin.classList.add("winmini");
@@ -931,13 +1103,20 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         if(!appOptions.classList.contains("h")) {
             appOptions.classList.toggle("h");
         }
-        newwin.remove();
         appsShellName.innerText = "";
         appsShellName.setAttribute("data-id", "");
         newdock.remove();
         if(document.querySelectorAll(".win").length === 0) {
             appsShellName.classList.add("noHoverApps");
         }
+        // decrementing appCount
+        appCount--;
+        // getting the first app having the same data-appName to the app being closed and decrement its appCount
+        // let firstApp = document.querySelector(`[app="${newwin.getAttribute("data-appName")}"]`);
+        // console.log(firstApp);
+        // firstApp.setAttribute("data-group", appCount);
+        newwin.remove();
+        console.log(appCount);
     });
     newwin.querySelector('.maxi').onclick = () => {
         var winFocus = document.querySelectorAll(".winFocus");
@@ -1224,7 +1403,8 @@ function hideStart() {
 var availableApps = ["browser", "hypertabs", "code", "youtube", "apple music", "spotify", "tidal", "youtube music", "settings", "help", "color picker", "terminal", "video"];
 
 window.addEventListener("keydown", (e) => {
-    if(e.altKey && e.key === "w") {
+    let keyNameLower = e.key.toLowerCase();
+    if(e.altKey && keyNameLower === "w") {
         if(document.querySelector("#main").classList.contains("closedA")) {
             document.querySelector(".appsDesk").classList.toggle("openA");
             main.classList.toggle("open");
@@ -1254,43 +1434,43 @@ window.addEventListener("keydown", (e) => {
             }
         }
     }
-    if(e.ctrlKey && e.altKey && e.key == "q") {
+    if(e.ctrlKey && e.altKey && keyNameLower == "q") {
         e.preventDefault();
         document.querySelector(".winFocus").querySelector(".frame").contentWindow.location.reload();
     }
-    if(e.key == "d" && e.ctrlKey) {
+    if(e.ctrlKey && keyNameLower == "d") {
         e.preventDefault();
         document.querySelector(".apps").classList.toggle("hidden");
         document.querySelector("#appsL").classList.toggle("appsIF");
         document.querySelector(".apps").classList.toggle("op");
     }
-    if(e.key == "b" && e.altKey && e.ctrlKey) {
+    if(e.altKey && e.ctrlKey && keyNameLower == "b") {
         e.preventDefault();
         windows("../hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs');
     }
-    if(e.key == "s" && e.ctrlKey && e.altKey) {
+    if(keyNameLower == "s" && e.ctrlKey && e.altKey) {
         e.preventDefault();
         windows("../settings.html", "../resources/terbium.svg", "Terbium Settings", false, true, false, "settings");
     }
-    if(e.key == "h" && e.ctrlKey && e.altKey) {
+    if(keyNameLower == "h" && e.ctrlKey && e.altKey) {
         e.preventDefault();
         windows("../help.html", "../resources/terbium.svg", "Terbium Help", false, true, false, 'help')
     }
-    if(e.key == "p" && e.ctrlKey && e.altKey) {
+    if(keyNameLower == "p" && e.ctrlKey && e.altKey) {
         e.preventDefault();
         windows("../color.html", "../resources/terbium.svg", "Terbium Picker", false, true, false, 'color')
     }
-    if(e.key == "t" && e.ctrlKey && e.altKey) {
+    if(keyNameLower == "t" && e.ctrlKey && e.altKey) {
         e.preventDefault();
         windows("../terminal/terminal.html", "../resources/terbium.svg", "Terbium Terminal", false, true, false, 'terminal')
     }
-    if(e.key == "x" && e.ctrlKey && e.altKey) {
+    if(keyNameLower == "x" && e.ctrlKey && e.altKey) {
         e.preventDefault();
         if(document.querySelector(".winFocus")) {
             document.querySelector(".winFocus").querySelector(".close").click();
         }
     }
-    if(e.key == "n" && e.ctrlKey && e.altKey) {
+    if(keyNameLower == "n" && e.ctrlKey && e.altKey) {
         e.preventDefault();
         const win = document.querySelectorAll(".win");
         for (let i = 0; i < win.length; i++) {
@@ -1298,7 +1478,7 @@ window.addEventListener("keydown", (e) => {
             element.querySelector(".mini").click();
         }
     }
-    if(e.key == "c" && e.ctrlKey && e.altKey) {
+    if(keyNameLower == "c" && e.ctrlKey && e.altKey) {
         const win = document.querySelectorAll(".win");
         e.preventDefault();
         for (let i = 0; i < win.length; i++) {

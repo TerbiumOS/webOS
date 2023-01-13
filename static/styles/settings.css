@@ -164,20 +164,19 @@ body {
 
 .taskbar {
     display: flex;
-    width: 100%;
+    width: calc(100% - 10px);
     height: min-content;
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-left: 10px;
+    gap: 10px;
 }
 
 .title {
     color: var(--color);
-    border-left: 3px solid var(--color);
-    padding-left: 10px;
-    margin-left: 7px;
     font-family: Poppins;
-    font-size: 25px
+    font-size: 25px;
 }
 
 .settings {
@@ -494,4 +493,11 @@ input[type=number] {
     visibility: visible;
     opacity: 1;
     height: 81px;
+}
+
+[titleSpan] {
+    height: 30px;
+    background-color: var(--color);
+    width: 5px;
+    border-radius: 6px;
 }
