@@ -74,6 +74,15 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     newwin.setAttribute("data-fullscreen", fullscreen);
     newwin.setAttribute("data-appName", appName);
     newwin.setAttribute("data-textAppText", textAppText);
+    newwin.style.maxHeight = window.innerHeight - 37 + "px";
+    newwin.style.maxWidth = window.innerWidth + "px";
+    newwin.setAttribute("min-height", "499");
+    newwin.setAttribute("min-width", "499");
+    
+    window.onresize = (e) => {
+        newwin.style.maxHeight = window.innerHeight - 37 + "px";
+        newwin.style.maxWidth = window.innerWidth - 37 + "px";
+    }
 
     appsShellName.onclick = (e) => {
         if(appsShellName.innerHTML == "") {
@@ -1285,6 +1294,241 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             element.classList.remove("bottom");
         }
     }
+    const rightResize = document.createElement("div");
+    rightResize.classList.add("rightResize");
+    const bottomResize = document.createElement("div");
+    bottomResize.classList.add("bottomResize");
+    const bottomRightResize = document.createElement("div");
+    bottomRightResize.classList.add("bottomRightResize");
+    const leftResize = document.createElement("div");
+    leftResize.classList.add("leftResize");
+    const topResize = document.createElement("div");
+    topResize.classList.add("topResize");
+    const bottomLeftResize = document.createElement("div");
+    bottomLeftResize.classList.add("bottomLeftResize");
+
+    newwin.appendChild(rightResize);
+    newwin.appendChild(bottomResize);
+    newwin.appendChild(bottomRightResize);
+    newwin.appendChild(leftResize);
+    newwin.appendChild(topResize);
+    newwin.appendChild(bottomLeftResize);
+
+    rightResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startX = e.clientX;
+        var rightest = window.innerWidth - 3;
+        var startWidth = parseInt(document.defaultView.getComputedStyle(newwin).width, 10);
+        function mousemove(e) {
+            if(e.clientX >= rightest) {
+                return
+            }
+            var newX = e.clientX;
+            var deltaX = newX - startX;
+            var newWidth = startWidth + deltaX;
+            newwin.style.width = newWidth + "px";
+            newwin.querySelector("iframe").style.pointerEvents = "none";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    });
+
+    bottomResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startY = e.clientY;
+        var startHeight = parseInt(document.defaultView.getComputedStyle(newwin).height, 10);
+        function mousemove(e) {
+            var newY = e.clientY;
+            var deltaY = newY - startY;
+            var newHeight = startHeight + deltaY;
+            newwin.style.height = newHeight + "px";
+            newwin.querySelector("iframe").style.pointerEvents = "none";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    })
+
+    bottomRightResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startX = e.clientX;
+        var startY = e.clientY;
+        var startWidth = parseInt(document.defaultView.getComputedStyle(newwin).width, 10);
+        var startHeight = parseInt(document.defaultView.getComputedStyle(newwin).height, 10);
+        function mousemove(e) {
+            var newX = e.clientX;
+            var newY = e.clientY;
+            var deltaX = newX - startX;
+            var deltaY = newY - startY;
+            var newWidth = startWidth + deltaX;
+            var newHeight = startHeight + deltaY;
+            newwin.style.width = newWidth + "px";
+            newwin.style.height = newHeight + "px";
+            newwin.querySelector("iframe").style.pointerEvents = "none";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    })
+
+    leftResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startX = e.clientX;
+        var leftest = 0;
+        var startWidth = parseInt(document.defaultView.getComputedStyle(newwin).width, 10);
+        function mousemove(e) {
+            if(e.clientX <= leftest) {
+                return
+            }
+            if(startWidth - (e.clientX - startX) <= newwin.getAttribute("min-width")) {
+                return
+            }
+            var newX = e.clientX;
+            var deltaX = newX - startX;
+            var newWidth = startWidth - deltaX;
+            newwin.style.width = newWidth + "px";
+            newwin.style.left = e.clientX + "px";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    })
+
+    topResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startY = e.clientY;
+        var startHeight = parseInt(document.defaultView.getComputedStyle(newwin).height, 10);
+        function mousemove(e) {
+            if (e.clientY <= "37") {
+                return
+            }
+            if(startHeight - (e.clientY - startY) <= newwin.getAttribute("min-height")) {
+                return
+            }
+            newwin.style.top = e.clientY + "px";
+            var newY = e.clientY;
+            var deltaY = newY - startY;
+            var newHeight = startHeight - deltaY;
+            newwin.style.height = newHeight + "px";
+            newwin.querySelector("iframe").style.pointerEvents = "none";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    })
+
+    bottomLeftResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startX = e.clientX;
+        var startY = e.clientY;
+        var leftest = 0;
+        var startWidth = parseInt(document.defaultView.getComputedStyle(newwin).width, 10);
+        var startHeight = parseInt(document.defaultView.getComputedStyle(newwin).height, 10);
+        function mousemove(e) {
+            if(e.clientX <= leftest) {
+                return
+            }
+            if(startWidth - (e.clientX - startX) <= newwin.getAttribute("min-width")) {
+                return
+            }
+            if(startHeight + (e.clientY - startY) <= newwin.getAttribute("min-height")) {
+                return
+            }
+            var newX = e.clientX;
+            var newY = e.clientY;
+            var deltaX = newX - startX;
+            var deltaY = newY - startY;
+            var newWidth = startWidth - deltaX;
+            var newHeight = startHeight + deltaY;
+            newwin.style.width = newWidth + "px";
+            newwin.style.height = newHeight + "px";
+            newwin.style.left = e.clientX + "px";
+            newwin.querySelector("iframe").style.pointerEvents = "none";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    })
+
+    bottomRightResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startX = e.clientX;
+        var startY = e.clientY;
+        var startWidth = parseInt(document.defaultView.getComputedStyle(newwin).width, 10);
+        var startHeight = parseInt(document.defaultView.getComputedStyle(newwin).height, 10);
+        function mousemove(e) {
+            var newX = e.clientX;
+            var newY = e.clientY;
+            var deltaX = newX - startX;
+            var deltaY = newY - startY;
+            var newWidth = startWidth + deltaX;
+            var newHeight = startHeight + deltaY;
+            newwin.style.width = newWidth + "px";
+            newwin.style.height = newHeight + "px";
+            newwin.querySelector("iframe").style.pointerEvents = "none";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    })
+
+    leftResize.addEventListener("mousedown", (e) => {
+        if(newwin.classList.contains("maxiY")) {
+            return
+        }
+        var startX = e.clientX;
+        var startWidth = parseInt(document.defaultView.getComputedStyle(newwin).width, 10);
+        function mousemove(e) {
+            var newX = e.clientX;
+            var deltaX = newX - startX;
+            var newWidth = startWidth - deltaX;
+            newwin.style.width = newWidth + "px";
+            newwin.querySelector("iframe").style.pointerEvents = "none";
+        }
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", (mu) => {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "auto";
+        });
+    })
+
     document.body.appendChild(newwin);
     window.addEventListener("mousedown", (e) => {
         const ctxm = document.createElement("div");

@@ -154,6 +154,7 @@
     --dock-alert-background: #47ca6360;
     --dock-button-boxshadow: #242424;
     --dock-icon-color: #47CA64;
+    --dock-icon-color2: #419854;
     --dock-button-inactive-span: #424242;
 
     /* context menu */
@@ -252,6 +253,7 @@
     --dock-alert-background: #fff7a560;
     --dock-button-boxshadow: #110d44;
     --dock-icon-color: #fff7a5;
+    --dock-icon-color2: #d1ca7a;
     --dock-button-inactive-span: #594dee;
 
     /* context menu */
@@ -350,6 +352,7 @@
     --dock-alert-background: #FF40F760;
     --dock-button-boxshadow: #282828;
     --dock-icon-color: #FF40F7;
+    --dock-icon-color2: #cc2ec4;
     --dock-button-inactive-span: #606060;
 
     /* context menu */
@@ -1475,9 +1478,9 @@ main > .inputAppSearch {
     min-width: 32px;
 }
 
-.dockbtn.alert {
+/* .dockbtn.alert {
     animation: blink 1s infinite ease-in-out;
-}
+} */
 
 .dockbtn:hover {
     cursor: var(--cursorHand);
@@ -1504,6 +1507,10 @@ main > .inputAppSearch {
 
 .fill {
     fill: var(--dock-icon-color);
+}
+
+.fill2 {
+    fill: var(--dock-icon-color2);
 }
 
 .iconFill1 {
@@ -1559,13 +1566,13 @@ main > .inputAppSearch {
 }
 
 .winNotFocus {
-    z-index: 1;
+    z-index: 3;
     opacity: 0.98;
     filter: blur(1px);
 }
 
 .winFocus {
-    z-index: 2;
+    z-index: 4;
     opacity: 1;
     filter: blur(0px);
 }
@@ -1580,10 +1587,6 @@ main > .inputAppSearch {
 
 .noShadow {
     box-shadow: none !important;
-}
-
-.maxiN {
-    resize: both;
 }
 
 .maxiY {
@@ -2488,4 +2491,82 @@ mark {
     font-size: 11px;
     color: var(--version);
     height: 16px;
+}
+
+.rightResize {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    cursor: e-resize;
+}
+
+.bottomResize {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    cursor: s-resize;
+}
+
+.bottomRightResize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    cursor: se-resize;
+}
+
+.topResize {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    cursor: n-resize;
+}
+
+.leftResize {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    cursor: w-resize;
+}
+
+.bottomLeftResize {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    cursor: sw-resize;
+}
+
+.maxiY .bottomLeftResize {
+    cursor: var(--cursorNormal);
+}
+
+.maxiY .bottomRightResize {
+    cursor: var(--cursorNormal);
+}
+
+.maxiY .topResize {
+    cursor: var(--cursorNormal);
+}
+
+.maxiY .leftResize {
+    cursor: var(--cursorNormal);
+}
+
+.maxiY .rightResize {
+    cursor: var(--cursorNormal);
+}
+
+.maxiY .bottomResize {
+    cursor: var(--cursorNormal);
 }
