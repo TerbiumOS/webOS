@@ -19,6 +19,10 @@
     --body: #222;
     --color: #ff40f7;
 }
+[data-theme="alm"] {
+    --body: #1c1c1c;
+    --color: #E89D46;
+}
 
 html {
     height: 100%;

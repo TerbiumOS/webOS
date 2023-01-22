@@ -44,7 +44,7 @@ const appOptions = document.querySelector(".appOptions")
 
 let params;
 
-function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen = Boolean, appName, textAppText) {
+function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen = Boolean, appName, controlsTypes, textAppText) {
     document.querySelector(".shell").appendChild(appShell);
     appShell.appendChild(appsShellName);
     if(appsShellName.classList.contains("noHoverApps")) {
@@ -97,7 +97,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         }
         appOptions.querySelector(".newwin").onclick = (e) => {
             appOptions.classList.toggle("h");
-            window.windows(link, icn, title, browser, os, fullscreen, appName, textAppText);
+            window.windows(link, icn, title, browser, os, fullscreen, appName, controlsTypes, textAppText);
         }
         appOptions.querySelector(".minimizeApp").onclick = (e) => {
             appOptions.classList.toggle("h");
@@ -179,24 +179,96 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     winconts.classList.add("winconts");
     winconts.setAttribute("id", "drag");
     const controls = document.createElement("div");
-    const controlsHTML = `
-        <a class='winc mini' id="mini">
-            <svg class="winic" id="maxi" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect y="7" width="15" height="1" fill="#D9D9D9"/>
-            </svg>
-        </a>
-        <a id='maxi' class='winc maxi'>
-            <svg id="maxi" class="winic" viewBox="0 0 15 15" fill="none">
-                <rect x="0.75" y="0.75" width="13.5" height="13.5" stroke="white" stroke-width="1.5" />
-            </svg>
-        </a>
-        <a class='close winc' id='close'>
-            <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' id='closei' class="winic">
-                <line x1='18' y1='6' x2='6' y2='18' />
-                <line x1='6' y1='6' x2='18' y2='18' />
-            </svg>
-        </a>
-    `
+    let controlsHTML;
+    if(controlsTypes === "minMaxClose") {
+        controlsHTML = `
+            <a class='winc mini' id="mini">
+                <svg class="winic" id="maxi" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="15" height="1" fill="#D9D9D9"/>
+                </svg>
+            </a>
+            <a id='maxi' class='winc maxi'>
+                <svg id="maxi" class="winic" viewBox="0 0 15 15" fill="none">
+                    <rect x="0.75" y="0.75" width="13.5" height="13.5" stroke="white" stroke-width="1.5" />
+                </svg>
+            </a>
+            <a class='close winc' id='close'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' id='closei' class="winic">
+                    <line x1='18' y1='6' x2='6' y2='18' />
+                    <line x1='6' y1='6' x2='18' y2='18' />
+                </svg>
+            </a>
+        `;
+    } else if(controlsTypes === "minMax") {
+        controlsHTML = `
+            <a class='winc mini' id="mini">
+                <svg class="winic" id="maxi" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="15" height="1" fill="#D9D9D9"/>
+                </svg>
+            </a>
+            <a id='maxi' class='winc maxi'>
+                <svg id="maxi" class="winic" viewBox="0 0 15 15" fill="none">
+                    <rect x="0.75" y="0.75" width="13.5" height="13.5" stroke="white" stroke-width="1.5" />
+                </svg>
+            </a>
+        `;
+    } else if(controlsTypes === "minClose") {
+        controlsHTML = `
+            <a class='winc mini' id="mini">
+                <svg class="winic" id="maxi" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="15" height="1" fill="#D9D9D9"/>
+                </svg>
+            </a>
+            <a class='close winc' id='close'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' id='closei' class="winic">
+                    <line x1='18' y1='6' x2='6' y2='18' />
+                    <line x1='6' y1='6' x2='18' y2='18' />
+                </svg>
+            </a>
+        `;
+    } else if(controlsTypes === "maxClose") {
+        controlsHTML = `
+            <a id='maxi' class='winc maxi'>
+                <svg id="maxi" class="winic" viewBox="0 0 15 15" fill="none">
+                    <rect x="0.75" y="0.75" width="13.5" height="13.5" stroke="white" stroke-width="1.5" />
+                </svg>
+            </a>
+            <a class='close winc' id='close'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' id='closei' class="winic">
+                    <line x1='18' y1='6' x2='6' y2='18' />
+                    <line x1='6' y1='6' x2='18' y2='18' />
+                </svg>
+            </a>
+        `;
+    } else if(controlsTypes === "close") {
+        controlsHTML = `
+            <a class='close winc' id='close'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' id='closei' class="winic">
+                    <line x1='18' y1='6' x2='6' y2='18' />
+                    <line x1='6' y1='6' x2='18' y2='18' />
+                </svg>
+            </a>
+        `;
+    } else if(controlsTypes === undefined) {
+        controlsHTML = `
+            <a class='winc mini' id="mini">
+                <svg class="winic" id="maxi" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="7" width="15" height="1" fill="#D9D9D9"/>
+                </svg>
+            </a>
+            <a id='maxi' class='winc maxi'>
+                <svg id="maxi" class="winic" viewBox="0 0 15 15" fill="none">
+                    <rect x="0.75" y="0.75" width="13.5" height="13.5" stroke="white" stroke-width="1.5" />
+                </svg>
+            </a>
+            <a class='close winc' id='close'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' id='closei' class="winic">
+                    <line x1='18' y1='6' x2='6' y2='18' />
+                    <line x1='6' y1='6' x2='18' y2='18' />
+                </svg>
+            </a>
+        `;
+    }
     controls.classList.add("controls");
     controls.innerHTML = controlsHTML;
     const titleElement = document.createElement("div");
@@ -670,6 +742,51 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                     </svg>
                     <span class="activeSpan"></span>
                 `;
+            case "block":
+                faviconHTML = `
+                    <svg class="favicon" id="favicon" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_i_1390_3)">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M16.2426 12.1818C13.6688 13.2848 12 15.8156 12 18.6158V47.2032C12 50.262 13.2736 53.1826 15.515 55.264L33.8759 72.3134C37.3291 75.5199 42.6709 75.5199 46.1241 72.3134L64.485 55.264C66.7264 53.1826 68 50.262 68 47.2032V18.6158C68 15.8156 66.3312 13.2848 63.7574 12.1818L60.8777 10.9476C47.5456 5.23385 32.4544 5.23385 19.1223 10.9476L16.2426 12.1818ZM31.591 24.409C30.7123 23.5303 29.2877 23.5303 28.409 24.409C27.5303 25.2877 27.5303 26.7123 28.409 27.591L37.318 36.5L28.409 45.409C27.5303 46.2877 27.5303 47.7123 28.409 48.591C29.2877 49.4697 30.7123 49.4697 31.591 48.591L40.5 39.682L49.409 48.591C50.2877 49.4697 51.7123 49.4697 52.591 48.591C53.4697 47.7123 53.4697 46.2877 52.591 45.409L43.682 36.5L52.591 27.591C53.4697 26.7123 53.4697 25.2877 52.591 24.409C51.7123 23.5303 50.2877 23.5303 49.409 24.409L40.5 33.318L31.591 24.409Z" />
+                        </g>
+                        <defs>
+                            <filter id="filter0_i_1390_3" x="11" y="5.66228" width="57" height="69.0559" filterUnits="userSpaceOnUse"
+                                color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dx="-1" dy="-1" />
+                                <feGaussianBlur stdDeviation="2" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1390_3" />
+                            </filter>
+                        </defs>
+                    </svg>
+                `;
+                newdock.innerHTML = `
+                    <svg class="dockicon" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_i_1390_3)">
+                            <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M16.2426 12.1818C13.6688 13.2848 12 15.8156 12 18.6158V47.2032C12 50.262 13.2736 53.1826 15.515 55.264L33.8759 72.3134C37.3291 75.5199 42.6709 75.5199 46.1241 72.3134L64.485 55.264C66.7264 53.1826 68 50.262 68 47.2032V18.6158C68 15.8156 66.3312 13.2848 63.7574 12.1818L60.8777 10.9476C47.5456 5.23385 32.4544 5.23385 19.1223 10.9476L16.2426 12.1818ZM31.591 24.409C30.7123 23.5303 29.2877 23.5303 28.409 24.409C27.5303 25.2877 27.5303 26.7123 28.409 27.591L37.318 36.5L28.409 45.409C27.5303 46.2877 27.5303 47.7123 28.409 48.591C29.2877 49.4697 30.7123 49.4697 31.591 48.591L40.5 39.682L49.409 48.591C50.2877 49.4697 51.7123 49.4697 52.591 48.591C53.4697 47.7123 53.4697 46.2877 52.591 45.409L43.682 36.5L52.591 27.591C53.4697 26.7123 53.4697 25.2877 52.591 24.409C51.7123 23.5303 50.2877 23.5303 49.409 24.409L40.5 33.318L31.591 24.409Z" />
+                        </g>
+                        <defs>
+                            <filter id="filter0_i_1390_3" x="11" y="5.66228" width="57" height="69.0559" filterUnits="userSpaceOnUse"
+                                color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                <feOffset dx="-1" dy="-1" />
+                                <feGaussianBlur stdDeviation="2" />
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1390_3" />
+                            </filter>
+                        </defs>
+                    </svg>
+                    <span class="activeSpan"></span>
+                `;
+                newwin.style.maxWidth = "688px";
+                newwin.style.maxHeight = "568px";
+                break;
         default:
             break;
     }
@@ -683,143 +800,21 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         }
     });
     if(appName === "browser") {
-        const loadingStateUrl = document.createElement("div");
-        loadingStateUrl.classList.add("loadingStateUrl");
-        loadingStateUrl.innerText = "Loading...";
-        const searchbar = document.createElement("input");
-        searchbar.classList.add("searchbar");
-        searchbar.spellcheck = false;
-        searchbar.setAttribute("placeholder", "Type a url or search with with SearXNG");
-        searchbar.id = "searchbar";
-        searchbar.setAttribute("type", "url");
-        let browserC = document.createElement("div");
         let frameC = document.createElement("div");
-        let browserCHTML = `
-            <div class="top">
-                <div class="chrome-tabs" style="--tab-content-margin: 9px">
-                    <div class="chrome-tabs-content">
-                        <div num="0" class="chrome-tab" onclick="Tab.switch(this.getAttribute('num'))" active="">
-                            <div class="chrome-tab-content">
-                            <div class="chrome-tab-title">New Tab</div>
-                            <div class="chrome-tab-drag-handle"></div>
-                            <div class="chrome-tab-close" onclick="event.stopPropagation();Tab.remove(this.parentElement.parentElement.getAttribute('num'))"></div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <button data-add-tab style="margin-top: 7px;" class="bBtn" onclick="Tab.create()">
-                    <svg class="bBtnIcon" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ebebeb" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                </button>
-            </div>
-        `;
         newwin.appendChild(winconts);
-        newwin.classList.add("browser");
         winconts.appendChild(favicon);
         winconts.appendChild(titleElement);
         winconts.appendChild(controls);
-        titleElement.innerHTML = `
-           <!-- <svg class="bIcon backFrame" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <polyline points="15 6 9 12 15 18" />
-            </svg>
-            <svg class="bIcon forwardFrame" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <polyline points="9 6 15 12 9 18" />
-            </svg> -->
-            <svg class="bIcon ref" viewBox="0 0 80 80" fill="none">
-                <g clip-path="url(#clip0_207_19)">
-                    <path d="M66.5 43.3333C65.6571 49.7642 62.4993 55.6674 57.6177 59.9379C52.7362 64.2085 46.4656 66.5535 39.9798 66.5341C33.4939 66.5147 27.2375 64.1322 22.3816 59.8326C17.5257 55.5329 14.4032 49.6109 13.5988 43.1752C12.7943 36.7394 14.3629 30.231 18.011 24.8684C21.6592 19.5057 27.1366 15.6565 33.4182 14.0412C39.6997 12.4258 46.3546 13.1552 52.1371 16.0927C57.9196 19.0302 62.4333 23.9745 64.8333 30M66.5 13.3333V30H49.8333" stroke="#FF2825" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-                <defs>
-                    <clipPath id="clip0_207_19">
-                        <rect width="80" height="80" fill="white" transform="translate(80 80) rotate(-180)"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        `;
-        titleElement.appendChild(searchbar);
-        browserC.innerHTML = browserCHTML;
-        newwin.appendChild(browserC);
+        titleElement.innerHTML = `${title}`;
         frameC.style = "width:100%;Height:100%;"
         frameC.id = "frameC";
         framew.setAttribute("src", link);
+        console.log(link);
         framew.setAttribute("id", 0);
         framew.setAttribute("class", "frame");
         framew.setAttribute("frameborder", "0");
         frameC.appendChild(framew);
         newwin.appendChild(frameC);
-        // const backFrame = newwin.querySelector(".backFrame");
-        // const forwardFrame = newwin.querySelector(".forwardFrame");
-        const refFrame = newwin.querySelector(".ref");
-        
-        // backFrame.onclick = () => {
-        //     if(framew.contentWindow.history.length > 2) {
-        //         newwin.appendChild(loadingStateUrl);
-        //         framew.contentWindow.history.back();
-        //         framew.onload = () => {
-        //             newwin.removeChild(loadingStateUrl);
-        //         }
-        //     }
-        // }
-        // forwardFrame.onclick = () => {
-        //     if(framew.contentWindow.history.length >= 3) {
-        //         newwin.appendChild(loadingStateUrl);
-        //         framew.contentWindow.history.forward();
-        //         framew.onload = () => {
-        //             newwin.removeChild(loadingStateUrl);
-        //         }
-        //     }
-        // }
-        refFrame.onclick = () => {
-            newwin.appendChild(loadingStateUrl);
-            framew.contentWindow.location.reload();
-            framew.onload = () => {
-                newwin.removeChild(loadingStateUrl);
-            }
-        }
-        let search = newwin.querySelector(".searchbar");
-        searchbar.addEventListener("keydown", (e) => {
-            let safeSearch = localStorage.getItem("ss");
-            function ser() {
-                newwin.appendChild(loadingStateUrl);
-                framew.onload = () => {
-                    loadingStateUrl.remove();
-                }
-                event.preventDefault();
-                let url = search.value.trim();
-                let URLSLICE = url.slice(".");
-                if(safeSearch === null) {
-                    if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=0`;
-                } else if(safeSearch === "ss_0") {
-                    if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=0`;
-                } else if(safeSearch === "ss_1") {
-                    if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=1`;
-                } else if(safeSearch === "ss_2") {
-                    if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=2`;
-                }
-                search.value = url;
-                framew.src = "sw" + "/" + xor.encode(url);
-            }
-            if (e.keyCode == "9") {
-                e.preventDefault();
-                return;
-            }
-            if (e.keyCode == "13") {
-                e.preventDefault();
-                ser()
-            }
-        });
-        // framew.addEventListener("load", () => {
-        //     let url = framew.src;
-        //     const urlFirstDecode = xor.decode(url.slice(3));
-        //     console.log(urlFirstDecode);
-        //     const urlSecondDecode = urlFirstDecode.slice(22);
-        //     console.log(urlSecondDecode);
-        // });
     } 
     if(appName === "player") {
         winconts.appendChild(favicon);
@@ -961,7 +956,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         }
     }
     window.addEventListener("message", (e) => {
-        const data = JSON.parse(e.data);
+        const data = e;
         if(data.type === "focus") {
             appsShellName.innerText = data.infoTitle;
         }
@@ -1098,71 +1093,101 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         }
     }
     localStorage.setItem(appName, a++);
-    newwin.querySelector('.mini').onclick = () => {
-        newwin.classList.add("winmini");
-        document.querySelector(`[data-appid="${windowID}"]`).classList.remove("active");
-        if(maxState === true) {
-            newwin.classList.remove("maxiY");
+    if(newwin.querySelector(".mini")) {
+        newwin.querySelector('.mini').onclick = () => {
+            newwin.classList.add("winmini");
+            document.querySelector(`[data-appid="${windowID}"]`).classList.remove("active");
+            if(maxState === true) {
+                newwin.classList.remove("maxiY");
+            }
+            appsShellName.innerText = ""
+            appsMini++;
+            checkOverflow();
         }
-        appsShellName.innerText = ""
-        appsMini++;
-        checkOverflow();
     }
-    newwin.querySelector(".close").addEventListener("click", () => {
-        if(!appOptions.classList.contains("h")) {
-            appOptions.classList.toggle("h");
-        }
-        appsShellName.innerText = "";
-        appsShellName.setAttribute("data-id", "");
-        newdock.remove();
-        if(document.querySelectorAll(".win").length === 0) {
-            appsShellName.classList.add("noHoverApps");
-        }
-        // decrementing appCount
-        appCount--;
-        // getting the first app having the same data-appName to the app being closed and decrement its appCount
-        // let firstApp = document.querySelector(`[app="${newwin.getAttribute("data-appName")}"]`);
-        // console.log(firstApp);
-        // firstApp.setAttribute("data-group", appCount);
-        newwin.remove();
-        console.log(appCount);
-    });
-    newwin.querySelector('.maxi').onclick = () => {
-        var winFocus = document.querySelectorAll(".winFocus");
-        for (let i = 0; i < winFocus.length; i++) {
-            const element = winFocus[i];
-            if(element.length > 0) {
-                document.querySelector(".shell").classList.remove("shadow");
-            } else {
-                document.querySelector(".shell").classList.add("shadow");
+    if(newwin.querySelector(".close")) {
+        newwin.querySelector(".close").addEventListener("click", () => {
+            if(!appOptions.classList.contains("h")) {
+                appOptions.classList.toggle("h");
             }
-        }
-        var newwinHEIGHT = document.querySelector('.win').clientHeight;
-        var newwinWIDTH = document.querySelector('.win').clientWidth;
-        if(newwin.classList.contains('maxiN')) {
-            maxState = true;
-            newwin.classList.add('maxiY');
-            newwin.classList.remove('maxiN');
-            document.getElementById("dock").classList.remove("dockY");
-            if(localStorage.getItem("shadow") === "yes") {
-                newwin.classList.add("noShadow");
-                newwin.classList.remove("shadow");
+            appsShellName.innerText = "";
+            appsShellName.setAttribute("data-id", "");
+            newdock.remove();
+            if(document.querySelectorAll(".win").length === 0) {
+                appsShellName.classList.add("noHoverApps");
             }
-            newwin.classList.add("maxiR");
-            max = false;
-        } else if(newwin.classList.contains('maxiY')) {
-            maxState = false;
-            newwin.classList.add('maxiN');
-            newwin.classList.remove('maxiY');
-            document.getElementById("dock").classList.add("dockY");
-            if(localStorage.getItem("shadow") === "yes") {
-                newwin.classList.remove("noShadow");
-                newwin.classList.add("shadow");
+            // decrementing appCount
+            appCount--;
+            // getting the first app having the same data-appName to the app being closed and decrement its appCount
+            // let firstApp = document.querySelector(`[app="${newwin.getAttribute("data-appName")}"]`);
+            // console.log(firstApp);
+            // firstApp.setAttribute("data-group", appCount);
+            newwin.remove();
+            console.log(appCount);
+        });
+    }
+    if(newwin.querySelector(".maxi")) {
+        newwin.querySelector('.maxi').onclick = () => {
+            var winFocus = document.querySelectorAll(".winFocus");
+            for (let i = 0; i < winFocus.length; i++) {
+                const element = winFocus[i];
+                if(element.length > 0) {
+                    document.querySelector(".shell").classList.remove("shadow");
+                } else {
+                    document.querySelector(".shell").classList.add("shadow");
+                }
             }
-            newwin.classList.remove("maxiR");
-            max = true;
-            newwin.style.width = newwinWIDTH;
-            newwin.style.height = newwinHEIGHT;
+            var newwinHEIGHT = document.querySelector('.win').clientHeight;
+            var newwinWIDTH = document.querySelector('.win').clientWidth;
+            if(newwin.classList.contains('maxiN')) {
+                newwin.querySelector('.maxi').innerHTML = `
+                    <svg id="maxi" class="winic" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1419_10)">
+                            <path d="M0 4H1V15H0V4Z" fill="white"/>
+                            <path d="M10 4H11V15H10V4Z" fill="white"/>
+                            <path d="M1 14H10V15H1V14Z" fill="white"/>
+                            <path d="M1 4H10V5H1V4Z" fill="white"/>
+                            <path d="M4 1H5V4H4V1Z" fill="white"/>
+                            <path d="M4 0H15V1H4V0Z" fill="white"/>
+                            <path d="M14 1H15V11H14V1Z" fill="white"/>
+                            <path d="M11 10H14V11H11V10Z" fill="white"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1419_10">
+                            <rect width="15" height="15" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                `;
+                maxState = true;
+                newwin.classList.add('maxiY');
+                newwin.classList.remove('maxiN');
+                document.getElementById("dock").classList.remove("dockY");
+                if(localStorage.getItem("shadow") === "yes") {
+                    newwin.classList.add("noShadow");
+                    newwin.classList.remove("shadow");
+                }
+                newwin.classList.add("maxiR");
+                max = false;
+            } else if(newwin.classList.contains('maxiY')) {
+                newwin.querySelector('.maxi').innerHTML = `
+                    <svg id="maxi" class="winic" viewBox="0 0 15 15" fill="none">
+                        <rect x="0.75" y="0.75" width="13.5" height="13.5" stroke="white" stroke-width="1.5"></rect>
+                    </svg>
+                `;
+                maxState = false;
+                newwin.classList.add('maxiN');
+                newwin.classList.remove('maxiY');
+                document.getElementById("dock").classList.add("dockY");
+                if(localStorage.getItem("shadow") === "yes") {
+                    newwin.classList.remove("noShadow");
+                    newwin.classList.add("shadow");
+                }
+                newwin.classList.remove("maxiR");
+                max = true;
+                newwin.style.width = newwinWIDTH;
+                newwin.style.height = newwinHEIGHT;
+            }
         }
     }
     newwin.addEventListener("mousedown", winfocus);
@@ -1181,13 +1206,16 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         if(e.target.classList.contains('winc') || e.target.classList.contains('winic') || e.target.classList.contains("searchbar") || e.target.classList.contains("m") || e.target.classList.contains("bIcon")) {
             e.target.click();
         } else {
-            newwin.querySelector('.maxi').click();
+            if(newwin.querySelector(".maxi")) {
+                newwin.querySelector('.maxi').click();
+            }
         }
     });
 
     dragger.addEventListener("mousedown", mousedown);
     function mousedown(e) {
         windowFocused();
+        newwin.querySelector("iframe").style.pointerEvents = "none";
         const appItem = document.querySelectorAll(".appItem");
         for (let i = 0; i < appItem.length; i++) {
             appItem[i].classList.remove("active");
@@ -1265,7 +1293,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         }
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
-            window.removeEventListener("mouseup", mu);
+            newwin.querySelector("iframe").style.pointerEvents = "";
         });
     }
     let dockPosN = localStorage.getItem('dockPos').toLowerCase();
@@ -1315,6 +1343,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
     newwin.appendChild(bottomLeftResize);
 
     rightResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
@@ -1329,38 +1358,51 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             var deltaX = newX - startX;
             var newWidth = startWidth + deltaX;
             newwin.style.width = newWidth + "px";
-            newwin.querySelector("iframe").style.pointerEvents = "none";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     });
 
     bottomResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
         var startY = e.clientY;
         var startHeight = parseInt(document.defaultView.getComputedStyle(newwin).height, 10);
         function mousemove(e) {
+            if(e.clientY >= window.innerHeight - 3) {
+                return
+            }
             var newY = e.clientY;
             var deltaY = newY - startY;
             var newHeight = startHeight + deltaY;
             newwin.style.height = newHeight + "px";
-            newwin.querySelector("iframe").style.pointerEvents = "none";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     })
 
     bottomRightResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
@@ -1369,6 +1411,12 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
         var startWidth = parseInt(document.defaultView.getComputedStyle(newwin).width, 10);
         var startHeight = parseInt(document.defaultView.getComputedStyle(newwin).height, 10);
         function mousemove(e) {
+            if(e.clientX >= window.innerWidth - 2) {
+                return
+            }
+            if(e.clientY >= window.innerHeight) {
+                return
+            }
             var newX = e.clientX;
             var newY = e.clientY;
             var deltaX = newX - startX;
@@ -1377,17 +1425,22 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             var newHeight = startHeight + deltaY;
             newwin.style.width = newWidth + "px";
             newwin.style.height = newHeight + "px";
-            newwin.querySelector("iframe").style.pointerEvents = "none";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     })
 
     leftResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
@@ -1406,16 +1459,22 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             var newWidth = startWidth - deltaX;
             newwin.style.width = newWidth + "px";
             newwin.style.left = e.clientX + "px";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     })
 
     topResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
@@ -1433,17 +1492,22 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             var deltaY = newY - startY;
             var newHeight = startHeight - deltaY;
             newwin.style.height = newHeight + "px";
-            newwin.querySelector("iframe").style.pointerEvents = "none";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     })
 
     bottomLeftResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
@@ -1471,17 +1535,22 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             newwin.style.width = newWidth + "px";
             newwin.style.height = newHeight + "px";
             newwin.style.left = e.clientX + "px";
-            newwin.querySelector("iframe").style.pointerEvents = "none";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     })
 
     bottomRightResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
@@ -1498,17 +1567,22 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             var newHeight = startHeight + deltaY;
             newwin.style.width = newWidth + "px";
             newwin.style.height = newHeight + "px";
-            newwin.querySelector("iframe").style.pointerEvents = "none";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     })
 
     leftResize.addEventListener("mousedown", (e) => {
+        const iframes = document.querySelectorAll(".frame");
         if(newwin.classList.contains("maxiY")) {
             return
         }
@@ -1519,13 +1593,17 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
             var deltaX = newX - startX;
             var newWidth = startWidth - deltaX;
             newwin.style.width = newWidth + "px";
-            newwin.querySelector("iframe").style.pointerEvents = "none";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "none";
+            })
         }
         window.addEventListener("mousemove", mousemove);
         window.addEventListener("mouseup", (mu) => {
             window.removeEventListener("mousemove", mousemove);
             window.removeEventListener("mouseup", mu);
-            newwin.querySelector("iframe").style.pointerEvents = "auto";
+            iframes.forEach((iframe) => {
+                iframe.style.pointerEvents = "";
+            })
         });
     })
 
@@ -1551,13 +1629,43 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 }
                 ctxm.style.top = e.pageY + "px";
                 ctxm.style.left = e.pageX + "px";
-                menu.innerHTML = `
-                    <a class="ctxbt" id="ctxNewWindow">New Window</a>
-                    <a class="ctxbt" id="ctxCloseWin">Close</a>
-                    <a class="ctxbt" id="ctxMaxWin">Maximize</a>
-                    <a class="ctxbt" id="ctxMinWin">Minimize</a>
-                    <a class="ctxbt" id="ctxReload">Reload</a>
-                `;
+                if(controlsTypes === "minMaxClose") {
+                    menu.innerHTML = `
+                        <a class="ctxbt" id="ctxNewWindow">New Window</a>
+                        <a class="ctxbt" id="ctxCloseWin">Close</a>
+                        <a class="ctxbt" id="ctxMaxWin">Maximize</a>
+                        <a class="ctxbt" id="ctxMinWin">Minimize</a>
+                        <a class="ctxbt" id="ctxReload">Reload</a>
+                    `;
+                } else if(controlsTypes === "minClose") {
+                    menu.innerHTML = `
+                        <a class="ctxbt" id="ctxNewWindow">New Window</a>
+                        <a class="ctxbt" id="ctxCloseWin">Close</a>
+                        <a class="ctxbt" id="ctxMinWin">Minimize</a>
+                        <a class="ctxbt" id="ctxReload">Reload</a>
+                    `;
+                } else if(controlsTypes === "close") {
+                    menu.innerHTML = `
+                        <a class="ctxbt" id="ctxNewWindow">New Window</a>
+                        <a class="ctxbt" id="ctxCloseWin">Close</a>
+                        <a class="ctxbt" id="ctxReload">Reload</a>
+                    `;
+                } else if(controlsTypes === "minMax") {
+                    menu.innerHTML = `
+                        <a class="ctxbt" id="ctxNewWindow">New Window</a>
+                        <a class="ctxbt" id="ctxMaxWin">Maximize</a>
+                        <a class="ctxbt" id="ctxMinWin">Minimize</a>
+                        <a class="ctxbt" id="ctxReload">Reload</a>
+                    `;
+                } else if(controlsTypes === undefined) {
+                    menu.innerHTML = `
+                        <a class="ctxbt" id="ctxNewWindow">New Window</a>
+                        <a class="ctxbt" id="ctxCloseWin">Close</a>
+                        <a class="ctxbt" id="ctxMaxWin">Maximize</a>
+                        <a class="ctxbt" id="ctxMinWin">Minimize</a>
+                        <a class="ctxbt" id="ctxReload">Reload</a>
+                    `;
+                }
                 window.addEventListener("mousedown", (e) => {
                     if (e.button == 0 && !e.target.closest(".ctx")) {
                         ctxm.remove();
@@ -1565,20 +1673,32 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 });
                 document.body.appendChild(ctxm);
                 const ctxCloseWin = ctxm.querySelector("#ctxCloseWin");
-                ctxCloseWin.addEventListener("click", () => {
-                    newwin.querySelector(".close").click();
-                    ctxm.remove();
-                });
+                if(ctxCloseWin) {
+                    ctxCloseWin.addEventListener("click", () => {
+                        if(newwin.querySelector(".close")) {
+                            newwin.querySelector(".close").click();
+                        }
+                        ctxm.remove();
+                    });
+                }
                 const ctxMaxWin = document.querySelector("#ctxMaxWin");
-                ctxMaxWin.addEventListener("click", () => {
-                    newwin.querySelector(".maxi").click();
-                    ctxm.remove();
-                });
+                if(ctxMaxWin) {
+                    ctxMaxWin.addEventListener("click", () => {
+                        if(newwin.querySelector(".maxi")) {
+                            newwin.querySelector(".maxi").click();
+                        }
+                        ctxm.remove();
+                    });
+                }
                 const ctxMinWin = document.querySelector("#ctxMinWin");
-                ctxMinWin.addEventListener("click", () => {
-                    newwin.querySelector(".mini").click();
-                    ctxm.remove();
-                });
+                if(ctxMinWin) {
+                    ctxMinWin.addEventListener("click", () => {
+                        if(newwin.querySelector(".mini")) {
+                            newwin.querySelector(".mini").click();
+                        }
+                        ctxm.remove();
+                    });
+                }
                 const ctxReload = document.querySelector("#ctxReload");
                 ctxReload.addEventListener("click", () => {
                     const frame = winEl.querySelector("iframe");
@@ -1587,7 +1707,7 @@ function windows(link, icn, title, browser = Boolean, os = Boolean, fullscreen =
                 });
                 const ctxNewWindow = document.querySelector("#ctxNewWindow");
                 ctxNewWindow.addEventListener("click", () => {
-                    window.windows(link, icn, title, browser, os, fullscreen, appName, textAppText);
+                    window.windows(link, icn, title, browser, os, fullscreen, appName, controlsTypes, textAppText);
                     ctxm.remove();
                 });
             }
@@ -1761,7 +1881,7 @@ window.addEventListener("keydown", (e) => {
 
 switch(id) {
     case "browser":
-        windows("../newwin.html", "../resources/terbium.svg", "Terbium Browser", true, true, false, 'browser');
+        windows("../hypertabs/index.html", "../resources/terbium.svg", "Terbium Browser", true, true, false, 'browser');
         break;
     case "hypertabs":
         windows("../hypertabs/index.html","../resources/terbium.svg", "Terbium Browser", false, true, false, 'hypertabs')
@@ -1795,7 +1915,7 @@ switch(id) {
         break;
     case "text":
         if(text) {
-            windows('../textEditor/editor.html', '../resources/txt.svg', 'Terbium Text Editor', false, true, false, "text", text);
+            windows('../textEditor/editor.html', '../resources/txt.svg', 'Terbium Text Editor', false, true, false, "text", undefined, text);
         } else {
             windows('../textEditor/editor.html', '../resources/txt.svg', 'Terbium Text Editor', false, true, false, "text");
         }
@@ -1814,6 +1934,9 @@ switch(id) {
         break;
     case "ruffle":
         windows("../ruffle/ruffle.html", "../resources/ruffle.svg", "Ruffle", false, true, false, "ruffle");
+        break;
+    case "block":
+        windows("../block/block.html", "../resources/block.svg", "Terbium Blocker", false, true, false, "block", "minClose");
         break;
     default: 
         break;

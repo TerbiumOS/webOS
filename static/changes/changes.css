@@ -52,6 +52,19 @@
     --stopLIGHT: #A5209F;
 }
 
+[data-theme="almond"] {
+    --body: #222;
+    --color: #E89D46;
+    --button-color: #3c3c3c;
+    --glammer: #ffbb6d, #b97d38;
+    --code-background: #3c3c3c;
+    --code-color: #f1b066;
+    --code-border: #E89D46;
+    --mark-color: #ffc787;
+    --stopDARK: #E89D46;
+    --stopLIGHT: #94632b;
+}
+
 html {
     height: 100%;
     scrollbar-color: var(--color) var(--body);

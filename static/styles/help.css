@@ -81,6 +81,23 @@
     --command-border: #262626;
 }
 
+[data-theme="alm"] {
+    --body: #1c1c1c;
+    --color: #E89D46;
+    --category-title-color: #E89D46;
+    --userselect-background: #ffffff1a;
+    --userselect-color: #FFC889;
+    
+    /* commands */
+    --commmands-background: #151515;
+    --commands-outline: #282828;
+    --commmands-boxshadow: #151515;
+
+    --command-background: #222;
+    --command-outline: #424242;
+    --command-border: #262626;
+}
+
 ::selection {
     background: var(--userselect-background);
     color: var(--userselect-color);

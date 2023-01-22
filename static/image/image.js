@@ -1,13 +1,14 @@
 const parent = window.parent;
 let winId;
 const image = document.querySelector('.img');
+let imageWindow;
 
 window.addEventListener('message', (e) => {
     const data = JSON.parse(e.data);
     winId = data.id;
-    const imageWindow = window.parent.document.querySelector(`#${winId}`);
+    imageWindow = window.parent.document.querySelector(`#${winId}`);
     if(localStorage.getItem('photoCoverApp') === "false") {
-        const openImage = window.parent.document.querySelector(`#${winId}`).querySelector('.openImage');
+        const openImage = imageWindow.querySelector('.openImage');
         const imageMagnify = parent.document.querySelector('.zoomIn');
         const imageMini = parent.document.querySelector('.zoomOut');
         imageMagnify.onclick = function () {
@@ -41,7 +42,7 @@ window.addEventListener('message', (e) => {
             };
         }
     } else if(localStorage.getItem('photoCoverApp') === "true"){
-        const openImage = window.parent.document.querySelector(`.openImage`);
+        const openImage = imageWindow.querySelector(`.openImage`);
         openImage.onclick = function () {
             const file = document.createElement('input');
             file.type = 'file';
@@ -72,7 +73,7 @@ window.addEventListener('message', (e) => {
             };
         }
     }
-    const settingsI = window.parent.document.querySelector(`.settingsI`);
+    const settingsI = imageWindow.querySelector(`.settingsI`);
     const settings = document.querySelector('.settingsWindow');
     const spreadImage = document.getElementById("iow");
     const spreadImageHelp = document.getElementById("iowHelp");
@@ -125,7 +126,7 @@ window.addEventListener('message', (e) => {
             settings.classList.toggle('show');
             settings.style.zIndex = -1;
             settings.style.opacity = 0;
-            const openImage = window.parent.document.querySelector(`.openImage`);
+            const openImage = imageWindow.querySelector(`.openImage`);
             openImage.onclick = function () {
                 const file = document.createElement('input');
                 file.type = 'file';
@@ -190,6 +191,7 @@ window.addEventListener('message', (e) => {
                 image.src = "";
             }
             imageWindow.style.background = '';
+            imageWindow.querySelector("#drag").style.backgroundColor = '';
             imageWindow.querySelector("iframe").style.visibility = 'visible';
             imageWindow.querySelector(".title").innerHTML = `
                 <button class="openImage m"><span></span>Open</button><button class="settingsI m"><span></span>Settings</button><button class="zoomIn m zz"><span></span>+</button><button class="zoomOut m zz"><span></span>-</button>
@@ -205,7 +207,7 @@ window.addEventListener('message', (e) => {
                 wincs[i].style.boxShadow = "";
             }
             localStorage.setItem("photoCoverApp", "false");
-            const openImage = window.parent.document.querySelector(`#${winId}`).querySelector('.openImage');
+            const openImage = imageWindow.querySelector('.openImage');
             const imageMagnify = parent.document.querySelector('.zoomIn');
             const imageMini = parent.document.querySelector('.zoomOut');
             imageMagnify.onclick = function () {
@@ -238,7 +240,7 @@ window.addEventListener('message', (e) => {
                     };
                 };
             }
-            window.parent.document.querySelector(`.settingsI`).onclick = function () {
+            imageWindow.querySelector(`.settingsI`).onclick = function () {
                 if (!settings.classList.contains('show')) {
                     settings.style.zIndex = 101;
                     setTimeout(() => {

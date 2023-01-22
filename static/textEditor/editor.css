@@ -151,6 +151,30 @@
     --dropdown-button-color-hover: white;
 }
 
+[data-theme="almond"] {
+    --taskbar-bg: #282928;
+    --body: #1c1c1c;
+    --color: #E89D46;
+    --button-background: #383838;
+    --button-color: #CF8B3C;
+    --button-inside-background: #525252;
+    --button-inside-background-hover: #777777;
+    --scrollbar-background: #383838;
+    
+    --cursorText: url("../resources/cursors/textF.png"), text;
+    --cursorNormal: url("../resources/cursors/normalF.png"), default;
+    --cursorHand: url("../resources/cursors/handF.png"), pointer;
+
+    --switch-thumb: #CF8B3C;
+    --switch-back: #393938;
+    --switch-back-shadow: ##CF8B3C87;
+
+    --dropdown-boxShadow-hover: #E89D46;
+    --dropdown-button-background: #262626;
+    --dropdown-button-background-hover: #E89D46;
+    --dropdown-button-color-hover: white;
+}
+
 ::-webkit-scrollbar {
     width: 6px;
 }

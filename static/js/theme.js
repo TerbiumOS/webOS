@@ -9,4 +9,7 @@ switch(localStorage.getItem("theme")) {
     case "fracital":
         document.documentElement.setAttribute("data-theme", "fracital");
         break
+    case "almond":
+        document.documentElement.setAttribute("data-theme", "almond");
+        break
 }

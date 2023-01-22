@@ -16,6 +16,12 @@
     --cursorHand: url("/resources/cursors/handF.png"), pointer;
 }
 
+[data-theme="alm"] {
+    --cursorText: url("/resources/cursors/textA.png"), text;
+    --cursorNormal: url("/resources/cursors/normalA.png"), default;
+    --cursorHand: url("/resources/cursors/handA.png"), pointer;
+}
+
 html {
     cursor: var(--cursorNormal);
 }

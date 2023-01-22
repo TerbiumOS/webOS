@@ -51,6 +51,22 @@
     --switch-back-shadow: #ff40f787;
 }
 
+[data-theme="almond"] {
+    --taskbar-bg: #282928;
+    --body: #1a1a1a;
+    --color: #E89D46;
+    --button-background: #313131;
+    --button-color: #CF8B3C;
+
+    --cursorText: url("../resources/cursors/textA.png"), text;
+    --cursorNormal: url("../resources/cursors/normalA.png"), default;
+    --cursorHand: url("../resources/cursors/handA.png"), pointer;
+
+    --switch-thumb: #E89D46;
+    --switch-back: #424242d3;
+    --switch-back-shadow: #E89D4687;
+}
+
 html {
     font-family: pro;
     height: 100%;

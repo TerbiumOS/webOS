@@ -31,6 +31,12 @@
     --button-color: #ff40f7;
 }
 
+[data-theme="almond"] {
+    --body: #1c1c1c;
+    --color: #E89D46;
+    --button-color: #E89D46;
+}
+
 html {
     height: 100%;
     scrollbar-color: var(--color) var(--body);

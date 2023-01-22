@@ -46,7 +46,7 @@
     
     --code: #251f69;
     --codeMark: #39318f;
-    --term-color: #1b1647;
+    --term-color: #302873;
     --commandHistoryBackground: #26206a;
     --buttonBackground: #1c1751;
     --buttonBackgroundHover: #ffe688;
@@ -76,6 +76,30 @@
     --buttonBackgroundHover: #ff40f7;
     --buttonBackgroundColorHover: #ffffff;
     --buttonColorBoxShadow: #ff40f7;
+}
+
+[data-theme="almond"] {
+    --body: #1c1c1c;
+    --color: #E89D46;
+    --color-warning: #ff6d6d;
+    --scrollbar-background: #282928;
+    
+    --userselect-background: #ffffff15;
+    --userselect-color: #41bc5d;
+    
+    --cursorText: url("/resources/cursors/textA.png") text;
+    --cursorNormal: url("/resources/cursors/normalA.png") default;
+    --cursorHand: url("/resources/cursors/handA.png") pointer;
+    
+    --code: #333333;
+    --codeMark: #4b4b4b;
+    --codeColor: #F9B363;
+    --term-color: #4d4d4d;
+    --commandHistoryBackground: #282928;
+    --buttonBackground: #252525;
+    --buttonBackgroundHover: #CF8B3C;
+    --buttonBackgroundColorHover: #ffffff;
+    --buttonColorBoxShadow: #CF8B3C;
 }
 
 * {
@@ -204,6 +228,7 @@ p {
     opacity: 1;
     background-color: var(--commandHistoryBackground);
     transition: 200ms ease-in-out;
+    cursor: var(--cursorNormal);
 }
 
 .commandHistory.hidden {

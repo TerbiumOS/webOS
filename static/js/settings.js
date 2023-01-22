@@ -2,6 +2,7 @@ const win = window.parent.document.querySelectorAll(".win");
 const dark = document.getElementById("dark");
 const night = document.getElementById("night");
 const frac = document.getElementById("frac");
+const almond = document.getElementById("almond");
 const logoWall = window.parent.document.querySelector(".logoWall");
 
 let seti = window.parent.document.querySelector("#setg");
@@ -90,6 +91,24 @@ frac.addEventListener("click", () => {
         return
     }
 });
+
+almond.addEventListener("click", () => {
+    let html = document.documentElement.getAttribute("data-theme");
+    if(html !== "almond") {
+        document.documentElement.setAttribute('data-theme', 'almond');
+        localStorage.setItem('theme', 'almond');
+        themeMAIN.setAttribute('data-theme', 'almond');
+        for (let a = 0; a < win.length; a++) {
+            const element = win[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'almond');
+        }
+
+    }
+    if(html === "almond") {
+        alert("Almond theme is already enabled");
+        return
+    }
+})
 
 defaultb.addEventListener("click", () => {
     localStorage.setItem("background", "default");

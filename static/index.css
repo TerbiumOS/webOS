@@ -115,6 +115,10 @@
     --cursorText: url("/resources/cursors/textD.png"), text;
     --cursorNormal: url("/resources/cursors/normalD.png"), default;
     --cursorHand: url("/resources/cursors/handD.png"), pointer;
+    --resizeLeftRight: url("./resources/cursors/re-lrD.png") 20 0, ew-resize;
+    --resizeUpDown: url("./resources/cursors/re-snD.png") 0 20, ns-resize;
+    --resizeBottomLeft: url("./resources/cursors/re-bl_trD.png") 20 10, nesw-resize;
+    --resizeBottomRight: url("./resources/cursors/re-br_tlD.png") 18 10, nwse-resize;
 
     /* shell */
     --shell-background: #1e1e1e;
@@ -183,24 +187,6 @@
     --window-control-button: #393939;
     --window-control-button-hover: #171717;
     --window-close-button: #ff7979;
-
-    /* browser */
-    --bIcon-stroke-color: #41bc5d;
-    --bIcon-stroke-color-disabled: #bdbdbd;
-    --searchbar-background: #282928;
-    --searchbar-focus-background: #1e1e1e;
-    --http-color: #666;
-    --new-tab-color: #848484;
-    --new-tab-color-hover: #7bf493;
-    --tab-container-background: #282928;
-    --tab-close-hover: #6fbd7f;
-    --tab-close-active-hover: #85ff9e59;
-    --tab-active-close-hover: #464646;
-    --tab-active-close-active-hover: #424242;
-    --tab-active-background: #1c1c1c;
-    --tab-active-hover-color: #47CA64;
-    --tab-inactive-background: #0000;
-    --tab-hover-background: #85ff9e59;
 }
 
 [data-theme="night"] {
@@ -211,9 +197,13 @@
     --userselect-color: #fff7a5;
     --version: #251d8c;
 
-    --cursorText: url("/resources/cursors/textN.png"), text;
-    --cursorNormal: url("/resources/cursors/normalN.png"), default;
-    --cursorHand: url("/resources/cursors/handN.png"), pointer;
+    --cursorText: url("./resources/cursors/textN.png"), text;
+    --cursorNormal: url("./resources/cursors/normalN.png"), default;
+    --cursorHand: url("./resources/cursors/handN.png"), pointer;
+    --resizeLeftRight: url("./resources/cursors/re-lrN.png") 20 0, ew-resize;
+    --resizeUpDown: url("./resources/cursors/re-snN.png") 0 20, ns-resize;
+    --resizeBottomLeft: url("./resources/cursors/re-bl_trN.png") 20 10, nesw-resize;
+    --resizeBottomRight: url("./resources/cursors/re-br_tlN.png") 18 10, nwse-resize;
 
     /* shell */
     --shell-background: #161062;
@@ -282,38 +272,24 @@
     --window-control-button: #342d93;
     --window-control-button-hover: #161347;
     --window-close-button: #d5ce86;
-
-    /* browser */
-    --bIcon-stroke-color: #fff7a5;
-    --bIcon-stroke-color-disabled: #bdbdbd;
-    --searchbar-background: #26206a;
-    --searchbar-focus-background: #1a1648;
-    --http-color: #666;
-    --new-tab-color: #4139ae;
-    --new-tab-color-hover: #fbf3a5;
-    --tab-container-background: 26206a;
-    --tab-close-hover: #efe6886b;
-    --tab-close-active-hover: #fff6a6a8;
-    --tab-active-close-hover: #efe6886b;
-    --tab-active-close-active-hover: #fff6a6a8;
-    --tab-active-background: #181446;
-    --tab-active-hover-color: #ffefb7;
-    --tab-inactive-background: #0000;
-    --tab-hover-background: #efe6886b;
 }
 
 [data-theme="fracital"] {
     /* body */
-    --body: #1C1C1C;
+    --body: #1a1a1a;
     --body-color: #FF75F9;
     --userselect-background: #ffffff0a;
     --userselect-color: #ff40f7;
     --version: #4f4f4f;
-
+    
     --cursorText: url("/resources/cursors/textF.png"), text;
     --cursorNormal: url("/resources/cursors/normalF.png"), default;
     --cursorHand: url("/resources/cursors/handF.png"), pointer;
-
+    --resizeLeftRight: url("./resources/cursors/re-lrF.png") 20 0, ew-resize;
+    --resizeUpDown: url("./resources/cursors/re-snF.png") 0 20, ns-resize;
+    --resizeBottomLeft: url("./resources/cursors/re-bl_trF.png") 20 10, nesw-resize;
+    --resizeBottomRight: url("./resources/cursors/re-br_tlF.png") 18 10, nwse-resize;
+    
     /* shell */
     --shell-background: #313131;
     --shell-outline-color: #ff40f7;
@@ -331,13 +307,13 @@
     --system-control-background: #414141;
     --system-control-icon-color: #FF40F7A8;
     --system-control-icon-color-hover: #FF40F7;
-    
+        
     /* clock */
     --fulltime-background: #373737;
     --fulltime-color: #ff40f7;
     --fulltime-clock-close-hover: #ff7171;
     --clock-background: #444;
-    
+        
     /* desktop */
     --desktopapp-background: #8c8c8c5e;
     --inputAppSearch-background: #202020;
@@ -345,26 +321,25 @@
     --inputAppSearch-focus-boxShadow: 0 0 54px -8px #ff3bf5;
     --inputAppSearch-focus-background: #20202083;
     --inputAppSearch-color: #FF40F7;
-
+    
     /* dock */
     --dock-background: #313131;
     --dock-button-background: #3d3d3d;
     --dock-alert-background: #FF40F760;
     --dock-button-boxshadow: #282828;
     --dock-icon-color: #FF40F7;
-    --dock-icon-color2: #cc2ec4;
     --dock-button-inactive-span: #606060;
-
+    
     /* context menu */
     --context-menu-background: #313131;
     --context-menu-color: #ff40f7;
     --context-menu-color-hover: #9d2298;
-
+    
     /* windows */
     --window-background: #383838;
     --window-color: #ff40f7;
     --window-dragger: #383838;
-
+    
     /* buttons */
     --button-background: #484848;
     --button-background-hover: #ff3ff5d4;
@@ -381,24 +356,90 @@
     --window-control-button: #484848;
     --window-control-button-hover: #262626;
     --window-close-button: #ff79e4;
+}
 
-    /* browser */
-    --bIcon-stroke-color: #ff40f7;
-    --bIcon-stroke-color-disabled: #bdbdbd;
-    --searchbar-background: #383838;
-    --searchbar-focus-background: #242424;
-    --http-color: #666;
-    --new-tab-color: #737373;
-    --new-tab-color-hover: #ff73f9;
-    --tab-container-background: #383838;
-    --tab-close-hover: #ff79e4b3;
-    --tab-close-active-hover: #ffc2f3b3;
-    --tab-active-close-hover: #464646;
-    --tab-active-close-active-hover: #424242;
-    --tab-active-background: #222222;
-    --tab-active-hover-color: #FF75F9;
-    --tab-inactive-background: #0000;
-    --tab-hover-background: #ff79e4b3;
+[data-theme="almond"] {
+    /* body */
+    --body: #1C1C1C;
+    --body-color: #E89D46;
+    --userselect-background: #ffffff0a;
+    --userselect-color: #FFC889;
+    --version: #4f4f4f;
+
+    --cursorText: url("./resources/cursors/textA.png"), text;
+    --cursorNormal: url("./resources/cursors/normalA.png"), default;
+    --cursorHand: url("./resources/cursors/handA.png"), pointer;
+    --resizeLeftRight: url("./resources/cursors/re-lrA.png") 20 0, ew-resize;
+    --resizeUpDown: url("./resources/cursors/re-snA.png") 0 20, ns-resize;
+    --resizeBottomLeft: url("./resources/cursors/re-bl_trA.png") 20 10, nesw-resize;
+    --resizeBottomRight: url("./resources/cursors/re-br_tlA.png") 18 10, nwse-resize;
+
+    /* shell */
+    --shell-background: #282928;
+    --shell-color: #E89D46;
+    --button-app-close-color: #ffaaaa;
+    --button-app-close-hover-background: #da4343;
+    --start-icon: #B9782E;
+    --start-icon-hover: #E89D46;
+    --start-apps-icon: #E89D46;
+    --apps-background: #282928;
+    --apps-button-background: #3d3d3d;
+    --apps-button-color: #E89D46;
+    --apps-button-boxshadow: #3d3d3d;
+    --apps-search-background: #222222;
+    --system-control-background: #414141;
+    --system-control-icon-color: #B57934;
+    --system-control-icon-color-hover: #E89D46;
+    
+    /* clock */
+    --fulltime-background: #282928;
+    --fulltime-color: #E89D46;
+    --fulltime-clock-close-hover: #ff7171;
+    --clock-background: #383838;
+    
+    /* desktop */
+    --desktopapp-background: #7979795e;
+    --inputAppSearch-background: #202020;
+    --inputAppSearchNoneFocus-color: #757575;
+    --inputAppSearch-focus-boxShadow: 0 0 54px -8px #E89D46;
+    --inputAppSearch-focus-background: #1a1a1a83;
+    --inputAppSearch-color: #E89D46;
+
+    /* dock */
+    --dock-background: #282928;
+    --dock-button-background: #3d3d3d;
+    --dock-alert-background: #E89D467A;
+    --dock-button-boxshadow: #282828;
+    --dock-icon-color: #E89D46;
+    --dock-icon-color2: #9F6726;
+    --dock-button-inactive-span: #606060;
+
+    /* context menu */
+    --context-menu-background: #313131;
+    --context-menu-color: #E89D46;
+    --context-menu-color-hover: #99672C;
+
+    /* windows */
+    --window-background: #282928;
+    --window-color: #E89D46;
+    --window-dragger: #282928;
+
+    /* buttons */
+    --button-background: #414141;
+    --button-background-hover: #CF8B3C;
+    --button-boxShadow: none;
+    --button-boxShadow-hover: 0 0 8px 4px #CF8B3C;
+    --button-color: #E89D46;
+    --button-span-color: #383838;
+    --button-span-color-hover: #7D5321;
+    --button-color-hover: #ffffff;
+    --winic-color: white;
+    --winic-color-hover: #b5b5b5;
+    --close-icon-color: #fff;
+    --close-icon-color-hover: #6F4C25;
+    --window-control-button: #373737;
+    --window-control-button-hover: #202020;
+    --window-close-button: #CF8B3C;
 }
 
 @keyframes blink {
@@ -705,7 +746,7 @@ main.closedA {
 main.open {
     position: absolute;
     display: grid;
-    z-index: 3;
+    z-index: 5;
     opacity: 1;
     visibility: visible;
     inset: 0;
@@ -748,6 +789,7 @@ main.open {
 
 .deskapp.appHide {
     visibility: collapse;
+    display: none;
 }
 
 .deskapp:hover {
@@ -1003,6 +1045,7 @@ li {
     border-bottom-right-radius: 13px;
     z-index: 1;
     transition: ease-in-out 300ms;
+    cursor: var(--cursorHand);
 }
 
 .noBorderRadius {
@@ -1135,6 +1178,7 @@ li {
     border-radius: 8px;
     height: 40px;
     top: 73px;
+    cursor: var(--cursorText);
 }
 
 main > .inputAppSearch {
@@ -1152,6 +1196,7 @@ main > .inputAppSearch {
     height: 100%;
     border-radius: 8px;
     box-shadow: 0 0 0px 2px transparent;
+    cursor: var(--cursorText);
 }
 
 .inputAppSearch input:focus-visible {
@@ -1393,26 +1438,37 @@ main > .inputAppSearch {
 }
 
 .activeSpan.bottom {
-    bottom: 2px;
-    width: 6px;
+    bottom: 0px;
+    width: 8px;
     height: 3px;
 }
 
 .activeSpan.left {
-    left: 2px;
+    left: 0px;
     width: 3px;
-    height: 6px;
+    height: 8px;
 }
 
 .activeSpan.right {
-    right: 2px;
+    right: 0px;
     width: 3px;
-    height: 6px;
+    height: 8px;
 }
 
 .active .activeSpan {
     background-color: var(--dock-icon-color);
-    border-radius: 3px;
+}
+
+.active .activeSpan.bottom {
+    width: 14px;
+}
+
+.active .activeSpan.left {
+    height: 14px;
+}
+
+.active .activeSpan.right {
+    height: 14px;
 }
 
 .dockbtn.active {
@@ -2499,7 +2555,7 @@ mark {
     top: 0;
     width: 8px;
     height: 100%;
-    cursor: e-resize;
+    cursor: var(--resizeLeftRight);
 }
 
 .bottomResize {
@@ -2508,16 +2564,16 @@ mark {
     left: 0;
     width: 100%;
     height: 8px;
-    cursor: s-resize;
+    cursor: var(--resizeUpDown);
 }
 
 .bottomRightResize {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 8px;
-    height: 8px;
-    cursor: se-resize;
+    width: 14px;
+    height: 14px;
+    cursor: var(--resizeBottomRight);
 }
 
 .topResize {
@@ -2526,7 +2582,7 @@ mark {
     left: 0;
     width: 100%;
     height: 8px;
-    cursor: n-resize;
+    cursor: var(--resizeUpDown);
 }
 
 .leftResize {
@@ -2535,16 +2591,16 @@ mark {
     top: 0;
     width: 8px;
     height: 100%;
-    cursor: w-resize;
+    cursor: var(--resizeLeftRight);
 }
 
 .bottomLeftResize {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 8px;
-    height: 8px;
-    cursor: sw-resize;
+    width: 14px;
+    height: 14px;
+    cursor: var(--resizeBottomLeft);
 }
 
 .maxiY .bottomLeftResize {

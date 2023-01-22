@@ -64,6 +64,26 @@
     --switch-back-shadow: #ffe6887d;
 }
 
+[data-theme="almond"] {
+    --taskbar-bg: #282928;
+    --background: #222222;
+    --accent: #be6600;
+    --button-background: #383838;
+    --button-color: #CF8B3C;
+    --button-color-hover: #ffffff;
+    --settings-panel: #68380194;
+    --settings-panel-buttons: #faaf5994;
+    --seek-container-background: #171717;
+    --player-container-background: #242424;
+    --seek-before: #a67236;
+    --seek-after: #ff8800;
+    --seek-thumb: #ff8800;
+    --seek-thumb-boxShadow: 0px 0px 1px 1px #ff880078, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --switch-thumb: #E89D46;
+    --switch-back: #424242d3;
+    --switch-back-shadow: #E89D46;
+}
+
 .openF {
     position: absolute;
     z-index: 9;

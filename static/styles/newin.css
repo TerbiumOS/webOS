@@ -20,8 +20,7 @@
     --userselect-color: #1d1d1d;
 
     /* logo */
-    --stopDARK: #47CA64;
-    --stopLIGHT: #2B813E;
+    --logoColor: #47CA64;
 
     /* search */
     --search-color: #aaa;
@@ -45,8 +44,7 @@
     --userselect-color: #1d1d1d;
 
     /* logo */
-    --stopDARK: #2A803C;
-    --stopLIGHT: #145B24;
+    --logoColor: #2A803C;
 
     /* search */
     --search-color: #aaa;
@@ -70,8 +68,7 @@
     --userselect-color: #b0a95d;
 
     /* logo */
-    --stopDARK: #fff7a5;
-    --stopLIGHT: #777021;
+    --logoColor: #fff7a5;
 
     /* search */
     --search-color: #efe688;
@@ -96,8 +93,7 @@
     --userselect-color: #ff40f7;
 
     /* logo */
-    --stopDARK: #FF40F7;
-    --stopLIGHT: #A5209F;
+    --logoColor: #FF40F7;
 
     /* search */
     --search-color: #ff40f7;
@@ -113,6 +109,31 @@
     --check-color: #ff40f7;
     --check-background-hover: #2E2D2E;
     --check-color-hover: #ff40f7;
+}
+
+[data-theme="alm"] {
+    --body: #222;
+    --color: white;
+    --userselect-background: #ffffff1a;
+    --userselect-color: #FFC889;
+
+    /* logo */
+    --logoColor: #E89D46;
+
+    /* search */
+    --search-color: #E89D46;
+    --search-background: #1B1A1A;
+    --search-border: #0f0c32;
+    --search-outline: #E89D46;
+    --search-background-hover: #151515;
+    --search-border-hover: #151515;
+    --search-outline-hover: #b97e3a;
+
+    /* icons */
+    --search-icon-color: #E89D46;
+    --check-color: #E89D46;
+    --check-background-hover: #2E2D2E;
+    --check-color-hover: #E89D46;
 }
 
 ::selection {
@@ -143,14 +164,6 @@ html {
     border-radius: 6px;
 }
 
-.stopLIGHT {
-    stop-color: var(--stopLIGHT);
-}
-
-.stopDARK {
-    stop-color: var(--stopDARK);
-}
-
 body {
     font-family: Roboto;
     margin: 0;
@@ -171,6 +184,10 @@ body {
 .logo {
     width: 4em;
     height: 4em;
+}
+
+.fill {
+    fill: var(--logoColor);
 }
 
 .search {
@@ -216,6 +233,7 @@ a.chc {
     padding: 6px;
     transition: ease 0.2s;
     border-radius: 30px;
+    cursor: var(--cursorHand);
 }
 
 .check {
@@ -226,7 +244,6 @@ a.chc {
 
 .chc:hover {
     background-color: var(--check-background-hover);
-    cursor: pointer;
 }
 
 .chc:hover svg {

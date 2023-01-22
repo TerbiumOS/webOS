@@ -76,6 +76,7 @@ command.addEventListener("keydown", (e) => {
         `;
         commandHistoryElement.querySelector("button").addEventListener("click", () => {
             commandHistoryElement.classList.toggle("hidden");
+            document.querySelector("html").style.overflow = "";
         });
         body.appendChild(commandHistoryElement);
     }
@@ -114,7 +115,7 @@ command.addEventListener("keydown", (e) => {
             `;
         }
         if(command.textContent.split(" ")[0] === "theme") {
-            const availableThemes = ["dark", "night", "fracital"];
+            const availableThemes = ["dark", "night", "fracital", "almond"];
             if(!availableThemes.includes(command.textContent.split(" ")[1])) {
                 output.innerHTML = `
                     <p>Theme not found</p>
@@ -488,7 +489,7 @@ command.addEventListener("keydown", (e) => {
             }
 
             if(text1 === "theme") {
-                let themes = ["night", "dark", "fracital"];
+                let themes = ["night", "dark", "fracital", "almond"];
                 for(let i = 0; i < themes.length; i++) {
                     if(themes[i].startsWith(text2)) {
                         command.innerHTML = `theme ${themes[i]}`;
@@ -506,6 +507,11 @@ command.addEventListener("keydown", (e) => {
         e.preventDefault();
         let commandContainer = document.querySelector(".command-container");
         commandHistoryElement.classList.toggle("hidden");
+        if(commandHistoryElement.classList.contains("hidden")) {
+            document.querySelector("html").style.overflow = "";
+        } else {
+            document.querySelector("html").style.overflow = "hidden";
+        }
         for(let i = 0; i < commandContainer.children.length; i++) {
             commandContainer.children[i].addEventListener("click", function() {
                 command.innerHTML = this.textContent;
@@ -516,6 +522,7 @@ command.addEventListener("keydown", (e) => {
                 sel.removeAllRanges();
                 sel.addRange(range);
                 commandHistoryElement.classList.toggle("hidden");
+                document.querySelector("html").style.overflow = "";
             });
         }
     }
