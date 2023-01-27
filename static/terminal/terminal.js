@@ -289,7 +289,7 @@ command.addEventListener("keydown", (e) => {
                         window.parent.windows("../textEditor/editor.html", "../resources/text.svg", "Terbium Text Editor", false, true, false, "text");
                         break;
                     case "browser":
-                        window.parent.windows("newwin.html", "../resources/browser.svg", "Terbium Browser", true, true, false, "browser");
+                        window.parent.windows("./hypertabs/index.html", "../resources/browser.svg", "Terbium Browser", true, true, false, "browser");
                         break;
                     case "image":
                         window.parent.windows("../image/image.html", "../resources/image.svg", "Terbium Image Viewer", false, true, false, "image");
