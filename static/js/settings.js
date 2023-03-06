@@ -531,7 +531,6 @@ const inputForEl = document.querySelector("[input-for]");
 let inputFor = inputForEl.getAttribute("input-for");
 
 inputForEl.addEventListener("click", () => {
-    console.log(inputFor);
     let el = document.querySelector(`#${inputFor}`);
     el.click();
 })
@@ -551,10 +550,17 @@ customShadow.addEventListener("input", () => {
     customShadow.setAttribute("value", rgb);
     allWindows.forEach(element => {
         element.style.boxShadow = `0 0 1px 1px ${rgb}, 0 0 13px 4px ${rgb}`;
-        element.querySelector("#frame").contentWindow.document.querySelector("[input-color-value]").style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        let iny = element.querySelector("#frame").contentWindow.document.querySelector("[input-color-value]");
+        if(iny) {
+            element.querySelector("#frame").contentWindow.document.querySelector("[input-color-value]").style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        }
     });
     localStorage.setItem("winshadow", `${rgb}`);
 });
+
+if(localStorage.getItem("roundness") === null) {
+    localStorage.setItem("roundness", "12");
+}
 
 clearCustomShadow.addEventListener("click", () => {
     let allWindows = window.parent.document.querySelectorAll(".win");
@@ -655,6 +661,12 @@ radius.addEventListener("click", () => {
                     element.classList.remove("radius");
                     element.classList.remove("custom");
                     element.classList.add("noRad");
+                }
+                if(localStorage.getItem("radius") === "no") {
+                    element.classList.add("noRad");
+                    element.classList.remove("custom");
+                    element.classList.remove("radius");
+                    element.style.borderRadius = 0;
                 }
             })
             break;
