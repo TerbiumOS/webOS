@@ -112,13 +112,14 @@
     --userselect-color: #1d1d1d;
     --version: #444;
 
-    --cursorText: url("/resources/cursors/textD.png"), text;
+    --cursorText: url("/resources/cursors/textD.png") 0 16, text;
     --cursorNormal: url("/resources/cursors/normalD.png"), default;
     --cursorHand: url("/resources/cursors/handD.png"), pointer;
     --resizeLeftRight: url("./resources/cursors/re-lrD.png") 20 0, ew-resize;
     --resizeUpDown: url("./resources/cursors/re-snD.png") 0 20, ns-resize;
     --resizeBottomLeft: url("./resources/cursors/re-bl_trD.png") 20 10, nesw-resize;
     --resizeBottomRight: url("./resources/cursors/re-br_tlD.png") 18 10, nwse-resize;
+    --cursorCrosshair: url("./resources/cursors/crosshairD.png") 16 16, crosshair;
 
     /* shell */
     --shell-background: #1e1e1e;
@@ -170,6 +171,7 @@
     --window-background: #282928;
     --window-color: #bdbdbd;
     --window-dragger: #282928;
+    --window-shadow-border: rgba(255, 255, 255, 0.19);
 
     /* buttons */
     --button-background: #393939;
@@ -197,13 +199,14 @@
     --userselect-color: #fff7a5;
     --version: #251d8c;
 
-    --cursorText: url("./resources/cursors/textN.png"), text;
+    --cursorText: url("./resources/cursors/textN.png") 0 16, text;
     --cursorNormal: url("./resources/cursors/normalN.png"), default;
     --cursorHand: url("./resources/cursors/handN.png"), pointer;
     --resizeLeftRight: url("./resources/cursors/re-lrN.png") 20 0, ew-resize;
     --resizeUpDown: url("./resources/cursors/re-snN.png") 0 20, ns-resize;
     --resizeBottomLeft: url("./resources/cursors/re-bl_trN.png") 20 10, nesw-resize;
     --resizeBottomRight: url("./resources/cursors/re-br_tlN.png") 18 10, nwse-resize;
+    --cursorCrosshair: url("./resources/cursors/crosshairN.png") 16 16, crosshair;
 
     /* shell */
     --shell-background: #161062;
@@ -255,6 +258,7 @@
     --window-background: #26206a;
     --window-color: #efe688;
     --window-dragger: #26206a;
+    --window-shadow-border: rgba(114, 103, 231, 0.32);
 
     /* buttons */
     --button-background: #342d93;
@@ -282,13 +286,14 @@
     --userselect-color: #ff40f7;
     --version: #4f4f4f;
     
-    --cursorText: url("/resources/cursors/textF.png"), text;
+    --cursorText: url("/resources/cursors/textF.png") 0 16, text;
     --cursorNormal: url("/resources/cursors/normalF.png"), default;
     --cursorHand: url("/resources/cursors/handF.png"), pointer;
     --resizeLeftRight: url("./resources/cursors/re-lrF.png") 20 0, ew-resize;
     --resizeUpDown: url("./resources/cursors/re-snF.png") 0 20, ns-resize;
     --resizeBottomLeft: url("./resources/cursors/re-bl_trF.png") 20 10, nesw-resize;
     --resizeBottomRight: url("./resources/cursors/re-br_tlF.png") 18 10, nwse-resize;
+    --cursorCrosshair: url("/resources/cursors/crosshairF.png") 16 16, crosshair;
     
     /* shell */
     --shell-background: #313131;
@@ -339,6 +344,7 @@
     --window-background: #383838;
     --window-color: #ff40f7;
     --window-dragger: #383838;
+    --window-shadow-border: rgba(255, 255, 255, 0.19);
     
     /* buttons */
     --button-background: #484848;
@@ -360,19 +366,20 @@
 
 [data-theme="almond"] {
     /* body */
-    --body: #1C1C1C;
+    --body: #161616;
     --body-color: #E89D46;
     --userselect-background: #ffffff0a;
     --userselect-color: #FFC889;
     --version: #4f4f4f;
 
-    --cursorText: url("./resources/cursors/textA.png"), text;
+    --cursorText: url("./resources/cursors/textA.png") 0 16, text;
     --cursorNormal: url("./resources/cursors/normalA.png"), default;
     --cursorHand: url("./resources/cursors/handA.png"), pointer;
     --resizeLeftRight: url("./resources/cursors/re-lrA.png") 20 0, ew-resize;
     --resizeUpDown: url("./resources/cursors/re-snA.png") 0 20, ns-resize;
     --resizeBottomLeft: url("./resources/cursors/re-bl_trA.png") 20 10, nesw-resize;
     --resizeBottomRight: url("./resources/cursors/re-br_tlA.png") 18 10, nwse-resize;
+    --cursorCrosshair: url("./resources/cursors/crosshairA.png") 16 16, crosshair;
 
     /* shell */
     --shell-background: #282928;
@@ -423,6 +430,7 @@
     --window-background: #282928;
     --window-color: #E89D46;
     --window-dragger: #282928;
+    --window-shadow-border: rgba(255, 255, 255, 0.19);
 
     /* buttons */
     --button-background: #414141;
@@ -774,10 +782,8 @@ main.open {
     display: grid;
     justify-items: center;
     align-content: center;
-    width: max-content;
-    height: max-content;
-    padding: 4px 6px;
-    border-radius: 4px;
+    padding: 6px 6px;
+    border-radius: 6px;
     background-color: transparent;
     border: none;
     transition: ease-in-out 200ms;
@@ -905,6 +911,7 @@ body {
     color: var(--body-color);
     transition: ease-in-out 200ms;
     height: 100vh;
+    cursor: var(--cursorNormal);
 }
 
 .bright {
@@ -1029,7 +1036,7 @@ li {
 }
 
 .shell.shadow {
-    box-shadow: 0 3px 7px -2px #00000075;
+    box-shadow: 0 -2px 11px -2px #00000075;
 }
 
 .shell.noShadow {
@@ -1186,17 +1193,24 @@ main > .inputAppSearch {
 }
 
 .inputAppSearch input {
-    width: calc(100% - 20px);
-    transition: 200ms ease-in-out;
     background-color: var(--inputAppSearch-background);
+    transition: 200ms ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0 0 0px 2px transparent;
+    width: calc(100% - 20px);
     color: var(--inputAppSearchNoneFocus-color);
     border: none;
     padding: 0 10px;
     font-size: 16px;
     height: 100%;
-    border-radius: 8px;
-    box-shadow: 0 0 0px 2px transparent;
     cursor: var(--cursorText);
+    display: flex;
+    align-items: center;
+}
+
+.inputAppSearch input.sugg {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .inputAppSearch input:focus-visible {
@@ -1204,6 +1218,58 @@ main > .inputAppSearch {
     background-color: var(--inputAppSearch-focus-background);
     outline: none;
     color: var(--inputAppSearch-color);
+}
+
+.suggest {
+    position: absolute;
+    top: 118px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 200ms ease-in-out;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 10px;
+    border-radius: 12px;
+    background-color: var(--inputAppSearch-focus-background);
+}
+
+.suggest.noSugg {
+    height: 8px;
+    width: 200px;
+    z-index: -3;
+    opacity: 0;
+    background-color: transparent;
+}
+
+.suggest.sugg {
+    height: max-content;
+    width: 500px;
+    opacity: 1;
+    z-index: 9;
+}
+
+[suggItem] {
+    opacity: 1;
+    cursor: var(--cursorHand);
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 6px;
+    transition: 200ms ease-in-out;
+}
+
+[suggItem]:hover {
+    background-color: var(--button-color);
+    box-shadow: 0 0 9px 0px var(--button-color);
+    color: var(--button-color-hover);
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+[suggItem].hh {
+    display: none;
 }
 
 .start {
@@ -1419,15 +1485,25 @@ main > .inputAppSearch {
     display: flex;
     background-color: var(--dock-background);
     box-shadow: 0 0 7px -2px #00000075;
-    border: none;
+    border: 1px solid transparent;
     width: max-content;
     z-index: 2;
     gap: 4px;
-    border-bottom: none;
     max-width: 438px;
     overflow-x: auto;
     position: fixed;
-    transition: background-color 200ms ease-in-out;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    transition-property: bottom, background-color, border;
+}
+
+.dock[appMax=true] {
+    z-index: 5;
+}
+
+.dock[appMax=true][hidden=true] {
+    bottom: -43px;
+    border: 1px solid var(--button-background-hover);
 }
 
 .activeSpan {
@@ -1473,6 +1549,10 @@ main > .inputAppSearch {
 
 .dockbtn.active {
     background-color: var(--dock-button-background) !important;
+}
+
+#appsOpen:hover {
+    background-color: transparent;
 }
 
 .dockH {
@@ -1546,7 +1626,6 @@ main > .inputAppSearch {
 .dockicon {
     width: 24px;
     height: 24px;
-    border-radius: 5px;
 }
 
 .dockicon.stroke {
@@ -1602,13 +1681,35 @@ main > .inputAppSearch {
     overflow: hidden;
     z-index: 2;
     transform: scale(1);
-    transition: background-color ease-in-out 200ms;
-    transition: border-radius ease-in-out 150ms;
-    transition: transform ease-in-out 250ms;
+    /* transition: background-color ease-in-out 200ms;
+    transition: border-radius ease-in-out 150ms; */
+    transition-property: background-color, border-radius;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
 }
 
 .win.browser {
     min-width: 757px;
+}
+
+.focusWinEl.yes {
+    position: absolute;
+    height: calc(100% - 48px);
+    width: 100%;
+    top: 48px;
+    z-index: 4;
+}
+.focusWinEl.small.yes {
+    height: calc(100% - 36px);
+    top: 36px;
+}
+
+.focusWinEl.no {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    top: 48px;
+    z-index: 3;
 }
 
 .browser iframe {
@@ -1646,16 +1747,15 @@ main > .inputAppSearch {
 }
 
 .maxiY {
-    top: 37px !important;
+    top: 36px !important;
     left: 0 !important;
-    height: calc(100% - 37px) !important;
-    width: calc(100% - 1px) !important;
+    height: calc(100% - 36px) !important;
+    width: calc(100%) !important;
     resize: none;
 }
 
 .maxiR {
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 .winconts {
@@ -1667,6 +1767,10 @@ main > .inputAppSearch {
     display: flex;
     align-items: center;
     transition: background-color ease-in-out 200ms;
+}
+
+.winconts.small {
+    height: 40px !important;
 }
 
 .dragged {
@@ -1703,6 +1807,11 @@ main > .inputAppSearch {
     cursor: var(--cursorHand);
 }
 
+.winc.small {
+    height: 28px !important;
+    width: 28px !important;
+}
+
 .btnround {
     width: 30px;
     height: 30px;
@@ -1724,13 +1833,34 @@ main > .inputAppSearch {
     stroke: var(--winic-color);
 }
 
+.winic:not(#closei).small {
+    height: 8px !important;
+    width: 8px !important;
+}
+
+#closei.small {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.wincFill {
+    fill: #ffffff;
+}
+
 .winic rect {
     transition: 200ms ease-in-out;
     stroke: var(--winic-color);
 }
+.winic.noStroke {
+    stroke: none;
+}
 
 .winc:hover .winic rect {
     stroke: var(--winic-color-hover);
+}
+
+.maxi:hover .wincFill {
+    fill: var(--winic-color-hover);
 }
 
 #closei {
@@ -1763,6 +1893,11 @@ main > .inputAppSearch {
     -webkit-user-select: none;
     -ms-user-select: none;
     position: absolute;
+}
+
+.favicon.small {
+    width: 22px;
+    height: 22px;
 }
 
 .iconL {
@@ -1865,6 +2000,10 @@ button.m:hover span {
     height: calc(100% - 48px);
     position: relative;
     top: 0;
+}
+
+.frame.small {
+    height: calc(100% - 40px) !important;
 }
 
 .rectUp {
@@ -2625,4 +2764,20 @@ mark {
 
 .maxiY .bottomResize {
     cursor: var(--cursorNormal);
+}
+
+.focusWinEl {
+    position: absolute;
+    top: 48px;
+    width: 100%;
+}
+
+.focusWinEl.no {
+    height: 0;
+    z-index: -3;
+}
+
+.focusWinEl.yes {
+    height: 100%;
+    z-index: 2;
 }

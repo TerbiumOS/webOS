@@ -28,23 +28,10 @@
     --command-background: #131313;
     --command-outline: #292929;
     --command-border: #131313;
-}
 
-[data-theme="light"] {
-    --body: #686868;
-    --color: white;
-    --category-title-color: #41bc5d;
-    --userselect-background: #c4c4c4;
-    --userselect-color: #666;
-
-    /* commands */
-    --commmands-background: #4f4e4e;
-    --commands-outline: #6c6c6c;
-    --commmands-boxshadow: #4f4e4e;
-
-    --command-background: #3c3c3c;
-    --command-outline: #6c6c6c;
-    --command-border: #3c3c3c;
+    --cursorText: url(../resources/cursors/textD.png) 0 16, default;
+    --cursorNormal: url(../resources/cursors/normalD.png), default;
+    --cursorHand: url(../resources/cursors/handD.png), default;
 }
 
 [data-theme="night"] {
@@ -62,6 +49,10 @@
     --command-background: #08062b;
     --command-outline: #efe688;
     --command-border: #08062b;
+
+    --cursorText: url(../resources/cursors/textN.png) 0 16, default;
+    --cursorNormal: url(../resources/cursors/normalN.png), default;
+    --cursorHand: url(../resources/cursors/handN.png), default;
 }
 
 [data-theme="fracital"] {
@@ -79,23 +70,31 @@
     --command-background: #262626;
     --command-outline: #424242;
     --command-border: #262626;
+
+    --cursorText: url(../resources/cursors/textF.png) 0 16, default;
+    --cursorNormal: url(../resources/cursors/normalF.png), default;
+    --cursorHand: url(../resources/cursors/handF.png), default;
 }
 
 [data-theme="almond"] {
-    --body: #1c1c1c;
+    --body: #131313;
     --color: #E89D46;
     --category-title-color: #E89D46;
     --userselect-background: #ffffff1a;
     --userselect-color: #FFC889;
     
     /* commands */
-    --commmands-background: #151515;
-    --commands-outline: #282828;
+    --commmands-background: #222222;
+    --commands-outline: #363636;
     --commmands-boxshadow: #151515;
 
     --command-background: #222;
     --command-outline: #424242;
     --command-border: #262626;
+
+    --cursorText: url(../resources/cursors/textA.png) 0 16, default;
+    --cursorNormal: url(../resources/cursors/normalA.png), default;
+    --cursorHand: url(../resources/cursors/handA.png), default;
 }
 
 ::selection {
@@ -135,6 +134,7 @@ body {
     min-height: 100vh;
     justify-items: center;
     align-content: center;
+    cursor: var(--cursorNormal);
 }
 
 .commands {
@@ -149,6 +149,10 @@ body {
     margin-top: 22px;
     padding: 7px 10px;
     gap: 8px;
+}
+
+command {
+    cursor: var(--cursorText);
 }
 
 code {

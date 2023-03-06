@@ -4,6 +4,7 @@ const night = document.getElementById("night");
 const frac = document.getElementById("frac");
 const almond = document.getElementById("almond");
 const logoWall = window.parent.document.querySelector(".logoWall");
+const deskBack = document.querySelector(".deskBack");
 
 let seti = window.parent.document.querySelector("#setg");
 let stylec = window.parent.document.getElementById("rels");
@@ -36,78 +37,24 @@ function isUrl(val = '') {
     return false;
 };
 
-dark.addEventListener("click", () => {
-    let html = document.documentElement.getAttribute("data-theme");
-    if(html !== "dark") {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        themeMAIN.setAttribute('data-theme', 'dark');
-        for (let a = 0; a < win.length; a++) {
-            const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    }
-    if(html === "dark") {
-        alert("Dark theme is already enabled");
-        return
-    }
-});
-
-// check which theme button was clicked then log that buttons id
 const themeBtns = document.querySelectorAll(".themeBtn");
 
-night.addEventListener("click", () => {
-    let html = document.documentElement.getAttribute("data-theme");
-    if(html !== "night") {
-        document.documentElement.setAttribute('data-theme', 'night');
-        localStorage.setItem('theme', 'night');
-        themeMAIN.setAttribute('data-theme', 'night');
-        for (let a = 0; a < win.length; a++) {
-            const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'night');
+themeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let themeValue = btn.getAttribute("theme-set");
+        window.parent.document.documentElement.setAttribute('data-theme', themeValue);
+        localStorage.setItem("theme", themeValue);
+        let allWindows = window.parent.document.querySelectorAll(".win");
+        for (let a = 0; a < allWindows.length; a++) {
+            const element = allWindows[a];
+            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', themeValue);
+            let rgbForInput = getComputedStyle(window.parent.document.documentElement).getPropertyValue('--window-shadow-border');
+            element.querySelector("#frame").contentWindow.document.querySelector("[input-color-value]").style.backgroundColor = rgbForInput;
         }
-
-    }
-    if(html === "night") {
-        alert("Night theme is already enabled");
-        return
-    }
-});
-
-frac.addEventListener("click", () => {
-    let html = document.documentElement.getAttribute("data-theme");
-    if(html !== "fracital") {
-        document.documentElement.setAttribute('data-theme', 'fracital');
-        localStorage.setItem('theme', 'fracital');
-        themeMAIN.setAttribute('data-theme', 'fracital');
-        for (let a = 0; a < win.length; a++) {
-            const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'fracital');
+        if(localStorage.getItem("background") === "default") {
+            deskBack.src = `../resources/themePrevs/theme - ${themeValue}.png`;
         }
-
-    }
-    if(html === "fracital") {
-        alert("Fracital theme is already enabled");
-        return
-    }
-});
-
-almond.addEventListener("click", () => {
-    let html = document.documentElement.getAttribute("data-theme");
-    if(html !== "almond") {
-        document.documentElement.setAttribute('data-theme', 'almond');
-        localStorage.setItem('theme', 'almond');
-        themeMAIN.setAttribute('data-theme', 'almond');
-        for (let a = 0; a < win.length; a++) {
-            const element = win[a];
-            element.querySelector("#frame").contentWindow.document.documentElement.setAttribute('data-theme', 'almond');
-        }
-
-    }
-    if(html === "almond") {
-        alert("Almond theme is already enabled");
-        return
-    }
+    })
 })
 
 defaultb.addEventListener("click", () => {
@@ -115,6 +62,11 @@ defaultb.addEventListener("click", () => {
     background.src = "";
     background.classList.add("bHidden");
     logoWall.classList.remove("hidden");
+    deskBack.src = `../resources/themePrevs/theme - ${localStorage.getItem("theme")}.png`;
+    if(deskBack.classList.contains("contain")) {
+        deskBack.classList.remove("contain");
+    }
+    dd.value = "default";
 });
 
 dd.addEventListener("keydown", (e) => {
@@ -131,6 +83,12 @@ dd.addEventListener("keydown", (e) => {
             background.src = dd.value;
             background.classList.remove("bHidden");
             localStorage.setItem("background", dd.value)
+            deskBack.src = dd.value;
+            if(localStorage.getItem("backF") === "contain") {
+                if(!deskBack.classList.contains("contain")) {
+                    deskBack.classList.add("contain");
+                }
+            }
         }
     }
 });
@@ -141,11 +99,26 @@ if(localStorage.getItem("background")) {
     dd.value = ""
 }
 
+if(localStorage.getItem("backF") === null) {
+    localStorage.setItem("backF", "contain");
+} else if(localStorage.getItem("backF") === "contain") {
+    if(localStorage.getItem("background") != "default") {
+        deskBack.classList.add("contain");
+    }
+} else if(localStorage.getItem("backF") === "cover") {
+    if(localStorage.getItem("background") != "default") {
+        deskBack.classList.remove("contain");
+    }
+}
+
 function contain() {
     background.style.objectFit = "contain";
     background.classList.add("contain");
     background.classList.remove("stretch");
     localStorage.setItem("backF", "contain");
+    if(localStorage.getItem("background") != "default") {
+        deskBack.classList.add("contain");
+    }
 }
 
 function stretch() {
@@ -153,6 +126,9 @@ function stretch() {
     background.classList.remove("contain");
     background.classList.add("stretch");
     localStorage.setItem("backF", "cover");
+    if(localStorage.getItem("background") != "default") {
+        deskBack.classList.remove("contain");
+    }
 }
 
 defpow.addEventListener("click", () => {
@@ -191,7 +167,6 @@ const clearCustomShadow = document.getElementById("clearCustomShadow");
 const login = document.getElementById("login");
 const dockPos = document.querySelectorAll(".dockPos");
 
-const btns = window.parent.document.querySelectorAll(".winc");
 const controls = window.parent.document.querySelectorAll(".controls");
 const favicon = window.parent.document.querySelectorAll(".icon");
 
@@ -229,27 +204,26 @@ switch(localStorage.getItem("winBtnPos")) {
 for (let i = 0; i < btnrPos.length; i++) {
     const element = btnrPos[i];
     element.addEventListener("click", () => {
+        let allWindows = window.parent.document.querySelectorAll(".win");
         switch(element.getAttribute("data-btnpos").toLowerCase()) {
             case "left":
-                for (let i = 0; i < win.length; i++) {
-                    const element = win[i];
+                allWindows.forEach((element) => {
                     element.querySelector(".icon").classList.add("iconR");
                     element.querySelector(".icon").classList.remove("iconL");
                     element.querySelector(".controls").classList.add("controlsL");
                     element.querySelector(".controls").classList.remove("controlsR");
-                }
+                })
                 btnrPos[0].checked = false;
                 btnrPos[1].checked = true;
                 localStorage.setItem("winBtnPos", "left");
                 break;
             case "right":
-                for (let i = 0; i < win.length; i++) {
-                    const element = win[i];
+                allWindows.forEach((element) => {
                     element.querySelector(".icon").classList.add("iconL");
                     element.querySelector(".icon").classList.remove("iconR");
                     element.querySelector(".controls").classList.add("controlsR");
                     element.querySelector(".controls").classList.remove("controlsL");
-                }
+                })
                 btnrPos[0].checked = true;
                 btnrPos[1].checked = false;
                 localStorage.setItem("winBtnPos", "right");
@@ -455,14 +429,14 @@ if (localStorage.getItem("roundnessAmount") === null) {
 let roundnessCustomState = localStorage.getItem("roundnessCustomState");
 roundness.addEventListener("change", e => {
     localStorage.setItem("roundnessCustomState", "yes");
-    for (let i = 0; i < win.length; i++) {
-        const element = win[i];
+    let allWindows = window.parent.document.querySelectorAll(".win");
+    allWindows.forEach(element => {
         radius.checked = true;
         localStorage.setItem("radius", "custom");
         element.classList.remove("radius");
         element.classList.add("custom");
         element.style.borderRadius = `${roundness.value}px`;
-    }
+    })
     localStorage.setItem("roundness", roundness.value);
 });
 
@@ -470,11 +444,12 @@ clearRoundness.addEventListener("click", e => {
     roundnessState = false;
     roundnessAmount = 12;
     localStorage.setItem("roundness", "12");
-    for (let i = 0; i < win.length; i++) {
-        const element = win[i];
+    let allWindows = window.parent.document.querySelectorAll(".win");
+    allWindows.forEach(element => {
         localStorage.setItem("radius", "yes");
         element.classList.remove("custom");
         element.classList.add("radius");
+        element.querySelector(".frame").contentWindow.document.querySelector("#radius").checked = true;
         switch(localStorage.getItem("radius")) {
             case "yes":
                 element.classList.add("radius");
@@ -488,7 +463,7 @@ clearRoundness.addEventListener("click", e => {
                 element.classList.add("radius");
                 break;
         }
-    }
+    });
 });
 
 // adding the rounding or blockyness of window buttons on switch change
@@ -507,6 +482,7 @@ switch(localStorage.getItem("btnr")) {
 }
 
 btnr.addEventListener("click", () => {
+    const btns = window.parent.document.querySelectorAll(".winc");
     switch(btnr.checked) {
         case true:
             localStorage.setItem("btnr", "yes");
@@ -538,32 +514,56 @@ if(localStorage.getItem("winshadow") != null) {
     // remove 20 at the end of the hex code
     hex = hex.substring(0, hex.length - 2);
     customShadow.value = hex;
+    const inputColorValue = document.querySelector("[input-color-value]");
+    let rgbForInput = localStorage.getItem("winshadow");
+    // remove 0.32 at the end of the rgb: like something of rgba(0, 0, 0, 0.32)
+    rgbForInput = rgbForInput.substring(0, rgbForInput.length - 7) + ")";
+    inputColorValue.style.backgroundColor = rgbForInput;
 }
 
+if(localStorage.getItem("winshadow") === "default") {
+    const inputColorValue = document.querySelector("[input-color-value]");
+    let rgbForInput = getComputedStyle(window.parent.document.documentElement).getPropertyValue('--window-shadow-border');
+    inputColorValue.style.backgroundColor = rgbForInput;
+}
+
+const inputForEl = document.querySelector("[input-for]");
+let inputFor = inputForEl.getAttribute("input-for");
+
+inputForEl.addEventListener("click", () => {
+    console.log(inputFor);
+    let el = document.querySelector(`#${inputFor}`);
+    el.click();
+})
+
 customShadow.addEventListener("input", () => {
+    let allWindows = window.parent.document.querySelectorAll(".win");
     let hex = customShadow.value;
     var red = parseInt(hex[1]+hex[2],16);
     var green = parseInt(hex[3]+hex[4],16);
     var blue = parseInt(hex[5]+hex[6],16);
-    let rgb = `rgb(${red}, ${green}, ${blue}, 0.32)`;
+    let rgb = `rgba(${red}, ${green}, ${blue}, 0.32)`;
     
     if(shadow.checked === false) {
         shadow.checked = true;
         localStorage.setItem("shadow", "yes");
     }
     customShadow.setAttribute("value", rgb);
-    for (let i = 0; i < win.length; i++) {
-        const element = win[i];
-        element.style.boxShadow = `0 0 13px 3px ${rgb}`;
-    }
+    allWindows.forEach(element => {
+        element.style.boxShadow = `0 0 1px 1px ${rgb}, 0 0 13px 4px ${rgb}`;
+        element.querySelector("#frame").contentWindow.document.querySelector("[input-color-value]").style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    });
     localStorage.setItem("winshadow", `${rgb}`);
 });
 
 clearCustomShadow.addEventListener("click", () => {
-    for (let i = 0; i < win.length; i++) {
-        const element = win[i];
-        element.style.boxShadow = `0 0 13px 3px rgba(0, 0, 0, 0.32)`;
-    }
+    let allWindows = window.parent.document.querySelectorAll(".win");
+    allWindows.forEach(element => {
+        element.style.boxShadow = `0 0 1px 1px var(--window-shadow-border), 0px 0px 13px 4px rgb(0 0 0 / 32%)`;
+        let rgbForInput = getComputedStyle(window.parent.document.documentElement).getPropertyValue('--window-shadow-border');
+        element.querySelector("#frame").contentWindow.document.querySelector("[input-color-value]").style.backgroundColor = rgbForInput;
+        element.querySelector("#frame").contentWindow.document.querySelector("#customShadow").setAttribute("value", rgbForInput);
+    });
     localStorage.setItem("winshadow", "default");
 });
 
@@ -588,22 +588,21 @@ switch(localStorage.getItem("shadow")) {
 }
 
 shadow.addEventListener("click", () => {
+    let allWindows = window.parent.document.querySelectorAll(".win");
     switch(shadow.checked) {
         case true:
             localStorage.setItem("shadow", "yes");
-            for (let i = 0; i < win.length; i++) {
-                const element = win[i];
-                element.style.boxShadow = `${localStorage.getItem("winshadow")}`;
+            allWindows.forEach(element => {
+                element.style.boxShadow = `0 0 1px 1px ${localStorage.getItem("winshadow")}, 0 0 13px 4px ${localStorage.getItem("winshadow")}`;
                 element.classList.remove("noShadow");
-            }
+            })
             break;
         case false:
             localStorage.setItem("shadow", "no");
-            for (let i = 0; i < win.length; i++) {
-                const element = win[i];
+            allWindows.forEach(element => {
                 element.classList.add("noShadow");
                 element.classList.add("shadow");
-            }
+            })
             break;
         default:
             break;
@@ -626,35 +625,38 @@ switch(localStorage.getItem("radius")) {
 }
 
 radius.addEventListener("click", () => {
+    let allWindows = window.parent.document.querySelectorAll(".win");
     switch(radius.checked) {
         case true:
             localStorage.setItem("radius", "yes");
-            for (let i = 0; i < win.length; i++) {
-                const element = win[i];
-                element.classList.add("radius");
-                if(element.classList.contains("custom")) {
-                    element.classList.remove("custom");
-                } else if(element.classList.contains("noRad")) {
-                    element.classList.remove("noRad");
+            allWindows.forEach(element => {
+                if(localStorage.getItem("roundness") != "12") {
+                    element.classList.add("custom");
+                    element.style.borderRadius = localStorage.getItem("roundness") + "px";
+                    localStorage.setItem("radius", "custom")
                 }
-            }
+                if(localStorage.getItem("roundness") === "12") {
+                    console.log("12px");
+                    element.classList.remove("custom");
+                    element.classList.remove("noRad");
+                    element.classList.add("radius");
+                }
+            })
             break;
         case false:
             localStorage.setItem("radius", "no");
-            for (let i = 0; i < win.length; i++) {
-                const element = win[i];
-                element.classList.remove("radius");
-            }
-            if(localStorage.getItem("roundness") != null) {
-                for (let i = 0; i < win.length; i++) {
-                    const element = win[i];
+            allWindows.forEach(element => {
+                if(localStorage.getItem("roundness") != "12") {
                     element.classList.add("noRad");
-                    if(localStorage.getItem("roundnessCustomState") === "yes") {
-                        element.style.borderRadius = 0;
-                        element.classList.remove("custom");
-                    }
+                    element.classList.remove("custom");
+                    element.style.borderRadius = 0;
+                } 
+                if(localStorage.getItem("roundness") === "12") {
+                    element.classList.remove("radius");
+                    element.classList.remove("custom");
+                    element.classList.add("noRad");
                 }
-            }
+            })
             break;
         default:
             break;
@@ -716,3 +718,59 @@ for (let i = 0; i < dropBtns.length; i++) {
         
     }
 }
+
+if(localStorage.getItem("background") === null) {
+    localStorage.setItem("background", "default");
+    deskBack.src = `../resources/themePrevs/theme - ${localStorage.getItem("theme")}.png`;
+} else if(localStorage.getItem("background") === "default") {
+    deskBack.src = `../resources/themePrevs/theme - ${localStorage.getItem("theme")}.png`;
+} else {
+    deskBack.src = localStorage.getItem("background");
+}
+
+const categories = document.querySelectorAll(".category");
+categories.forEach(category => {
+    category.addEventListener("click", () => {
+        const type = category.getAttribute("type");
+        const views = document.querySelectorAll("[view]");
+        if(type === "theme") {
+            const theme = document.querySelector("[view='theme']");
+            views.forEach(view => {
+                view.setAttribute("hiddenCat", "true");
+            })
+            theme.setAttribute("hiddenCat", "false");
+        } else if(type === "osl") {
+            const osl = document.querySelector("[view='osl']");
+            views.forEach(view => {
+                view.setAttribute("hiddenCat", "true");
+            })
+            osl.setAttribute("hiddenCat", "false");
+        } else if(type === "other") {
+            const other = document.querySelector("[view='other']");
+            views.forEach(view => {
+                view.setAttribute("hiddenCat", "true");
+            })
+            other.setAttribute("hiddenCat", "false");
+        }
+    })
+});
+
+const uploadImage = document.querySelector(".customImage");
+
+uploadImage.addEventListener("change", () => {
+    const file = uploadImage.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        localStorage.setItem("background", reader.result);
+        deskBack.src = reader.result;
+        parent.document.querySelector(".background").src = reader.result;
+        parent.document.querySelector(".background").classList.remove("bHidden");
+        parent.document.querySelector(".logoWall").classList.add("hidden");
+        if(localStorage.getItem("backF") === "contain") {
+            if(!deskBack.classList.contains("contain")) {
+                deskBack.classList.add("contain");
+            }
+        }
+    }
+})

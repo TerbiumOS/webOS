@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terbium Calculator</title>
+    <link rel="stylesheet" href="calc.css">
+</head>
+    <body>
+        <div screen def="0">
+            <input inputNumber readonly="true">
+            <input output disabled>
+        </div>
+        <div class="buttons">
+            <div class="row">
+                <button op="ac" ac operator>AC</button>
+                <button op="(" parenL operator>(</button>
+                <button op=")" parenR operator>)</button>
+                <button op="/" operator>/</button>
+            </div>
+            <div class="row">
+                <button number="7" numberButton>7</button>
+                <button number="8" numberButton>8</button>
+                <button number="9" numberButton>9</button>
+                <button op="*" operator>*</button>
+            </div>
+            <div class="row">
+                <button number="4" numberButton>4</button>
+                <button number="5" numberButton>5</button>
+                <button number="6" numberButton>6</button>
+                <button op="-" operator>-</button>
+            </div>
+            <div class="row">
+                <button number="1" numberButton>1</button>
+                <button number="2" numberButton>2</button>
+                <button number="3" numberButton>3</button>
+                <button op="+" operator>+</button>
+            </div>
+            <div class="row">
+                <button number="0" numberButton>0</button>
+                <button decimal>
+                    <p dP>.</p>
+                </button>
+                <button del>
+                    <svg class="opIcon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="stroke" d="M69.3636 13H30.3569C27.7352 13 25.2439 14.1431 23.5341 16.1306L7.48824 34.7827C4.90781 37.7823 4.90781 42.2177 7.48824 45.2173L23.5341 63.8694C25.2439 65.8569 27.7352 67 30.3569 67H69.3636C71.1237 67 72.8117 66.2888 74.0563 65.023C75.3008 63.7571 76 62.0402 76 60.25V19.75C76 17.9598 75.3008 16.2429 74.0563 14.977C72.8117 13.7112 71.1237 13 69.3636 13Z" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="stroke" d="M59 30L39 50" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path class="stroke" d="M39 30L59 50" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button eq>=</button>
+            </div>
+        </div>
+        <script src="calc.js"></script>
+        <script src="../js/theme.js"></script>
+    </body>
+</html>

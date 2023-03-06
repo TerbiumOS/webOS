@@ -66,8 +66,8 @@
 
 [data-theme="almond"] {
     --taskbar-bg: #282928;
-    --background: #222222;
-    --accent: #be6600;
+    --background: #131313;
+    --accent: #d8882c;
     --button-background: #383838;
     --button-color: #CF8B3C;
     --button-color-hover: #ffffff;
@@ -76,9 +76,9 @@
     --seek-container-background: #171717;
     --player-container-background: #242424;
     --seek-before: #a67236;
-    --seek-after: #ff8800;
-    --seek-thumb: #ff8800;
-    --seek-thumb-boxShadow: 0px 0px 1px 1px #ff880078, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --seek-after: #d8882c;
+    --seek-thumb: #d8882c;
+    --seek-thumb-boxShadow: 0px 0px 1px 1px #d8882c, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
     --switch-thumb: #E89D46;
     --switch-back: #424242d3;
     --switch-back-shadow: #E89D46;
@@ -326,6 +326,7 @@ body {
     transition: width 150ms ease-in-out, transform 150ms ease-in-out;
     transform: scaleY(0);
     height: 5px;
+    cursor: var(--cursorNormal);
 }
 
 .volC:hover .vols {
@@ -379,6 +380,7 @@ body {
     height: 17px;
     border-radius: 100%;
     background: var(--accent);
+    cursor: var(--cursorNormal);
 }
 
 .vols:active::-webkit-slider-thumb {
@@ -398,6 +400,7 @@ body {
     height: 14px;
     border-radius: 100%;
     background: var(--accent);
+    cursor: var(--cursorNormal);
 }
 
 .volH,

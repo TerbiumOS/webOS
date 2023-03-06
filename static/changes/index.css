@@ -32,7 +32,7 @@
 }
 
 [data-theme="almond"] {
-    --body: #1c1c1c;
+    --body: #131313;
     --color: #E89D46;
     --button-color: #E89D46;
 }
@@ -64,7 +64,7 @@ body {
     background-color: var(--body);
     color: var(--color);
     display: grid;
-    justify-content: center;
+    justify-items: center;
     align-content: baseline;
 }
 

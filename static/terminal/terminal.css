@@ -17,7 +17,7 @@
     --userselect-background: #ffffff15;
     --userselect-color: #41bc5d;
 
-    --cursorText: url("/resources/cursors/textD.png") text;
+    --cursorText: url("/resources/cursors/textD.png") 0 16, text;
     --cursorNormal: url("/resources/cursors/normalD.png") default;
     --cursorHand: url("/resources/cursors/handD.png") pointer;
 
@@ -40,7 +40,7 @@
     --userselect-background: #32299b;
     --userselect-color: #fff7a5;
     
-    --cursorText: url("/resources/cursors/textD.png") text;
+    --cursorText: url("/resources/cursors/textD.png") 0 16, text;
     --cursorNormal: url("/resources/cursors/normalD.png") default;
     --cursorHand: url("/resources/cursors/handD.png") pointer;
     
@@ -63,7 +63,7 @@
     --userselect-background: #ffffff15;
     --userselect-color: #41bc5d;
     
-    --cursorText: url("/resources/cursors/textD.png") text;
+    --cursorText: url("/resources/cursors/textD.png") 0 16, text;
     --cursorNormal: url("/resources/cursors/normalD.png") default;
     --cursorHand: url("/resources/cursors/handD.png") pointer;
     
@@ -79,7 +79,7 @@
 }
 
 [data-theme="almond"] {
-    --body: #1c1c1c;
+    --body: #131313;
     --color: #E89D46;
     --color-warning: #ff6d6d;
     --scrollbar-background: #282928;
@@ -87,7 +87,7 @@
     --userselect-background: #ffffff15;
     --userselect-color: #41bc5d;
     
-    --cursorText: url("/resources/cursors/textA.png") text;
+    --cursorText: url("/resources/cursors/textA.png") 0 16, text;
     --cursorNormal: url("/resources/cursors/normalA.png") default;
     --cursorHand: url("/resources/cursors/handA.png") pointer;
     

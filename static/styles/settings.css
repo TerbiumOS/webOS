@@ -34,7 +34,8 @@
     --cursorNormal: url("../resources/cursors/normalD.png") default;
     --cursorHand: url("../resources/cursors/handD.png") pointer;
 
-    --cat-background: #111111;
+    --desktop-background-color: #111111;
+    --category-background: #111111;
     --title-border-color: white;
     --white: white;
     --button-background: #242424;
@@ -68,7 +69,8 @@
     --cursorNormal: url("../resources/cursors/normalN.png") default;
     --cursorHand: url("../resources/cursors/handN.png") pointer;
 
-    --cat-background: #0e0a40;
+    --desktop-background-color: #0e0a40;
+    --category-background: #0e0a40;
     --title-border-color: #ffe688;
     --white: #ffe688;
     --button-background: #3b3497;
@@ -100,7 +102,8 @@
     --cursorNormal: url("../resources/cursors/normalF.png") default;
     --cursorHand: url("../resources/cursors/handF.png") pointer;
 
-    --cat-background: #1c1c1c;
+    --desktop-background-color: #1a1a1a;
+    --category-background: #1c1c1c;
     --title-border-color: #ff40f7;
     --white: #ff40f7;
     --button-background: #3d3d3d;
@@ -126,11 +129,14 @@
     --scrollbar-background: #383838;
     --userselect-background: #ffffff1a;
     --userselect-color: #FFC889;
+    
     --cursorText: url("../resources/cursors/textA.png") text;
     --cursorNormal: url("../resources/cursors/normalA.png") default;
     --cursorHand: url("../resources/cursors/handA.png") pointer;
-    --cat-background: #131313;
-    --title-border-color: #FFF;
+
+    --desktop-background-color: #1c1c1c;
+    --category-background: #262626;
+    --title-border-color: #E89D46;
     --white: #E89D46;
     --button-background: #313131;
     --button-boxShadow: none;
@@ -184,7 +190,6 @@ body {
     color: var(--color);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     animation: fadeInAnimation ease-in-out 0.3s;
     animation-iteration-count: 1;
     height: max-content;
@@ -205,7 +210,7 @@ body {
 .title {
     color: var(--color);
     font-family: Poppins;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .settings {
@@ -216,24 +221,30 @@ body {
     padding: 0 6px;
 }
 
-.cat {
-    height: min-content;
-    text-align: center;
-    display: grid;
-    justify-items: center;
+[view] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    background-color: var(--cat-background);
-    border-radius: 8px;
-    position: relative;
-    padding-bottom: 8px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 200ms ease-in-out;
 }
 
-.cat .title {
-    border: none;
-    margin: 0;
-    font-size: 19px;
-    padding: 0;
-    width: max-content;
+[hiddenCat=true] {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+[hiddenCat=false] {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 1;
 }
 
 .border-bottom {
@@ -356,6 +367,19 @@ body {
     cursor: var(--cursorText);
 }
 
+.btn.input:hover [input-color-value] {
+    box-shadow: 0 0 6px 0px #00000091;
+}
+
+[input-hidden] {
+    visibility: collapse;
+    z-index: -9;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
 .btn.input {
     border: none;
     outline: none;
@@ -367,7 +391,18 @@ body {
 }
 
 .btn.input.color {
-    height: 34px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+[input-color-value] {
+    height: calc(100% - 2px);
+    width: calc(100% - 2px);
+    border-radius: 2px;
+    box-shadow: 0 0 6px 0px transparent;
+    transition: 200ms ease-in-out;
 }
 
 .slides {
@@ -547,4 +582,140 @@ input[type=number] {
     background-color: var(--color);
     width: 5px;
     border-radius: 6px;
+}
+
+.reset {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    z-index: 9;
+}
+
+.views {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.categories {
+    opacity: 1;
+    position: relative;
+    top: 6px;
+    left: 6px;
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    z-index: 8;
+}
+
+.category {
+    cursor: var(--cursorHand);
+    user-select: none;
+    width: 62px;
+    height: 62px;
+    border-radius: 6px;
+    background-color: var(--category-background);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 200ms ease-in-out;
+}
+
+.category:hover {
+    background-color: var(--button-background-hover);
+    box-shadow: 0 0 4px 8px var(--button-boxShadow-hover);
+    z-index: 3;
+}
+
+.category:hover .catStroke path {
+    stroke: var(--button-color-hover);
+}
+
+.category:hover .catFilly path {
+    fill: var(--button-color-hover);
+}
+
+.catIcon {
+    width: 32px;
+    height: 32px;
+    z-index: 2;
+    transition: 200ms ease-in-out;
+}
+
+.category:hover .catStroke path {
+    stroke: var(--button-color-hover);
+}
+
+.category:hover .catFilly path {
+    fill: var(--button-color-hover);
+}
+
+.category:hover .catStroke rect {
+    stroke: var(--button-color-hover);
+}
+
+.category:hover .catFilly rect {
+    fill: var(--button-color-hover);
+}
+
+.catIcon {
+    width: 32px;
+    height: 32px;
+    z-index: 2;
+    transition: 200ms ease-in-out;
+}
+
+.fill {
+    fill: var(--button-color);
+}
+
+.stroke {
+    stroke: var(--button-color);
+}
+
+.catFilly path {
+    transition: 200ms ease-in-out;
+}
+
+.catStroke path {
+    transition: 200ms ease-in-out;
+}
+
+.catFilly rect {
+    transition: 200ms ease-in-out;
+}
+
+.catStroke rect {
+    transition: 200ms ease-in-out;
+}
+
+.deskBackC {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--desktop-background-color);
+    height: 186px;
+    width: 276px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.deskBack {
+    height: 186px;
+    width: 276px;
+    object-fit: cover;
+}
+
+.deskBack.contain {
+    height: 186px;
+    width: max-content;
+    max-width: 276px;
+    max-height: 186px;
+    object-fit: contain;
+}
+
+.customImage {
+    display: none;
 }

@@ -10,7 +10,7 @@
     --button-background: #282928;
     --button-color: #41bc5d;
 
-    --cursorText: url("../resources/cursors/textD.png"), text;
+    --cursorText: url("../resources/cursors/textD.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalD.png"), default;
     --cursorHand: url("../resources/cursors/handD.png"), pointer;
 
@@ -26,7 +26,7 @@
     --button-background: #26206a;
     --button-color: #ffe688;
 
-    --cursorText: url("../resources/cursors/textN.png"), text;
+    --cursorText: url("../resources/cursors/textN.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalN.png"), default;
     --cursorHand: url("../resources/cursors/handN.png"), pointer;
 
@@ -42,7 +42,7 @@
     --button-background: #383838;
     --button-color: #ff40f7;
 
-    --cursorText: url("../resources/cursors/textF.png"), text;
+    --cursorText: url("../resources/cursors/textF.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalF.png"), default;
     --cursorHand: url("../resources/cursors/handF.png"), pointer;
 
@@ -53,12 +53,12 @@
 
 [data-theme="almond"] {
     --taskbar-bg: #282928;
-    --body: #1a1a1a;
+    --body: #131313;
     --color: #E89D46;
     --button-background: #313131;
     --button-color: #CF8B3C;
 
-    --cursorText: url("../resources/cursors/textA.png"), text;
+    --cursorText: url("../resources/cursors/textA.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalA.png"), default;
     --cursorHand: url("../resources/cursors/handA.png"), pointer;
 

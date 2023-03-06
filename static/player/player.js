@@ -24,10 +24,11 @@ if(theme == "dark") {
 } else if(theme == "night") {
     colorOne = "#fff7a5";
     colorTwo = "#8a844b";
-} else if(theme == "alm") {
-    colorOne = "#be6600";
-    colorTwo = "#7c4200";
+} else if(theme == "almond") {
+    colorOne = "#d8882c";
+    colorTwo = "#995f1f";
 }
+
 let mc = document.getElementById("mc");
 let vc = document.querySelector(".vc");
 let mcDataAutoPlay = !!vc.getAttribute("data-auto");
@@ -119,12 +120,6 @@ ppb.addEventListener("click", tp);
 
 // mute
 mt.addEventListener("click", mute);
-vols.addEventListener("input", e => {
-    var volPerc = (vols.value / vols.max) * 100;
-    vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
-    mc.volume = e.target.value;
-    mc.muted = e.target.value === 0;
-})
 
 function mute() {
     mc.muted = !mc.muted
@@ -486,3 +481,55 @@ window.addEventListener("keydown", e => {
             break
     }
 });
+
+var volPerc = 100;
+vols.addEventListener("input", e => {
+    volPerc = (vols.value / vols.max) * 100;
+    vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
+    mc.volume = e.target.value;
+    mc.muted = e.target.value === 0;
+})
+
+function volumeMove(type) {
+    if(type === "up") {
+        if(vols.value >= 0.95) {
+            vols.value = 1;
+            mc.volume = 1;
+            return
+        }
+        if(mc.volume < 1) {
+            mc.volume += 0.05;
+            vols.value = mc.volume;
+        }
+        volPerc = (vols.value / vols.max) * 100;
+        vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
+    } else if(type === "down") {
+        if(vols.value <= 0.05) {
+            vols.value = 0;
+            mc.volume = 0;
+            return
+        }
+        if(mc.volume > 0) {
+            mc.volume -= 0.05;
+            vols.value = mc.volume;
+        }
+        volPerc = (vols.value / vols.max) * 100;
+        vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
+    }
+}
+
+document.addEventListener("wheel", e => {
+    if(e.target.classList.contains("tl")) {
+        if(e.deltaY < 0) {
+            skip(5);
+        } else if(e.deltaY > 0) {
+            skip(-5);
+        }
+    } else {
+        if(e.deltaY < 0) {
+            volumeMove("up");
+        } else if(e.deltaY > 0) {
+            volumeMove("down");
+        }
+    }
+})
