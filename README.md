@@ -1,5 +1,5 @@
 # TerbiumOS web
-This web os is packed full of feature ***AND MUCH MORE TO COME***
+This web os is packed full of features ***AND MUCH MORE TO COME***
 ![image](https://user-images.githubusercontent.com/49733954/191388633-1b1f27b0-3ceb-4043-a741-6c3d72440da8.png)
 ## How to deploy:
 
