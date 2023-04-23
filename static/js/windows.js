@@ -57,7 +57,7 @@ function hideStart() {
 var availableApps = ["browser", "hypertabs", "code", "youtube", "apple music", "spotify", "tidal", "youtube music", "settings", "help", "color picker", "terminal", "video", "game center"];
 
 class WIN {
-    constructor(link, icon, title, os, fullscreen, appName, controlsTypes, textAppText, urlToOpen) {
+    constructor(link, icon, title, os, fullscreen, appName, controlsTypes, textAppText, urlToOpen, oneInstance, width, height, resizable) {
         this.link = link;
         this.icon = icon;
         this.title = title;
@@ -67,6 +67,10 @@ class WIN {
         this.textAppText = textAppText;
         this.controlsTypes = controlsTypes;
         this.urlToOpen = urlToOpen;
+        this.oneInstance = oneInstance;
+        this.width = width;
+        this.height = height;
+        this.resizable = resizable;
         this.create()
     }
     create() {
@@ -74,7 +78,7 @@ class WIN {
         for (const prop in this) {
             if (this.hasOwnProperty(prop)) {
                 if(this[prop] == undefined) {
-                    console.warn(`%cThere is no %c${prop}%c property, this may affect the app.`, "color: #ff4747;", "color: #ffc08f; background-color: #965523; font-weight: bold; padding: 0px 3px;", "color: #ff4747;");
+                    // console.warn(`%cThere is no %c${prop}%c property, this may affect the app.`, "color: #ff4747;", "color: #ffc08f; background-color: #965523; font-weight: bold; padding: 0px 3px;", "color: #ff4747;");
                     continue;
                 }
                 let paren;
@@ -101,6 +105,16 @@ class WIN {
         let appName;
         let textAppText;
         let urlToOpen;
+        let oneInstance;
+        let width;
+        let height;
+        let resizable;
+
+        let windowsCell = document.querySelector(".windows");
+        let allWindowsHolder = windowsCell.querySelector(".windowsList");
+        let lastWindow = windowsCell.querySelector(".lastWindow");
+        let currentWindow = windowsCell.querySelector(".currentWindow");
+        let nextWindow = windowsCell.querySelector(".nextWindow");
 
         allParams.filter((item) => {
             let brackVal = item.substring(item.indexOf("[") + 1, item.indexOf("]"));
@@ -141,23 +155,23 @@ class WIN {
             if(item.includes("(urltoopen)") || item.includes("(urltoopen)") || item.includes("(urltoopen)") || item.includes("(urltoopen)")) {
                 urlToOpen = brackVal;
             }
+            if(item.includes("(oneinstance)") || item.includes("(oneinst)")) {
+                oneInstance = brackVal.toLowerCase();
+            }
+            if(item.includes("(width)")) {
+                width = brackVal;
+            }
+            if(item.includes("(height)")) {
+                height = brackVal;
+            }
+            if(item.includes("(resizable)") || item.includes("(resize)")) {
+                resizable = brackVal.toLowerCase();
+            }
         });
-        if(link === undefined || link === null || link === "" || link == "()[]") {
-            console.error(`%cThere is no %clink%c property, this may affect the app.`, "color: #ff4747;", "color: #ffc08f; background-color: #965523; font-weight: bold; padding: 0px 3px;", "color: #ff4747;");
-            return;
-        }
-        if(title === undefined || title === null || title === "" || title == "()[]") {
-            console.error(`%cThere is no %ctitle%c property, this may affect the app.`, "color: #ff4747;", "color: #ffc08f; background-color: #965523; font-weight: bold; padding: 0px 3px;", "color: #ff4747;");
-            return;
-        }
-        if(icn === undefined || icn === null || icn === "" || icn == "()[]") {
-            console.error(`%cThere is no %cicon%c property, this may affect the app.`, "color: #ff4747;", "color: #ffc08f; background-color: #965523; font-weight: bold; padding: 0px 3px;", "color: #ff4747;");
-            return;
-        }
 
         appShell.appendChild(appsShellName);
-        if(appsShellName.classList.contains("noHoverApps")) {
-            appsShellName.classList.remove("noHoverApps")
+        if(appsShellName.classList.contains("inactive")) {
+            appsShellName.classList.remove("inactive");
         }
         appsShellName.innerText = title;
         const appID = document.querySelector(".name").getAttribute("data-id");
@@ -176,6 +190,23 @@ class WIN {
             return windowID = result;
         }
         makeid(18);
+        if(width) {
+            newwin.setAttribute("data-width", height);
+            if(width.includes("px")) {
+                newwin.style.width = width;
+            } else {
+                newwin.style.width = `${width}px`;
+            }
+        }
+        if(height) {
+            newwin.setAttribute("data-height", height);
+            if(height.includes("px")) {
+                newwin.style.height = height;
+            } else {
+                newwin.style.height = `${height}px`;
+            }
+        }
+        newwin.setAttribute("data-id", windowID);
         newwin.setAttribute("data-link", link);
         newwin.setAttribute("data-title", title);
         newwin.setAttribute("data-os", os);
@@ -185,26 +216,111 @@ class WIN {
         newwin.setAttribute("min-height", "499");
         newwin.setAttribute("min-width", "499");
         newwin.setAttribute("urlToOpen", urlToOpen);
+        newwin.setAttribute("oneInst", oneInstance);
+        newwin.setAttribute("data-resizable", resizable);
+        newwin.setAttribute("data-controls", controlsTypes);
+
+        if(allWindowsHolder.innerHTML === "") {
+            let cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.setAttribute("cell-id", windowID);
+            allWindowsHolder.appendChild(cell);
+        } else {
+            let cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.setAttribute("cell-id", windowID);
+            allWindowsHolder.appendChild(cell);
+        }
+
+        let allWindowsForCellNumberCheck = document.querySelectorAll(".cell");
+        currentWindow.innerHTML = `${newwin.getAttribute("data-id")}`;
+        if(allWindowsForCellNumberCheck.length > 1) {
+            // console.log("tits");
+            lastWindow.innerHTML = document.querySelector(".winFocus").getAttribute("id");
+        } else if(allWindowsForCellNumberCheck.length == 1) {
+            // lastWindow.innerHTML = document.querySelector(".winFocus").getAttribute("id")
+            if(document.querySelector(".winFocus")) {
+                console.log(document.querySelector(".winFocus").getAttribute("id"));
+            }
+        }
+
+        if(resizable === "no" || resizable === "false") {
+            newwin.setAttribute("data-resizable", "no");
+            newwin.classList.add("no-resize");
+        } else if(resizable === "yes" || resizable === "true") {
+            newwin.setAttribute("data-resizable", "yes");
+        }
+        if(oneInstance === "yes" || oneInstance === "true") {
+            appShell.setAttribute("oneInst", "yes");
+            if(document.querySelectorAll(`[data-appname='${appName}']`).length > 0) {
+                document.querySelectorAll(`.win`).forEach((item) => {
+                    item.classList.remove("winFocus");
+                    item.classList.add("winNotFocus");
+                    item.querySelector(".focusWinEl").classList.remove("no");
+                    item.querySelector(".focusWinEl").classList.add("yes");
+                })
+                document.querySelector(`[data-appname='${appName}']`).classList.remove("winNotFocus");
+                document.querySelector(`[data-appname='${appName}']`).classList.remove("winmini");
+                document.querySelector(`[data-appname='${appName}']`).classList.remove("negZI");
+                document.querySelector(`[data-appname='${appName}']`).classList.add("winFocus");
+                document.querySelector(`[data-appname='${appName}']`).querySelector(".focusWinEl").classList.add("no");
+                document.querySelector(`[data-appname='${appName}']`).querySelector(".focusWinEl").classList.remove("yes");
+                document.querySelectorAll(`[app]`).forEach((item) => {
+                    item.classList.remove("active");
+                })
+                let id = document.querySelector(`[data-appname='${appName}']`).getAttribute("data-id");
+                document.querySelector(`[data-appid="${id}"]`).classList.add("active");
+                document.querySelector(".appShell").querySelector(".name").setAttribute("data-id", id);
+                document.querySelector(".appShell").querySelector(".name").innerHTML = title;
+                document.querySelector(".appShell").setAttribute("oneInst", "yes");
+                return
+            }
+        } else {
+            appShell.setAttribute("oneInst", "no");
+        }
+
         let focusWinEl = document.createElement("div");
         focusWinEl.classList.add("focusWinEl");
         newwin.appendChild(focusWinEl);
-        let lastFocused;
-        lastFocused = newwin;
     
         appsShellName.onclick = (e) => {
-            if(appsShellName.innerHTML == "") {
+            if(appsShellName.innerHTML == "" || appsShellName.classList.contains("inactive")) {
                 return
             } else {
-                appOptions.classList.toggle("h");
+                if(appOptions.classList.contains("h")) {
+                    appOptions.classList.remove("h");
+                }
             }
+            window.addEventListener("mousedown", (e) => {
+                if (e.button == 0 && !e.target.closest(".appOptions") && appOptions.classList.contains("h") == false && !e.target.closest(".name")) {
+                    appOptions.classList.add("h");
+                }
+            });
             appOptions.querySelector(".closeApp").onclick = (e) => {
                 appsShellName.innerHTML = "";
+                appsShellName.classList.add("inactive");
                 appOptions.classList.toggle("h");
                 document.querySelector(".winFocus").querySelector(".close").click();
             }
             appOptions.querySelector(".newwin").onclick = (e) => {
+                let link = document.querySelector(".winFocus").getAttribute("data-link");
+                let icn = document.querySelector(".winFocus").getAttribute("data-icon");
+                let os = document.querySelector(".winFocus").getAttribute("data-os");
+                let fullscreen = document.querySelector(".winFocus").getAttribute("data-fullscreen");
+                let appName = document.querySelector(".winFocus").getAttribute("data-appName");
+                let controlsTypes = document.querySelector(".winFocus").getAttribute("data-controls");
+                let textAppText = document.querySelector(".winFocus").getAttribute("data-textAppText");
+                let width = document.querySelector(".winFocus").getAttribute("data-width");
+                let height = document.querySelector(".winFocus").getAttribute("data-height");
+                let resizable = document.querySelector(".winFocus").getAttribute("data-resizable");
+                let title = document.querySelector(".winFocus").getAttribute("data-title");
                 appOptions.classList.toggle("h");
-                new WIN(`(link)[${link}]`, `(icn)[${icn}]`, `(title)[${title}]`, `(os)[${os}]`, `(fullscreen)[${fullscreen}]`, `(appName)[${appName}]`, `(controlsTypes)[${controlsTypes}]`, `(textAppText)[${textAppText}]`);
+                if(appShell.getAttribute("oneInst") === "yes" || appShell.getAttribute("oneInst") === "true") {
+                    if(document.querySelectorAll(`[data-appname='${appName}']`).length > 0) {
+                        return
+                    }
+                }
+                new WIN(`(link)[${link}]`, `(icn)[${icn}]`, `(title)[${title}]`, `(os)[${os}]`, `(fullscreen)[${fullscreen}]`, `(appName)[${appName}]`, `(controls)[${controlsTypes}]`, `(textAppText)[${textAppText}]`, `(width)[${width}]`, `(height)[${height}]`, `(resizable)[${resizable}]`);
             }
             appOptions.querySelector(".minimizeApp").onclick = (e) => {
                 appOptions.classList.toggle("h");
@@ -213,6 +329,18 @@ class WIN {
             appOptions.querySelector(".maximizeApp").onclick = (e) => {
                 appOptions.classList.toggle("h");
                 document.querySelector(".winFocus").querySelector(".maxi").click();
+            }
+            appOptions.querySelector(".reloadApp").onclick = (e) => {
+                appOptions.classList.toggle("h");
+                let win = document.querySelector(".appShell").querySelector(".name").getAttribute("data-id");
+                console.log(win);
+                if(document.querySelector(`#${win}`)) {
+                    let src = document.querySelector(`#${win}`).querySelector(".frame").src;
+                    document.querySelector(`#${win}`).querySelector(".frame").src = "about:blank";
+                    document.querySelector(`#${win}`).querySelector(".frame").src = src;
+                } else {
+                    console.error("Window not found, this shouldn't be!");
+                }
             }
         }
     
@@ -230,6 +358,7 @@ class WIN {
         }
     
         newwin.classList.add("winFocus");
+        newwin.style.opacity = "";
         newwin.classList.remove("winNotFocus");
         if(appName != null && appName != undefined) {
             newwin.setAttribute("data-app", appName);
@@ -237,8 +366,13 @@ class WIN {
     
         if(localStorage.getItem("shadow") === "yes") {
             if(localStorage.getItem("winshadow") === "default") {
-                newwin.style.boxShadow = `0 0 1px 1px var(--window-shadow-border), 0px 0px 13px 4px rgb(0 0 0 / 32%)`;
-                newwin.classList.add("shadow");
+                if(localStorage.getItem("accentShadow") === "yes") {
+                    newwin.style.boxShadow = `0 0 1px 1px var(--accentShadow), 0px 0px 13px 4px var(--accentShadow)`;
+                    newwin.classList.add("shadow");
+                } else {
+                    newwin.style.boxShadow = `0 0 1px 1px var(--window-shadow-border), 0px 0px 13px 4px rgb(0 0 0 / 32%)`;
+                    newwin.classList.add("shadow");
+                }
             } else {
                 newwin.style.boxShadow = `0 0 1px 1px ${localStorage.getItem("winshadow")}, 0 0 13px 4px ${localStorage.getItem("winshadow")}`;
                 newwin.classList.add("shadow");
@@ -248,6 +382,46 @@ class WIN {
             case null:
                 break;
             case "yes":
+                shell.style.borderRadius = "0px";
+                if(localStorage.getItem("dockFull") === "yes") {
+                    switch(localStorage.getItem("dockPos").toLowerCase()) {
+                        case "left":
+                            newwin.classList.add("LDF");
+                            newwin.classList.remove("RDF");
+                            newwin.classList.remove("BDF");
+                            break;
+                        case "right":
+                            newwin.classList.add("RDF");
+                            newwin.classList.remove("LDF");
+                            newwin.classList.remove("BDF");
+                            break;
+                        case "bottom":
+                            newwin.classList.add("BDF");
+                            newwin.classList.remove("LDF");
+                            newwin.classList.remove("RDF");
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    switch(localStorage.getItem("dockPos").toLowerCase()) {
+                        case "left":
+                            newwin.classList.add("LD");
+                            newwin.classList.remove("RD");
+                            newwin.classList.remove("BD");
+                            break;
+                        case "right":
+                            newwin.classList.add("RD");
+                            newwin.classList.remove("LD");
+                            newwin.classList.remove("BD");
+                            break;
+                        case "bottom":
+                            newwin.classList.add("BD");
+                            newwin.classList.remove("LD");
+                            newwin.classList.remove("RD");
+                            break;
+                    }
+                }
                 newwin.classList.remove("maxiN");
                 newwin.classList.add("maxiY");
                 newwin.classList.add("maxiR");
@@ -260,12 +434,6 @@ class WIN {
             default:
                 break;
         }
-    
-        if(fullscreen === true) {
-            newwin.classList.remove("maxiN");
-            newwin.classList.add("maxiY");
-        }
-    
         if(localStorage.getItem('radius') === "yes") {
             newwin.classList.add("radius");
         } else if(localStorage.getItem('radius') === "custom") {
@@ -292,7 +460,7 @@ class WIN {
         if(controlsTypes === "minmaxclose") {
             controlsHTML = `
                 <a class='winc mini' id="mini">
-                    <svg class="winic" id="mini" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="winic" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect y="7" width="15" height="0.5" fill="#D9D9D9"/>
                     </svg>
                 </a>
@@ -311,7 +479,7 @@ class WIN {
         } else if(controlsTypes === "minmax") {
             controlsHTML = `
                 <a class='winc mini' id="mini">
-                    <svg class="winic" id="mini" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="winic" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect y="7" width="15" height="0.5" fill="#D9D9D9"/>
                     </svg>
                 </a>
@@ -324,7 +492,7 @@ class WIN {
         } else if(controlsTypes === "minclose") {
             controlsHTML = `
                 <a class='winc mini' id="mini">
-                    <svg class="winic" id="mini" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="winic" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect y="7" width="15" height="0.5" fill="#D9D9D9"/>
                     </svg>
                 </a>
@@ -361,7 +529,7 @@ class WIN {
         } else if(controlsTypes === undefined) {
             controlsHTML = `
                 <a class='winc mini' id="mini">
-                    <svg class="winic" id="mini" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="winic" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect y="7" width="15" height="0.5" fill="#D9D9D9"/>
                     </svg>
                 </a>
@@ -433,20 +601,6 @@ class WIN {
                     dockItem[i].setAttribute("data-groupId", newwin.id);
                     break;
                 }
-                const appsGroupsContainer = document.createElement("div");
-                appsGroupsContainer.classList.add("appsGroupsContainer");
-                appsGroupsContainer.classList.add("hidden");
-                appsGroupsContainer.setAttribute("appGroup", "");
-                appsGroupsContainer.setAttribute("data-groupId", newwin.id);
-                appsGroupsContainer.setAttribute("data-group", appCount);
-                appsGroupsContainer.setAttribute("data-appName", appName);
-                document.body.appendChild(appsGroupsContainer);
-                // const newAppGroupItem = document.createElement("div");
-                // newAppGroupItem.classList.add("appGroupItem");
-    
-                // appsGroupsContainer.innerHTML = `
-                    
-                // `;
             }
         }
         let newdock = document.createElement("div");
@@ -470,7 +624,9 @@ class WIN {
         newdock.onclick = (e) => {
             if(newwin.classList.contains("winmini")) {
                 newwin.classList.remove("winmini");
+                newwin.classList.remove("negZI");
             }
+            appsShellName.classList.remove("inactive");
             const appItem = document.querySelectorAll(".appItem");
             for (let i = 0; i < appItem.length; i++) {
                 appItem[i].classList.remove("active");
@@ -478,7 +634,6 @@ class WIN {
             newdock.classList.add("active");
             appsShellName.innerText = title;
             appsShellName.setAttribute("data-id", windowID);
-            newwin.classList.remove("winmini");
             const windows = document.querySelectorAll(".win");
             for (let i = 0; i < windows.length; i++) {
                 windows[i].classList.add("winNotFocus");
@@ -490,6 +645,7 @@ class WIN {
             newwin.querySelector(".focusWinEl").classList.add("no");
         
             newwin.classList.add("winFocus");
+            newwin.style.opacity = "";
             newwin.classList.remove("winNotFocus");
             if(appsMini == 1) {
                 appsMini--;
@@ -967,20 +1123,7 @@ class WIN {
                 newwin.style.minHeight = "586px";
                 newwin.style.width = "348px";
                 newwin.style.height = "586px";
-                newwin.classList.add("no-resize");
                 break;
-            case "game":
-                faviconHTML = `
-                    <svg class="favicon" id="favicon" viewBox="0 0 134 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M13.3333 0H120C127.364 0 133.333 5.96954 133.333 13.3333V66.6667C133.333 74.0305 127.364 80 120 80H13.3333C5.96954 80 0 74.0305 0 66.6667V13.3333C0 5.96954 5.96954 0 13.3333 0ZM45 26.6667C45 23.9052 42.7614 21.6667 40 21.6667C37.2385 21.6667 35 23.9052 35 26.6667V35H26.6666C23.9052 35 21.6666 37.2386 21.6666 40C21.6666 42.7614 23.9052 45 26.6666 45H35V53.3333C35 56.0948 37.2385 58.3333 40 58.3333C42.7614 58.3333 45 56.0948 45 53.3333V45H53.3333C56.0947 45 58.3333 42.7614 58.3333 40C58.3333 37.2386 56.0947 35 53.3333 35H45V26.6667ZM86.6666 26.3333C90.5326 26.3333 93.6666 29.4673 93.6666 33.3333V33.4C93.6666 37.266 90.5326 40.4 86.6666 40.4C82.8006 40.4 79.6666 37.266 79.6666 33.4V33.3333C79.6666 29.4673 82.8006 26.3333 86.6666 26.3333ZM113.667 46.6667C113.667 42.8007 110.533 39.6667 106.667 39.6667C102.801 39.6667 99.6666 42.8007 99.6666 46.6667V46.7333C99.6666 50.5993 102.801 53.7333 106.667 53.7333C110.533 53.7333 113.667 50.5993 113.667 46.7333V46.6667Z"/>
-                    </svg>
-                `;
-                newdock.innerHTML = `
-                    <svg class="dockicon" viewBox="0 0 134 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M13.3333 0H120C127.364 0 133.333 5.96954 133.333 13.3333V66.6667C133.333 74.0305 127.364 80 120 80H13.3333C5.96954 80 0 74.0305 0 66.6667V13.3333C0 5.96954 5.96954 0 13.3333 0ZM45 26.6667C45 23.9052 42.7614 21.6667 40 21.6667C37.2385 21.6667 35 23.9052 35 26.6667V35H26.6666C23.9052 35 21.6666 37.2386 21.6666 40C21.6666 42.7614 23.9052 45 26.6666 45H35V53.3333C35 56.0948 37.2385 58.3333 40 58.3333C42.7614 58.3333 45 56.0948 45 53.3333V45H53.3333C56.0947 45 58.3333 42.7614 58.3333 40C58.3333 37.2386 56.0947 35 53.3333 35H45V26.6667ZM86.6666 26.3333C90.5326 26.3333 93.6666 29.4673 93.6666 33.3333V33.4C93.6666 37.266 90.5326 40.4 86.6666 40.4C82.8006 40.4 79.6666 37.266 79.6666 33.4V33.3333C79.6666 29.4673 82.8006 26.3333 86.6666 26.3333ZM113.667 46.6667C113.667 42.8007 110.533 39.6667 106.667 39.6667C102.801 39.6667 99.6666 42.8007 99.6666 46.6667V46.7333C99.6666 50.5993 102.801 53.7333 106.667 53.7333C110.533 53.7333 113.667 50.5993 113.667 46.7333V46.6667Z"/>
-                    </svg>
-                `;
-                newwin.style.minWidth = "688px";
             default:
                 break;
         }
@@ -1112,6 +1255,7 @@ class WIN {
             const data = e;
             if(data.type === "focus") {
                 appsShellName.innerText = data.infoTitle;
+                appsShellName.classList.remove("fa-folder");
             }
             if(data.type === "video") {
                 const videoLink = data.videoLink;
@@ -1145,6 +1289,140 @@ class WIN {
             activeSpan.classList.add("activeSpan");
             newdock.appendChild(activeSpan);
         }
+
+        newdock.addEventListener("mousedown", e => {
+            if(e.button === 2) {
+                if(document.querySelector(".dockMenu")) {
+                    document.querySelector(".dockMenu").remove();
+                }
+                if(document.querySelector(".ctx")) {
+                    document.querySelector(".ctx").remove();
+                }
+                let dockBtnPos = newdock.getBoundingClientRect();
+                let dockBtnX = dockBtnPos.x;
+                let clientX = e.clientX;
+                let clientY = e.clientY;
+                
+                const dockMenu = document.createElement("div");
+                dockMenu.classList.add("dockMenu");
+                dockMenu.style.position = "absolute"
+                if(localStorage.getItem("dockPos").toLowerCase() === "bottom" && localStorage.getItem("dockFull") === "yes") {
+                    dockMenu.style.left = `${clientX}px`;
+                    dockMenu.style.bottom = `58px`;
+                } else if(localStorage.getItem("dockPos").toLowerCase() === "bottom" && localStorage.getItem("dockFull") === "no") {
+                    dockMenu.style.left = `${clientX}px`;
+                    dockMenu.style.bottom = `60px`;
+                }
+                if(localStorage.getItem("dockPos").toLowerCase() === "left" && localStorage.getItem("dockFull") === "yes") {
+                    dockMenu.style.left = `58px`;
+                    dockMenu.style.right = ``;
+                    dockMenu.style.bottom = `${clientY}px`;
+                } else if(localStorage.getItem("dockPos").toLowerCase() === "left" && localStorage.getItem("dockFull") === "no") {
+                    dockMenu.style.left = `60px`;
+                    dockMenu.style.right = ``;
+                    dockMenu.style.top = `${clientY}px`;
+                }
+                if(localStorage.getItem("dockPos").toLowerCase() === "right" && localStorage.getItem("dockFull") === "yes") {
+                    console.log("right");
+                    dockMenu.style.left = ``;
+                    dockMenu.style.right = `58px`;
+                    dockMenu.style.top = `${clientY}px`;
+                } else if(localStorage.getItem("dockPos").toLowerCase() === "right" && localStorage.getItem("dockFull") === "no") {
+                    console.log("right");
+                    dockMenu.style.left = ``;
+                    dockMenu.style.right = `60px`;
+                    dockMenu.style.top = `${clientY}px`;
+                }
+                let dockItemWindow;
+                setTimeout(() => {
+                    dockItemWindow = document.querySelector(`.win#${newdock.getAttribute("data-appid")}`);
+                    let oneinst = dockItemWindow.getAttribute("oneinst");
+                    let controls = dockItemWindow.getAttribute("data-controls");
+
+                    const reloadApp = document.createElement("div");
+                    reloadApp.classList.add("dockMenuItem");
+                    reloadApp.innerText = "Reload";
+                    reloadApp.addEventListener("click", () => {
+                        let src = dockItemWindow.querySelector(".frame").getAttribute("src");
+                        dockItemWindow.querySelector(".frame").src = "about:blank";
+                        dockItemWindow.querySelector(".frame").src = src;
+                        dockMenu.remove();
+                    });
+                    dockMenu.appendChild(reloadApp);
+
+                    if(oneinst != "true" && oneinst != "yes") {
+                        const newWindowBtn = document.createElement("div");
+                        newWindowBtn.classList.add("dockMenuItem");
+                        newWindowBtn.innerText = "New Window";
+                        newWindowBtn.addEventListener("click", () => {
+                            let link = dockItemWindow.getAttribute("data-link");
+                            let icn = dockItemWindow.getAttribute("data-icon");
+                            let os = dockItemWindow.getAttribute("data-os");
+                            let fullscreen = dockItemWindow.getAttribute("data-fullscreen");
+                            let appName = dockItemWindow.getAttribute("data-appName");
+                            let controlsTypes = dockItemWindow.getAttribute("data-controls");
+                            let textAppText = dockItemWindow.getAttribute("data-textAppText");
+                            let width = dockItemWindow.getAttribute("data-width");
+                            let height = dockItemWindow.getAttribute("data-height");
+                            let resizable = dockItemWindow.getAttribute("data-resizable");
+                            let title = dockItemWindow.getAttribute("data-title");
+                            new WIN(`(link)[${link}]`, `(icn)[${icn}]`, `(title)[${title}]`, `(os)[${os}]`, `(fullscreen)[${fullscreen}]`, `(appName)[${appName}]`, `(controls)[${controlsTypes}]`, `(textAppText)[${textAppText}]`, `(width)[${width}]`, `(height)[${height}]`, `(resizable)[${resizable}]`);
+                            dockMenu.remove();
+                        })
+                        dockMenu.appendChild(newWindowBtn);
+                    }
+
+                    const minimizeBtn = document.createElement("div");
+                    minimizeBtn.classList.add("dockMenuItem");
+                    minimizeBtn.innerText = "Minimize";
+                    minimizeBtn.addEventListener("click", () => {
+                        dockItemWindow.querySelector(".mini").click();
+                        dockMenu.remove();
+                    });
+                    const maximizeBtn = document.createElement("div");
+                    maximizeBtn.classList.add("dockMenuItem");
+                    maximizeBtn.innerText = "Maximize";
+                    maximizeBtn.addEventListener("click", () => {
+                        dockItemWindow.querySelector(".maxi").click();
+                        dockMenu.remove();
+                    });
+                    const closeBtn = document.createElement("div");
+                    closeBtn.classList.add("dockMenuItem");
+                    closeBtn.innerText = "Close";
+                    closeBtn.addEventListener("click", () => {
+                        dockItemWindow.querySelector(".close").click();
+                        dockMenu.remove();
+                    });
+                    if(controls === "undefined") {
+                        dockMenu.appendChild(minimizeBtn);
+                        dockMenu.appendChild(maximizeBtn);
+                        dockMenu.appendChild(closeBtn);
+                    } else if(controls === "minmax") {
+                        dockMenu.appendChild(minimizeBtn);
+                        dockMenu.appendChild(maximizeBtn);
+                    } else if(controls === "minclose") {
+                        dockMenu.appendChild(minimizeBtn);
+                        dockMenu.appendChild(closeBtn);
+                    } else if(controls === "maxclose") {
+                        dockMenu.appendChild(maximizeBtn);
+                        dockMenu.appendChild(closeBtn);
+                    } else if(controls === "min") {
+                        dockMenu.appendChild(minimizeBtn);
+                    } else if(controls === "max") {
+                        dockMenu.appendChild(maximizeBtn);
+                    } else if(controls === "close") {
+                        dockMenu.appendChild(closeBtn);
+                    }
+                    window.addEventListener("mousedown", (e) => {
+                        if (e.button == 0 && !e.target.closest(".dockMenu")) {
+                            dockMenu.remove();
+                        }
+                    });
+                    document.body.appendChild(dockMenu);
+                }, 100)
+            }
+        })
+
         let max;
         let a = 0;
         
@@ -1192,80 +1470,100 @@ class WIN {
                 focused.querySelector(".mini").click();
             }
         }
-        localStorage.setItem(appName, a++);
-        if(newwin.querySelector(".mini")) {
-            newwin.querySelector('.mini').onclick = () => {
-                newwin.classList.add("winmini");
-                document.querySelector(`[data-appid="${windowID}"]`).classList.remove("active");
-                if(maxState === true) {
-                    newwin.classList.remove("maxiY");
-                }
-                appsShellName.innerText = ""
-                appsMini++;
-                checkOverflow();
-            }
-        }
         if(newwin.querySelector(".close")) {
             newwin.querySelector(".close").addEventListener("click", () => {
                 if(!appOptions.classList.contains("h")) {
-                    appOptions.classList.toggle("h");
+                    if(lastWindow.innerHTML === "") {
+                        appOptions.classList.toggle("h");
+                    }
                 }
-                if(dock.getAttribute("appMax") === "true" && dock.getAttribute("hidden") === "true") {
-                    let allMaxiY = document.querySelectorAll(".maxiY");
-                    setTimeout(() => {
-                        console.log(allMaxiY.length);
-                        if(allMaxiY.length === 1) {
-                            dock.setAttribute("hidden", "false");
-                            dock.setAttribute("appMax", "false");
-                        }
-                        let allWindows = document.querySelectorAll(".win");
-                        if(allWindows.length === 0) {
-                            dock.setAttribute("hidden", "false");
-                            dock.setAttribute("appMax", "false");
-                        }
-                    }, 100)
+                // check if the window with the same id as lastWindow is the one being closed
+                if(newwin.getAttribute("data-id") === lastWindow.innerHTML) {
+                    lastWindow.innerHTML = "";
+                    // get the last .win in the body that isn't the one being closed
+                    if(document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")")[document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")").length - 1]) {
+                        let lastWin = document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")")[document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")").length - 1];
+                        lastWin.click();
+                    }
                 }
-                // let allWindowsAmount = document.querySelectorAll(".win").length;
-                // if(lastFocused != null && allWindowsAmount > 1) {
-                //     let lastWin = document.querySelector("[lastFocused]");
-                //     lastWin.classList.add("winFocus");
-                //     lastWin.classList.remove("winNotFocus");
-                //     appsShellName.innerText = lastWin.getAttribute("data-title");
-                //     appsShellName.setAttribute("data-id", lastWin.getAttribute("id"));
-                //     lastWin.removeAttribute("lastFocused");
-                // }
-                // if(lastFocused.id === newwin.getAttribute("id")) {
-                //     console.log("lastFocused is the same as newwin");
-                //     lastFocused = null;
-                // }
-                appsShellName.innerText = "";
-                appsShellName.setAttribute("data-id", "");
+                if(lastWindow.innerHTML === "") {
+                    // get the last .win minus the one being closed
+                    if(document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")")[document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")").length - 1]) {
+                        let lastWin = document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")")[document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")").length - 1];
+                        lastWin.click();
+                    }
+                }
+                if(allWindowsForCellNumberCheck.length === 1) {
+                    console.log("last window");
+                    appsShellName.innerText = "";
+                    appsShellName.setAttribute("data-id", "");
+                    appsShellName.classList.add("inactive");
+                }
+
+
+                if(newwin.classList.contains("maxiY")) {
+                    let allMaxiYWindows = document.querySelectorAll(".maxiY").length;
+                    if(allMaxiYWindows === 1) {
+                        if(window.getComputedStyle(document.querySelector(".shell")).borderRadius === "0px") {
+                            document.querySelector(".shell").style.borderRadius = "";
+                        }
+                    }
+                }
+                if(lastWindow.innerHTML != "" && allWindowsForCellNumberCheck.length > 1) {
+                    if(document.querySelector(`[data-id="${lastWindow.innerHTML}"]`)) {
+                        document.querySelector(`.win#${lastWindow.innerHTML}`).click();
+                    }
+                }
+                document.querySelector(`[cell-id="${newwin.getAttribute("data-id")}"]`).remove();
+                if(allWindowsHolder.children.length === 1) {
+                    currentWindow.innerHTML = allWindowsHolder.children[0].getAttribute("cell-id");
+                }
+
                 newdock.remove();
                 if(document.querySelectorAll(".win").length === 0) {
-                    appsShellName.classList.add("noHoverApps");
+                    appsShellName.classList.add("inactive");
                 }
-                // decrementing appCount
                 appCount--;
-                // getting the first app having the same data-appName to the app being closed and decrement its appCount
-                // let firstApp = document.querySelector(`[app="${newwin.getAttribute("data-appName")}"]`);
-                // console.log(firstApp);
-                // firstApp.setAttribute("data-group", appCount);
                 newwin.remove();
+                if(!document.querySelector(".winFocus")) {
+                    if(document.querySelector(".winNotFocus") && document.querySelectorAll(".win").length == 1) {
+                        document.querySelector(".winNotFocus").querySelector(".focusWinEl").click();
+                    }
+                }
             });
         }
         if(newwin.querySelector(".maxi")) {
             newwin.querySelector('.maxi').onclick = () => {
                 var winFocus = document.querySelectorAll(".winFocus");
+                newwin.classList.remove("negZI");
+                if(newwin.classList.contains("winNotFocus")) {
+                    document.querySelectorAll(".win").forEach((e) => {
+                        e.classList.remove("winFocus");
+                        e.classList.add("winNotFocus");
+                        e.querySelector(".focusWinEl").classList.add("yes");
+                        e.querySelector(".focusWinEl").classList.remove("no");
+                    })
+                    newwin.classList.remove("winNotFocus");
+                    newwin.classList.add("winFocus");
+                    newwin.querySelector(".focusWinEl").classList.add("no");
+                    newwin.querySelector(".focusWinEl").classList.remove("yes");
+                    document.querySelectorAll(".dockbtn").forEach((e) => {
+                        e.classList.remove("active");
+                    })
+                    document.querySelector('.dockbtn[data-appid="' + newwin.getAttribute("id") + '"]').classList.add("active");
+                }
                 for (let i = 0; i < winFocus.length; i++) {
                     const element = winFocus[i];
                     if(element.length > 0) {
-                        document.querySelector(".shell").classList.remove("shadow");
-                    } else {
-                        document.querySelector(".shell").classList.add("shadow");
+                        document.querySelector(".shell").style.borderBottomLeftRadius = "0px";
+                        document.querySelector(".shell").style.borderBottomRightRadius = "0px";
+                    } else if(element.length === 0) {
+                        document.querySelector(".shell").style.borderBottomRightRadius = "";
+                        document.querySelector(".shell").style.borderBottomLeftRadius = "";
                     }
                 }
-                var newwinHEIGHT = document.querySelector('.win').clientHeight;
-                var newwinWIDTH = document.querySelector('.win').clientWidth;
+                var newwinHEIGHT = newwin.clientHeight;
+                var newwinWIDTH = newwin.clientWidth;
                 const shell = document.querySelector(".shell");
                 const showDesk = document.querySelector(".showDesk");
                 if(newwin.classList.contains('maxiN')) {
@@ -1300,13 +1598,44 @@ class WIN {
                     }
                     maxState = true;
                     newwin.classList.add('maxiY');
+                    if(localStorage.getItem("dockFull") === "yes") {
+                        switch(localStorage.getItem("dockPos").toLowerCase()) {
+                            case "left":
+                                newwin.classList.add("LDF");
+                                newwin.classList.remove("RDF");
+                                newwin.classList.remove("BDF");
+                                break;
+                            case "right":
+                                newwin.classList.add("RDF");
+                                newwin.classList.remove("LDF");
+                                newwin.classList.remove("BDF");
+                                break;
+                            case "bottom":
+                                newwin.classList.add("BDF");
+                                newwin.classList.remove("LDF");
+                                newwin.classList.remove("RDF");
+                                break;
+                        }
+                    } else {
+                        switch(localStorage.getItem("dockPos").toLowerCase()) {
+                            case "left":
+                                newwin.classList.add("LD");
+                                newwin.classList.remove("RD");
+                                newwin.classList.remove("BD");
+                                break;
+                            case "right":
+                                newwin.classList.add("RD");
+                                newwin.classList.remove("LD");
+                                newwin.classList.remove("BD");
+                                break;
+                            case "bottom":
+                                newwin.classList.add("BD");
+                                newwin.classList.remove("LD");
+                                newwin.classList.remove("RD");
+                                break;
+                        }
+                    }
                     newwin.classList.remove('maxiN');
-                    if(dock.getAttribute("appMax") != "true") {
-                        dock.setAttribute("appMax", "true");
-                    }
-                    if(dock.getAttribute("hidden") != "true") {
-                        dock.setAttribute("hidden", "true");
-                    }
                     if(localStorage.getItem("shadow") === "yes") {
                         newwin.classList.add("noShadow");
                         newwin.classList.remove("shadow");
@@ -1332,12 +1661,6 @@ class WIN {
                     maxState = false;
                     newwin.classList.add('maxiN');
                     newwin.classList.remove('maxiY');
-                    if(dock.getAttribute("appMax") === "true") {
-                        dock.setAttribute("appMax", "false");
-                    }
-                    if(dock.getAttribute("hidden") === "true") {
-                        dock.setAttribute("hidden", "false");
-                    }
                     if(localStorage.getItem("shadow") === "yes") {
                         newwin.classList.remove("noShadow");
                         newwin.classList.add("shadow");
@@ -1349,39 +1672,39 @@ class WIN {
                 }
             }
         }
+        if(fullscreen === true || fullscreen === "true" || fullscreen === "yes") {
+            newwin.querySelector(".maxi").click()
+        }
         focusWinEl.addEventListener("click", (e) => {
             if(focusWinEl.classList.contains("yes")) {
                 focusWinEl.classList.remove("yes");
                 focusWinEl.classList.add("no");
-                newwin.click();
             }
         })
-        newwin.addEventListener("mousedown", (e) => {
-            if(e.target.classList.contains("close") || e.target.getAttribute("id") === "closei") return;
-            let lastFocusedId;
-            // if(e.target.closest(".win").classList.contains("winFocus")) {
-            //     lastFocused.setAttribute("lastFocused", "false");
-            // } else {
-            //     lastFocused = document.querySelector(".winFocus");
-            //     if(lastFocused) {
-            //         lastFocusedId = lastFocused.id;
-            //         lastFocused.setAttribute("lastFocused", "true");
-            //     }
-            // }
+        newwin.addEventListener("click", (e) => {
+            if(e.target.classList.contains("winic") || e.target.classList.contains("winc")) return;
             let allWindows = document.querySelectorAll(".win");
-            for (let i = 0; i < allWindows.length; i++) {
-                const element = allWindows[i];
-                if(element.id != lastFocusedId) {
-                    element.setAttribute("lastFocused", "false");
+            if(!currentWindow.innerHTML === newwin.getAttribute("id")) {
+                currentWindow.innerHTML = newwin.getAttribute("id");
+                if(document.querySelector(".winFocus")) {
+                    lastWindow.innerHTML = document.querySelector(".winFocus").getAttribute("id");
                 }
+            } else {
+                console.log("same");
             }
-            const windows = document.querySelectorAll(".win");
-            for (let i = 0; i < windows.length; i++) {
-                windows[i].classList.add("winNotFocus");
-                windows[i].classList.remove("winFocus");
-                windows[i].querySelector(".focusWinEl").classList.remove("no");
-                windows[i].querySelector(".focusWinEl").classList.add("yes");
+
+            appsShellName.classList.remove("inactive");
+            if(newwin.getAttribute("oneInst") === "yes" || newwin.getAttribute("oneInst") === "true") {
+                appShell.setAttribute("oneInst", "yes");
+            } else {
+                appShell.setAttribute("oneInst", "no");
             }
+            allWindows.forEach(win => {
+                win.classList.remove("winFocus");
+                win.classList.add("winNotFocus");
+                win.querySelector(".focusWinEl").classList.add("yes");
+                win.querySelector(".focusWinEl").classList.remove("no");
+            })
             newwin.querySelector(".focusWinEl").classList.remove("yes");
             newwin.querySelector(".focusWinEl").classList.add("no");
             const appItem = document.querySelectorAll(".appItem");
@@ -1390,10 +1713,43 @@ class WIN {
             }
             newdock.classList.add("active");
             
+            let windowsControls = newwin.getAttribute("data-controls");
             newwin.classList.add("winFocus");
             newwin.classList.remove("winNotFocus");
             appsShellName.innerText = title;
             appsShellName.setAttribute("data-id", windowID);
+
+            if(windowsControls === "minmaxclose") {
+                document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+            } else if(windowsControls === "minmax") {
+                document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="close"]`).classList.add("hidden");
+            } else if(windowsControls === "minclose") {
+                document.querySelector(`[data-event="maximize"]`).classList.add("hidden");
+                document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+            } else if(windowsControls === "maxclose") {
+                document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="minimize"]`).classList.add("hidden");
+                document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+            } else if(windowsControls === "close") {
+                document.querySelector(`[data-event="maximize"]`).classList.add("hidden");
+                document.querySelector(`[data-event="minimize"]`).classList.add("hidden");
+                document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+            } else if(windowsControls === "undefined") {
+                document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+                document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+            }
+            let newWindowAvailable = document.querySelector(".winFocus").getAttribute("oneinst");
+            if(newWindowAvailable === "true" || newWindowAvailable === "yes") {
+                document.querySelector(`[data-event="newwin"]`).classList.add("hidden");
+            } else {
+                document.querySelector(`[data-event="newwin"]`).classList.remove("hidden");
+            }
         });
         switch(os) {
             case "false":
@@ -1418,6 +1774,11 @@ class WIN {
     
         winconts.addEventListener("mousedown", mousedown);
         function mousedown(e) {
+            if(newwin.getAttribute("oneInst") === "yes" || newwin.getAttribute("oneInst") === "true") {
+                appShell.setAttribute("oneInst", "yes");
+            } else {
+                appShell.setAttribute("oneInst", "no");
+            }
             if (e.button !== 0) return;
             newwin.querySelector("iframe").style.pointerEvents = "none";
             const appItem = document.querySelectorAll(".appItem");
@@ -1471,12 +1832,7 @@ class WIN {
                                 <rect x="0.75" y="0.75" width="13.5" height="13.5" stroke="white" stroke-width="1.5"></rect>
                             </svg>
                         `;
-                        if(dock.getAttribute("appMax") === "true") {
-                            dock.setAttribute("appMax", "false");
-                        }
-                        if(dock.getAttribute("hidden") === "true") {
-                            dock.setAttribute("hidden", "false");
-                        }
+                        maxState = false;
                         newwin.classList.remove("maxiY");
                         newwin.classList.add("maxiN");
                         var X = startX - e.clientX;
@@ -1826,7 +2182,58 @@ class WIN {
                 });
             })
         }
+        if(newwin.querySelector(".mini")) {
+            newwin.querySelector(".mini").addEventListener("click", () => {
+                newwin.querySelector(".focusWinEl").classList.remove("no");
+                newwin.querySelector(".focusWinEl").classList.add("yes");
+                if(!newwin.classList.contains("winFocus")) {
+                    newwin.classList.add("winmini");
+                    newwin.classList.add("negZI");
+                } else {
+                    newwin.classList.add("winmini");
+                    newwin.classList.add("negZI");
+                    newwin.classList.add("winNotFocus");
+                    newwin.classList.remove("winFocus");
+                    document.querySelector(".dockbtn.active").classList.remove("active");
+                    appsShellName.classList.add("inactive");
+                }
+            })
+        }
         document.body.appendChild(newwin);
+
+        let windowsControls = document.querySelector(".winFocus").getAttribute("data-controls");
+        if(windowsControls === "minmaxclose") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "minmax") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.add("hidden");
+        } else if(windowsControls === "minclose") {
+            document.querySelector(`[data-event="maximize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "maxclose") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "close") {
+            document.querySelector(`[data-event="maximize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "undefined") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        }
+        let newWindowAvailable = document.querySelector(".winFocus").getAttribute("oneinst");
+        if(newWindowAvailable === "true" || newWindowAvailable === "yes") {
+            document.querySelector(`[data-event="newwin"]`).classList.add("hidden");
+        } else {
+            document.querySelector(`[data-event="newwin"]`).classList.remove("hidden");
+        }
+
         window.addEventListener("mousedown", (e) => {
             const ctxm = document.createElement("div");
             ctxm.classList.add("ctx");
@@ -1876,33 +2283,33 @@ class WIN {
                     newWindowCtxItem.classList.add("ctxbt");
                     newWindowCtxItem.id = "ctxNewWindow";
                     newWindowCtxItem.innerHTML = "New Window";
-                    console.log(controlsTypes);
-                    if(controlsTypes === "minmaxclose") {
+                    let windowControlsTypes = document.querySelector(".winFocus").getAttribute("data-controls");
+                    if(windowControlsTypes === "minmaxclose") {
+                        menu.appendChild(reloadCtxItem);
                         menu.appendChild(newWindowCtxItem);
-                        menu.appendChild(closeCtxItem);
+                        menu.appendChild(minCtxItem);
                         menu.appendChild(maxCtxItem);
-                        menu.appendChild(minCtxItem);
+                        menu.appendChild(closeCtxItem);
+                    } else if(windowControlsTypes === "minclose") {
                         menu.appendChild(reloadCtxItem);
-                    } else if(controlsTypes === "minclose") {
+                        menu.appendChild(newWindowCtxItem);
+                        menu.appendChild(minCtxItem);
+                        menu.appendChild(closeCtxItem);
+                    } else if(windowControlsTypes === "close") {
+                        menu.appendChild(reloadCtxItem);
                         menu.appendChild(newWindowCtxItem);
                         menu.appendChild(closeCtxItem);
+                    } else if(windowControlsTypes === "minmax") {
+                        menu.appendChild(reloadCtxItem);
+                        menu.appendChild(newWindowCtxItem);
                         menu.appendChild(minCtxItem);
-                        menu.appendChild(reloadCtxItem);
-                    } else if(controlsTypes === "close") {
-                        menu.appendChild(newWindowCtxItem);
-                        menu.appendChild(closeCtxItem);
-                        menu.appendChild(reloadCtxItem);
-                    } else if(controlsTypes === "minmax") {
-                        menu.appendChild(newWindowCtxItem);
                         menu.appendChild(maxCtxItem);
-                        menu.appendChild(minCtxItem);
+                    } else if(windowControlsTypes === "undefined") {
                         menu.appendChild(reloadCtxItem);
-                    } else if(controlsTypes === undefined) {
                         menu.appendChild(newWindowCtxItem);
-                        menu.appendChild(closeCtxItem);
-                        menu.appendChild(maxCtxItem);
                         menu.appendChild(minCtxItem);
-                        menu.appendChild(reloadCtxItem);
+                        menu.appendChild(maxCtxItem);
+                        menu.appendChild(closeCtxItem);
                     }
                     window.addEventListener("mousedown", (e) => {
                         if (e.button == 0 && !e.target.closest(".ctx")) {
@@ -1910,6 +2317,9 @@ class WIN {
                         }
                     });
                     document.body.appendChild(ctxm);
+                    if(document.querySelector(".dockMenu")) {
+                        document.querySelector(".dockMenu").remove();
+                    }
                     const ctxCloseWin = ctxm.querySelector("#ctxCloseWin");
                     if(ctxCloseWin) {
                         ctxCloseWin.addEventListener("click", () => {
@@ -1939,7 +2349,7 @@ class WIN {
                     }
                     const ctxReload = document.querySelector("#ctxReload");
                     ctxReload.addEventListener("click", () => {
-                        const frame = newwin.querySelector("iframe");
+                        const frame = document.querySelector(".winFocus").querySelector("iframe");
                         let beforeSrc = frame.src;
                         frame.src = "about:blank";
                         setTimeout(() => {
@@ -1947,11 +2357,32 @@ class WIN {
                         }, 200)
                         ctxm.remove();
                     });
-                    const ctxNewWindow = document.querySelector("#ctxNewWindow");
-                    ctxNewWindow.addEventListener("click", () => {
-                        new WIN(`(link)[${link}]`, `(icn)[${icn}]`, `(title)[${title}]`, `(os)[${os}]`, `(fullscreen)[${fullscreen}]`, `(appName)[${appName}]`, `(controls)[${controlsTypes}]`, `(textAppText)[${textAppText}]`);
-                        ctxm.remove();
-                    });
+                    const oneInstanceState = document.querySelector(".winFocus").getAttribute("oneinst");
+                    if(oneInstanceState === "true" || oneInstanceState === "yes") {
+                        newWindowCtxItem.remove();
+                    } else {
+                        const ctxNewWindow = document.querySelector("#ctxNewWindow");
+                        ctxNewWindow.addEventListener("click", () => {
+                            let link = document.querySelector(".winFocus").getAttribute("data-link");
+                            let icn = document.querySelector(".winFocus").getAttribute("data-icon");
+                            let os = document.querySelector(".winFocus").getAttribute("data-os");
+                            let fullscreen = document.querySelector(".winFocus").getAttribute("data-fullscreen");
+                            let appName = document.querySelector(".winFocus").getAttribute("data-appName");
+                            let controlsTypes = document.querySelector(".winFocus").getAttribute("data-controls");
+                            let textAppText = document.querySelector(".winFocus").getAttribute("data-textAppText");
+                            let width = document.querySelector(".winFocus").getAttribute("data-width");
+                            let height = document.querySelector(".winFocus").getAttribute("data-height");
+                            let resizable = document.querySelector(".winFocus").getAttribute("data-resizable");
+                            let title = document.querySelector(".winFocus").getAttribute("data-title");
+                            ctxm.remove();
+                            if(appShell.getAttribute("oneInst") === "yes" || appShell.getAttribute("oneInst") === "true") {
+                                if(document.querySelectorAll(`[data-appname='${appName}']`).length > 0) {
+                                    return
+                                }
+                            }
+                            new WIN(`(link)[${link}]`, `(icn)[${icn}]`, `(title)[${title}]`, `(os)[${os}]`, `(fullscreen)[${fullscreen}]`, `(appName)[${appName}]`, `(controls)[${controlsTypes}]`, `(textAppText)[${textAppText}]`, `(width)[${width}]`, `(height)[${height}]`, `(resizable)[${resizable}]`);
+                        })
+                    }
                 }
             }
         })
@@ -1984,12 +2415,37 @@ window.addEventListener("message", (e) => {
     }
     if(data.type === "newWindow") {
         const fields = data.fields;
-        new WIN(fields.link, fields.icon, fields.title, fields.os, fields.fullscreen, fields.appName, fields.controlsTypes, fields.textAppText, fields.urlToOpen);
-    }
-    if(data.type === "gameWindow") {
-        const fields = data.fields;
-        console.log(fields);
-        new WIN(fields.gameUrl, fields.icon, fields.name, "(os)[false]", "(full)[true]", fields.appName, "(controls)[all]");
+        if(fields.oneInstance === "(oneInstance)[true]" || fields.oneInstance === "(oneInstance)[yes]") {
+            let appName = fields.appName.match(/\[.*?\]/g).toString();
+            appName = appName.replace("[", "").replace("]", "");
+            let title = fields.title.match(/\[.*?\]/g).toString();
+            title = title.replace("[", "").replace("]", "");
+            appsShellName.classList.remove("inactive");
+            if(document.querySelectorAll(`[data-appname='${appName}']`).length > 0) {
+                document.querySelectorAll(".win").forEach((win) => {
+                    if(win !== document.querySelector(`[data-appname='${appName}']`)) {
+                        win.classList.add("winNotFocus");
+                        win.classList.remove("winFocus");
+                        win.querySelector(".focusWinEl").classList.add("yes");
+                        win.querySelector(".focusWinEl").classList.remove("no");
+                    }
+                })
+                document.querySelector(`[data-appname='${appName}']`).classList.add("winFocus");
+                document.querySelector(`[data-appname='${appName}']`).classList.remove("winNotFocus");
+                document.querySelectorAll("[app]").forEach((app) => {
+                    app.classList.remove("active");
+                })
+                let appWindowId = document.querySelector(`[data-appname='${appName}']`).getAttribute("id");
+                document.querySelector(`[data-appid="${appWindowId}"]`).classList.add("active");
+                document.querySelector(".appShell").setAttribute("oneInst", "yes");
+                document.querySelector(".appShell").querySelector(".name").setAttribute("data-id", appWindowId);
+                document.querySelector(".appShell").querySelector(".name").innerHTML = title;
+                document.querySelector(`[data-appname='${appName}']`).querySelector(".focusWinEl").classList.add("no");
+                document.querySelector(`[data-appname='${appName}']`).querySelector(".focusWinEl").classList.remove("yes");
+                return
+            }
+        }
+        new WIN(fields.link, fields.icon, fields.title, fields.os, fields.fullscreen, fields.appName, fields.controlsTypes, fields.textAppText, fields.urlToOpen, fields.oneInstance, fields.width, fields.height, fields.resizable);
     }
 })
 
@@ -2012,16 +2468,29 @@ window.addEventListener("keydown", (e) => {
             let posLeft = pos.left + 6;
             appsClose.style.top = posTop + "px";
             appsClose.style.left = posLeft + "px";
+            shell.style.borderRadius = "0px";
+            if(localStorage.getItem("dockOpaque") == "yes") {
+                document.querySelector(".dock").classList.remove("glassy");
+            }
         } else if(!document.querySelector("#main").classList.contains("closedA")) {
             document.querySelector(".appsDesk").classList.toggle("openA");
             main.classList.toggle("open");
             main.classList.toggle("closedA");
-            document.querySelector(".showDesk").classList.remove("noBorderRadius");
             shell.classList.remove("noShadow");
             document.querySelector("#appSearch").value = "";
             for(let i = 0; i < apps.length; i++) {
                 apps[i].classList.remove("appShow")
                 apps[i].classList.remove("appHide")
+            }
+            let allMaximizedWindows = document.querySelectorAll(".maxiY");
+            if(allMaximizedWindows.length > 0) {
+                shell.style.borderRadius = "0px";
+            } else {
+                shell.style.borderBottomLeftRadius = "13px";
+                shell.style.borderBottomRightRadius = "13px";
+            }
+            if(localStorage.getItem("dockOpaque") == "yes") {
+                document.querySelector(".dock").classList.add("glassy");
             }
         }
     }
@@ -2046,7 +2515,7 @@ window.addEventListener("keydown", (e) => {
     }
     if(keyNameLower == "s" && e.ctrlKey && e.altKey) {
         e.preventDefault();
-        new WIN("(link)[../settings.html]", "(icon)[../resources/terbium.svg]", "(title)[Terbium Settings]", "(os)[true]", "(fullscreen)[false]", '(appname)[settings]');
+        new WIN("(link)[../settings.html]", "(title)[Terbium Settings]", "(icon)[../resources/terbium.svg]", "(os)[true]", "(fullscreen)[false]", '(appname)[settings]', '(oneinst)[yes]');
     }
     if(keyNameLower == "h" && e.ctrlKey && e.altKey) {
         e.preventDefault();
@@ -2083,7 +2552,20 @@ window.addEventListener("keydown", (e) => {
         }
     }
     if(e.altKey && e.shiftKey) {
+        if(!document.querySelector(".winFocus")) {
+            document.querySelector(".appItem").click();
+        }
         lastWindow = document.querySelector(".winFocus").id;
+        if(!document.querySelector(".winFocus")) {
+            if(document.querySelector(".winNotFocus") && document.querySelectorAll(".win").length == 1) {
+                document.querySelector(".winNotFocus").classList.add("winFocus");
+                document.querySelector(".winNotFocus").classList.remove("winNotFocus");
+                document.querySelector(".winFocus").style.opacity = "";
+            }
+        }
+        if(appsShellName.classList.contains("inactive")) {
+            appsShellName.classList.remove("inactive");
+        }
         var windowsAvailable = document.querySelectorAll(".win");
         var windowsAvailableArray = Array.from(windowsAvailable);
         var windowsAvailableArrayLength = windowsAvailableArray.length;
@@ -2094,16 +2576,23 @@ window.addEventListener("keydown", (e) => {
             nextWindowIndex = 0;
         }
         var nextWindow = windowsAvailableArray[nextWindowIndex];
-        currentWindow.classList.remove("winFocus");
-        currentWindow.classList.add("winNotFocus");
-        currentWindow.querySelector(".focusWinEl").classList.add("yes");
-        currentWindow.querySelector(".focusWinEl").classList.remove("no");
+        console.log(currentWindow.classList);
+        if(currentWindow.classList.contains("winmini")) {
+        }
+        if(!currentWindow.classList.contains("winmini")) {
+            currentWindow.classList.remove("winFocus");
+            currentWindow.classList.add("winNotFocus");
+            currentWindow.querySelector(".focusWinEl").classList.add("yes");
+            currentWindow.querySelector(".focusWinEl").classList.remove("no");
+        }
         nextWindow.classList.remove("winNotFocus");
         nextWindow.classList.add("winFocus");
+        nextWindow.style.opacity = "";
         nextWindow.querySelector(".focusWinEl").classList.add("no");
         nextWindow.querySelector(".focusWinEl").classList.remove("yes");
         if(nextWindow.classList.contains("winmini")) {
             nextWindow.classList.remove("winmini");
+            nextWindow.classList.remove("negZI");
         }
         const appItem = document.querySelectorAll(".appItem");
         for (let i = 0; i < appItem.length; i++) {
@@ -2112,6 +2601,39 @@ window.addEventListener("keydown", (e) => {
         }
         document.querySelector("[data-appId='" + nextWindow.id + "']").classList.add("active");
         appsShellName.innerHTML = document.querySelector(".winFocus").getAttribute("data-title");
+
+        let windowsControls = document.querySelector(".winFocus").getAttribute("data-controls");
+        if(windowsControls === "minmaxclose") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "minmax") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.add("hidden");
+        } else if(windowsControls === "minclose") {
+            document.querySelector(`[data-event="maximize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "maxclose") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "close") {
+            document.querySelector(`[data-event="maximize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.add("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        } else if(windowsControls === "undefined") {
+            document.querySelector(`[data-event="maximize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="minimize"]`).classList.remove("hidden");
+            document.querySelector(`[data-event="close"]`).classList.remove("hidden");
+        }
+        let newWindowAvailable = document.querySelector(".winFocus").getAttribute("oneinst");
+        if(newWindowAvailable === "true" || newWindowAvailable === "yes") {
+            document.querySelector(`[data-event="newwin"]`).classList.add("hidden");
+        } else {
+            document.querySelector(`[data-event="newwin"]`).classList.remove("hidden");
+        }
     }
 })
 
@@ -2128,7 +2650,7 @@ switch(id) {
         new WIN("(link)[../player/player.html]", "(title)[Terbium Player]", "(icon)[../resources/player.svg]", "(os)[true]", "(fullscreen)[false]", '(appname)[player]');
         break;
     case "settings":
-        new WIN("(link)[../settings.html]", "(title)[Terbium Settings]", "(icon)[../resources/terbium.svg]", "(os)[true]", "(fullscreen)[false]", '(appname)[settings]');
+        new WIN("(link)[../settings.html]", "(title)[Terbium Settings]", "(icon)[../resources/terbium.svg]", "(os)[true]", "(fullscreen)[false]", '(appname)[settings]', '(oneinst)[yes]');
         break;
     case "help":
         new WIN("(link)[../help.html]", "(title)[Terbium Help]", "(icon)[../resources/help.svg]", "(os)[true]", "(fullscreen)[false]", '(appname)[help]');
@@ -2180,20 +2702,125 @@ switch(id) {
     case "test":
         new WIN("(link)[../test/test.html]", "(icon)[../resources/test.svg]", "(title)[Terbium Test]", "(browser)[false]", "(os)[true]", "(fullscreen)[false]", "(appName)[test]", "(controls)[minClose]", "(text)[test]");
         break;
-    case "game":
-        new WIN("(link)[../game/game.html]", "(icon)[../resources/game.svg]", "(title)[Game Center]", "(browser)[false]", "(os)[true]", "(fullscreen)[false]", "(appName)[game]", "(controls)[all]");
     default: 
         break;
 }
 
-dock.addEventListener("mouseover", (e) => {
-    if(dock.getAttribute("appMax") === "true" || dock.getAttribute("hidden") === "true") {
-        dock.setAttribute("hidden", "false");
+class promptingWIN {
+    constructor(title, icon, type) {
+        this.title = title;
+        this.icon = icon;
+        this.type = type;
+        this.create();
     }
-})
+    create() {
+        let allParams = [];
+        for (const prop in this) {
+            if (this.hasOwnProperty(prop)) {
+                if(this[prop] == undefined) {
+                    continue;
+                }
+                let paren;
+                let propItem;
+                paren = this[prop].substring(this[prop].indexOf("(") + 1, this[prop].indexOf(")")).toLowerCase();
+                propItem = this[prop].substring(this[prop].indexOf("[") + 1, this[prop].indexOf("]"));
+                allParams.push(`(${paren})[${propItem}]`);
+            }
+        }
 
-dock.addEventListener("mouseout", (e) => {
-    if(dock.getAttribute("appMax") === "true" || dock.getAttribute("hidden") === "false") {
-        dock.setAttribute("hidden", "true");
+        let title;
+        let icon;
+        let type;
+
+        allParams.filter((item) => {
+            let brackVal = item.substring(item.indexOf("[") + 1, item.indexOf("]"));
+            if(item.includes("undefined")) {
+                return brackVal;
+            }
+            if(item.includes("null")) {
+                return brackVal;
+            }
+            if(item.includes("(icon)") || item.includes("(icn)")) {
+                icon = brackVal;
+            }
+            if(item.includes("(title)")) {
+                title = brackVal;
+            }
+            if(item.includes("(type)")) {
+                type = brackVal;
+            }
+        });
+
+        const promptWindow = document.createElement("div");
+        promptWindow.classList.add("promptWin");
+        let promptDrag = document.createElement("div");
+        promptDrag.classList.add("promptDrag");
+
+        if(icon) {
+            let promptIcon = document.createElement("img");
+            promptIcon.src = icon;
+            promptIcon.classList.add("promptIcon");
+            promptDrag.appendChild(promptIcon);
+        }
+        if(title) {
+            let promptTitle = document.createElement("p");
+            promptTitle.innerHTML = title;
+            promptTitle.classList.add("promptTitle");
+            promptDrag.appendChild(promptTitle);
+        }
+        if(type) {
+            if(type == "error") {
+                promptWindow.classList.add("error");
+            } else if(type == "warning") {
+                promptWindow.classList.add("warning");
+            } else if(type == "info") {
+                promptWindow.classList.add("info");
+            } else if(type == "question") {
+                promptWindow.classList.add("question");
+            } else if(type == "info vv") {
+                promptWindow.classList.add("vv");
+                promptWindow.classList.add("info");
+            } else {
+                promptWindow.classList.add("prompt");
+            }
+        }
+        let close = document.createElement("div");
+        close.classList.add("close");
+        close.classList.add("winc");
+        if(localStorage.getItem("btnr") == "yes") {
+            close.classList.add("btnround");
+        }
+        close.innerHTML = `
+            <svg class="winic" id="promptClose" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        `;
+        let promptContent = document.createElement("div");
+        promptContent.classList.add("promptContent");
+        
+        promptDrag.addEventListener("mousedown", (e) => {
+            let x = e.clientX - promptWindow.offsetLeft;
+            let y = e.clientY - promptWindow.offsetTop;
+            window.addEventListener("mousemove", move);
+            function move(e) {
+                let x2 = e.clientX - x;
+                let y2 = e.clientY - y;
+                promptWindow.style.left = x2 + "px";
+                promptWindow.style.top = y2 + "px";
+            }
+            window.addEventListener("mouseup", () => {
+                window.removeEventListener("mousemove", move);
+            })
+        })
+        
+        close.addEventListener("click", () => {
+            promptWindow.remove();
+        });
+
+        document.body.appendChild(promptWindow);
+        promptWindow.appendChild(promptDrag);
+        promptDrag.appendChild(close);
+        promptWindow.appendChild(promptContent);
     }
-})
+}

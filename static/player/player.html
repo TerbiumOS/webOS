@@ -14,6 +14,7 @@
                 <div class="tlc">
                     <div class="tl">
                         <div class="thumb-ind"></div>
+                        <div class="time-seeking hide"></div>
                     </div>
                 </div>
                 <div class="tc"></div>
@@ -57,15 +58,34 @@
                     </button>
                 </div>
             </div>
-            <video id="mc" class="repeatOff">
-                <source id="mcs" src="../resources/RokuPOSVideo.mp4">
-            </video>
+            <video id="mc" class="repeatOff" src="../resources/RokuPOSVideo.mp4"></video>
         </div>
         <div class="settingsWindow">
             <div class="settingsContent">
                 <div class="settingsItem">
                     <div class="settingsItemTitle">Autoplay</div>
                     <input class="toggle" id="ap" checked type="checkbox">
+                </div>
+            </div>
+        </div>
+        <div class="info infH">
+            <h3 class="infoTitle">File Info</h3>
+            <div class="details">
+                <div class="details-container" nameC>
+                    <p class="detail-title">Name:</p>
+                    <div class="info-details" fName></div>
+                </div>
+                <div class="details-container">
+                    <p class="detail-title">Date Modified:</p>
+                    <div class="info-details" dMod></div>
+                </div>
+                <div class="details-container">
+                    <p class="detail-title">Size:</p>
+                    <div class="info-details" fSize></div>
+                </div>
+                <div class="details-container">
+                    <p class="detail-title">Format:</p>
+                    <div class="info-details" fFormat></div>
                 </div>
             </div>
         </div>

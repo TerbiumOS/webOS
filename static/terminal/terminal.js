@@ -256,7 +256,7 @@ command.addEventListener("keydown", (e) => {
         if(command.textContent.split(" ")[0] === ("open")) {
             const text = command.textContent.split(" ").slice(1).join(" ");
             const url = window.location.href.split("/")[2].split(".")[0];
-            let apps = ["cmd", "terminal", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text", "browser", "image"];
+            let apps = ["cmd", "terminal", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text", "browser", "image", "discord", "ruffle", "calc", "tiktok"];
             let message;
             if(apps.includes(text)) {
                 switch(text) {
@@ -269,7 +269,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Terminal]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[terminal]"
+                                appName: "(appName)[terminal]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -282,7 +283,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Player]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[player]"
+                                appName: "(appName)[player]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -295,7 +297,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Canvas]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[canvas]"
+                                appName: "(appName)[canvas]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -308,7 +311,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Color]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[color]"
+                                appName: "(appName)[color]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -321,7 +325,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Help]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[help]"
+                                appName: "(appName)[help]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -334,7 +339,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Changelog]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[changelog]"
+                                appName: "(appName)[changelog]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -342,12 +348,13 @@ command.addEventListener("keydown", (e) => {
                         message = JSON.stringify({
                             type: "newWindow",
                             fields: {
-                                link: "(link)[../resources/settings.svg]",
+                                link: "(link)[../settings.html]",
                                 icon: "(icon)[../resources/settings.svg]",
                                 title: "(title)[Terbium Settings]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[settings]"
+                                appName: "(appName)[settings]",
+                                oneInstance: "(oneInstance)[true]"
                             }
                         })
                     break;
@@ -360,7 +367,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[YouTube]",
                                 os: "(os)[false]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[youtube]"
+                                appName: "(appName)[youtube]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -373,7 +381,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Visual Studio Code]",
                                 os: "(os)[false]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[code]"
+                                appName: "(appName)[code]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -386,7 +395,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Text Editor]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[text]"
+                                appName: "(appName)[text]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -399,7 +409,8 @@ command.addEventListener("keydown", (e) => {
                                 title: "(title)[Terbium Browser]",
                                 os: "(os)[true]",
                                 fullscreen: "(fullscreen)[false]",
-                                appName: "(appName)[browser]"
+                                appName: "(appName)[browser]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;
@@ -415,7 +426,66 @@ command.addEventListener("keydown", (e) => {
                                 appName: "(appName)[image]",
                                 urlToOpen: `(urlToOpen)[undefined]`,
                                 textAppText: `(textAppText)[undefined]`,
-                                controlsTypes: `(controls)[all]`
+                                controlsTypes: `(controls)[all]`,
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "discord":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[https://discord.com]",
+                                icon: "(icon)[../resources/discord.png]",
+                                title: "(title)[Discord]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[discord]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "ruffle":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../ruffle/ruffle.html]",
+                                icon: "(icon)[../resources/ruffle.png]",
+                                title: "(title)[Ruffle]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[ruffle]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "calc":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../calc/calc.html]",
+                                icon: "(icon)[../resources/calc.svg]",
+                                title: "(title)[Terbium Calculator]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[calc]",
+                                controlsTypes: `(controls)[close]`,
+                                resizable: `(resizable)[false]`,
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "tiktok":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[https://tiktok.com]",
+                                icon: "(icon)[../resources/tiktok.png]",
+                                title: "(title)[TikTok]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[tiktok]",
+                                oneInstance: "(oneInstance)[false]"
                             }
                         })
                     break;

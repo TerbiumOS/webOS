@@ -93,7 +93,7 @@
 [data-theme="fracital"] {
     --body: #222;
     --color: #ff40f7;
-    --scrollbar-background: #383838;
+    --scrollbar-background: #282928;
 
     --userselect-background: #ffffff1a;
     --userselect-color: #ffbefc;
@@ -126,7 +126,7 @@
 [data-theme="almond"] {
     --body: #1c1c1c;
     --color: #E89D46;
-    --scrollbar-background: #383838;
+    --scrollbar-background: #282928;
     --userselect-background: #ffffff1a;
     --userselect-color: #FFC889;
     
@@ -233,6 +233,22 @@ body {
     align-items: center;
     justify-content: center;
     transition: 200ms ease-in-out;
+    overflow: auto;
+    scrollbar-color: var(--color) var(--scrollbar-background);
+    scrollbar-width: thin;
+}
+
+[view]::-webkit-scrollbar-track {
+    background: var(--scrollbar-background);
+}
+
+[view]::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 6px;
+}
+
+[view]::-webkit-scrollbar {
+    width: 6px;
 }
 
 [hiddenCat=true] {
@@ -272,7 +288,6 @@ body {
     border-radius: 4px;
     height: max-content;
     width: max-content;
-    padding: 6px;
     transition: ease 0.5s;
     cursor: url("../resources/cursors/handF.png"), pointer !important;
 }
@@ -290,7 +305,6 @@ body {
     border-radius: 4px;
     height: max-content;
     width: max-content;
-    padding: 6px;
     transition: ease 0.5s;
     cursor: url("../resources/cursors/handD.png"), pointer !important;
 }
@@ -310,7 +324,6 @@ body {
     height: max-content;
     width: max-content;
     font-family: Metro;
-    padding: 6px;
     transition: ease 0.5s;
     cursor: url("../resources/cursors/handN.png"), pointer !important;
 }
@@ -329,7 +342,6 @@ body {
     height: max-content;
     width: max-content;
     font-family: Metro;
-    padding: 6px;
     transition: ease 0.5s;
     cursor: url("../resources/cursors/handA.png"), pointer !important;
 }
@@ -349,7 +361,7 @@ body {
     height: max-content;
     width: max-content;
     font-family: Metro;
-    padding: 6px;
+    padding: 6px 8px;
     transition: ease 0.5s;
     font-size: 16px;
 }
@@ -584,13 +596,6 @@ input[type=number] {
     border-radius: 6px;
 }
 
-.reset {
-    position: absolute;
-    bottom: 6px;
-    left: 6px;
-    z-index: 9;
-}
-
 .views {
     width: 100%;
     height: 100%;
@@ -714,8 +719,34 @@ input[type=number] {
     max-width: 276px;
     max-height: 186px;
     object-fit: contain;
+    border-radius: 6px;
 }
 
 .customImage {
     display: none;
+}
+
+.reset {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    z-index: 9;
+}
+
+.importLabel {
+    position: absolute;
+    bottom: 40px;
+    right: 6px;
+    z-index: 9;
+}
+
+.exportImportC {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    z-index: 9;
+}
+
+.spacer {
+    height: 12px;
 }

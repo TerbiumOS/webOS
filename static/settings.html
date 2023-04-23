@@ -36,7 +36,7 @@
         <div class="views">
             <div class="cat themeView" view="theme" hiddenCat="false">
                 <div class="deskBackC">
-                    <img class="deskBack">
+                    <img class="deskBack" draggable="false">
                 </div>
                 <div class="title">
                     <h3>Theme</h3>
@@ -72,6 +72,9 @@
             <div class="cat windowView" view="osl" hiddenCat="true">
                 <div class="title">
                     <h3>OS Layout</h3>
+                </div>
+                <div class="title">
+                    <h3>Windows</h3>
                     <div class="border-bottom"></div>
                 </div>
                 <div class="btns slides">
@@ -93,7 +96,13 @@
                     </div>
                     <input input-hidden type="color" id="customShadow" value="rgba(0, 0, 0, 0.32)"><button class="btn" id="clearCustomShadow">clear</button>
                 </div>
-                <h3>Window Buttons Position</h3>
+                <div class="btns slides">
+                    <label>Shadows follows theme accent</label><input class="toggle" type="checkbox" id="themeAccentShadow" checked>
+                </div>
+                <div class="title">
+                    <h3>Window Buttons</h3>
+                    <div class="border-bottom"></div>
+                </div>
                 <div class="btns slides">
                     <label>Right</label><input class="toggle" id="btnrPos" data-btnpos="Right" checked type="checkbox">
                 </div>
@@ -103,7 +112,10 @@
                 <div class="btns slides">
                     <label>Round Window Buttons</label><input class="toggle" id="btnr" checked type="checkbox">
                 </div>
-                <h3>Dock Position</h3>
+                <div class="title">
+                    <h3>Dock</h3>
+                    <div class="border-bottom"></div>
+                </div>
                 <div class="btns slides">
                     <label>Bottom</label><input class="toggle dockPos" id="dp_bottom" data-pos="Bottom" checked type="checkbox">
                 </div>
@@ -113,9 +125,24 @@
                 <div class="btns slides">
                     <label>Right</label><input class="toggle dockPos" id="dp_right" data-pos="Right" checked type="checkbox">
                 </div>
+                <div class="btns slide">
+                    <label>Full Dock</label><input class="toggle dockFull" type="checkbox" id="dockFull" checked="false">
+                </div>
+                <div class="btns slides">
+                    <label>Opaque</label><input type="checkbox" id="dockOpq" class="toggle" checked="true">
+                </div>
             </div>
             <div class="cat otherView" view="other" hiddenCat="true">
                 <h1>Other</h1>
+                <div class="title">
+                    <h3>Import Or Export your settings</h3>
+                    <div class="border-bottom"></div>
+                </div>
+                <div class="btns">
+                    <input class="btn" type="file" input-hidden id="importExportInp" accept=".tbs, .txt"></input>
+                    <button class="btn" id="importSettings">Import</button>
+                    <button class="btn" id="exportSettings">Export</button>
+                </div>
                 <div class="title">
                     <h3>Shutdown</h3>
                     <div class="border-bottom"></div>

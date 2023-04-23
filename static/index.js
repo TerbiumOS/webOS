@@ -1,5 +1,3 @@
-const version = document.querySelector(".version");
-
 function isUrl(val = '') {
     if (/^http(s?):\/\//.test(val) || val.includes('.') && val.substr(0, 1) !== ' ') return true;
     return false;
@@ -64,6 +62,9 @@ window.addEventListener("mousedown", (e) => {
                 }
             });
             document.body.appendChild(ctxm);
+            if(document.querySelector(".dockMenu")) {
+                document.querySelector(".dockMenu").remove();
+            }
             document.querySelector("#share").onclick = () => {
                 share();
                 document.getElementById("ctx").remove();
@@ -76,13 +77,13 @@ window.addEventListener("mousedown", (e) => {
     }
 })
 
-if(localStorage.getItem("winshadow") === null || localStorage.getItem("shadow") === null) {
+if(!localStorage.getItem("winshadow") || !localStorage.getItem("shadow")) {
     localStorage.setItem("winshadow", "default");
     localStorage.setItem("shadow", "yes");
 }
 
-if(localStorage.getItem("showDeskOnHover") === null) {
-    localStorage.setItem("showDeskOnHover", "yes");
+if(!localStorage.getItem("accentShadow")) {
+    localStorage.setItem("accentShadow", "no");
 }
 
 if(!localStorage.getItem("background")) {
@@ -98,11 +99,30 @@ if(!localStorage.getItem("background")) {
 }
 
 if(localStorage.getItem("autoplay") == (null || undefined)) {
-    localStorage.setItem("autoplay", "true");
+    localStorage.setItem("autoplay", "yes");
+}
+if(localStorage.getItem("autoplay") == "false") {
+    localStorage.setItem("autoplay", "no");
+}  else if(localStorage.getItem("autoplay") == "true") {
+    localStorage.setItem("autoplay", "yes");
 }
 
 if(localStorage.getItem("photoCoverApp") == null) {
-    localStorage.setItem("photoCoverApp", "false");
+    localStorage.setItem("photoCoverApp", "yes");
+}
+if(localStorage.getItem("photoCoverApp") == "false") {
+    localStorage.setItem("photoCoverApp", "no");
+} else if(localStorage.getItem("photoCoverApp") == "true") {
+    localStorage.setItem("photoCoverApp", "yes");
+}
+
+if(!localStorage.getItem("dockOpaque")){
+    localStorage.setItem("dockOpaque", "yes");
+    dock.classList.add("glassy");
+}
+
+if(localStorage.getItem("dockOpaque") == "yes") {
+    dock.classList.add("glassy");
 }
 
 switch (localStorage.getItem("backF")) {
@@ -115,7 +135,6 @@ switch (localStorage.getItem("backF")) {
     default: "contain";
 }
 
-// check if the key that is pressed is a letter only
 function isLetter(str) {
     return str.length === 1 && str.match(/[a-z][A-Z]/i);
 }
@@ -368,12 +387,21 @@ for(let i = 0; i < apps.length; i++) {
         main.classList.toggle("open");
         main.classList.toggle("closedA");
         document.querySelector(".appsDesk").classList.toggle("openA");
-        document.querySelector(".showDesk").classList.remove("noBorderRadius");
         document.querySelector("#appSearch").value = "";
         shell.classList.remove("noShadow");
+        let allMaximizedWindows = document.querySelectorAll(".maxiY");
+        if(allMaximizedWindows.length > 0) {
+            shell.style.borderRadius = "0px";
+        } else {
+            shell.style.borderBottomLeftRadius = "13px";
+            shell.style.borderBottomRightRadius = "13px";
+        }
         for(let i = 0; i < apps.length; i++) {
             apps[i].classList.remove("appShow")
             apps[i].classList.remove("appHide")
+        }
+        if(localStorage.getItem("dockOpaque") == "yes") {
+            document.querySelector(".dock").classList.add("glassy");
         }
     });
 }
@@ -383,7 +411,6 @@ appsOpen.onclick = () => {
     document.querySelector(".appsDesk").classList.toggle("openA");
     main.classList.toggle("open");
     main.classList.toggle("closedA");
-    document.querySelector(".showDesk").classList.add("noBorderRadius");
     shell.classList.add("noShadow");
     document.querySelector("#appSearch").value = "";
     for(let i = 0; i < apps.length; i++) {
@@ -394,6 +421,10 @@ appsOpen.onclick = () => {
     let posLeft = pos.left + 6;
     appsClose.style.top = posTop + "px";
     appsClose.style.left = posLeft + "px";
+    shell.style.borderRadius = "0px";
+    if(localStorage.getItem("dockOpaque") == "yes") {
+        document.querySelector(".dock").classList.remove("glassy");
+    }
 }
 
 window.addEventListener("resize", () => {
@@ -408,12 +439,21 @@ appsClose.onclick = () => {
     document.querySelector(".appsDesk").classList.toggle("openA");
     main.classList.toggle("open");
     main.classList.toggle("closedA");
-    document.querySelector(".showDesk").classList.remove("noBorderRadius");
     shell.classList.remove("noShadow");
     document.querySelector("#appSearch").value = "";
     for(let i = 0; i < apps.length; i++) {
         apps[i].classList.remove("appShow")
         apps[i].classList.remove("appHide")
+    }
+    let allMaximizedWindows = document.querySelectorAll(".maxiY");
+    if(allMaximizedWindows.length > 0) {
+        shell.style.borderRadius = "0px";
+    } else {
+        shell.style.borderBottomLeftRadius = "13px";
+        shell.style.borderBottomRightRadius = "13px";
+    }
+    if(localStorage.getItem("dockOpaque") == "yes") {
+        document.querySelector(".dock").classList.add("glassy");
     }
 }
 
@@ -539,18 +579,30 @@ window.postMessage(JSON.stringify({
     type: "getSystemInfo",
 }))
 
-window.addEventListener("message", (e) => {
-    var data;
-    try {
-        data = JSON.parse(e.data);
-    } catch (error) {
-        return;
+if(localStorage.getItem("dockFull") === null) {
+    localStorage.setItem("dockFull", "false");
+} else if(localStorage.getItem("dockFull") === "yes") {
+    window.parent.document.querySelector(".dock").classList.add("dockFull");
+    switch(localStorage.getItem("dockPos").toLowerCase()) {
+        case "left":
+            document.querySelector(".shell").classList.add("L");
+            document.querySelector(".shell").classList.remove("R");
+            break;
+            case "right":
+                document.querySelector(".shell").classList.add("R");
+                document.querySelector(".shell").classList.remove("L");
+            break;
+        case "bottom":
+            document.querySelector(".shell").classList.remove("L");
+            document.querySelector(".shell").classList.remove("R");
+            break;
     }
-    if(data.type === "systemInfo") {
-        let fields = data.fields;
-        let versionNumber = fields.version;
-        let buildVersion = fields.build;
+}
 
-        version.innerHTML = `Version ${versionNumber} (${buildVersion})`;
+if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+    let hasNotBeenWarned = localStorage.getItem("hasNotBeenWarned");
+    if(hasNotBeenWarned === null) {
+        localStorage.setItem("hasNotBeenWarned", "false");
+        alert("You are using Firefox. This browser is supported to the best of our ability, but some features may not work or should work but for some reason don't. We recommend using Chrome or Edge for the best experience.");
     }
-})
+}

@@ -9,6 +9,11 @@
 }
 
 @font-face {
+    font-family: pro-bold;
+    src: url(./resources/ProductBold.ttf);
+}
+
+@font-face {
     font-family: pop;
     src: url(./resources/Poppins-Regular.ttf);
 }
@@ -155,12 +160,14 @@
 
     /* dock */
     --dock-background: #1e1e1e;
+    --dock-background-glassy: #2b2b2b82;
     --dock-button-background: #2d2d2d;
+    --dock-button-active-glassy: #62626242;
     --dock-alert-background: #47ca6360;
     --dock-button-boxshadow: #242424;
     --dock-icon-color: #47CA64;
     --dock-icon-color2: #419854;
-    --dock-button-inactive-span: #424242;
+    --dock-button-inactive-span: #b0b0b070;
 
     /* context menu */
     --context-menu-background: #1e1e1e;
@@ -172,6 +179,7 @@
     --window-color: #bdbdbd;
     --window-dragger: #282928;
     --window-shadow-border: rgba(255, 255, 255, 0.19);
+    --accentShadow: rgb(65, 188, 93, 32%);
 
     /* buttons */
     --button-background: #393939;
@@ -242,12 +250,14 @@
     
     /* dock */
     --dock-background: #161062;
+    --dock-background-glassy: #1f178282;
     --dock-button-background: #22198d;
+    --dock-button-active-glassy: #433ac16e;
     --dock-alert-background: #fff7a560;
     --dock-button-boxshadow: #110d44;
     --dock-icon-color: #fff7a5;
     --dock-icon-color2: #d1ca7a;
-    --dock-button-inactive-span: #594dee;
+    --dock-button-inactive-span: #b0b0b070;
 
     /* context menu */
     --context-menu-background: #161062;
@@ -259,6 +269,7 @@
     --window-color: #efe688;
     --window-dragger: #26206a;
     --window-shadow-border: rgba(114, 103, 231, 0.32);
+    --accentShadow: rgb(255, 230, 136, 32%);
 
     /* buttons */
     --button-background: #342d93;
@@ -329,11 +340,13 @@
     
     /* dock */
     --dock-background: #313131;
+    --dock-background-glassy: #46464682;
     --dock-button-background: #3d3d3d;
+    --dock-button-active-glassy: #aaaaaa21;
     --dock-alert-background: #FF40F760;
     --dock-button-boxshadow: #282828;
     --dock-icon-color: #FF40F7;
-    --dock-button-inactive-span: #606060;
+    --dock-button-inactive-span: #b0b0b070;
     
     /* context menu */
     --context-menu-background: #313131;
@@ -345,6 +358,7 @@
     --window-color: #ff40f7;
     --window-dragger: #383838;
     --window-shadow-border: rgba(255, 255, 255, 0.19);
+    --accentShadow: rgb(255, 64, 247, 32%);
     
     /* buttons */
     --button-background: #484848;
@@ -414,12 +428,14 @@
 
     /* dock */
     --dock-background: #282928;
+    --dock-background-glassy: #39393982;
     --dock-button-background: #3d3d3d;
+    --dock-button-active-glassy: #d2d2d22e;
     --dock-alert-background: #E89D467A;
     --dock-button-boxshadow: #282828;
     --dock-icon-color: #E89D46;
     --dock-icon-color2: #9F6726;
-    --dock-button-inactive-span: #606060;
+    --dock-button-inactive-span: #b0b0b070;
 
     /* context menu */
     --context-menu-background: #313131;
@@ -431,6 +447,7 @@
     --window-color: #E89D46;
     --window-dragger: #282928;
     --window-shadow-border: rgba(255, 255, 255, 0.19);
+    --accentShadow: rgb(232, 157, 70, 32%);
 
     /* buttons */
     --button-background: #414141;
@@ -754,7 +771,7 @@ main.closedA {
 main.open {
     position: absolute;
     display: grid;
-    z-index: 5;
+    z-index: 10;
     opacity: 1;
     visibility: visible;
     inset: 0;
@@ -936,6 +953,9 @@ li {
 
 .logoWall {
     z-index: 1;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
 }
 
 .hidden {
@@ -954,39 +974,6 @@ li {
     border-radius: 9px;
     z-index: 99;
     overflow: hidden;
-    border: none;
-}
-
-.promptTitle {
-    font-family: roboto;
-    background-color: var(--promptTitle-background);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2em;
-    user-select: none;
-}
-
-.promptContent {
-    display: grid;
-    justify-items: center;
-    padding: 8px 3px;
-    gap: 6px;
-}
-
-.promptInput {
-    background-color: var(--promptInput-background);
-    color: var(--promptInput-color);
-    border: none;
-    height: 26px;
-    border-radius: 4px;
-    padding: 0 10px;
-    font-size: 16px;
-    box-shadow: 0px 1px 4px #0d0d0de8;
-}
-
-.promptInput:focus-visible {
-    outline: none;
     border: none;
 }
 
@@ -1028,19 +1015,20 @@ li {
     border-bottom-right-radius: 13px;
     font-size: 21px;
     font-family: prod;
-    z-index: 4;
+    z-index: 11;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    overflow: hidden;
 }
 
-.shell.shadow {
-    box-shadow: 0 -2px 11px -2px #00000075;
+.shell.L {
+    border-bottom-left-radius: 0 !important;
 }
 
-.shell.noShadow {
-    box-shadow: none;
+.shell.R {
+    border-bottom-right-radius: 0 !important;
 }
 
 .showDesk {
@@ -1049,7 +1037,6 @@ li {
     height: 100%;
     position: absolute;
     right: 0;
-    border-bottom-right-radius: 13px;
     z-index: 1;
     transition: ease-in-out 300ms;
     cursor: var(--cursorHand);
@@ -1069,16 +1056,24 @@ li {
 
 .appShell .name {
     display: grid;
-    cursor: var(--cursorHand);
     transition: 200ms ease-in-out;
     height: 36px;
     padding: 0 8px;
     align-items: center;
     border-radius: 4px;
+    opacity: 1;
 }
 
-.name:hover {
+.name:not(.inactive) {
+    cursor: var(--cursorHand);
+}
+
+.name:not(.inactive):hover {
     background-color: var(--clock-background);
+}
+
+.appShell .name.inactive {
+    opacity: 0;
 }
 
 .appI {
@@ -1116,14 +1111,13 @@ li {
 }
 
 .appOptions {
-    border-radius: 4px;
+    border-radius: 6px;
     position: absolute;
     background-color: var(--apps-background);
     top: 44px;
     left: 8px;
     display: grid;
     min-width: 162px;
-    gap: 3px;
     padding: 6px;
     z-index: 99999999;
     transition: 100ms ease-in-out;
@@ -1151,6 +1145,11 @@ li {
     border: none;
     color: var(--button-color);
     background-color: transparent;
+}
+
+.appOptions button.hidden {
+    visibility: collapse;
+    display: none;
 }
 
 .appOptions button.closeApp:hover {
@@ -1184,7 +1183,7 @@ li {
     border: none;
     border-radius: 8px;
     height: 40px;
-    top: 73px;
+    top: 92px;
     cursor: var(--cursorText);
 }
 
@@ -1333,6 +1332,7 @@ main > .inputAppSearch {
     border-radius: 5px;
     background: var(--system-control-background);
     padding: 5px;
+    transition: 200ms ease-in-out;
 }
 
 .sysicon {
@@ -1437,6 +1437,10 @@ main > .inputAppSearch {
     display: flex;
     opacity: 1;
     transition: 100ms ease-in-out;
+    font-family: prod;
+    font-size: 21px;
+    z-index: 12;
+    box-shadow: 0 0 11px 2px rgba(0, 0, 0, 0.36);
 }
 
 #ftd {
@@ -1450,31 +1454,33 @@ main > .inputAppSearch {
     background: var(--context-menu-background);
     border: none;
     color: var(--context-menu-color);
-    border-radius: 7px;
-    width: 7em;
+    border-radius: 8px;
+    width: max-content;
     height: max-content;
     position: absolute;
-    padding: 10px 2px;
     z-index: 99999;
     box-shadow: 0 0 11px 2px rgb(0 0 0 / 36%);
+    overflow: hidden;
 }
 
 .menu {
-    width: 7em;
+    position: relative;
+    width: max-content;
     height: min-content;
     display: grid;
-    justify-content: center;
     align-items: center;
+    padding: 10px 0px;
+    min-width: 116px;
 }
 
 .ctxbt {
-    padding: 2px 0px 2px 0px;
-    transition: ease 0.2s;
+    padding: 2px 10px;
+    transition: 170ms ease;
 }
 
 .ctxbt:hover {
     cursor: var(--cursorHand);
-    color: var(--context-menu-color-hover);
+    background-color: #ffffff36;
 }
 
 /* desk end */
@@ -1484,10 +1490,8 @@ main > .inputAppSearch {
 .dock {
     display: flex;
     background-color: var(--dock-background);
-    box-shadow: 0 0 7px -2px #00000075;
-    border: 1px solid transparent;
     width: max-content;
-    z-index: 2;
+    z-index: 9;
     gap: 4px;
     max-width: 438px;
     overflow-x: auto;
@@ -1497,13 +1501,13 @@ main > .inputAppSearch {
     transition-property: bottom, background-color, border;
 }
 
-.dock[appMax=true] {
-    z-index: 5;
+.dock.glassy {
+    backdrop-filter: blur(2px);
+    background-color: var(--dock-background-glassy) !important;
 }
 
-.dock[appMax=true][hidden=true] {
-    bottom: -43px;
-    border: 1px solid var(--button-background-hover);
+.dock.glassy .dockbtn.active {
+    background-color: var(--dock-button-active-glassy) !important;
 }
 
 .activeSpan {
@@ -1577,6 +1581,31 @@ main > .inputAppSearch {
     padding: 7px 7px 7px 7px;
     border-radius: 8px;
     right: 4px;
+}
+
+.dBottom.dockFull {
+    bottom: 0;
+    width: calc(100% - 14px) !important;
+    max-width: calc(100% - 14px) !important;
+    border-radius: 0px !important;
+}
+
+.dLeft.dockFull {
+    left: 0;
+    height: calc(100% - 50px) !important;
+    max-height: calc(100% - 50px) !important;
+    border-radius: 0px !important;
+    bottom: 0;
+    align-content: baseline;
+}
+
+.dRight.dockFull {
+    right: 0;
+    height: calc(100% - 50px) !important;
+    max-height: calc(100% - 50px) !important;
+    border-radius: 0px;
+    bottom: 0;
+    align-content: baseline;
 }
 
 .dock.overflow {
@@ -1666,10 +1695,27 @@ main > .inputAppSearch {
     animation-fill-mode: forwards;
 }
 
+.dockMenu {
+    background-color: var(--context-menu-background);
+    border-radius: 8px;
+    min-width: 116px;
+    padding: 10px 0px;
+    z-index: 5;
+}
+
+.dockMenuItem {
+    padding: 2px 10px;
+    transition: 170ms ease;
+}
+
+.dockMenuItem:hover {
+    background-color: #ffffff36;
+    cursor: var(--cursorHand);
+}
+
 /* dock end */
 
 /* windows */
-
 .win {
     height: 568px;
     width: 688px;
@@ -1681,9 +1727,7 @@ main > .inputAppSearch {
     overflow: hidden;
     z-index: 2;
     transform: scale(1);
-    /* transition: background-color ease-in-out 200ms;
-    transition: border-radius ease-in-out 150ms; */
-    transition-property: background-color, border-radius;
+    transition-property: background-color, border-radius, opacity;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
 }
@@ -1692,24 +1736,38 @@ main > .inputAppSearch {
     min-width: 757px;
 }
 
+.focusWinEl {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: 200ms ease-in-out;
+}
+
 .focusWinEl.yes {
     position: absolute;
-    height: calc(100% - 48px);
-    width: 100%;
-    top: 48px;
+    height: calc(100% - 16px);
+    width: calc(100% - 16px);
+    left: 8px;
+    top: 8px;
     z-index: 4;
 }
-.focusWinEl.small.yes {
-    height: calc(100% - 36px);
-    top: 36px;
+
+.focusWinEl.yes:hover {
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #00000085;
 }
 
 .focusWinEl.no {
     position: absolute;
-    height: 0;
-    width: 100%;
-    top: 48px;
-    z-index: 3;
+    height: calc(100% - 16px);
+    width: calc(100% - 16px);
+    top: 50%;
+    z-index: -2;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .browser iframe {
@@ -1719,12 +1777,15 @@ main > .inputAppSearch {
 
 .winmini {
     position: absolute;
-    transform: scale(0);
+    opacity: 0;
+}
+
+.negZI {
+    z-index: -1 !important;
 }
 
 .winNotFocus {
     z-index: 3;
-    opacity: 0.98;
     filter: blur(1px);
 }
 
@@ -1747,11 +1808,55 @@ main > .inputAppSearch {
 }
 
 .maxiY {
+    width: 100%;
+    height: calc(100% - 88px);
+    top: 36px !important;
+    left: 0 !important;
+}
+
+.maxiY.LDF {
+    top: 35px !important;
+    left: unset !important;
+    height: calc(100% - 35px) !important;
+    width: calc(100% - 49px) !important;
+    right: 0px !important;
+}
+
+.maxiY.RDF {
+    top: 35px !important;
+    right: 52px !important;
+    height: calc(100% - 35px) !important;
+    width: calc(100% - 49px) !important;
+    left: 0 !important;
+}
+
+.maxiY.BDF {
+    top: 35px !important;
+    width: calc(100%) !important;
+    height: calc(100% - 85px) !important;
+    left: 0px !important;
+}
+
+.maxiY.BD {
+    top: 36px !important;
+    width: calc(100%) !important;
+    height: calc(100% - 90px) !important;
+    left: 0px !important;
+}
+
+.maxiY.LD {
+    top: 36px !important;
+    left: unset !important;
+    right: 0 !important;
+    height: calc(100% - 36px) !important;
+    width: calc(100% - 55px) !important;
+}
+
+.maxiY.RD {
     top: 36px !important;
     left: 0 !important;
     height: calc(100% - 36px) !important;
-    width: calc(100%) !important;
-    resize: none;
+    width: calc(100% - 54px) !important;
 }
 
 .maxiR {
@@ -1951,6 +2056,7 @@ main > .inputAppSearch {
     align-items: center;
     user-select: none;
     gap: 6px;
+    font-size: 17px;
 }
 
 button.m {
@@ -2692,7 +2798,7 @@ mark {
     position: absolute;
     right: 0;
     top: 0;
-    width: 8px;
+    width: 5px;
     height: 100%;
     cursor: var(--resizeLeftRight);
 }
@@ -2702,7 +2808,7 @@ mark {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 8px;
+    height: 5px;
     cursor: var(--resizeUpDown);
 }
 
@@ -2720,7 +2826,7 @@ mark {
     top: 0;
     left: 0;
     width: 100%;
-    height: 8px;
+    height: 5px;
     cursor: var(--resizeUpDown);
 }
 
@@ -2728,7 +2834,7 @@ mark {
     position: absolute;
     left: 0;
     top: 0;
-    width: 8px;
+    width: 5px;
     height: 100%;
     cursor: var(--resizeLeftRight);
 }
@@ -2766,18 +2872,69 @@ mark {
     cursor: var(--cursorNormal);
 }
 
-.focusWinEl {
+.promptWin {
     position: absolute;
-    top: 48px;
-    width: 100%;
+    background: #0006;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    z-index: 4;
+    min-height: 145px;
+    min-width: 300px;
+    box-shadow: 0 0 13px 2px #00000052;
+    backdrop-filter: blur(18px);
 }
 
-.focusWinEl.no {
-    height: 0;
-    z-index: -3;
+.promptWin.error {
+    box-shadow: 0 0 1px 1px #ff5e5e, 0 0 13px 4px #ff5e5e !important;
 }
 
-.focusWinEl.yes {
-    height: 100%;
-    z-index: 2;
+.promptWin.warning {
+    box-shadow: 0 0 1px 1px #fbd43b, 0 0 13px 4px #fbd43b !important;
+}
+
+.promptDrag {
+    height: 42px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e70;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.promptTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: var(--body-color);
+}
+
+.promptWin .close {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+}
+
+.promptWin .close .winic {
+    width: 20px;
+    height: 20px;
+}
+
+.promptContent {
+    height: calc(100% - 42px);
+    padding: 6px 8px;
+}
+
+.promptWin .detail-item {
+    display: flex;
+    gap: 4px;
+}
+
+.promptWin .detail-title {
+    font-family: pro-bold;
+    color: var(--body-color);
 }

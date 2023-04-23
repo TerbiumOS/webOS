@@ -101,6 +101,39 @@ function htu(e) {
     }
 }
 
+function getNewTime(e){
+    let time = e.clientX / document.querySelector(".tl").clientWidth * mc.duration;
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time - minutes * 60);
+    let hours = Math.floor(minutes / 60);
+    minutes = minutes - hours * 60;
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+    return hours + ":" + minutes + ":" + seconds;
+}
+
+document.querySelector(".tl").addEventListener("mouseover", () => {
+    document.querySelector(".time-seeking").classList.add("show");
+    document.querySelector(".time-seeking").classList.remove("hide");
+})
+
+document.querySelector(".tl").addEventListener("mouseout", () => {
+    document.querySelector(".time-seeking").classList.add("hide");
+    document.querySelector(".time-seeking").classList.remove("show");
+    document.querySelector(".time-seeking").innerText = ""
+})
+
+document.querySelector(".tl").addEventListener('mousemove', function(e){
+    document.querySelector(".time-seeking").innerText = (getNewTime(e))
+})
+
 // play / pause
 function tp() {
     mc.paused ? mc.play() : mc.pause();
@@ -519,7 +552,7 @@ function volumeMove(type) {
 }
 
 document.addEventListener("wheel", e => {
-    if(e.target.classList.contains("tl")) {
+    if(e.target.closest(".tl")) {
         if(e.deltaY < 0) {
             skip(5);
         } else if(e.deltaY > 0) {

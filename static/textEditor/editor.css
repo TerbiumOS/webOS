@@ -83,6 +83,16 @@
     src: url(../resources/fonts/caveat/caveat-bold.ttf);
 }
 
+@font-face {
+    font-family: jost;
+    src: url(../resources/fonts/jost/Jost.ttf);
+}
+
+@font-face {
+    font-family: jostb;
+    src: url(../resources/fonts/jost/Jost-Bold.ttf);
+}
+
 [data-theme="dark"] {
     --taskbar-bg: #282928;
     --body: #1c1c1c;

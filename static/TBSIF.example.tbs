@@ -1,0 +1,16 @@
+// the following is a great example to what TBS file should looks like
+// this is a standard TBSIF (Terbium Settings Import Format) script
+[wallpaper]"https://i.imgur.com/kcDBAGY.png"
+[wallpaperFill]"cover"
+[theme]"almond"
+[customWinRadius]"8"
+[roundWin]"yes"
+[roundBtns]"yes"
+[customShadow]"rgb(232, 157, 70)"
+[shutdown]"https://google.com"
+[safeSearch]"2"
+[dockFull]"yes"
+[shadow]"yes"
+[windowsFullscreenOnOpen]"no"
+[playerAppAutoplay]"no"
+[photoCoverPhotoApp]"no"

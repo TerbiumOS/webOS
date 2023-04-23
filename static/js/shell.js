@@ -23,7 +23,6 @@ setInterval(function () {
     var m = dt.getMinutes();    
     
     var ap;
-    // check if it is AM or PM then set ap to the correct value
     if(h < 12) {
         ap = "AM";
     } else {
@@ -54,7 +53,8 @@ setInterval(function() {
     s = ("0" + s).slice(-2);
 
     document.getElementById("ftt").innerHTML = h + ":" + m + ":" + s + " " + ap;
-}, 1000)
+}, 1000);
+
 let closeC = document.createElement('div');
 closeC.classList.add("x-clock");
 closeC.classList.add("nope");
@@ -78,34 +78,30 @@ clockele.addEventListener("click", () => {
             return
         }
     });
+    window.addEventListener("mousedown", (e) => {
+        if (e.button == 0 && !e.target.closest(".fulltime") && ft.classList.contains("hidden") == false) {1
+            var closeCC = !!document.getElementById("close-clock");
+            ft.classList.add("hidden");
+            if(closeCC === false) {
+                ft.removeChild(closeC)
+            } else {
+                return
+            }
+        }
+    });
 });
 
 // start menu
 appsL.addEventListener("click", () => {
-    document.querySelector(".apps").classList.toggle("hidden");
-    // hide the apps menu when something else is clicked
-    document.getElementById("background").addEventListener("click", () => {
-        document.querySelector(".apps").classList.toggle("hidden");
+    if(document.querySelector(".apps").classList.contains("hidden")) {
+        document.querySelector(".apps").classList.remove("hidden");
+    }
+    window.addEventListener("mousedown", (e) => {
+        if (e.button == 0 && !e.target.closest(".apps") && document.querySelector(".apps").classList.contains("hidden") == false && !e.target.closest("#appsL")) {
+            document.querySelector(".apps").classList.add("hidden");
+        }
     });
 });
-
-// document.getElementById("yts").addEventListener("click", () => {
-//     if(document.querySelector(".apps").classList.contains("op")) {
-//         document.querySelector(".apps").classList.add("hidden");
-//         document.querySelector(".apps").classList.remove("op");
-//     }
-//     document.querySelector("#appsL").classList.remove("appsIF");
-//     terb(); 
-//     document.getElementById('frame').src = 'sw/hvtr%3A-%2Feomgne%2Ccmm'
-// });
-
-// document.getElementById("vss").addEventListener("click", () => {
-//     if(document.querySelector(".apps").classList.contains("op")) {
-//         document.querySelector(".apps").classList.add("hidden");
-//         document.querySelector(".apps").classList.remove("op");
-//     }
-//     document.querySelector("#appsL").classList.remove("appsIF");
-// });
 
 // let brightTRACK = document.getElementById("brightTRACK");
 // let brightVal = document.getElementById("brightVal");
