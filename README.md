@@ -53,8 +53,8 @@ This web os is packed full of features ***AND MUCH MORE TO COME***
 
   ###### a. On the left in Cloudflare navigate to SSL/TLS
   
-  ###### b. In Overview, set SSL/TLS encryption mode to Full
-  ![image](https://user-images.githubusercontent.com/107008636/208798904-d8811034-56ec-4bc0-9ef2-b2bc6cb02f95.png)
+  ###### b. In Overview, set SSL/TLS encryption mode to Flexible
+  ![image](https://user-images.githubusercontent.com/49733954/233819686-649d2330-04a7-4ae3-9373-69e6bdab3418.png)
   
   ###### c. In Edge Certificates, switch "Always Use HTTPS" on
   
