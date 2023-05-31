@@ -1,6 +1,6 @@
 ---
 name: Bug report with a given code from the OS
-about: I couldn't login
+about: This should be used when the OS gives a Error Code and/or Error Message
 title: ''
 labels: bug
 assignees: NovaAppsInc
