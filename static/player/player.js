@@ -24,10 +24,11 @@ if(theme == "dark") {
 } else if(theme == "night") {
     colorOne = "#fff7a5";
     colorTwo = "#8a844b";
-} else if(theme == "alm") {
-    colorOne = "#be6600";
-    colorTwo = "#7c4200";
+} else if(theme == "almond") {
+    colorOne = "#d8882c";
+    colorTwo = "#995f1f";
 }
+
 let mc = document.getElementById("mc");
 let vc = document.querySelector(".vc");
 let mcDataAutoPlay = !!vc.getAttribute("data-auto");
@@ -100,6 +101,39 @@ function htu(e) {
     }
 }
 
+function getNewTime(e){
+    let time = e.clientX / document.querySelector(".tl").clientWidth * mc.duration;
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time - minutes * 60);
+    let hours = Math.floor(minutes / 60);
+    minutes = minutes - hours * 60;
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+    return hours + ":" + minutes + ":" + seconds;
+}
+
+document.querySelector(".tl").addEventListener("mouseover", () => {
+    document.querySelector(".time-seeking").classList.add("show");
+    document.querySelector(".time-seeking").classList.remove("hide");
+})
+
+document.querySelector(".tl").addEventListener("mouseout", () => {
+    document.querySelector(".time-seeking").classList.add("hide");
+    document.querySelector(".time-seeking").classList.remove("show");
+    document.querySelector(".time-seeking").innerText = ""
+})
+
+document.querySelector(".tl").addEventListener('mousemove', function(e){
+    document.querySelector(".time-seeking").innerText = (getNewTime(e))
+})
+
 // play / pause
 function tp() {
     mc.paused ? mc.play() : mc.pause();
@@ -119,12 +153,6 @@ ppb.addEventListener("click", tp);
 
 // mute
 mt.addEventListener("click", mute);
-vols.addEventListener("input", e => {
-    var volPerc = (vols.value / vols.max) * 100;
-    vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
-    mc.volume = e.target.value;
-    mc.muted = e.target.value === 0;
-})
 
 function mute() {
     mc.muted = !mc.muted
@@ -486,3 +514,55 @@ window.addEventListener("keydown", e => {
             break
     }
 });
+
+var volPerc = 100;
+vols.addEventListener("input", e => {
+    volPerc = (vols.value / vols.max) * 100;
+    vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
+    mc.volume = e.target.value;
+    mc.muted = e.target.value === 0;
+})
+
+function volumeMove(type) {
+    if(type === "up") {
+        if(vols.value >= 0.95) {
+            vols.value = 1;
+            mc.volume = 1;
+            return
+        }
+        if(mc.volume < 1) {
+            mc.volume += 0.05;
+            vols.value = mc.volume;
+        }
+        volPerc = (vols.value / vols.max) * 100;
+        vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
+    } else if(type === "down") {
+        if(vols.value <= 0.05) {
+            vols.value = 0;
+            mc.volume = 0;
+            return
+        }
+        if(mc.volume > 0) {
+            mc.volume -= 0.05;
+            vols.value = mc.volume;
+        }
+        volPerc = (vols.value / vols.max) * 100;
+        vols.style.background = `linear-gradient(to right, ${colorOne} ${volPerc}%, ${colorTwo} ${volPerc}%)`
+    }
+}
+
+document.addEventListener("wheel", e => {
+    if(e.target.closest(".tl")) {
+        if(e.deltaY < 0) {
+            skip(5);
+        } else if(e.deltaY > 0) {
+            skip(-5);
+        }
+    } else {
+        if(e.deltaY < 0) {
+            volumeMove("up");
+        } else if(e.deltaY > 0) {
+            volumeMove("down");
+        }
+    }
+})

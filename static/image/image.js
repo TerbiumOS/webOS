@@ -7,7 +7,7 @@ window.addEventListener('message', (e) => {
     const data = JSON.parse(e.data);
     winId = data.id;
     imageWindow = window.parent.document.querySelector(`#${winId}`);
-    if(localStorage.getItem('photoCoverApp') === "false") {
+    if(localStorage.getItem('photoCoverApp') === "no") {
         const openImage = imageWindow.querySelector('.openImage');
         const imageMagnify = parent.document.querySelector('.zoomIn');
         const imageMini = parent.document.querySelector('.zoomOut');
@@ -41,7 +41,7 @@ window.addEventListener('message', (e) => {
                 };
             };
         }
-    } else if(localStorage.getItem('photoCoverApp') === "true"){
+    } else if(localStorage.getItem('photoCoverApp') === "yes"){
         const openImage = imageWindow.querySelector(`.openImage`);
         openImage.onclick = function () {
             const file = document.createElement('input');
@@ -79,7 +79,7 @@ window.addEventListener('message', (e) => {
     const spreadImageHelp = document.getElementById("iowHelp");
     settingsI.onclick = function () {
         if (!settings.classList.contains('show')) {
-            if(imageWindow.querySelector("iframe").style.visibility === 'hidden' && localStorage.getItem('photoCoverApp') === "true") {
+            if(imageWindow.querySelector("iframe").style.visibility === 'hidden' && localStorage.getItem('photoCoverApp') === "yes") {
                 imageWindow.querySelector("iframe").style.visibility = "visible";
                 const computedStyle = window.getComputedStyle(document.querySelector('.settingsWindow'));
                 const backgroundColor = computedStyle.getPropertyValue('background-color');
@@ -91,7 +91,7 @@ window.addEventListener('message', (e) => {
                 settings.classList.toggle('show');
             }, 50)
         } else if(settings.classList.contains('show')) {
-            if(imageWindow.querySelector("iframe").style.visibility === 'visible' && localStorage.getItem('photoCoverApp') === "true") {
+            if(imageWindow.querySelector("iframe").style.visibility === 'visible' && localStorage.getItem('photoCoverApp') === "yes") {
                 imageWindow.querySelector("iframe").style.visibility = "hidden";
                 imageWindow.querySelector("#drag").style.backgroundColor = 'transparent';
             }
@@ -158,7 +158,7 @@ window.addEventListener('message', (e) => {
             }
             imageWindow.querySelector(".settingsI").onclick = function () {
                 if (!settings.classList.contains('show')) {
-                    if(imageWindow.querySelector("iframe").style.visibility === 'hidden' && localStorage.getItem('photoCoverApp') === "true") {
+                    if(imageWindow.querySelector("iframe").style.visibility === 'hidden' && localStorage.getItem('photoCoverApp') === "yes") {
                         imageWindow.querySelector("iframe").style.visibility = "visible";
                         const computedStyle = window.getComputedStyle(document.querySelector('.settingsWindow'));
                         const backgroundColor = computedStyle.getPropertyValue('background-color');
@@ -170,7 +170,7 @@ window.addEventListener('message', (e) => {
                         settings.classList.toggle('show');
                     }, 50)
                 } else if(settings.classList.contains('show')) {
-                    if(imageWindow.querySelector("iframe").style.visibility === 'visible' && localStorage.getItem('photoCoverApp') === "true") {
+                    if(imageWindow.querySelector("iframe").style.visibility === 'visible' && localStorage.getItem('photoCoverApp') === "yes") {
                         imageWindow.querySelector("iframe").style.visibility = "hidden";
                         imageWindow.querySelector("#drag").style.backgroundColor = 'transparent';
                     }
@@ -181,7 +181,7 @@ window.addEventListener('message', (e) => {
                     }, 50)
                 }
             }
-            localStorage.setItem("photoCoverApp", "true");
+            localStorage.setItem("photoCoverApp", "yes");
         } else if(spreadImage.checked == false) {
             let src = imageWindow.style.background;
             image.style.visibility = 'visible';
@@ -206,7 +206,7 @@ window.addEventListener('message', (e) => {
             for (let i = 0; i < wincs.length; i++) {
                 wincs[i].style.boxShadow = "";
             }
-            localStorage.setItem("photoCoverApp", "false");
+            localStorage.setItem("photoCoverApp", "no");
             const openImage = imageWindow.querySelector('.openImage');
             const imageMagnify = parent.document.querySelector('.zoomIn');
             const imageMini = parent.document.querySelector('.zoomOut');
@@ -275,7 +275,7 @@ window.addEventListener('message', (e) => {
         if(e.altKey && e.key === "s") {
             e.preventDefault();
             if (!settings.classList.contains('show')) {
-                if(imageWindow.querySelector("iframe").style.visibility === 'hidden' && localStorage.getItem('photoCoverApp') === "true") {
+                if(imageWindow.querySelector("iframe").style.visibility === 'hidden' && localStorage.getItem('photoCoverApp') === "yes") {
                     imageWindow.querySelector("iframe").style.visibility = "visible";
                     const computedStyle = window.getComputedStyle(document.querySelector('.settingsWindow'));
                     const backgroundColor = computedStyle.getPropertyValue('background-color');
@@ -287,7 +287,7 @@ window.addEventListener('message', (e) => {
                     settings.classList.toggle('show');
                 }, 50)
             } else if(settings.classList.contains('show')) {
-                if(imageWindow.querySelector("iframe").style.visibility === 'visible' && localStorage.getItem('photoCoverApp') === "true") {
+                if(imageWindow.querySelector("iframe").style.visibility === 'visible' && localStorage.getItem('photoCoverApp') === "yes") {
                     imageWindow.querySelector("iframe").style.visibility = "hidden";
                     imageWindow.querySelector("#drag").style.backgroundColor = 'transparent';
                 }

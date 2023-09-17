@@ -4,6 +4,13 @@ editor.onkeydown = function(e) {
         document.querySelector("br").remove();
     }
 }
+
+if(!localStorage.getItem("textF")) {
+    localStorage.setItem("textF", "textF_0");
+}
+if(!localStorage.getItem("textS")) {
+    localStorage.setItem("textS", "16");
+}
 window.addEventListener('message', function (e) {
     let appId;
     const data = JSON.parse(e.data);
@@ -88,6 +95,10 @@ window.addEventListener('message', function (e) {
         case "textF_6":
             dropTextSS.innerHTML = "Fuzzy Bubbles";
             editArea.style.fontFamily = "fuzzy";
+            break;
+        case "textF_7":
+            dropTextSS.innerHTML = "Jost";
+            editArea.style.fontFamily = "jost";
             break;
         default:
             localStorage.setItem("textF", "textF_0");

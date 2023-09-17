@@ -1,13 +1,18 @@
 @font-face {
     font-family: pro;
-    src: url(./Product.ttf);
+    src: url(../resources/Product.ttf);
+}
+
+@font-face {
+    font-family: pro-bold;
+    src: url(../resources/ProductBold.ttf);
 }
 
 [data-theme="dark"] {
     --taskbar-bg: #282928;
     --background: #1c1c1c;
     --choice-background: #1c1c1c;
-    --accent: #31bd4e;
+    --accent: #41bc5d;
     --button-background: #282928;
     --button-color: #31bd4e;
     --button-color-hover: #ffffff;
@@ -19,9 +24,13 @@
     --seek-after: #2aad3a;
     --seek-thumb: #239130;
     --seek-thumb-boxShadow: 0px 0px 1px 1px #23913078, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --seek-time-background: #2391308f;
     --switch-thumb: #41bc5d;
     --switch-back: #313131;
     --switch-back-shadow: #2b843f;
+    --choice-color: #ffffff;
+    --choice-background: #41bc5d;
+    --details-background: #2aad3a59;
 }
 
 [data-theme="fracital"] {
@@ -39,9 +48,13 @@
     --seek-after: #FF40F7;
     --seek-thumb: #FF40F7;
     --seek-thumb-boxShadow: 0px 0px 1px 1px #FF40F778, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --seek-time-background: #FF40F78f;
     --switch-thumb: #ff40f7;
     --switch-back: #424242d3;
     --switch-back-shadow: #ff40f787;
+    --choice-color: #ffffff;
+    --choice-background: #ff40f7;
+    --details-background: #ff40f74a;
 }
 
 [data-theme="night"] {
@@ -59,15 +72,19 @@
     --seek-after: #fff7a5;
     --seek-thumb: #fff7a5;
     --seek-thumb-boxShadow: 0px 0px 1px 1px #fff7a578, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --seek-time-background: #fff7a58f;
     --switch-thumb: #ffe688;
     --switch-back: #332c84;
     --switch-back-shadow: #ffe6887d;
+    --choice-color: #ffffff;
+    --choice-background: #fff7a5;
+    --details-background: #fff7a559;
 }
 
 [data-theme="almond"] {
     --taskbar-bg: #282928;
-    --background: #222222;
-    --accent: #be6600;
+    --background: #131313;
+    --accent: #d8882c;
     --button-background: #383838;
     --button-color: #CF8B3C;
     --button-color-hover: #ffffff;
@@ -76,12 +93,16 @@
     --seek-container-background: #171717;
     --player-container-background: #242424;
     --seek-before: #a67236;
-    --seek-after: #ff8800;
-    --seek-thumb: #ff8800;
-    --seek-thumb-boxShadow: 0px 0px 1px 1px #ff880078, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --seek-after: #d8882c;
+    --seek-thumb: #d8882c;
+    --seek-thumb-boxShadow: 0px 0px 1px 1px #d8882c, 0px 0px 6px 2px rgba(0, 0, 0, 0.53);
+    --seek-time-background: #d8882c8f;
     --switch-thumb: #E89D46;
     --switch-back: #424242d3;
     --switch-back-shadow: #E89D46;
+    --choice-color: #ffffff;
+    --choice-background: #d8882c;
+    --details-background: #d8882c2e;
 }
 
 .openF {
@@ -104,15 +125,14 @@ h3 {
     background-color: #0000008a;
     display: grid;
     position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
     padding: 10px;
     width: 300px;
     overflow: hidden;
     border-radius: 10px;
     color: var(--button-color);
     gap: 4px;
+    backdrop-filter: blur(10px);
+    z-index: 115;
 }
 
 .top {
@@ -184,6 +204,8 @@ body {
     height: 100%;
     margin: 0;
     font-family: pro;
+    justify-items: center;
+    align-items: center;
 }
 
 .vc {
@@ -326,6 +348,7 @@ body {
     transition: width 150ms ease-in-out, transform 150ms ease-in-out;
     transform: scaleY(0);
     height: 5px;
+    cursor: var(--cursorNormal);
 }
 
 .volC:hover .vols {
@@ -379,6 +402,7 @@ body {
     height: 17px;
     border-radius: 100%;
     background: var(--accent);
+    cursor: var(--cursorNormal);
 }
 
 .vols:active::-webkit-slider-thumb {
@@ -398,6 +422,7 @@ body {
     height: 14px;
     border-radius: 100%;
     background: var(--accent);
+    cursor: var(--cursorNormal);
 }
 
 .volH,
@@ -454,6 +479,31 @@ body {
     position: relative;
     transition: ease-in-out 150ms;
     bottom: 0;
+}
+
+.time-seeking {
+    position: absolute;
+    right: calc(100% - var(--prev-pos) * 100% - 32px);
+    top: -34px;
+    background-color: var(--seek-time-background);
+    border-radius: 4px;
+    backdrop-filter: blur(3px);
+    transition-property: padding, opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+}
+
+.time-seeking.show {
+    z-index: 2;
+    opacity: 1;
+    padding: 4px 6px;
+}
+
+.time-seeking.hide {
+    z-index: -3;
+    opacity: 0;
+    left: -14px;
+    right: unset !important;
 }
 
 .tl::before {
@@ -671,4 +721,50 @@ input:checked[type="checkbox"]::before {
 .settingsItem {
     display: flex;
     gap: 4px;
+}
+
+.infH {
+    opacity: 0;
+    z-index: -3 !important;
+}
+
+.info {
+    transition: 200ms ease-in-out;
+    position: absolute;
+    background-color: #000000b2;
+    padding: 10px 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    z-index: 115;
+}
+
+.infoTitle {
+    margin-bottom: 4px;
+    margin-left: 2px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-wrap: wrap;
+    background-color: var(--details-background);
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+.detail-title {
+    font-family: pro-bold;
+    margin: 0;
+    font-weight: 600;
+}
+
+.details-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.info-details {
+    cursor: var(--cursorText);
 }

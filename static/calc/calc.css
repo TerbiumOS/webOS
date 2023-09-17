@@ -1,0 +1,278 @@
+@font-face {
+    font-family: proB;
+    src: url(../resources/ProductBold.ttf);
+}
+
+@font-face {
+    font-family: InterB;
+    src: url(../resources/Inter-Bold.ttf);
+}
+
+[data-theme=dark] {
+    --body: #1c1c1c;
+    --color: #d4d4d4;
+
+    --cursorText: url("../resources/cursors/textD.png") 0 16, text;
+    --cursorNormal: url("../resources/cursors/normalD.png"), default;
+    --cursorHand: url("../resources/cursors/handD.png"), pointer;
+
+    --screenBackground: #1c1c1c;
+    --buttonsBackground: #1c1c1c;
+    --buttonHover: #46C461;
+    --buttonHoverColor: #ffffff;
+
+    --delHover: #ff8d21;
+    --acHover: #ff3636;
+    --eqHover: #41bc5d;
+}
+
+[data-theme=night] {
+    --body: #181446;
+    --color: #ffe688;
+
+    --cursorText: url("../resources/cursors/textN.png") 0 16, text;
+    --cursorNormal: url("../resources/cursors/normalN.png"), default;
+    --cursorHand: url("../resources/cursors/handN.png"), pointer;
+
+    --screenBackground: #1c1c1c;
+    --buttonsBackground: #1c1c1c;
+    --buttonHover: #ffe688;
+    --buttonHoverColor: #ffffff;
+
+    --delHover: #ff8d21;
+    --acHover: #ff3636;
+    --eqHover: #41bc5d;
+}
+
+[data-theme=fracital] {
+    --body: #222;
+    --color: #ff40f7;
+
+    --cursorText: url("../resources/cursors/textF.png") 0 16, text;
+    --cursorNormal: url("../resources/cursors/normalF.png"), default;
+    --cursorHand: url("../resources/cursors/handF.png"), pointer;
+
+    --screenBackground: #1c1c1c;
+    --buttonsBackground: #1c1c1c;
+    --buttonHover: #ff40f7;
+    --buttonHoverColor: #ffffff;
+
+    --delHover: #ff8d21;
+    --acHover: #ff3636;
+    --eqHover: #41bc5d;
+}
+
+[data-theme=almond] {
+    --body: #131313;
+    --color: #E89D46;
+
+    --cursorText: url("../resources/cursors/textA.png") 0 16, text;
+    --cursorNormal: url("../resources/cursors/normalA.png"), default;
+    --cursorHand: url("../resources/cursors/handA.png"), pointer;
+
+    --screenBackground: #131313dc;
+    --buttonsBackground: #1c1c1c00;
+    --buttonHover: #E89D46;
+    --buttonHoverColor: #ffffff;
+
+    --delHover: #ff8d21;
+    --acHover: #ff3636;
+    --eqHover: #41bc5d;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--body);
+    color: var(--color);
+    cursor: var(--cursorNormal);
+    overflow: hidden;
+}
+
+[screen] {
+    position: relative;
+    top: 4px;
+    left: 4px;
+    width: calc(100% - 8px);
+    height: 100px;
+    border-radius: 8px;
+    font-family: proB;
+    display: flex;
+    flex-direction: column;
+    z-index: 28;
+}
+
+[screen] input {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+[screen] input:focus-visible {
+    outline: none;
+    border: none;
+}
+
+[screen] [inputNumber] {
+    cursor: var(--cursorNormal);
+    position: absolute;
+    color: var(--color);
+    top: 0;
+    font-family: InterB;
+    font-size: 24px;
+    left: .5px;
+    height: calc(100%);
+    width: calc(100% - 8.18px);
+    text-align: right;
+    padding-right: 8px;
+    user-select: none;
+}
+
+[screen] [output] {
+    cursor: var(--cursorNormal);
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    text-align: right;
+    padding-right: 8px;
+    width: calc(100% - 8px);
+    font-weight: bold;
+    font-family: proB;
+}
+
+.row {
+    position: relative;
+    gap: 4px;
+    display: flex;
+    width: min-content;
+}
+
+.row.vertical {
+    flex-direction: column;
+    right: 4px;
+    position: absolute;
+    top: 88px;
+}
+
+.buttons {
+    position: relative;
+    top: 8px;
+    left: 4px;
+    display: flex;
+    width: calc(100% - 16px);
+    height: calc(100% - 120px);
+    border-radius: 8px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1;
+    background-color: #ffffff14;
+    padding: 4px;
+}
+
+button {
+    cursor: var(--cursorHand) !important;
+    background-color: transparent;
+    color: var(--buttonColor);
+    border-radius: 8px;
+    border: none;
+    padding: 4px;
+    font-family: proB;
+    font-size: 18px;
+    cursor: pointer;
+    height: 80px;
+    width: 80px;
+    transition: 200ms ease-in-out;
+}
+
+button:hover {
+    background-color: var(--buttonHover);
+    box-shadow: 0 0 8px 2px var(--buttonHover);
+    color: var(--buttonHoverColor);
+}
+
+button:hover .fill {
+    fill: var(--buttonHoverColor);
+}
+
+[op="+"] {
+    font-size: 24px;
+}
+
+[op="-"] {
+    font-size: 24px;
+}
+
+[op="*"] {
+    font-size: 24px;
+}
+
+[op="/"] {
+    font-size: 24px;
+}
+
+[op="("] {
+    font-size: 24px;
+}
+
+[op=")"] {
+    font-size: 24px;
+}
+
+[dP] {
+    top: -6px;
+    position: relative;
+    margin: 0;
+    font-size: 24px;
+}
+
+[eq] {
+    font-size: 24px;
+}
+
+[eq]:hover {
+    background-color: var(--eqHover);
+    box-shadow: 0 0 8px 2px var(--eqHover);
+}
+
+[del]:hover {
+    background-color: var(--delHover);
+    box-shadow: 0 0 8px 2px var(--delHover);
+}
+
+[del]:hover .stroke {
+    stroke: var(--buttonHoverColor);
+}
+
+[ac]:hover {
+    background-color: var(--acHover);
+    box-shadow: 0 0 8px 2px var(--acHover);
+}
+
+.opIcon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 3px;
+}
+
+.stroke {
+    stroke: var(--color);
+    transition: 200ms ease-in-out;
+}
+
+.fill {
+    fill: var(--color);
+    transition: 200ms ease-in-out;
+}
+
+.cursN {
+    cursor: var(--cursorNormal) !important;
+}
+
+.cursT {
+    cursor: var(--cursorText) !important;
+}

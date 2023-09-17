@@ -1,8 +1,6 @@
 # TerbiumOS web
-This web os is packed full of feature ***AND MUCH MORE TO COME***
-![image](https://user-images.githubusercontent.com/49733954/191388633-1b1f27b0-3ceb-4043-a741-6c3d72440da8.png)
-![image](https://user-images.githubusercontent.com/49733954/191388585-055bff3e-3b09-4d46-9c92-e457a51da8d7.png)
-![image](https://user-images.githubusercontent.com/49733954/191388608-6cb6f5e0-a6b5-47c8-a50f-a6b3791a1778.png)
+This web os is packed full of features ***AND MUCH MORE TO COME***
+![image](https://github.com/TerbiumOS/webOS/blob/main/Terbium.png?raw=true)
 ## How to deploy:
 
 #### 1. Get a domain. Freenom is an option
@@ -55,8 +53,8 @@ This web os is packed full of feature ***AND MUCH MORE TO COME***
 
   ###### a. On the left in Cloudflare navigate to SSL/TLS
   
-  ###### b. In Overview, set SSL/TLS encryption mode to Full
-  ![image](https://user-images.githubusercontent.com/107008636/208798904-d8811034-56ec-4bc0-9ef2-b2bc6cb02f95.png)
+  ###### b. In Overview, set SSL/TLS encryption mode to Flexible
+  ![image](https://user-images.githubusercontent.com/49733954/233819686-649d2330-04a7-4ae3-9373-69e6bdab3418.png)
   
   ###### c. In Edge Certificates, switch "Always Use HTTPS" on
   

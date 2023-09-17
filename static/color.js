@@ -38,9 +38,9 @@ class picker {
         this.context.beginPath();
         this.context.arc(this.pickerCirc.x, this.pickerCirc.y, this.pickerCirc.width, 0, Math.PI * 2);
         if(colorHEX === "#000000") {
-            this.context.strokeStyle = "white";
+            this.context.strokeStyle = "#ffffff";
         } else {
-            this.context.strokeStyle = "black";
+            this.context.strokeStyle = "#000000";
         }
         this.context.stroke();
         this.context.closePath();
@@ -92,26 +92,31 @@ class picker {
 let picka = new picker(document.getElementById("color"), 251, 202);
 setInterval(() => picka.draw(), 1);
 picka.change((color) => {
+    const rgbEquivalent = document.querySelector(".rgbEquivalent");
     function componentToHex(c) {
         var hex = c.toString(16);
         return hex.length == 1 ? "0" + hex : hex;
     }
     colorHEX = "#" + componentToHex(color.r) + componentToHex(color.g) + componentToHex(color.b);
-    document.getElementById("hex").style.color = `#595959`;
+    document.getElementById("hex").style.color = `#565656`;
+    rgbEquivalent.style.color = `#565656`;
     if(colorHEX === "#ffffff") {
-        document.getElementById("hex").style.color = `black`;
+        document.getElementById("hex").style.color = `#000000`;
+        rgbEquivalent.style.color = `#000000`;
     } else {
-        document.getElementById("hex").style.color = `#595959`;
+        document.getElementById("hex").style.color = `#565656`;
+        rgbEquivalent.style.color = `#565656`;
+    }
+    if(picka.pickerCirc.y >= 90) {
+        document.getElementById("hex").style.color = `#ffffff`;
+        rgbEquivalent.style.color = `#ffffff`;
     }
     document.getElementById("hex").textContent = colorHEX;
+    rgbEquivalent.textContent = `rgb(${color.r}, ${color.g}, ${color.b})`;
     let selected = document.getElementById("colorIndi");
     selected.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
     let picker = document.getElementById("picker");
-    picker.style.outline = `1px solid rgb(${color.r}, ${color.g}, ${color.b})`
+    picker.style.outline = `1px solid rgb(${color.r}, ${color.g}, ${color.b})`;
 });
 
 let colorPREVIEW = document.getElementById("colorIndi");
-
-colorPREVIEW.addEventListener("click", () => {
-    navigator.clipboard.writeText(colorHEX)
-});

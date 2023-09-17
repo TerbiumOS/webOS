@@ -1,0 +1,35 @@
+<svg class="dockicon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect class="fill" width="80" height="80" rx="8" fill="#46C461"/>
+    <g filter="url(#filter0_b_1558_131)">
+        <path d="M13.364 55.1924C12.5829 54.4113 12.5829 53.145 13.364 52.364V52.364C14.145 51.5829 15.4113 51.5829 16.1924 52.364L19.0208 55.1924C19.4113 55.5829 20.0445 55.5829 20.435 55.1924L23.2635 52.364C24.0445 51.5829 25.3108 51.5829 26.0919 52.364V52.364C26.8729 53.145 26.8729 54.4113 26.0919 55.1924L23.2635 58.0208C22.8729 58.4113 22.8729 59.0445 23.2635 59.435L26.0919 62.2635C26.8729 63.0445 26.8729 64.3108 26.0919 65.0919V65.0919C25.3108 65.8729 24.0445 65.8729 23.2635 65.0919L20.435 62.2635C20.0445 61.8729 19.4113 61.8729 19.0208 62.2635L16.1924 65.0919C15.4113 65.8729 14.145 65.8729 13.364 65.0919V65.0919C12.5829 64.3108 12.5829 63.0445 13.364 62.2635L16.1924 59.435C16.5829 59.0445 16.5829 58.4113 16.1924 58.0208L13.364 55.1924Z" fill="white" fill-opacity="0.76"/>
+    </g>
+    <g filter="url(#filter1_b_1558_131)">
+        <rect x="50" y="19" width="18" height="6" rx="3" fill="white" fill-opacity="0.76"/>
+    </g>
+    <g filter="url(#filter2_b_1558_131)">
+        <path d="M18 15C18 13.8954 18.8954 13 20 13V13C21.1046 13 22 13.8954 22 15V19C22 19.5523 22.4477 20 23 20H27C28.1046 20 29 20.8954 29 22V22C29 23.1046 28.1046 24 27 24H23C22.4477 24 22 24.4477 22 25V29C22 30.1046 21.1046 31 20 31V31C18.8954 31 18 30.1046 18 29V25C18 24.4477 17.5523 24 17 24H13C11.8954 24 11 23.1046 11 22V22C11 20.8954 11.8954 20 13 20H17C17.5523 20 18 19.5523 18 19V15Z" fill="white" fill-opacity="0.76"/>
+    </g>
+    <rect x="38" y="38" width="40" height="40" rx="6" fill="#202020"/>
+    <path class="fill" d="M49 54C49 52.8954 49.8954 52 51 52H65C66.1046 52 67 52.8954 67 54C67 55.1046 66.1046 56 65 56H51C49.8954 56 49 55.1046 49 54Z" fill="#46C461"/>
+    <path class="fill" d="M49 62C49 60.8954 49.8954 60 51 60H65C66.1046 60 67 60.8954 67 62C67 63.1046 66.1046 64 65 64H51C49.8954 64 49 63.1046 49 62Z" fill="#46C461"/>
+    <defs>
+        <filter id="filter0_b_1558_131" x="9.77817" y="48.7782" width="19.8995" height="19.8995" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feGaussianBlur in="BackgroundImageFix" stdDeviation="1.5"/>
+            <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_1558_131"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_1558_131" result="shape"/>
+        </filter>
+        <filter id="filter1_b_1558_131" x="46" y="15" width="26" height="14" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+            <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_1558_131"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_1558_131" result="shape"/>
+        </filter>
+        <filter id="filter2_b_1558_131" x="8" y="10" width="24" height="24" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feGaussianBlur in="BackgroundImageFix" stdDeviation="1.5"/>
+            <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_1558_131"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_1558_131" result="shape"/>
+        </filter>
+    </defs>
+</svg>

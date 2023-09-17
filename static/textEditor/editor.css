@@ -83,15 +83,27 @@
     src: url(../resources/fonts/caveat/caveat-bold.ttf);
 }
 
+@font-face {
+    font-family: jost;
+    src: url(../resources/fonts/jost/Jost.ttf);
+}
+
+@font-face {
+    font-family: jostb;
+    src: url(../resources/fonts/jost/Jost-Bold.ttf);
+}
+
 [data-theme="dark"] {
     --taskbar-bg: #282928;
     --body: #1c1c1c;
     --color: #dbdbdb;
     --button-background: #282928;
     --button-color: #41bc5d;
+    --button-inside-background: #444;
+    --button-inside-background-hover: #606060;
     --scrollbar-background: #282928;
 
-    --cursorText: url("../resources/cursors/textD.png"), text;
+    --cursorText: url("../resources/cursors/textD.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalD.png"), default;
     --cursorHand: url("../resources/cursors/handD.png"), pointer;
 
@@ -111,9 +123,11 @@
     --color: #ffe688;
     --button-background: #26206a;
     --button-color: #ffe688;
+    --button-inside-background: #1c1851;
+    --button-inside-background-hover: #554eac;
     --scrollbar-background: #26206a;
 
-    --cursorText: url("../resources/cursors/textN.png"), text;
+    --cursorText: url("../resources/cursors/textN.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalN.png"), default;
     --cursorHand: url("../resources/cursors/handN.png"), pointer;
 
@@ -137,7 +151,7 @@
     --button-inside-background-hover: #777777;
     --scrollbar-background: #383838;
     
-    --cursorText: url("../resources/cursors/textF.png"), text;
+    --cursorText: url("../resources/cursors/textF.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalF.png"), default;
     --cursorHand: url("../resources/cursors/handF.png"), pointer;
 
@@ -153,7 +167,7 @@
 
 [data-theme="almond"] {
     --taskbar-bg: #282928;
-    --body: #1c1c1c;
+    --body: #131313;
     --color: #E89D46;
     --button-background: #383838;
     --button-color: #CF8B3C;
@@ -161,7 +175,7 @@
     --button-inside-background-hover: #777777;
     --scrollbar-background: #383838;
     
-    --cursorText: url("../resources/cursors/textF.png"), text;
+    --cursorText: url("../resources/cursors/textF.png") 0 16, text;
     --cursorNormal: url("../resources/cursors/normalF.png"), default;
     --cursorHand: url("../resources/cursors/handF.png"), pointer;
 
@@ -443,7 +457,7 @@ input[type=number] {
 
 .crementContainer {
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .crement {

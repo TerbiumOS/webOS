@@ -252,52 +252,259 @@ command.addEventListener("keydown", (e) => {
                 <div class="linebreak"></div>
             `;
         }
+        let message;
         if(command.textContent.split(" ")[0] === ("open")) {
             const text = command.textContent.split(" ").slice(1).join(" ");
             const url = window.location.href.split("/")[2].split(".")[0];
-            let apps = ["cmd", "terminal", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text", "browser", "image"];
+            let apps = ["cmd", "terminal", "video", "canvas", "color", "help", "changelog", "settings", "yt", "code", "text", "browser", "image", "discord", "ruffle", "calc", "tiktok"];
+            let message;
             if(apps.includes(text)) {
                 switch(text) {
                     case "cmd" || "terminal":
-                        window.parent.windows("../terminal/terminal.html", "../resources/terminal.svg", "Terbium Terminal", false, true, false, "terminal");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../terminal/terminal.html]",
+                                icon: "(icon)[../resources/terminal.svg]",
+                                title: "(title)[Terbium Terminal]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[terminal]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "video":
-                        window.parent.windows("../player/player.html", "../resources/video.svg", "Terbium Player", false, true, false, "player");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../player/player.html]",
+                                icon: "(icon)[../resources/video.svg]",
+                                title: "(title)[Terbium Player]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[player]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "canvas":
-                        window.parent.windows("canvas.html", "../resources/canvas.svg", "Terbium Canvas", false, true, false, "canvas");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../canvas/canvas.html]",
+                                icon: "(icon)[../resources/canvas.svg]",
+                                title: "(title)[Terbium Canvas]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[canvas]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "color":
-                        window.parent.windows("color.html", "../resources/color.svg", "Terbium Color", false, true, false, "color");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../color/color.html]",
+                                icon: "(icon)[../resources/color.svg]",
+                                title: "(title)[Terbium Color]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[color]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "help":
-                        window.parent.windows("help.html", "../resources/help.svg", "Terbium Help", false, true, false, "help");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../resources/help.svg]",
+                                icon: "(icon)[../resources/help.svg]",
+                                title: "(title)[Terbium Help]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[help]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "changelog":
-                        window.parent.windows("../changes/index.html", "../resources/changelog.svg", "Terbium Changelog", false, true, false, "changelog");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../changes/index.html]",
+                                icon: "(icon)[../resources/changelog.svg]",
+                                title: "(title)[Terbium Changelog]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[changelog]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "settings":
-                        window.parent.windows("settings.html", "../resources/settings.svg", "Terbium Settings", false, true, false, "settings");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../settings.html]",
+                                icon: "(icon)[../resources/settings.svg]",
+                                title: "(title)[Terbium Settings]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[settings]",
+                                oneInstance: "(oneInstance)[true]"
+                            }
+                        })
+                    break;
                     case "yt" || "youtube":
-                        window.parent.windows("https://youtube.com", "../resources/yt.png", "YouTube", false, false, false, "youtube");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[https://youtube.com]",
+                                icon: "(icon)[../resources/yt.png]",
+                                title: "(title)[YouTube]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[youtube]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "code":
-                        window.parent.windows("https://vscode.dev", "../resources/vsc.ico", "Visual Studio Code", false, false, false, "code");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[https://vscode.dev]",
+                                icon: "(icon)[../resources/vsc.ico]",
+                                title: "(title)[Visual Studio Code]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[code]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "text":
-                        window.parent.windows("../textEditor/editor.html", "../resources/text.svg", "Terbium Text Editor", false, true, false, "text");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../textEditor/editor.html]",
+                                icon: "(icon)[../resources/text.svg]",
+                                title: "(title)[Terbium Text Editor]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[text]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "browser":
-                        window.parent.windows("./hypertabs/index.html", "../resources/browser.svg", "Terbium Browser", true, true, false, "browser");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[./hypertabs/index.html]",
+                                icon: "(icon)[../resources/browser.svg]",
+                                title: "(title)[Terbium Browser]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[browser]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                     case "image":
-                        window.parent.windows("../image/image.html", "../resources/image.svg", "Terbium Image Viewer", false, true, false, "image");
-                        break;
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../image/image.html]",
+                                icon: "(icon)[../resources/image.svg]",
+                                title: "(title)[Terbium Image Viewer]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[image]",
+                                urlToOpen: `(urlToOpen)[undefined]`,
+                                textAppText: `(textAppText)[undefined]`,
+                                controlsTypes: `(controls)[all]`,
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "discord":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[https://discord.com]",
+                                icon: "(icon)[../resources/discord.png]",
+                                title: "(title)[Discord]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[discord]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "ruffle":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../ruffle/ruffle.html]",
+                                icon: "(icon)[../resources/ruffle.png]",
+                                title: "(title)[Ruffle]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[ruffle]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "calc":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[../calc/calc.html]",
+                                icon: "(icon)[../resources/calc.svg]",
+                                title: "(title)[Terbium Calculator]",
+                                os: "(os)[true]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[calc]",
+                                controlsTypes: `(controls)[close]`,
+                                resizable: `(resizable)[false]`,
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
+                    case "tiktok":
+                        message = JSON.stringify({
+                            type: "newWindow",
+                            fields: {
+                                link: "(link)[https://tiktok.com]",
+                                icon: "(icon)[../resources/tiktok.png]",
+                                title: "(title)[TikTok]",
+                                os: "(os)[false]",
+                                fullscreen: "(fullscreen)[false]",
+                                appName: "(appName)[tiktok]",
+                                oneInstance: "(oneInstance)[false]"
+                            }
+                        })
+                    break;
                 }
+                window.parent.postMessage(message, "*");
             } else if(text.startsWith("http://") || text.startsWith("https://")) {
-                console.log(text);
-                window.parent.windows("newwin.html", "../resources/browser.svg", "Terbium Browser", true, true, false, "browser", text);
+                message = JSON.stringify({
+                    type: "newWindow",
+                    fields: {
+                        link: "(link)[./hypertabs/index.html]",
+                        icon: "(icn)[../resources/browser.svg]",
+                        title: "(title)[Terbium Browser]",
+                        os: "(os)[true]",
+                        fullscreen: "(fs)[false]",
+                        appName: "(appname)[browser]",
+                        urlToOpen: `(urlToOpen)[${text}]`
+                    }
+                })
+                window.parent.postMessage(message, "*");
             } else if(text == "" || !text.startsWith("http://") || !text.startsWith("https://")) {
                 output.innerHTML = `
                     <p>Missing argument <code>app</code></p>

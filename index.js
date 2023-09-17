@@ -1,29 +1,31 @@
 import createBareServer from "@tomphttp/bare-server-node";
 import http from "node:http";
-import nodeStatic from "node-static";
+import { fileURLToPath } from 'node:url';
+import serveStatic from 'serve-static';
 
 const httpServer = http.createServer();
-const serve = new nodeStatic.Server('static/');
+const serve = serveStatic(
+  fileURLToPath(new URL('./static/', import.meta.url)), {
+    fallthrough: false,
+  }
+);
 
-const bareServer = createBareServer("/", {
-  logErrors: false,
-  localAddress: undefined,
-  maintainer: {
-    email: "tomphttp@sys32.dev",
-    website: "https://github.com/tomphttp/",
-  },
-});
+const bareServer = createBareServer('/bare/');
 
-httpServer.on("request", (req, res) => {
+httpServer.on('request', (req, res) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeRequest(req, res);
   } else {
-    res.writeHead(400);
-    res.end("Not found.");
+    serve(req, res, (err) => {
+      res.writeHead(err?.statusCode || 500, {
+        'Content-Type': 'text/plain',
+      });
+      res.end(err?.stack);
+    });
   }
 });
 
-httpServer.on("upgrade", (req, socket, head) => {
+httpServer.on('upgrade', (req, socket, head) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeUpgrade(req, socket, head);
   } else {
@@ -31,8 +33,8 @@ httpServer.on("upgrade", (req, socket, head) => {
   }
 });
 
-httpServer.on("listening", () => {
-  console.log("HTTP server listening");
+httpServer.on('listening', () => {
+  console.log('HTTP server listening');
 });
 
 httpServer.listen({

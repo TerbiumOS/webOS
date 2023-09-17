@@ -9,22 +9,44 @@
     <link rel="stylesheet" href="./styles/cursors.css">
 </head>
     <body>
-        <div class="taskbar">
-            <span titleSpan></span>
-            <h2 class="title">Settings</h2>
+        <button class="btn reset" id="resetAll">Reset All Settings</button>
+        <div class="categories">
+            <div class="category" type="theme" title="Theme">
+                <svg class="catIcon catStroke" viewBox="0 0 47 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke" d="M38.5227 5H7.83586C5.71737 5 4 6.567 4 8.5V26C4 27.933 5.71737 29.5 7.83586 29.5H38.5227C40.6412 29.5 42.3586 27.933 42.3586 26V8.5C42.3586 6.567 40.6412 5 38.5227 5Z" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="stroke" d="M15.3435 36.75H30.6869" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="stroke" d="M23.0151 29.75V36.75" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="category" type="osl" title="OS layout">
+                <svg class="catIcon catStroke" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke" d="M33.25 5.25H8.75C6.817 5.25 5.25 6.817 5.25 8.75V33.25C5.25 35.183 6.817 36.75 8.75 36.75H33.25C35.183 36.75 36.75 35.183 36.75 33.25V8.75C36.75 6.817 35.183 5.25 33.25 5.25Z" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="stroke" d="M5.25 15.75H36.75" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="stroke" d="M15.75 36.75V15.75" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="category" type="other" title="Other">
+                <svg class="catIcon catStroke" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke" d="M19 13V25" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="stroke" d="M13 18.7148H25" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect class="stroke" x="1.5" y="1.5" width="35" height="35" rx="4.5" stroke-width="3"/>
+                </svg>
+            </div>
         </div>
-        <div class="settings">
-            <button class="btn" id="resetAll">Reset All Settings</button>
-            <div class="cat">
+        <div class="views">
+            <div class="cat themeView" view="theme" hiddenCat="false">
+                <div class="deskBackC">
+                    <img class="deskBack" draggable="false">
+                </div>
                 <div class="title">
                     <h3>Theme</h3>
                     <div class="border-bottom"></div>
                 </div>
                 <div class="btns">
-                    <button class="btn dark themeBtn" id="dark">Dark</button>
-                    <button class="btn night themeBtn" id="night">Night</button>
-                    <button class="btn frac themeBtn" id="frac">Fracital</button>
-                    <button class="btn almond themeBtn" id="almond">Almond</button>
+                    <button class="btn dark themeBtn" theme-set="dark" id="dark">Dark</button>
+                    <button class="btn night themeBtn" theme-set="night" id="night">Night</button>
+                    <button class="btn frac themeBtn" theme-set="fracital" id="frac">Fracital</button>
+                    <button class="btn almond themeBtn" theme-set="almond" id="almond">Almond</button>
                 </div>
                 <div class="title">
                     <h3>Background</h3>
@@ -34,6 +56,10 @@
                     <button class="btn" id="default">Default</button>
                     <input placeholder="custom image" class="btn input" id="dd">
                 </div>
+                <div class="btns">
+                    <input type="file" class="customImage fileInput" id="customImage">
+                    <label class="btn" for="customImage">Upload a custom image</label>
+                </div>
                 <div class="title">
                     <h3>Background Fill Mode</h3>
                     <div class="border-bottom"></div>
@@ -42,8 +68,13 @@
                     <button class="btn" id="stretch" onclick="stretch();">Stretch</button>
                     <button class="btn" id="contain" onclick="contain();">Contain</button>
                 </div>
+            </div>
+            <div class="cat windowView" view="osl" hiddenCat="true">
                 <div class="title">
-                    <h3>Window Customization</h3>
+                    <h3>OS Layout</h3>
+                </div>
+                <div class="title">
+                    <h3>Windows</h3>
                     <div class="border-bottom"></div>
                 </div>
                 <div class="btns slides">
@@ -59,9 +90,19 @@
                     <label>Custom Window Rounding</label><input class="btn input" type="number" id="roundness" value="12" min="0" max="22" step="2"><button class="btn" id="clearRoundness">clear</button>
                 </div>
                 <div class="btns slides">
-                    <label>Custom shadow</label><input class="btn input color" type="color" id="customShadow" value="#00000052"><button class="btn" id="clearCustomShadow">clear</button>
+                    <label>Custom shadow</label>
+                    <div class="btn input color" input-for="customShadow">
+                        <div input-color-value></div>
+                    </div>
+                    <input input-hidden type="color" id="customShadow" value="rgba(0, 0, 0, 0.32)"><button class="btn" id="clearCustomShadow">clear</button>
                 </div>
-                <h3>Window Buttons Position</h3>
+                <div class="btns slides">
+                    <label>Shadows follows theme accent</label><input class="toggle" type="checkbox" id="themeAccentShadow" checked>
+                </div>
+                <div class="title">
+                    <h3>Window Buttons</h3>
+                    <div class="border-bottom"></div>
+                </div>
                 <div class="btns slides">
                     <label>Right</label><input class="toggle" id="btnrPos" data-btnpos="Right" checked type="checkbox">
                 </div>
@@ -69,12 +110,39 @@
                     <label>Left</label><input class="toggle" id="btnrPos" data-btnpos="Left" checked type="checkbox">
                 </div>
                 <div class="btns slides">
-                    <label >Round Window Buttons</label><input class="toggle" id="btnr" checked type="checkbox">
+                    <label>Round Window Buttons</label><input class="toggle" id="btnr" checked type="checkbox">
                 </div>
-                <br>
+                <div class="title">
+                    <h3>Dock</h3>
+                    <div class="border-bottom"></div>
+                </div>
+                <div class="btns slides">
+                    <label>Bottom</label><input class="toggle dockPos" id="dp_bottom" data-pos="Bottom" checked type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Left</label><input class="toggle dockPos" id="dp_left" data-pos="Left" checked type="checkbox">
+                </div>
+                <div class="btns slides">
+                    <label>Right</label><input class="toggle dockPos" id="dp_right" data-pos="Right" checked type="checkbox">
+                </div>
+                <div class="btns slide">
+                    <label>Full Dock</label><input class="toggle dockFull" type="checkbox" id="dockFull" checked="false">
+                </div>
+                <div class="btns slides">
+                    <label>Opaque</label><input type="checkbox" id="dockOpq" class="toggle" checked="true">
+                </div>
             </div>
-            <div class="cat">
+            <div class="cat otherView" view="other" hiddenCat="true">
                 <h1>Other</h1>
+                <div class="title">
+                    <h3>Import Or Export your settings</h3>
+                    <div class="border-bottom"></div>
+                </div>
+                <div class="btns">
+                    <input class="btn" type="file" input-hidden id="importExportInp" accept=".tbs, .txt"></input>
+                    <button class="btn" id="importSettings">Import</button>
+                    <button class="btn" id="exportSettings">Export</button>
+                </div>
                 <div class="title">
                     <h3>Shutdown</h3>
                     <div class="border-bottom"></div>
@@ -107,16 +175,6 @@
                             <a class="dropOptions" data-option="ss_2" data-former="ss" data-option_name="Strict" id="safeSearch_2">Strict</a>
                         </div>
                     </div>
-                </div>
-                <h3>Dock Position</h3>
-                <div class="btns slides">
-                    <label>Bottom</label><input class="toggle dockPos" id="dp_bottom" data-pos="Bottom" checked type="checkbox">
-                </div>
-                <div class="btns slides">
-                    <label>Left</label><input class="toggle dockPos" id="dp_left" data-pos="Left" checked type="checkbox">
-                </div>
-                <div class="btns slides">
-                    <label>Right</label><input class="toggle dockPos" id="dp_right" data-pos="Right" checked type="checkbox">
                 </div>
             </div>
         </div><script src="./js/theme.js"></script>

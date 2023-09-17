@@ -6,22 +6,40 @@
 [data-theme="dark"] {
     --body: #1c1c1c;
     --color: #cdcdcd;
+
+    --cursorText: url(../resources/cursors/textD.png) 0 16, text;
+    --cursorNormal: url(../resources/cursors/normalD.png), default;
+    --cursorHand: url(../resources/cursors/handD.png), pointer;
+    --cursorCrosshair: url(../resources/cursors/crosshairD.png) 16 16, crosshair;
 }
-[data-theme="light"] {
-    --body: #686868ed;
-    --color: red;
-}
+
 [data-theme="night"] {
     --body: #181446;
     --color: #fff7a5;
+
+    --cursorText: url(../resources/cursors/textN.png) 0 16, text;
+    --cursorNormal: url(../resources/cursors/normalN.png), default;
+    --cursorHand: url(../resources/cursors/handN.png), pointer;
+    --cursorCrosshair: url(../resources/cursors/crosshairN.png) 16 16, crosshair;
 }
+
 [data-theme="fracital"] {
     --body: #222;
     --color: #ff40f7;
+
+    --cursorText: url(../resources/cursors/textF.png) 0 16, text;
+    --cursorNormal: url(../resources/cursors/normalF.png), default;
+    --cursorHand: url(../resources/cursors/handF.png), pointer;
+    --cursorCrosshair: url(../resources/cursors/crosshairF.png) 16 16, crosshair;
 }
-[data-theme="alm"] {
-    --body: #1c1c1c;
+[data-theme="almond"] {
+    --body: #131313;
     --color: #E89D46;
+
+    --cursorText: url(../resources/cursors/textA.png) 0 16, text;
+    --cursorNormal: url(../resources/cursors/normalA.png), default;
+    --cursorHand: url(../resources/cursors/handA.png), pointer;
+    --cursorCrosshair: url(../resources/cursors/crosshairA.png) 16 16, crosshair;
 }
 
 html {
@@ -41,6 +59,7 @@ body {
     align-content: center;
     justify-items: center;
     font-family: pro;
+    cursor: var(--cursorNormal);
 }
 
 .colorPickerContainer {
@@ -65,16 +84,13 @@ canvas {
     width: 250px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-}
-
-canvas:hover {
-    cursor: crosshair;
+    cursor: var(--cursorCrosshair);
 }
 
 .color-indi {
     display: inline-block;
     width: 250px;
-    height: 34px;
+    height: 56px;
     background-color: #ffffff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -82,10 +98,8 @@ canvas:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.color-indi:hover {
-    cursor: pointer;
+    flex-direction: column;
+    cursor: var(--cursorText);
 }
 
 #hex {
@@ -94,4 +108,10 @@ canvas:hover {
     width: min-content;
     color: #000000;
     font-size: 25px;
+}
+
+.rgbEquivalent {
+    color: #000000;
+    padding: 4px 6px;
+    border-radius: 4px;
 }
