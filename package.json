@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@tomphttp/bare-server-node": "^1.2.6",
+    "@tomphttp/bare-server-node": "^2.0.1",
     "node-static": "^0.7.11",
     "npm": "^8.7.0",
     "path": "^0.12.7",
@@ -24,10 +24,10 @@
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NovaAppsInc/windows-procy.git"
+    "url": "git+https://github.com/TerbiumOS/webOS.git"
   },
   "bugs": {
-    "url": "https://github.com/NovaAppsInc/windows-procy/issues"
+    "url": "https://github.com/TerbiumOS/webOS/issues"
   },
-  "homepage": "https://github.com/NovaAppsInc/windows-procy#readme"
+  "homepage": "https://github.com/TerbiumOS/webOS#readme"
 }
