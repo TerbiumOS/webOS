@@ -1,0 +1,177 @@
+  @media (max-width: 768px) {
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+  
+    h1 {
+      font-size: 28px;
+    }
+  
+    .desc {
+      font-size: 20px;
+    }
+  }
+    
+  body {
+    background-color: rgba(0, 0, 0, 0.5);
+    /*background-image: url("assets/img/layered-waves-haikei.png");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 64px;
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out forwards
+  }
+  
+  footer img:hover {
+    transform: scale(1.1);
+  }
+  
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .logo {
+    width: 150px;
+    height: 150px;
+    max-width: 80%;
+  }
+  
+  h1 {
+    margin-top: 20px;
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .desc {
+    margin-top: 10px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  #uv-form {
+    margin-top: 30px;
+  }
+  
+  #uv-address {
+    background: #252525;
+    color: white;
+    width: 400px;
+    height: 45px;
+    font-size: 35px;
+    padding: 0 17px;
+    border: none;
+    border-radius: 12px;
+  }
+  
+  .left-margin {
+    margin-left: 20px;
+  }
+  
+  .footer-text-container {
+    padding-right: 20px;
+  }
+  
+  button,
+  footer a,
+  .second-bar a,
+  #searchButton {
+    transition: transform 0.3s ease;
+  }
+  
+  button:hover,
+  footer a:hover,
+  .second-bar a:hover,
+  #searchButton:hover {
+    transform: scale(1.1);
+  }
+  
+  button {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out forwards;
+  }
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  textarea {
+    width: 400px;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 4px;
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out forwards;
+  }
+  
+  .fade-out {
+    animation: fade-out 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .config-label {
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .config-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    color: #fff;
+    background-color: #333;
+    border-radius: 4px;
+  }
+  
+  .config-select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: white;
+    background-color: #333;
+  }
+  

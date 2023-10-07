@@ -1,6 +1,16 @@
 # TerbiumOS web
 This web os is packed full of features ***AND MUCH MORE TO COME***
 ![image](https://github.com/TerbiumOS/webOS/blob/main/Terbium.png?raw=true)
+
+## Quick Deployments
+
+[![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/TerbiumOS/webOS)
+[![Run on Cyclic](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/official/cyclic.svg)](https://app.cyclic.sh/api/app/deploy/TerbiumOS/webOS)
+[![Deploy to Cloudflare](https://raw.githubusercontent.com/z1g-project/terbium/main/static/resources/cflogo.png)](https://github.com/z1g-project/Terbium/wiki/Deploy-to-Cloudflare-Pages)
+[![Run on Glitch](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/official/glitch.svg)](https://glitch.com/edit/#!/import/github/TerbiumOS/webOS)
+
+**NOTE** More Services are supported such as  Render, and Vercel however there is not a quick url at this time also keep in mind that on Glitch and Replit Proxies are banned. Refer to [this document](https://github.com/titaniumnetwork-dev/Ultraviolet-App/wiki/Circumventing-deployment-restrictions) to view ways to curcomvent this
+
 ## How to deploy:
 
 #### 1. Get a domain. Freenom is an option
