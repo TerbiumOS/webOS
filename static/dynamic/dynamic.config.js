@@ -5,7 +5,7 @@ self.__dynamic$config = {
   logLevel: 3, 
   bare: {
     version: 3, 
-    path: '/bare/',
+    path: 'https://tomp.app',
   },
   tab: {
     title: 'Service',
