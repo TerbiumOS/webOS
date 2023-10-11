@@ -1,15 +1,6 @@
 {
-  "dependencies": {
-    "@tomphttp/bare-server-node": "^1.2.6",
-    "node-static": "^0.7.11",
-    "npm": "^8.7.0",
-    "path": "^0.12.7",
-    "serve-static": "^1.15.0",
-    "simplebar": "^5.3.8",
-    "start": "^5.1.0"
-  },
-  "name": "uv-app",
-  "version": "1.0.0",
+  "name": "terbium",
+  "version": "1.43",
   "description": "Ultraviolet instance",
   "type": "module",
   "main": "index.js",
@@ -20,14 +11,23 @@
   "keywords": [
     "proxy"
   ],
-  "author": "",
+  "dependencies": {
+    "@tomphttp/bare-server-node": "^2.0.1",
+    "node-static": "^0.7.11",
+    "npm": "^8.7.0",
+    "path": "^0.12.7",
+    "serve-static": "^1.15.0",
+    "simplebar": "^6.2.5",
+    "start": "^5.1.0"
+  },
+  "author": "snoot69",
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NovaAppsInc/windows-procy.git"
+    "url": "git+https://github.com/TerbiumOS/webOS.git"
   },
   "bugs": {
-    "url": "https://github.com/NovaAppsInc/windows-procy/issues"
+    "url": "https://github.com/TerbiumOS/webOS/issues"
   },
-  "homepage": "https://github.com/NovaAppsInc/windows-procy#readme"
+  "homepage": "https://github.com/TerbiumOS/webOS#readme"
 }

@@ -181,6 +181,7 @@ const fullscreen = document.getElementById("fullscreen");
 const customShadow = document.getElementById("customShadow");
 const clearCustomShadow = document.getElementById("clearCustomShadow");
 const login = document.getElementById("login");
+const usedynamic = document.getElementById("dyn");
 const dockPos = document.querySelectorAll(".dockPos");
 const dockFull = document.getElementById("dockFull");
 const dockOpaque = document.getElementById("dockOpq");
@@ -490,6 +491,14 @@ if(localStorage.getItem("pass") === "none") {
     login.checked = true;
 }
 
+const dynVal = localStorage.getItem("useDynamic");
+
+if (dynVal === "true") {
+    usedynamic.checked = true;
+} else {
+    usedynamic.checked = false;
+}
+
 function addLogoutButton() {
     const logoutHolder = document.createElement("div");
     logoutHolder.classList.add("sys");
@@ -540,6 +549,19 @@ login.addEventListener("click", () => {
         case false:
             localStorage.setItem("pass", "none");
             window.parent.document.querySelector(".logout").remove();
+            break;
+        default:
+            break;
+    }
+})
+
+usedynamic.addEventListener("click", () => {
+    switch(usedynamic.checked) {
+        case true:
+            localStorage.setItem("useDynamic", "true");
+            break;
+        case false:
+            localStorage.setItem("useDynamic", "false");
             break;
         default:
             break;
