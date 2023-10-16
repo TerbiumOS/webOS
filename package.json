@@ -1,7 +1,7 @@
 {
   "name": "terbium",
   "version": "1.43",
-  "description": "Ultraviolet instance",
+  "description": "A Instance of Terbium WebOS!",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,11 @@
   "keywords": [
     "proxy"
   ],
+  "engines" : {
+    "npm" : ">=8.7.0 <10.2.0",
+    "node" : ">=18.0.0 <20.0.0"
+  },
+  "author": "SNOOT69",
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
     "node-static": "^0.7.11",
@@ -20,8 +25,6 @@
     "simplebar": "^6.2.5",
     "start": "^5.1.0"
   },
-  "author": "snoot69",
-  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TerbiumOS/webOS.git"

@@ -11,7 +11,7 @@ self.__uv$config = {
      * @type {string}
      */
     bare: [
-        '/bare/',
+        'https://tomp.app',
       ],
 
     /**

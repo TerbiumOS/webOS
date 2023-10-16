@@ -8,10 +8,29 @@ const logo = document.getElementById("logo");
 
 class xor {
     static encode(str) {
-        return encodeURIComponent(str.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
+        if (!str) return str;
+        return 'hvtrs8%2F-' + encodeURIComponent(
+            str
+                .toString()
+                .split('')
+                .map((char, ind) =>
+                    ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char
+                )
+                .join('')
+        );
     };
     static decode(str) {
-        return decodeURIComponent(str.slice(0, -1)).split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join('');
+        if (!str) return str;
+        let [input, ...search] = str.split('?');
+    
+        return 'hvtrs8%2F-' (
+            decodeURIComponent(input)
+                .split('')
+                .map((char, ind) =>
+                    ind % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char
+                )
+                .join('') + (search.length ? '?' + search.join('?') : '')
+        );
     };
 };
 
@@ -26,13 +45,13 @@ function ser() {
     window.parent.document.getElementById("searchbar").value = url;
     let safeSearch = localStorage.getItem("ss");
     if(safeSearch === null) {
-        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=0`;
+        if (!isUrl(url)) url = `https://searx.org/search?q=${url}&safesearch=0`;
     } else if(safeSearch === "ss_0") {
-        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=0`;
+        if (!isUrl(url)) url = `https://searx.org/search?q=${url}&safesearch=0`;
     } else if(safeSearch === "ss_1") {
-        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=1`;
+        if (!isUrl(url)) url = `https://searx.org/search?q=${url}&safesearch=1`;
     } else if(safeSearch === "ss_2") {
-        if (!isUrl(url)) url = `https://searx.priv.pw/search?q=${url}&safesearch=2`;
+        if (!isUrl(url)) url = `https://searx.org/search?q=${url}&safesearch=2`;
     }
     window.open("sw" + "/" + xor.encode(url), "_self");
 }
