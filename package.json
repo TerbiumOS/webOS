@@ -19,7 +19,7 @@
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
     "node-static": "^0.7.11",
-    "npm": "^8.7.0",
+    "npm": "^10.2.0",
     "path": "^0.12.7",
     "serve-static": "^1.15.0",
     "simplebar": "^6.2.5",
