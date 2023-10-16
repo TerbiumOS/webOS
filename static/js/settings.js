@@ -491,6 +491,14 @@ if(localStorage.getItem("pass") === "none") {
     login.checked = true;
 }
 
+const dynVal = localStorage.getItem("useDynamic");
+
+if (dynVal === "true") {
+    usedynamic.checked = true;
+} else {
+    usedynamic.checked = false;
+}
+
 function addLogoutButton() {
     const logoutHolder = document.createElement("div");
     logoutHolder.classList.add("sys");
