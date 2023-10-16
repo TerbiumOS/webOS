@@ -1,16 +1,7 @@
 {
-  "dependencies": {
-    "@tomphttp/bare-server-node": "^2.0.1",
-    "node-static": "^0.7.11",
-    "npm": "^8.7.0",
-    "path": "^0.12.7",
-    "serve-static": "^1.15.0",
-    "simplebar": "^5.3.8",
-    "start": "^5.1.0"
-  },
-  "name": "uv-app",
-  "version": "1.0.0",
-  "description": "Ultraviolet instance",
+  "name": "terbiumos",
+  "version": "1.43",
+  "description": "A Instance of Terbium WebOS!",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -20,8 +11,20 @@
   "keywords": [
     "proxy"
   ],
+  "engines" : {
+    "npm" : ">=8.7.0 <10.2.0",
+    "node" : ">=18.0.0 <20.0.0"
+  },
   "author": "",
   "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@tomphttp/bare-server-node": "^2.0.1",
+    "node-static": "^0.7.11",
+    "path": "^0.12.7",
+    "serve-static": "^1.15.0",
+    "simplebar": "^5.3.8",
+    "start": "^5.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TerbiumOS/webOS.git"
