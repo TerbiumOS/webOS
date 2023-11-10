@@ -13,11 +13,7 @@ This web os is packed full of features ***AND MUCH MORE TO COME***
 
 ### Getting Started
 
-To Get started using Terbium what you want to do is either download the repository using the "code" button and downloading as a zip and extracting it or using git below:
-
-```
-git clone https://github.com/TerbiumOS/webOS.git && cd webOS
-```
+To Get started using Terbium what you want to do is either download the repository using the "code" button and downloading as a zip and extracting it or using git
 
 Next go into the directory which by defualt will be called webOS and run the following command in your Operating systems terminal which if your on windows you can type into the file explorer url and just type `cmd` or if your on linux/macos just right click the folder and select open in terminal and then run the commands below
 
