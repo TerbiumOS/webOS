@@ -9,6 +9,7 @@ This web os is packed full of features ***AND MUCH MORE TO COME***
 [![Deploy to Cloudflare](https://raw.githubusercontent.com/z1g-project/terbium/main/static/resources/cflogo.png)](https://github.com/z1g-project/Terbium/wiki/Deploy-to-Cloudflare-Pages)
 [![Run on Glitch](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/official/glitch.svg)](https://glitch.com/edit/#!/import/github/TerbiumOS/webOS)
 [![Deploy to Vercel](https://binbashbanana.github.io/deploy-buttons/buttons/remade/vercel.svg)](https://vercel.com/new/clone?repository-url=https://github.com/TerbiumOS/webOS)
+[![Deploy to Koyeb](https://binbashbanana.github.io/deploy-buttons/buttons/remade/koyeb.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/TerbiumOS/webOS&branch=main&name=deploy-buttons)
 
 
 **NOTE** More Services are supported such as  Render, and Vercel however there is not a quick url at this time also keep in mind that on Glitch and Replit Proxies are banned. Refer to [this document](https://github.com/titaniumnetwork-dev/Ultraviolet-App/wiki/Circumventing-deployment-restrictions) to view ways to curcomvent this
