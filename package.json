@@ -15,7 +15,7 @@
     "npm" : ">=8.7.0 <10.2.0",
     "node" : ">=18.0.0 <20.0.0"
   },
-  "author": "SNOOT69",
+  "author": "snoot69",
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
     "node-static": "^0.7.11",
