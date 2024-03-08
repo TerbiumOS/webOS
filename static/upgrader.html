@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terbium Update</title>
+    <link rel="shortcut icon" href="../terbium.png" type="image/x-icon">
+    <link rel="stylesheet" href="/changes/index.css">
+    <link rel="stylesheet" href="../styles/cursors.css">
+    <meta property="og:image" content="../terbium.png">
+    <meta name="theme-color" content="#4cb05e">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            transition: transform 1s ease-in-out;
+        }
+
+        #text-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            font-size: 2em;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img id="main-image" src="tb-desktop.png" alt="Main Image">
+    </div>
+    <div id="text-container">
+        <h1>A new terbium...</h1>
+    </div>
+    <script src="../js/theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageContainer = document.getElementById('image-container');
+            const mainImage = document.getElementById('main-image');
+            const textContainer = document.getElementById('text-container');
+            setTimeout(() => {
+                imageContainer.style.opacity = 1;
+                textContainer.style.opacity = 1;
+            }, 100);
+            setTimeout(() => {
+                imageContainer.style.opacity = 0;
+                mainImage.style.transform = 'translateX(-100%)';
+            }, 3500);
+            setTimeout(() => {
+                mainImage.src = 'new-tb-desktop.png';
+                mainImage.style.transform = 'translateX(0)';
+                textContainer.innerText = 'Is ready for you.';
+            }, 4000);
+            setTimeout(() => {
+                imageContainer.style.opacity = 1;
+            }, 4500);
+            setTimeout(() => {
+                imageContainer.style.opacity = 0;
+                mainImage.style.transform = 'translateX(100%)';
+                textContainer.innerText = 'To be filled.';
+            }, 8000);
+        });
+    </script>
+</body>
+</html>

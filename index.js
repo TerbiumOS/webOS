@@ -34,7 +34,7 @@ httpServer.on('upgrade', (req, socket, head) => {
 });
 
 httpServer.on('listening', () => {
-  console.log('HTTP server listening');
+  console.log('Terbium is running on port 6969');
 });
 
 httpServer.listen({

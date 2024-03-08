@@ -6,7 +6,7 @@
         <link rel="shortcut icon" id="favi" href="/terbium.png" type="image/x-icon">
         <title>Terbium</title>
         <meta property="og:image" content="/terbium.png">
-        <meta name="description" content="Terbium is a sexy operating system built in the browser by SNOOT#7514 with &#128150;!" />
+        <meta name="description" content="Terbium is a sexy operating system built in the browser by snoot69 with &#128150;!" />
         <meta name="theme-color" content="#4cb05e">
         <meta name="keywords" content="terbium, Terbium, terbium proxy, SNOOTMAN, Fracital, windows, windows web, windows but bad, webOS, web os">
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#4cb05e">
@@ -278,6 +278,19 @@
         <script src="./js/notifications.js"></script>
         <script src="./js/localforage.min.js"></script>
         <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
+        <script>
+            if (localStorage.getItem('ignoredUpgrade')) {
+            } else {
+                new WIN(
+                    '(link)[../upgrader.html]', 
+                    '(icn)[./resources/terbium.svg]', 
+                    '(title)[Terbium System Upgrade]', 
+                    '(os)[true]', 
+                    '(full)[false]', 
+                    '(appname)[settings]'
+                );
+            }
+        </script>
         <noscript style="position: absolute;">ENABLE JAVASCRIPT!! Thanks!</noscript>
     </body>
 </html>
