@@ -8,9 +8,15 @@
     <link rel="shortcut icon" href="../terbium.png" type="image/x-icon">
     <link rel="stylesheet" href="/changes/index.css">
     <link rel="stylesheet" href="../styles/cursors.css">
+    <link rel="stylesheet" href="../styles/settings.css">
     <meta property="og:image" content="../terbium.png">
     <meta name="theme-color" content="#4cb05e">
     <style>
+        @font-face {
+            font-family: Inter;
+            src: url(inter.ttf);
+        }
+
         body {
             margin: 0;
             overflow: hidden;
@@ -48,18 +54,80 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
+
+        #main {
+            opacity: 0;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            align-content: center;
+            z-index: 999;
+            overflow: scroll;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .newbtn {
+            background-color: #ffffff20;
+            color: white;
+            padding: 6px 6px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: Inter;
+            transition: 150ms ease-in-out;
+            border: none;
+            width: max-content;
+            cursor: pointer;    
+        }
+
+        .newbtn:hover {
+            transform: scale(1.1);
+        }
+
+        .convince {
+            margin-top: 20px;
+            overflow-y: scroll;
+        }
+
+        #animator {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
-    <div id="image-container">
-        <img id="main-image" src="tb-desktop.png" alt="Main Image">
+    <div id="animator">
+        <div id="image-container">
+            <img id="main-image" src="tb-desktop.png" alt="Main Image">
+        </div>
+        <div id="text-container">
+            <h1>A new terbium...</h1>
+        </div>
     </div>
-    <div id="text-container">
-        <h1>A new terbium...</h1>
+    <div id="main">
+        <img src="tb-new.png" width="150" height="150"></img>
+        <h1 style="margin-top: 20px;">Upgrade to the next generation of terbium!</h1>
+        <div class="button-ctr">
+            <button class="newbtn" onclick="window.location.href='upgrade-accept.html'">Update</button>
+            <button class="btn" onclick="localStorage.setItem('ignoredUpgrade', 'true'); window.location.reload()">Stay</button>
+        </div>
+        <div class="convince">
+            <h1>Still aren't convinced? Check out some new features</h1>
+            <br>
+            <h2>New Features</h2>
+            <p>- App Store</p>
+            <p>- New Terminal</p>
+            <p>- File System</p>
+            <p>- Anura app Support</p>
+            <p>- Cleaner UI</p>
+            <p>- Wicked Fast & Built to last</p>
+            <br>
+        </div>
     </div>
     <script src="../js/theme.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const main = document.getElementById('main');
             const imageContainer = document.getElementById('image-container');
             const mainImage = document.getElementById('main-image');
             const textContainer = document.getElementById('text-container');
@@ -81,8 +149,9 @@
             }, 4500);
             setTimeout(() => {
                 imageContainer.style.opacity = 0;
+                textContainer.style.opacity = 0;
                 mainImage.style.transform = 'translateX(100%)';
-                textContainer.innerText = 'To be filled.';
+                main.style.opacity = 100;
             }, 8000);
         });
     </script>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terbium Update</title>
+    <link rel="shortcut icon" href="../terbium.png" type="image/x-icon">
+    <link rel="stylesheet" href="/changes/index.css">
+    <link rel="stylesheet" href="../styles/cursors.css">
+    <link rel="stylesheet" href="../styles/settings.css">
+    <meta property="og:image" content="../terbium.png">
+    <meta name="theme-color" content="#4cb05e">
+    <style>
+        @font-face {
+            font-family: Inter;
+            src: url(inter.ttf);
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #main {
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            align-content: center;
+            z-index: 999;
+            overflow: scroll;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .newbtn {
+            background-color: #ffffff20;
+            color: white;
+            padding: 6px 6px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: Inter;
+            transition: 150ms ease-in-out;
+            border: none;
+            width: max-content;
+            cursor: pointer;    
+        }
+
+        .newbtn:hover {
+            transform: scale(1.1);
+        }
+
+        .convince {
+            margin-top: 20px;
+            overflow-y: scroll;
+        }
+
+        #animator {
+            overflow: hidden;
+        }
+        
+        #admins {
+            margin-top: 20px;
+        }
+
+        #normal {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <img src="tb-new.png" width="150" height="150"></img>
+        <h1 style="margin-top: 20px;">How to upgrade to Terbium v2.0</h1>
+        <div id="admins">
+            <h3>For Site Owners/Administrators:</h3>
+            <p>1: Clone/Download the new Repository</p>
+            <p>2: Download the dependencies using npm (preferebly use pnpm)</p>
+            <p>3: If your port forwarding setup already has Port 6969, Simply go to the .env file and change PORT=3000 to PORT=6969. If you are new to setting this up ignore this</p>
+            <p>4: Start the HTTP Server via npm start (once again, its recommended to use pnpm)</p>
+            <br>
+            <p>Bonus: If you are deploying this to a link bot Its recomended to use MASQR. If you dont know what it is find out more about it <a href="https://github.com/titaniumnetwork-dev/MasqrProject" target="_blank">Here</a></p>
+        </div>
+        <div id="normal">
+            <h3>For Normal Proxy Users:</h3>
+            <p>Unfortunatly there isnt much you can do. You have to wait for your site administrator to update the site. However you can request new links in the <a href="https://discord.gg/unblock">TN Discord</a> that will already be updated to the new version</p>
+        </div>
+        <button class="newbtn">OK</button>
+    </div>
+    <script src="../js/theme.js"></script>
+</body>
+</html>
