@@ -16,7 +16,7 @@ Terbium is a webOS packed full of features and more!
 
 ### Getting Started
 
-To Get started using Terbium what you want to do is either download the repository using the "code" button and downloading as a zip and extracting it or using git
+To Get started using Terbium what you want to do is either download the repository using the "code" button and downloading as a zip and extracting it or using `git clone https://github.com/terbiumOS/webOS`
 
 Next go into the directory which by defualt will be called webOS and run the following command in your Operating systems terminal which if your on windows you can type into the file explorer url and just type `cmd` or if your on linux/macos just right click the folder and select open in terminal and then run the commands below
 
@@ -24,7 +24,7 @@ Next go into the directory which by defualt will be called webOS and run the fol
 npm install && npm start
 ```
 
-Visit `localhost:6969` to use it!
+Wait for everything to install then visit `localhost:6969` to use it!
 
 ## Contributers
 
