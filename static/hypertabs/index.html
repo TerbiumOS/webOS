@@ -10,15 +10,37 @@
   <link href='css/chrome-tabs-dark-theme.css' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
   <link rel="manifest" href="manifest.json" />
-  <script src="uv/uv.bundle.js"></script>
-  <script src="uv/uv.config.js"></script>
+  <script src="../uv/uv.bundle.js"></script>
+  <script src="../uv/uv.config.js"></script>
+  <script src="../baremux/bare.cjs"></script>
+  <script src="../libcurl/index.js"></script>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-      navigator.serviceWorker.register('/uv.sw.js', {
-          scope: '/sw/',
-      });
-    };
+    (async () => {
+      if ('serviceWorker' in navigator) {
+        await navigator.serviceWorker.register('../sw.js', {
+            scope: `${window.location.origin}/sw/`,
+        }).then(() => updateTransports());
+      }
+      if (!localStorage.getItem('firstRun')) {
+        console.log('kongsole')
+        localStorage.setItem('firstRun', false)
+        window.location.reload()
+      }
+    })();
+        
+        async function updateTransports() {
+          BareMux.registerRemoteListener(navigator.serviceWorker.controller);
+          if (window.location.origin.includes('.pages.dev')) {
+            console.log('your static hosting, using TOMP Wisp Server.')
+            let wispserver = "wss://tomp.app/wisp"
+            BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispserver, wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.6.7/libcurl.wasm" });
+          } else {
+            console.log('Using Backend Wisp Server, if your static hosting just delete these lines bellow and uncomment out the text bellow')
+            //let wispserver = "wss://tomp.app/wisp" Uncomment if static hosting
+            let wispserver = `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/`
+            BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispserver, wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.6.7/libcurl.wasm" });
+          }
+        }
 
     // check custom functions
     document.addEventListener('keydown', key => {

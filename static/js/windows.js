@@ -1486,13 +1486,14 @@ class WIN {
                         lastWin.click();
                     }
                 }
-                if(lastWindow.innerHTML === "") {
-                    // get the last .win minus the one being closed
-                    if(document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")")[document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")").length - 1]) {
-                        let lastWin = document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")")[document.querySelectorAll(".win:not(#" + newwin.getAttribute("data-id") + ")").length - 1];
+                if (lastWindow.innerHTML === "") {
+                    let winSelector = ".win:not([data-id='" + newwin.getAttribute("data-id") + "'])";
+                    let lastWins = document.querySelectorAll(winSelector);
+                    if (lastWins.length > 0) {
+                        let lastWin = lastWins[lastWins.length - 1];
                         lastWin.click();
                     }
-                }
+                }                
                 if(allWindowsForCellNumberCheck.length === 1) {
                     console.log("last window");
                     appsShellName.innerText = "";
