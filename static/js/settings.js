@@ -967,6 +967,12 @@ categories.forEach(category => {
                 view.setAttribute("hiddenCat", "true");
             })
             other.setAttribute("hiddenCat", "false");
+        } else if(type === "version") {
+            const version = document.querySelector("[view='version']");
+            views.forEach(view => {
+                view.setAttribute("hiddenCat", "true");
+            })
+            version.setAttribute("hiddenCat", "false");
         }
     })
 });

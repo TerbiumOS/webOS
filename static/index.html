@@ -12,17 +12,41 @@
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#4cb05e">
         <link href="index.css" id="rels" rel="stylesheet">
         <script src="index.js" defer></script>
+        <script src="/baremux/bare.cjs"></script>
+        <script src="/libcurl/index.js"></script>
         <script src="/js/tabs.js" defer></script>
         <script>
-            if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.register('/sw.js', {
-                  scope: '/sw/',
-              });
+            (async () => {
+                if ('serviceWorker' in navigator) {
+                    await navigator.serviceWorker.register('/sw.js', {
+                        scope: '/sw/',
+                    }).then(() => updateTransports());
+        
+                    await navigator.serviceWorker.register('/dynsw.js', {
+                        scope: '/dyn/',
+                    });
+                }
 
-              navigator.serviceWorker.register('/dynsw.js', {
-                  scope: '/dyn/',
-              });
-            };
+                if (!localStorage.getItem('firstRun')) {
+                    console.log('kongsole')
+                    localStorage.setItem('firstRun', false)
+                    window.location.reload()
+                }
+            })();
+        
+            async function updateTransports() {
+                BareMux.registerRemoteListener(navigator.serviceWorker.controller);
+                if (window.location.origin.includes('.pages.dev')) {
+                    console.log('your static hosting, using TOMP Wisp Server.')
+                    let wispserver = "wss://tomp.app/wisp"
+                    BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispserver, wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.6.7/libcurl.wasm" });
+                } else {
+                    console.log('Using Backend Wisp Server, if your static hosting just delete these lines bellow and uncomment out the text bellow')
+                    //let wispserver = "wss://tomp.app/wisp" Uncomment if static hosting
+                    let wispserver = `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/`
+                    BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispserver, wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.6.7/libcurl.wasm" });
+                }
+            }
         </script>
     </head>
     <body tabindex="-1" oncontextmenu="return false;" class="noSelect" id="no" data-notification="false">
@@ -269,6 +293,7 @@
             <div class="nextWindow"></div>
         </div>
         <a style="display: none;" rel="me" href="https://mstdn.social/@snoot"></a>
+        <p class="version">Version Legacy v1.44 (LTS)</p>
         <script src="./js/tms.js"></script>
         <script src="./js/windows.js"></script>
         <script src="uv/uv.bundle.js"></script>

@@ -750,3 +750,19 @@ input[type=number] {
 .spacer {
     height: 12px;
 }
+
+.centered-text {
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.centered-image {
+    max-width: 100%;
+    max-height: 100%;
+}

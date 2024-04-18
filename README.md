@@ -1,5 +1,6 @@
 # TerbiumOS web
-This web os is packed full of features ***AND MUCH MORE TO COME***
+
+Terbium is a webOS packed full of features and more!
 ![image](https://github.com/TerbiumOS/webOS/blob/main/Terbium.png?raw=true)
 
 ## Quick Deployments
@@ -11,7 +12,6 @@ This web os is packed full of features ***AND MUCH MORE TO COME***
 [![Deploy to Vercel](https://binbashbanana.github.io/deploy-buttons/buttons/remade/vercel.svg)](https://vercel.com/new/clone?repository-url=https://github.com/TerbiumOS/webOS)
 [![Deploy to Koyeb](https://binbashbanana.github.io/deploy-buttons/buttons/remade/koyeb.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/TerbiumOS/webOS&branch=main&name=deploy-buttons)
 
-
 **NOTE** More Services are supported such as  Render, and Netlify however there is not a quick url at this time also keep in mind that on Glitch and Replit Proxies are banned. Refer to [this document](https://github.com/titaniumnetwork-dev/Ultraviolet-App/wiki/Circumventing-deployment-restrictions) to view ways to curcomvent this
 
 ### Getting Started
@@ -20,7 +20,7 @@ To Get started using Terbium what you want to do is either download the reposito
 
 Next go into the directory which by defualt will be called webOS and run the following command in your Operating systems terminal which if your on windows you can type into the file explorer url and just type `cmd` or if your on linux/macos just right click the folder and select open in terminal and then run the commands below
 
-```
+```sh
 npm install && npm start
 ```
 

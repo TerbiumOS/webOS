@@ -1768,13 +1768,15 @@ class WIN {
         }
     
         winconts.addEventListener("dblclick", (e) => {
-            if(e.target.classList.contains('winc') || e.target.classList.contains('winic') || e.target.classList.contains("searchbar") || e.target.classList.contains("m") || e.target.classList.contains("bIcon")) {
-                e.target.click();
+            if (e.target.classList.contains('winc') || e.target.classList.contains('winic') || e.target.classList.contains("searchbar") || e.target.classList.contains("m") || e.target.classList.contains("bIcon")) {
+                if (typeof e.target.click === 'function') {
+                    e.target.click();
+                }
             } else {
-                if(newwin.querySelector(".maxi")) {
+                if (newwin.querySelector(".maxi")) {
                     newwin.querySelector('.maxi').click();
                 }
-            }
+            }            
         });
     
         winconts.addEventListener("mousedown", mousedown);
