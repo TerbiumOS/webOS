@@ -21,7 +21,7 @@
     "express": "^4.19.2",
     "path": "^0.12.7",
     "serve-static": "^1.15.0",
-    "simplebar": "^6.2.5",
+    "simplebar": "^6.2.6",
     "wisp-server-node": "^1.0.4",
     "ws": "^8.17.0"
   },
