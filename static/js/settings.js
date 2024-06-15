@@ -182,6 +182,7 @@ const customShadow = document.getElementById("customShadow");
 const clearCustomShadow = document.getElementById("clearCustomShadow");
 const login = document.getElementById("login");
 const usedynamic = document.getElementById("dyn");
+const uselibcurl = document.getElementById("libcurl");
 const dockPos = document.querySelectorAll(".dockPos");
 const dockFull = document.getElementById("dockFull");
 const dockOpaque = document.getElementById("dockOpq");
@@ -499,6 +500,14 @@ if (dynVal === "true") {
     usedynamic.checked = false;
 }
 
+const lbVal = localStorage.getItem("transport");
+
+if (lbVal === "CurlMod.LibcurlClient" | null) {
+    uselibcurl.checked = true;
+} else {
+    uselibcurl.checked = false;
+}
+
 function addLogoutButton() {
     const logoutHolder = document.createElement("div");
     logoutHolder.classList.add("sys");
@@ -562,6 +571,19 @@ usedynamic.addEventListener("click", () => {
             break;
         case false:
             localStorage.setItem("useDynamic", "false");
+            break;
+        default:
+            break;
+    }
+})
+
+uselibcurl.addEventListener("click", () => {
+    switch(uselibcurl.checked) {
+        case true:
+            localStorage.setItem("transport", "CurlMod.LibcurlClient");
+            break;
+        case false:
+            localStorage.setItem("transport", "EpxMod.EpoxyClient");
             break;
         default:
             break;

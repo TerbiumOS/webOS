@@ -1,6 +1,6 @@
 {
   "name": "terbium",
-  "version": "1.44-LTS",
+  "version": "1.45-LTS",
   "description": "A Instance of Terbium WebOS!",
   "type": "module",
   "main": "index.js",
