@@ -33,7 +33,7 @@
         </ul>
         <button id="reload">Reload</button>
         <hr />
-        <p><i>Ultraviolet (Terbium Hybrid) v<span id="uvVersion"></span></i></p>
+        <p><i>Ultraviolet (Legacy Terbium Hybrid) v<span id="uvVersion"></span></i></p>
         <script src="${"data:application/javascript,"+encodeURIComponent(o)}"><\/script>
         </body>
         </html>
