@@ -37,6 +37,7 @@
             async function updateTransports() {
                 BareMux.registerRemoteListener(navigator.serviceWorker.controller);
                 let transport = localStorage.getItem('transport') || "EpxMod.EpoxyClient"
+                // Feel free to remove this, its just for skids to stop making issues on it
                 if (window.location.origin.includes('.pages.dev')) {
                     console.log('your static hosting, using TOMP Wisp Server.')
                     let wispserver = "wss://tomp.app/wisp"
