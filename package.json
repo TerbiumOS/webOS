@@ -22,7 +22,7 @@
     "path": "^0.12.7",
     "serve-static": "^1.15.0",
     "simplebar": "^6.2.7",
-    "wisp-server-node": "^1.0.4",
+    "wisp-server-node": "^1.1.1",
     "ws": "^8.18.0"
   },
   "repository": {
