@@ -24,8 +24,8 @@ importers:
         specifier: ^6.2.7
         version: 6.2.7
       wisp-server-node:
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^1.1.3
+        version: 1.1.3
       ws:
         specifier: ^8.18.0
         version: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
@@ -354,8 +354,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  wisp-server-node@1.1.1:
-    resolution: {integrity: sha512-JQGQ5CqNaMFxlmvHIJTQDAqGYGWq4Szt1Ou57Qkhgb4s88IEPHEJyLlqZ/wGvoks7/8z5UNJW0QBeTASr2Ikog==}
+  wisp-server-node@1.1.3:
+    resolution: {integrity: sha512-q44uIL68WhOnSEE1HJvMwXVZ6OzFIK+PBQfv04cr3svfOpbZfsuzLiYUz12P57PkxZxfNsjsYqrXjvf55P8S4Q==}
 
   ws@8.18.0:
     resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
@@ -725,7 +725,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  wisp-server-node@1.1.1:
+  wisp-server-node@1.1.3:
     dependencies:
       bufferutil: 4.0.8
       utf-8-validate: 6.0.4
