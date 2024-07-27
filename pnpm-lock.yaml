@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@tomphttp/bare-server-node':
-        specifier: ^2.0.3
-        version: 2.0.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+        specifier: ^2.0.4
+        version: 2.0.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       express:
         specifier: ^4.19.2
         version: 4.19.2
@@ -32,8 +32,8 @@ importers:
 
 packages:
 
-  '@tomphttp/bare-server-node@2.0.3':
-    resolution: {integrity: sha512-IGzZspDwzto+oPsvlV99OALJKH3X1nRWnpBE8EY6nrqu5I83xw3uSUacEdHNnW4rXG0IQ8vZwMH87VOMoArJ3A==}
+  '@tomphttp/bare-server-node@2.0.4':
+    resolution: {integrity: sha512-vbzrsTgp71mfEcLMiuPb8CU+84CDdv2FwU/u9P+TatLd8ZEenffTwZyGvhWlwumDkXjrR56W5CMKZ5vlPTIqrA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -371,7 +371,7 @@ packages:
 
 snapshots:
 
-  '@tomphttp/bare-server-node@2.0.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
+  '@tomphttp/bare-server-node@2.0.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
     dependencies:
       async-exit-hook: 2.0.1
       commander: 10.0.1

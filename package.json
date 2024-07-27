@@ -17,7 +17,7 @@
   },
   "author": "snoot69",
   "dependencies": {
-    "@tomphttp/bare-server-node": "^2.0.3",
+    "@tomphttp/bare-server-node": "^2.0.4",
     "express": "^4.19.2",
     "path": "^0.12.7",
     "serve-static": "^1.15.0",
