@@ -1,6 +1,6 @@
 {
-  "name": "terbium",
-  "version": "1.45-LTS",
+  "name": "legacy-terbium",
+  "version": "1.44-LTS",
   "description": "A Instance of Terbium WebOS!",
   "type": "module",
   "main": "index.js",
@@ -12,8 +12,7 @@
     "proxy"
   ],
   "engines" : {
-    "npm" : ">=8.7.0 <10.2.0",
-    "node" : ">=18.0.0 <20.0.0"
+    "npm" : ">=8.7.0",
   },
   "author": "snoot69",
   "dependencies": {
