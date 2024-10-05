@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@tomphttp/bare-server-node':
-        specifier: ^2.0.3
-        version: 2.0.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@nebula-services/bare-server-node':
+        specifier: ^2.0.4
+        version: 2.0.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       express:
         specifier: ^4.19.2
         version: 4.19.2
@@ -24,16 +24,16 @@ importers:
         specifier: ^6.2.7
         version: 6.2.7
       wisp-server-node:
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^1.1.7
+        version: 1.1.7
       ws:
         specifier: ^8.18.0
         version: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
 packages:
 
-  '@tomphttp/bare-server-node@2.0.3':
-    resolution: {integrity: sha512-IGzZspDwzto+oPsvlV99OALJKH3X1nRWnpBE8EY6nrqu5I83xw3uSUacEdHNnW4rXG0IQ8vZwMH87VOMoArJ3A==}
+  '@nebula-services/bare-server-node@2.0.4':
+    resolution: {integrity: sha512-Jcr+QtkLJVmppdbBarEbRp1TtCsL4pjFIcX6+KPURRqcsOP7hZfYclhjmCserwEC7jT+WBduXpFd3qwqeRBNew==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -354,8 +354,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  wisp-server-node@1.1.1:
-    resolution: {integrity: sha512-JQGQ5CqNaMFxlmvHIJTQDAqGYGWq4Szt1Ou57Qkhgb4s88IEPHEJyLlqZ/wGvoks7/8z5UNJW0QBeTASr2Ikog==}
+  wisp-server-node@1.1.7:
+    resolution: {integrity: sha512-1kL4dbGAZLHks3qYQDOzhxFKvmKwPwfMFTskvsdOc2YA6TmUKZvq5TNPkGs9JJXPnWiOtqMzAVQVC/FwixxXvQ==}
 
   ws@8.18.0:
     resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
@@ -371,7 +371,7 @@ packages:
 
 snapshots:
 
-  '@tomphttp/bare-server-node@2.0.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
+  '@nebula-services/bare-server-node@2.0.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
     dependencies:
       async-exit-hook: 2.0.1
       commander: 10.0.1
@@ -725,7 +725,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  wisp-server-node@1.1.1:
+  wisp-server-node@1.1.7:
     dependencies:
       bufferutil: 4.0.8
       utf-8-validate: 6.0.4
