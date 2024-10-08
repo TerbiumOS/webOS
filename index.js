@@ -1,4 +1,4 @@
-import { createBareServer } from "@tomphttp/bare-server-node";
+import { createBareServer } from "@nebula-services/bare-server-node";
 import express from "express";
 import { createServer } from "node:http";
 import path from "path";
