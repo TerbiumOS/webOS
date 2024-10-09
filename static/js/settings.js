@@ -502,7 +502,7 @@ if (dynVal === "true") {
 
 const lbVal = localStorage.getItem("transport");
 
-if (lbVal === "CurlMod.LibcurlClient" | null) {
+if (lbVal === "/libcurl/index.mjs" | null) {
     uselibcurl.checked = true;
 } else {
     uselibcurl.checked = false;
@@ -580,10 +580,10 @@ usedynamic.addEventListener("click", () => {
 uselibcurl.addEventListener("click", () => {
     switch(uselibcurl.checked) {
         case true:
-            localStorage.setItem("transport", "CurlMod.LibcurlClient");
+            localStorage.setItem("transport", "/libcurl/index.mjs");
             break;
         case false:
-            localStorage.setItem("transport", "EpxMod.EpoxyClient");
+            localStorage.setItem("transport", "/epoxy/index.mjs");
             break;
         default:
             break;
