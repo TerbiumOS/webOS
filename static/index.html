@@ -15,7 +15,7 @@
         <script src="index.js" defer></script>
         <script src="/js/tabs.js" defer></script>
         <script>
-            (async () => {
+            window.addEventListener("load", async () => {
                 if ('serviceWorker' in navigator) {
                     await navigator.serviceWorker.register('/sw.js', {
                         scope: '/sw/',
@@ -45,7 +45,7 @@
                     localStorage.setItem('HTfirstRun', false)
                     window.location.reload()
                 }
-            })();
+            })
         </script>
     </head>
     <body tabindex="-1" oncontextmenu="return false;" class="noSelect" id="no" data-notification="false">

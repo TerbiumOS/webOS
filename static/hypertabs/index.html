@@ -15,29 +15,29 @@
   <script src="../libcurl/index.js"></script>
   <script src="../baremux/index.js" defer></script>
   <script>
-    (async () => {
-      if ('serviceWorker' in navigator) {
-        await navigator.serviceWorker.register('/sw.js', {
-              scope: '/sw/',
-        }).then(async () => {
-              const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
-              let transport = localStorage.getItem('transport') || "/epoxy/index.mjs"
-              // Feel free to remove this, its just for skids to stop making issues on it
-              if (window.location.origin.includes('.pages.dev')) {
-                  console.log('your static hosting, using TOMP Wisp Server.')
-                  let wispserver = "wss://tomp.app/wisp"
-                  await connection.setTransport(transport, [{ wisp: wispserver }]);
-              } else {
-                  console.log('Using Backend Wisp Server, if your static hosting just delete these lines bellow and uncomment out the text bellow')
-                  //let wispserver = "wss://tomp.app/wisp" Uncomment if static hosting
-                  let wispserver = `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/`
-                  await connection.setTransport(transport, [{ wisp: wispserver }]);
-                }
-                });
+  window.addEventListener("load", async () => {
+                if ('serviceWorker' in navigator) {
+                    await navigator.serviceWorker.register('/sw.js', {
+                        scope: '/sw/',
+                    }).then(async () => {
+                        const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+                        let transport = localStorage.getItem('transport') || "/epoxy/index.mjs"
+                        // Feel free to remove this, its just for skids to stop making issues on it
+                        if (window.location.origin.includes('.pages.dev')) {
+                            console.log('your static hosting, using TOMP Wisp Server.')
+                            let wispserver = "wss://tomp.app/wisp"
+                            await connection.setTransport(transport, [{ wisp: wispserver }]);
+                        } else {
+                            console.log('Using Backend Wisp Server, if your static hosting just delete these lines bellow and uncomment out the text bellow')
+                            //let wispserver = "wss://tomp.app/wisp" Uncomment if static hosting
+                            let wispserver = `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/`
+                            await connection.setTransport(transport, [{ wisp: wispserver }]);
+                        }
+                    });
         
-                await navigator.serviceWorker.register('/dynsw.js', {
-                    scope: '/dyn/',
-                });
+                    await navigator.serviceWorker.register('/dynsw.js', {
+                        scope: '/dyn/',
+                    });
                 }
 
                 if (!localStorage.getItem('HTfirstRun')) {
@@ -45,7 +45,7 @@
                     localStorage.setItem('HTfirstRun', false)
                     window.location.reload()
                 }
-            })();
+            })
 
     // check custom functions
     document.addEventListener('keydown', key => {
