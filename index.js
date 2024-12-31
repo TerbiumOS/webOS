@@ -1,15 +1,13 @@
-import { createBareServer } from "@nebula-services/bare-server-node";
 import express from "express";
 import { createServer } from "node:http";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import wisp from "wisp-server-node";
+import { server as wisp } from "@mercuryworkshop/wisp-js";
 import "ws";
 
 console.log("Starting Terbium...");
 const app = express();
-const bare = createBareServer('/bare/')
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -17,18 +15,12 @@ app.use(express.static("static"));
 const server = createServer();
 
 server.on("request", (req, res) => {
-  if (bare.shouldRoute(req)) {
-    bare.routeRequest(req, res);
-  } else {
-    app(req, res);
-  }
+  app(req, res);
 });
 
 server.on("upgrade", (req, socket, head) => {
   if (req.url.endsWith("/wisp/")) {
     wisp.routeRequest(req, socket, head);
-  } else if (req.url.endsWith("/bare")) {
-    bare.routeUpgrade(req, socket, head);
   }
 });
 

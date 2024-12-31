@@ -1,23 +1,21 @@
 {
   "name": "legacy-terbium",
-  "version": "1.44-LTS",
+  "version": "1.45-LTS",
   "description": "A Instance of Terbium WebOS!",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "keywords": [
     "proxy"
   ],
-  "author": "snoot69",
+  "author": "TerbiumOS",
   "dependencies": {
-    "@nebula-services/bare-server-node": "^2.0.4",
-    "express": "^4.21.0",
+    "@mercuryworkshop/wisp-js": "^0.3.3",
+    "express": "^4.21.2",
     "path": "^0.12.7",
-    "simplebar": "^6.2.7",
-    "wisp-server-node": "^1.1.7",
+    "simplebar": "^6.3.0",
     "ws": "^8.18.0"
   },
   "repository": {

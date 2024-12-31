@@ -3,6 +3,7 @@ export * from './client';
 export * from './connection';
 export { BareClient as default } from './client';
 export { WebSocketFields } from "./snapshot";
+export { BareWebSocket } from "./websocket";
 export type * from './baretypes';
 export type * from './client';
 export type * from './connection';

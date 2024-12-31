@@ -1,14 +1,12 @@
-import { BareHeaders, BareTransport } from './baretypes';
+import { BareHeaders, BareTransport, TransferrableResponse } from './baretypes';
 import { WorkerConnection } from './connection';
+import { BareWebSocket } from './websocket';
 export declare function validProtocol(protocol: string): boolean;
-export type WebSocketImpl = {
-    new (...args: ConstructorParameters<typeof WebSocket>): WebSocket;
-};
 /**
  * A Response with additional properties.
  */
 export interface BareResponse extends Response {
-    rawResponse: Response;
+    rawResponse: TransferrableResponse;
     rawHeaders: BareHeaders;
 }
 /**
@@ -32,6 +30,6 @@ export declare class BareClient {
      * Create a BareClient. Calls to fetch and connect will wait for an implementation to be ready.
      */
     constructor(worker?: string | Promise<MessagePort> | MessagePort);
-    createWebSocket(remote: string | URL, protocols?: string | string[] | undefined, webSocketImpl?: WebSocketImpl, requestHeaders?: BareHeaders, arrayBufferImpl?: ArrayBuffer): WebSocket;
+    createWebSocket(remote: string | URL, protocols?: string | string[] | undefined, __deprecated_donotuse_websocket?: any, requestHeaders?: BareHeaders): BareWebSocket;
     fetch(url: string | URL, init?: RequestInit): Promise<BareResponseFetch>;
 }

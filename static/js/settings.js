@@ -181,7 +181,7 @@ const fullscreen = document.getElementById("fullscreen");
 const customShadow = document.getElementById("customShadow");
 const clearCustomShadow = document.getElementById("clearCustomShadow");
 const login = document.getElementById("login");
-const usedynamic = document.getElementById("dyn");
+//const usedynamic = document.getElementById("dyn");
 const uselibcurl = document.getElementById("libcurl");
 const dockPos = document.querySelectorAll(".dockPos");
 const dockFull = document.getElementById("dockFull");
@@ -492,13 +492,14 @@ if(localStorage.getItem("pass") === "none") {
     login.checked = true;
 }
 
+/*
 const dynVal = localStorage.getItem("useDynamic");
 
 if (dynVal === "true") {
     usedynamic.checked = true;
 } else {
     usedynamic.checked = false;
-}
+}*/
 
 const lbVal = localStorage.getItem("transport");
 
@@ -564,6 +565,7 @@ login.addEventListener("click", () => {
     }
 })
 
+/*
 usedynamic.addEventListener("click", () => {
     switch(usedynamic.checked) {
         case true:
@@ -575,7 +577,7 @@ usedynamic.addEventListener("click", () => {
         default:
             break;
     }
-})
+})*/
 
 uselibcurl.addEventListener("click", () => {
     switch(uselibcurl.checked) {

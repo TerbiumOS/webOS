@@ -1754,12 +1754,7 @@ class WIN {
         });
         switch(os) {
             case "false":
-                if (localStorage.getItem('useDynamic', 'true')) {
-                    console.log('Using Dynamic')
-                    framew.src = "dyn" + "/" + xor.encode(link);
-                } else {
-                    framew.src = "sw" + "/" + xor.encode(link);
-                }               
+                framew.src = "sw" + "/" + xor.encode(link);
                 break;
             case "true":
                 framew.src = link;

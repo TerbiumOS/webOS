@@ -34,10 +34,6 @@
                             await connection.setTransport(transport, [{ wisp: wispserver }]);
                         }
                     });
-        
-                    await navigator.serviceWorker.register('/dynsw.js', {
-                        scope: '/dyn/',
-                    });
                 }
 
                 if (!localStorage.getItem('HTfirstRun')) {
