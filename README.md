@@ -1,3 +1,7 @@
+# **⚠️ NOTICE/DISCLAIMER ⚠️**
+
+This version of TerbiumOS will not be recieving any major updates anymore. It may only recieve updates for major security vulnerabilities (e.g. ablity to gain code execution on the backend). For the new version of Terbium, visit [this repo](https://github.com/terbiumos/web-v2)
+
 # TerbiumOS web
 
 Terbium is a webOS packed full of features and more!
